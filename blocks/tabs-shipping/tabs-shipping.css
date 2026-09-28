@@ -1,0 +1,165 @@
+.tabs-shipping {
+  --tabs-shipping-tile-width: 158px;
+  --tabs-shipping-tile-height: 102px;
+  --tabs-shipping-tile-raise: var(--space-1);
+  --tabs-shipping-icon-size: var(--icon-size-m);
+  --tabs-shipping-input-border-color: color-mix(in srgb, var(--text-color) 55%, var(--color-white));
+  --tabs-shipping-form-max-width: 587px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-12);
+}
+
+/* tiles */
+.tabs-shipping .tabs-shipping-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.tabs-shipping .tabs-shipping-tab {
+  display: flex;
+  flex: 0 1 var(--tabs-shipping-tile-width);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-width: 0;
+  min-height: var(--tabs-shipping-tile-height);
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  background-color: var(--panel-color);
+  color: var(--text-color);
+  font-size: var(--body-font-size-s);
+  font-weight: var(--font-weight-bold);
+  line-height: 1;
+  letter-spacing: var(--button-letter-spacing);
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+/* the selected tile is taller and overlaps the row above and below */
+.tabs-shipping .tabs-shipping-tab[aria-selected="true"] {
+  min-height: calc(var(--tabs-shipping-tile-height) + 2 * var(--tabs-shipping-tile-raise));
+  margin-block: calc(-1 * var(--tabs-shipping-tile-raise));
+  background-color: var(--dark-color);
+  color: var(--color-white);
+}
+
+.tabs-shipping .tabs-shipping-tab:focus-visible {
+  outline: 2px solid currentcolor;
+  outline-offset: calc(-1 * var(--space-2));
+}
+
+.tabs-shipping .tabs-shipping-tab picture,
+.tabs-shipping .tabs-shipping-tab .icon,
+.tabs-shipping .tabs-shipping-tab img {
+  display: block;
+  width: var(--tabs-shipping-icon-size);
+  height: var(--tabs-shipping-icon-size);
+}
+
+.tabs-shipping .tabs-shipping-tab[aria-selected="true"] img {
+  filter: brightness(0) invert(1);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .tabs-shipping .tabs-shipping-tab {
+    transition: background-color 0.16s, color 0.16s;
+  }
+}
+
+/* panels */
+.tabs-shipping .tabs-shipping-panel {
+  width: 100%;
+  text-align: center;
+}
+
+.tabs-shipping .tabs-shipping-panel[hidden] {
+  display: none;
+}
+
+.tabs-shipping .tabs-shipping-panel > :last-child {
+  margin-bottom: 0;
+}
+
+.tabs-shipping .tabs-shipping-panel ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0 var(--space-6);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tabs-shipping .tabs-shipping-panel a:any-link:not(.button) {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--touch-target-size);
+  color: inherit;
+  font-weight: var(--font-weight-bold);
+}
+
+/* the intro text of the tracking form is a hint on the source: keep it for screen readers only */
+.tabs-shipping .tabs-shipping-panel > p:has(+ .tabs-shipping-track) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* tracking form */
+.tabs-shipping .tabs-shipping-track {
+  display: flex;
+  width: 100%;
+  max-width: var(--tabs-shipping-form-max-width);
+  margin: 0 auto;
+}
+
+.tabs-shipping .tabs-shipping-track input {
+  box-sizing: border-box;
+  flex: 1;
+  min-width: 0;
+  height: var(--control-height);
+  margin: 0;
+  border: 1px solid var(--tabs-shipping-input-border-color);
+  border-radius: 0;
+  padding: 0 var(--space-2);
+  background-color: var(--color-white);
+  color: var(--text-color);
+  font-size: var(--body-font-size-l);
+  font-weight: var(--font-weight-light);
+}
+
+.tabs-shipping .tabs-shipping-track input::placeholder {
+  color: var(--text-color);
+  font-style: italic;
+  opacity: 1;
+  text-transform: uppercase;
+}
+
+.tabs-shipping .tabs-shipping-track .button {
+  height: var(--control-height);
+  padding-block: 0;
+}
+
+@media (width >= 768px) {
+  .tabs-shipping {
+    --tabs-shipping-tile-height: 120px;
+    --tabs-shipping-tile-raise: var(--space-2);
+    --tabs-shipping-icon-size: var(--icon-size-l);
+  }
+
+  .tabs-shipping .tabs-shipping-track {
+    gap: var(--space-2);
+  }
+}

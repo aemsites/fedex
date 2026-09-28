@@ -1,0 +1,175 @@
+{
+  "metadata": {
+    "projectType": "da"
+  },
+  "templates": [
+    {
+      "name": "home",
+      "urls": [
+        "https://www.fedex.com/en-us/home.html"
+      ],
+      "representativeUrl": "https://www.fedex.com/en-us/home.html",
+      "description": "FedEx homepage: hero with shipping tools tabs, alert, icon quick links, feature columns, promo cards and legal footnotes",
+      "blocks": [
+        {
+          "name": "hero",
+          "instances": [
+            "div.fxg-hero.fxg-hero_homepage > div.fxg-hero__image"
+          ]
+        },
+        {
+          "name": "tabs-shipping",
+          "instances": [
+            "div.fxg-hero__header > ul.fxg-cube-container"
+          ]
+        },
+        {
+          "name": "notification",
+          "instances": [
+            "div.notifications"
+          ]
+        },
+        {
+          "name": "cards-icon-links",
+          "instances": [
+            "div.advanced_table_v1"
+          ]
+        },
+        {
+          "name": "columns-feature",
+          "instances": [
+            "div.fxg-wrapper div.experiencefragment .xf-content-height > .aem-Grid > div.column_control_v1:nth-of-type(7)"
+          ]
+        },
+        {
+          "name": "cards-promo",
+          "instances": [
+            "div.fxg-wrapper div.experiencefragment .xf-content-height > .aem-Grid > div.column_control_v1:nth-of-type(12)"
+          ]
+        },
+        {
+          "name": "columns-promo",
+          "instances": [
+            "div.featured_offer_v2"
+          ]
+        },
+        {
+          "name": "cards-horizontal",
+          "instances": [
+            "div.fxg-wrapper div.experiencefragment .xf-content-height > .aem-Grid > div.column_control_v1:nth-of-type(21)",
+            "div.fxg-wrapper div.experiencefragment .xf-content-height > .aem-Grid > div.column_control_v1:nth-of-type(23)",
+            "div.fxg-wrapper div.experiencefragment .xf-content-height > .aem-Grid > div.column_control_v1:nth-of-type(25)"
+          ]
+        }
+      ],
+      "urlPattern": "/en-us/*",
+      "sections": [
+        {
+          "id": "1",
+          "name": "Hero + shipping tools tabs",
+          "selector": [
+            ".hero_homepage_v1"
+          ],
+          "style": null,
+          "blocks": [
+            "hero",
+            "tabs-shipping"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "2",
+          "name": "Alert banner",
+          "selector": [
+            "div.notifications"
+          ],
+          "style": null,
+          "blocks": [
+            "notification"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "3",
+          "name": "Icon quick links",
+          "selector": [
+            "div.advanced_table_v1"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-icon-links"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "4",
+          "name": "Why ship with FedEx?",
+          "selector": [
+            "div.fxg-wrapper div.experiencefragment .xf-content-height > .aem-Grid > div.column_control_v1:nth-of-type(7)"
+          ],
+          "style": "light, center",
+          "blocks": [
+            "columns-feature"
+          ],
+          "defaultContent": [
+            "div.fxg-wrapper div.experiencefragment .xf-content-height > .aem-Grid > div.column_control_v1:nth-of-type(8)"
+          ]
+        },
+        {
+          "id": "5",
+          "name": "Delivery that works around you",
+          "selector": [
+            "div.fxg-wrapper div.experiencefragment .xf-content-height > .aem-Grid > div.title_v1:nth-of-type(10)"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-promo"
+          ],
+          "defaultContent": [
+            "div.fxg-wrapper div.experiencefragment .xf-content-height > .aem-Grid > div.title_v1:nth-of-type(10) h2"
+          ]
+        },
+        {
+          "id": "6",
+          "name": "Go global with confidence",
+          "selector": [
+            "div.fxg-wrapper div.experiencefragment .xf-content-height > .aem-Grid > div.title_v1:nth-of-type(14)"
+          ],
+          "style": null,
+          "blocks": [
+            "columns-promo"
+          ],
+          "defaultContent": [
+            "div.fxg-wrapper div.experiencefragment .xf-content-height > .aem-Grid > div.title_v1:nth-of-type(14) h2"
+          ]
+        },
+        {
+          "id": "7",
+          "name": "Smarter shipping for growing businesses",
+          "selector": [
+            "div.fxg-wrapper div.experiencefragment .xf-content-height > .aem-Grid > div.title_v1:nth-of-type(19)"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-horizontal"
+          ],
+          "defaultContent": [
+            "div.fxg-wrapper div.experiencefragment .xf-content-height > .aem-Grid > div.title_v1:nth-of-type(19) h2"
+          ]
+        },
+        {
+          "id": "8",
+          "name": "Legal footnotes",
+          "selector": [
+            "div.fxg-wrapper div.experiencefragment:nth-of-type(2)"
+          ],
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            "div.fxg-wrapper div.experiencefragment:nth-of-type(2)"
+          ]
+        }
+      ]
+    }
+  ]
+}
