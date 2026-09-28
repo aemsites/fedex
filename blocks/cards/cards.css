@@ -1,27 +1,232 @@
+/* default: grid of bordered cards */
 .cards > ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(257px, 1fr));
-  gap: 24px;
+  gap: var(--space-6);
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .cards > ul > li {
-  border: 1px solid #dadada;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--light-color);
   background-color: var(--background-color);
-}
-
-.cards .cards-card-body {
-  margin: 16px;
 }
 
 .cards .cards-card-image {
   line-height: 0;
 }
 
-.cards > ul > li img {
+.cards .cards-card-image img {
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
+}
+
+.cards .cards-card-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: var(--space-4);
+}
+
+.cards .cards-card-body > :first-child {
+  margin-top: 0;
+}
+
+.cards .cards-card-body > :last-child {
+  margin-bottom: 0;
+}
+
+/* CTA: blue uppercase text link, underlined on hover/focus. The paragraph gets the
+   link's size so its line box matches the link, not the body line. */
+.cards .cards-card-cta {
+  font-size: var(--body-font-size-s);
+  line-height: var(--heading-line-height);
+}
+
+.cards .cards-card-cta a:any-link {
+  color: var(--color-blue);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--button-letter-spacing);
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+/* focus keeps the base color and adds the global focus ring */
+.cards .cards-card-cta a:hover,
+.cards .cards-card-cta a:focus-visible {
+  text-decoration: underline;
+}
+
+.cards .cards-card-cta a:hover {
+  color: var(--color-blue-hover);
+}
+
+/* icon-links: centered icon above an uppercase link, 1 column on mobile */
+.cards.icon-links {
+  --cards-icon-size: 79px;
+  --cards-icon-gap: var(--space-6);
+  --cards-icon-item-padding: 0;
+}
+
+.cards.icon-links > ul {
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+  padding-inline: var(--content-gutter);
+}
+
+.cards.icon-links > ul > li {
+  align-items: center;
+  gap: var(--cards-icon-gap);
+  border: 0;
+  padding: var(--cards-icon-item-padding);
+  background: none;
+  text-align: center;
+}
+
+.cards.icon-links .cards-card-image {
+  align-self: stretch;
+}
+
+.cards.icon-links .cards-card-image img {
+  width: var(--cards-icon-size);
+  height: auto;
+  aspect-ratio: auto;
+  object-fit: contain;
+}
+
+.cards.icon-links .cards-card-body {
+  padding: 0;
+}
+
+.cards.icon-links .cards-card-body > * {
+  margin: 0;
+}
+
+/* promo + horizontal: borderless stacked cards, 727:463 images, inset by the column gutter */
+.cards.promo,
+.cards.horizontal {
+  --cards-gutter: var(--content-gutter);
+  --cards-cta-offset: var(--space-3);
+}
+
+.cards.promo > ul,
+.cards.horizontal > ul {
+  grid-template-columns: 1fr;
+  gap: var(--cards-row-gap) 0;
+}
+
+.cards.promo > ul > li,
+.cards.horizontal > ul > li {
+  border: 0;
+  padding-inline: var(--cards-gutter);
+  background: none;
+}
+
+.cards.promo .cards-card-image img,
+.cards.horizontal .cards-card-image img {
+  aspect-ratio: 727 / 463;
+}
+
+.cards.promo .cards-card-body,
+.cards.horizontal .cards-card-body {
+  padding: var(--cards-title-spacing) 0 0;
+}
+
+.cards.promo .cards-card-body h3,
+.cards.horizontal .cards-card-body h3 {
+  margin: 0;
+}
+
+.cards.promo .cards-card-body p,
+.cards.horizontal .cards-card-body p {
+  margin: var(--space-1) 0 var(--space-2);
+}
+
+.cards.promo .cards-card-body .cards-card-cta,
+.cards.horizontal .cards-card-body .cards-card-cta {
+  margin: 0;
+  padding-top: var(--cards-cta-offset);
+}
+
+/* promo: 1 → 3 columns, CTA pinned to the bottom so links line up */
+.cards.promo {
+  --cards-row-gap: var(--space-9);
+  --cards-title-spacing: var(--space-4);
+}
+
+.cards.promo .cards-card-body h3 {
+  margin-bottom: var(--cards-title-spacing);
+  font-size: var(--heading-font-size-s);
+  font-weight: var(--font-weight-regular);
+}
+
+.cards.promo .cards-card-body .cards-card-cta {
+  margin-top: auto;
+}
+
+/* horizontal: stacked list, image left from tablet up */
+.cards.horizontal {
+  --cards-row-gap: var(--space-14);
+  --cards-title-spacing: var(--space-3);
+  --cards-title-size: var(--heading-font-size-s);
+}
+
+.cards.horizontal .cards-card-body h3 {
+  font-size: var(--cards-title-size);
+}
+
+@media (width >= 768px) {
+  .cards.icon-links {
+    --cards-icon-size: 67%;
+    --cards-icon-gap: var(--space-9);
+    --cards-icon-item-padding: var(--space-5) var(--space-9);
+  }
+
+  .cards.icon-links > ul {
+    grid-template-columns: none;
+    grid-auto-columns: 1fr;
+    grid-auto-flow: column;
+    gap: 0;
+  }
+
+  /* 24px column gutter, split either side of each column */
+  .cards.promo,
+  .cards.horizontal {
+    --cards-gutter: var(--space-3);
+  }
+
+  .cards.promo {
+    --cards-cta-offset: var(--space-2);
+  }
+
+  .cards.promo > ul {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* horizontal: 1/4 image column, 3/4 text column */
+  .cards.horizontal {
+    --cards-row-gap: var(--space-10);
+    --cards-title-spacing: 0;
+    --cards-title-size: var(--heading-font-size-m);
+    --cards-cta-offset: 0;
+  }
+
+  .cards.horizontal > ul > li {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    align-items: start;
+    padding-inline: 0;
+  }
+
+  .cards.horizontal .cards-card-image {
+    padding-inline: var(--cards-gutter) calc(var(--cards-gutter) + var(--space-2));
+  }
+
+  .cards.horizontal .cards-card-body {
+    padding-inline: var(--cards-gutter);
+  }
 }

@@ -1,0 +1,59 @@
+.notification {
+  /* 3% brand blue on white = source rgb(248 251 253) */
+  --notification-bg: color-mix(in srgb, var(--color-blue) 3%, var(--color-white));
+  --notification-border-width: 1px;
+  --notification-accent-width: 4px;
+  --notification-icon-size: var(--icon-size-m);
+  --notification-icon-inset: var(--space-2);
+
+  /* source centers a slightly narrower notice inside the content column */
+  --notification-desktop-inset: var(--space-1);
+
+  display: flex;
+  align-items: flex-start;
+  border: var(--notification-border-width) solid var(--color-blue);
+  border-left-width: var(--notification-accent-width);
+  padding: var(--space-4) var(--space-4) var(--space-4) 0;
+  background-color: var(--notification-bg);
+  color: var(--text-color);
+  font-size: var(--body-font-size-m);
+  line-height: var(--body-line-height);
+}
+
+.notification::before {
+  content: '';
+  flex: 0 0 auto;
+  width: var(--notification-icon-size);
+  height: var(--notification-icon-size);
+  margin-inline: var(--notification-icon-inset);
+  background-color: var(--color-blue);
+  mask: url('/icons/info.svg') center / contain no-repeat;
+}
+
+.notification .notification-content {
+  flex: 1;
+  min-width: 0;
+
+  /* source text starts 8px below the icon top */
+  padding-top: var(--space-2);
+}
+
+.notification .notification-content > * {
+  margin: 0;
+}
+
+.notification .notification-content > * + * {
+  margin-top: var(--space-2);
+}
+
+@media (width >= 768px) {
+  .notification {
+    --notification-icon-inset: var(--space-4);
+  }
+}
+
+@media (width >= 1024px) {
+  .notification {
+    margin-inline: var(--notification-desktop-inset);
+  }
+}
