@@ -11,6 +11,11 @@ import { loadCSS } from './aem.js';
 
 const DEFAULT_PARTNER_ID = '4296983';
 const DEFAULT_UICONF_ID = '55255333';
+// FedEx's entries only play with the public player token (KS) that fedex.com embeds on
+// every player. Without it Kaltura answers INVALID_ENTRY_ID. Update here if FedEx rotates it.
+const PLAYER_TOKENS = {
+  4296983: 'djJ8NDI5Njk4M3xdV243n3Ka-n55c0ml3aUzrB4WYlmMbyx2pmZYrnbrJiuR9f6DDkFUNYZDheFboGwR5ZKfYEh758E0h01qFe1DlfInkk_8BuoLgUnJncu8M6dIqqcwWGZl-K5iW1aOc4AvHeAVbsMIt2BOZp6LzHnZ',
+};
 
 /**
  * Reads a `/<key>/<value>` segment pair from a URL path.
@@ -56,6 +61,7 @@ export function kalturaEmbedUrl({ partnerId, uiconfId, entryId }, autoplay) {
   const url = new URL(`https://cdnapisec.kaltura.com/p/${partnerId}/embedPlaykitJs/uiconf_id/${uiconfId}`);
   url.searchParams.set('iframeembed', 'true');
   url.searchParams.set('entry_id', entryId);
+  if (PLAYER_TOKENS[partnerId]) url.searchParams.set('ks', PLAYER_TOKENS[partnerId]);
   if (autoplay) url.searchParams.set('config[playback]', JSON.stringify({ autoplay: true }));
   return url.href;
 }
