@@ -3,6 +3,10 @@
  * One row, one cell: picture, heading, optional text/CTA, optional link to an .mp4.
  * Extra rows/cells are merged. The background covers the whole section, so blocks
  * that follow in the same section (e.g. tabs-shipping) sit on top of it.
+ * Variants: landing (text left on a light band, photo right with a diagonal edge;
+ * layout is CSS-only, the DOM is the same as the default hero), purple (with landing:
+ * the picture is a baked gradient banner shown full-bleed behind white text from 768px,
+ * hidden on mobile; CSS-only).
  */
 export default function decorate(block) {
   const bg = document.createElement('div');

@@ -1,0 +1,87 @@
+/*
+ * tabs: tab labels in a row with a purple underline on the active tab.
+ * The row scrolls horizontally when the labels don't fit (mobile).
+ */
+.tabs {
+  --tabs-indicator-width: var(--space-1);
+  --tabs-divider-width: 1px;
+}
+
+.tabs .tabs-list {
+  display: flex;
+  gap: var(--space-6);
+  margin: 0 0 var(--space-6);
+  border-bottom: var(--tabs-divider-width) solid var(--border-color);
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+}
+
+.tabs .tabs-list::-webkit-scrollbar {
+  display: none;
+}
+
+.tabs .tabs-tab {
+  flex: 0 0 auto;
+  max-width: 80vw;
+  min-height: var(--touch-target-size);
+  margin: 0 0 calc(-1 * var(--tabs-divider-width));
+  border: 0;
+  border-bottom: var(--tabs-indicator-width) solid transparent;
+  padding: var(--space-3) 0;
+  background: none;
+  color: var(--text-color);
+  font-size: var(--body-font-size-m);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--heading-line-height);
+  text-align: start;
+  white-space: normal;
+  cursor: pointer;
+  scroll-snap-align: start;
+}
+
+.tabs .tabs-tab:hover {
+  color: var(--color-purple);
+}
+
+.tabs .tabs-tab[aria-selected='true'] {
+  border-bottom-color: var(--color-purple);
+  color: var(--color-purple);
+  font-weight: var(--font-weight-bold);
+  cursor: default;
+}
+
+.tabs .tabs-tab:focus-visible {
+  outline-offset: -2px;
+}
+
+.tabs .tabs-panel[hidden] {
+  display: none;
+}
+
+.tabs .tabs-panel:focus-visible {
+  outline-offset: var(--space-1);
+}
+
+.tabs .tabs-panel > :first-child {
+  margin-top: 0;
+}
+
+.tabs .tabs-panel > :last-child {
+  margin-bottom: 0;
+}
+
+.tabs .tabs-panel img {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (width >= 768px) {
+  .tabs .tabs-list {
+    gap: var(--space-10);
+  }
+
+  .tabs .tabs-tab {
+    max-width: none;
+  }
+}

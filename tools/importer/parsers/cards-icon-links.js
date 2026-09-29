@@ -13,19 +13,30 @@ export default function parse(element, { document }) {
   const table = element.querySelector('table.large-only')
     || element.querySelector('table:not(.small-only)')
     || element.querySelector('table');
-  if (!table) {
+  // banner-landing (service-guide quick links, drop-off 4-up anchor links): a column_control_v1
+  // whose columns each hold an icon (.image_v2) and a link (.button_v1); one item per visible column
+  const isGrid = !table && element.matches('.column_control_v1');
+  if (!table && !isGrid) {
     element.remove();
     return;
   }
 
-  let units = [...table.querySelectorAll(':scope > thead > tr > th, :scope > thead > tr > td, :scope > tbody > tr > th, :scope > tbody > tr > td')];
-  // Fallback: the table-cell structure was rewritten - iterate the image+link grids instead
-  if (!units.length) units = [...table.querySelectorAll('.aem-Grid')].filter((g) => g.querySelector('.button_v1 a, a.fxg-link'));
+  let units;
+  if (isGrid) {
+    const hidden = (el) => { const h = el.closest('.fxg-desktop--hide'); return !!h && element.contains(h); };
+    units = [...element.querySelectorAll(':scope > .row > .fxg-col')]
+      .filter((c) => !hidden(c) && c.querySelector('.button_v1 a[href]'));
+  } else {
+    units = [...table.querySelectorAll(':scope > thead > tr > th, :scope > thead > tr > td, :scope > tbody > tr > th, :scope > tbody > tr > td')];
+    // Fallback: the table-cell structure was rewritten - iterate the image+link grids instead
+    if (!units.length) units = [...table.querySelectorAll('.aem-Grid')].filter((g) => g.querySelector('.button_v1 a, a.fxg-link'));
+  }
 
   const cells = [];
   const seen = new Set();
   units.forEach((unit) => {
-    const img = unit.querySelector('.fxg-desktop-image img')
+    const img = (isGrid && [...unit.querySelectorAll('.fxg-desktop-image img')].find((i) => !i.closest('.fxg-desktop--hide')))
+      || unit.querySelector('.fxg-desktop-image img')
       || unit.querySelector('.image_v2 img, img');
     const srcLink = unit.querySelector('.button_v1 a[href], a.fxg-link[href]')
       || [...unit.querySelectorAll('a[href]')].find((a) => a.textContent.trim());
@@ -52,7 +63,9 @@ export default function parse(element, { document }) {
     if (srcLink) {
       const p = document.createElement('p');
       const a = document.createElement('a');
-      a.href = srcLink.href || href;
+      // in-page anchors (drop-off #packagedropoff) stay relative for the jump-link rewrite
+      if (href && href.startsWith('#')) a.setAttribute('href', href);
+      else a.href = srcLink.href || href;
       // <br> inside the label ("Service<br>alerts") becomes a space
       a.textContent = [...srcLink.childNodes]
         .map((n) => (n.nodeName === 'BR' ? ' ' : n.textContent))

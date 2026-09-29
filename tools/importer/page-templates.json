@@ -4,11 +4,466 @@
   },
   "templates": [
     {
+      "name": "banner-landing",
+      "urls": [
+        "https://www.fedex.com/en-us/customer-support/claims.html",
+        "https://www.fedex.com/en-us/billing-online.html",
+        "https://www.fedex.com/en-us/service-guide.html",
+        "https://www.fedex.com/en-us/shipping/drop-off-package.html"
+      ],
+      "coverageGaps": [],
+      "description": "Landing page led by a purple gradient banner hero (headline, CTA, image right), followed by icon link rows, media-text rows, numbered steps and an FAQ accordion",
+      "blocks": [
+        {
+          "name": "hero-landing",
+          "instances": [
+            ".hero_landingpage_v1:has(.fxg-landing-hero h1)"
+          ]
+        },
+        {
+          "name": "notification",
+          "instances": [
+            "div.notifications"
+          ]
+        },
+        {
+          "name": "cards-icon",
+          "instances": [
+            ".root .column_control_v1:not(.column_control_v1 *, .accordion_selector *, .featured_offer_v2 *, .hero_landingpage_v1 *, .tabs_v1 *, .carousel_v1 *):not(:has(> .row > .fxg-col:first-child.fxg-desktop--hide)):has(> .row > .fxg-col:nth-child(3)):has(> .row > .fxg-col:first-child > div > .aem-Grid > :is(.image_v2 + .title_v1, .image_v2 + .spacer + .title_v1)):not(:has(> .row > .fxg-col > div > .aem-Grid > :is(.button_v1, .video_v1, .featured_offer_v2, .column_control_v1)))",
+            ".root .column_control_v1:not(.column_control_v1 *, .accordion_selector *, .featured_offer_v2 *, .hero_landingpage_v1 *, .tabs_v1 *, .carousel_v1 *):not(:has(> .row > .fxg-col:first-child.fxg-desktop--hide)):has(> .row > .fxg-col.col-sm-6:first-child > div > .aem-Grid > .column_control_v1):has(> .row > .fxg-col:nth-child(2) > div > .aem-Grid > .column_control_v1):not(:has(> .row > .fxg-col:first-child > div > .aem-Grid > .image_v2))"
+          ]
+        },
+        {
+          "name": "cards-icon-links",
+          "instances": [
+            ".root .column_control_v1:not(.column_control_v1 *, .accordion_selector *, .featured_offer_v2 *, .hero_landingpage_v1 *, .tabs_v1 *, .carousel_v1 *):not(:has(> .row > .fxg-col:first-child.fxg-desktop--hide)):has(> .row > .fxg-col:nth-child(3)):has(> .row > .fxg-col:first-child > div > .aem-Grid > .image_v2 ~ .button_v1):has(> .row > .fxg-col:nth-child(2) > div > .aem-Grid > .image_v2 ~ .button_v1):not(:has(> .row > .fxg-col > div > .aem-Grid > :is(.title_v1, .richtext, .column_control_v1)))"
+          ]
+        },
+        {
+          "name": "cards-horizontal",
+          "instances": [
+            ".root .column_control_v1:not(.column_control_v1 *, .accordion_selector *, .featured_offer_v2 *, .hero_landingpage_v1 *, .tabs_v1 *, .carousel_v1 *):not(:has(> .row > .fxg-col:first-child.fxg-desktop--hide)):has(> .row > .fxg-col:first-child:is(.col-sm-2, .col-sm-3, .col-sm-4) > div > .aem-Grid > .image_v2):not(:has(> .row > .fxg-col:first-child > div > .aem-Grid > .title_v1)):has(> .row > .fxg-col:nth-child(2) > div > .aem-Grid > .title_v1):not(:has(> .row > .fxg-col:nth-child(3)))",
+            ".root .column_control_v1:not(.column_control_v1 *, .accordion_selector *, .featured_offer_v2 *, .hero_landingpage_v1 *, .tabs_v1 *, .carousel_v1 *):not(:has(> .row > .fxg-col:first-child.fxg-desktop--hide)):has(> .row.fxg-row--has-bgcolor > .fxg-col:first-child:is(.col-sm-2, .col-sm-3) > div > .aem-Grid > .image_v2):not(:has(> .row > .fxg-col:first-child > div > .aem-Grid > :is(.title_v1, .richtext))):has(> .row > .fxg-col:nth-child(2) > div > .aem-Grid > .richtext):not(:has(> .row > .fxg-col:nth-child(2) > div > .aem-Grid > .title_v1)):not(:has(> .row > .fxg-col:nth-child(3)))",
+            ".root .column_control_v1:not(.column_control_v1 *, .accordion_selector *, .featured_offer_v2 *, .hero_landingpage_v1 *, .tabs_v1 *, .carousel_v1 *):not(:has(> .row > .fxg-col:first-child.fxg-desktop--hide)):has(> .row > .fxg-col.col-sm-2:first-child > div > .aem-Grid > .image_v2):has(> .row > .fxg-col.col-sm-2:nth-child(2) > div > .aem-Grid > .title_v1):has(> .row > .fxg-col:nth-child(3) > div > .aem-Grid > .richtext):not(:has(> .row > .fxg-col:nth-child(4)))"
+          ]
+        },
+        {
+          "name": "columns-promo",
+          "instances": [
+            ".root div.featured_offer_v2:not(.column_control_v1 *)",
+            ".root .column_control_v1:not(.column_control_v1 *, .accordion_selector *, .featured_offer_v2 *, .hero_landingpage_v1 *, .tabs_v1 *, .carousel_v1 *):not(:has(> .row > .fxg-col:first-child.fxg-desktop--hide)):has(> .row > .fxg-col.col-sm-6:first-child > div > .aem-Grid > :is(.image_v2, .video_v1)):not(:has(> .row > .fxg-col:first-child > div > .aem-Grid > .title_v1)):has(> .row > .fxg-col:nth-child(2) > div > .aem-Grid > .title_v1):not(:has(> .row > .fxg-col:nth-child(3)))",
+            ".root .column_control_v1:not(.column_control_v1 *, .accordion_selector *, .featured_offer_v2 *, .hero_landingpage_v1 *, .tabs_v1 *, .carousel_v1 *):not(:has(> .row > .fxg-col:first-child.fxg-desktop--hide)):has(> .row > .fxg-col:first-child > div > .aem-Grid > .title_v1):not(:has(> .row > .fxg-col:first-child > div > .aem-Grid > :is(.image_v2, .video_v1))):has(> .row > .fxg-col:nth-child(2) > div > .aem-Grid > :is(.image_v2, .video_v1)):not(:has(> .row > .fxg-col:nth-child(2) > div > .aem-Grid > .title_v1)):not(:has(> .row > .fxg-col:nth-child(3)))",
+            ".root .column_control_v1:not(.column_control_v1 *, .accordion_selector *, .featured_offer_v2 *, .hero_landingpage_v1 *, .tabs_v1 *, .carousel_v1 *):not(:has(> .row > .fxg-col:first-child.fxg-desktop--hide)):has(> .row > .fxg-col.col-sm-6:first-child > div > .aem-Grid > .column_control_v1 .video_v1):not(:has(> .row > .fxg-col:first-child > div > .aem-Grid > .title_v1)):has(> .row > .fxg-col:nth-child(2) > div > .aem-Grid > .title_v1):not(:has(> .row > .fxg-col:nth-child(3)))"
+          ]
+        },
+        {
+          "name": "columns-steps",
+          "instances": [
+            ".root .column_control_v1:not(.column_control_v1 *, .accordion_selector *, .featured_offer_v2 *, .hero_landingpage_v1 *, .tabs_v1 *, .carousel_v1 *):not(:has(> .row > .fxg-col:first-child.fxg-desktop--hide)):has(> .row > .fxg-col.col-sm-3:first-child):has(> .row > .fxg-col.col-sm-9:nth-child(2) > div > .aem-Grid > .richtext):not(:has(> .row > .fxg-col:first-child > div > .aem-Grid > :not(.spacer))):not(:has(> .row > .fxg-col:nth-child(3)))"
+          ]
+        },
+        {
+          "name": "cards-promo",
+          "instances": [
+            ".root .column_control_v1:not(.column_control_v1 *, .accordion_selector *, .featured_offer_v2 *, .hero_landingpage_v1 *, .tabs_v1 *, .carousel_v1 *):not(:has(> .row > .fxg-col:first-child.fxg-desktop--hide)):has(> .row > .fxg-col:first-child > div > .aem-Grid > :is(.image_v2, .video_v1) ~ .title_v1):has(> .row > .fxg-col:nth-child(2)):not(:has(> .row > .fxg-col:nth-child(3)):has(> .row > .fxg-col:first-child > div > .aem-Grid > :is(.image_v2 + .title_v1, .image_v2 + .spacer + .title_v1)):not(:has(> .row > .fxg-col > div > .aem-Grid > :is(.button_v1, .video_v1, .featured_offer_v2, .column_control_v1))))"
+          ]
+        },
+        {
+          "name": "tabs",
+          "instances": [
+            ".root div.tabs_v1"
+          ]
+        },
+        {
+          "name": "cards-logos",
+          "instances": [
+            ".root .column_control_v1:not(.column_control_v1 *, .accordion_selector *, .featured_offer_v2 *, .hero_landingpage_v1 *, .tabs_v1 *, .carousel_v1 *):not(:has(> .row > .fxg-col:first-child.fxg-desktop--hide)):has(> .row > .fxg-col:nth-child(3)):has(img):not(:has(:is(.title_v1, .richtext, .button_v1))):not(.root .column_control_v1:not(.column_control_v1 *, .accordion_selector *, .featured_offer_v2 *, .hero_landingpage_v1 *, .tabs_v1 *, .carousel_v1 *):not(:has(> .row > .fxg-col:first-child.fxg-desktop--hide)):has(> .row > .fxg-col:nth-child(3)):has(img):not(:has(:is(.title_v1, .richtext, .button_v1))) ~ *)"
+          ]
+        },
+        {
+          "name": "accordion",
+          "instances": [
+            ".root div.accordion_selector:not(:has(.accordion_selector)):not(.accordion_selector + .accordion_selector)"
+          ]
+        }
+      ],
+      "representativeUrl": "https://www.fedex.com/en-us/customer-support/claims.html",
+      "sections": [
+        {
+          "id": "1",
+          "name": "Banner hero",
+          "selector": [
+            ".root .hero_landingpage_v1"
+          ],
+          "style": null,
+          "blocks": [
+            "hero-landing"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "2",
+          "name": "Notices",
+          "selector": [
+            ".root div.notifications"
+          ],
+          "style": null,
+          "blocks": [
+            "notification"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "3",
+          "name": "Your role in the claims process",
+          "selector": [
+            ".root div.notifications ~ .title_v1",
+            ".root .column_control_v1:not(.column_control_v1 *, .hero_landingpage_v1 *):has(> .row > .fxg-col:first-child > div > .aem-Grid > .title_v1):not(:has(> .row > .fxg-col:first-child > div > .aem-Grid > .image_v2)):has(> .row > .fxg-col:nth-child(2) a[href^=\"#\"]) ~ .title_v1"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-icon",
+            "cards-horizontal",
+            "columns-promo"
+          ],
+          "defaultContent": [
+            ".root div.notifications ~ .title_v1"
+          ]
+        },
+        {
+          "id": "4",
+          "name": "How to file a single claim",
+          "selector": [
+            ".root .title_v1:has(> h2#singleclaim)"
+          ],
+          "style": null,
+          "blocks": [
+            "columns-steps",
+            "cards-horizontal"
+          ],
+          "defaultContent": [
+            ".root .title_v1:has(> h2#singleclaim)",
+            ".root .column_control_v1:not(.column_control_v1 *):has(> .row > .fxg-col:nth-child(3)):not(:has(> .row > .fxg-col:first-child > div > .aem-Grid > :not(.spacer))):has(> .row > .fxg-col:nth-child(2) > div > .aem-Grid > .button_v1)"
+          ]
+        },
+        {
+          "id": "5",
+          "name": "How to file up to 200 claims",
+          "selector": [
+            ".root .title_v1:has(> h2#BatchClaim)"
+          ],
+          "style": null,
+          "blocks": [
+            "columns-steps",
+            "cards-horizontal"
+          ],
+          "defaultContent": [
+            ".root .title_v1:has(> h2#BatchClaim)",
+            ".root .title_v1:has(> h2#BatchClaim) ~ .button_v1"
+          ]
+        },
+        {
+          "id": "6",
+          "name": "Supporting documents",
+          "selector": [
+            ".root .title_v1:has(> h2#documents)"
+          ],
+          "style": "checklist",
+          "blocks": [
+            "cards-horizontal"
+          ],
+          "defaultContent": [
+            ".root .title_v1:has(> h2#documents)",
+            ".root .title_v1:has(> h2#documents) + .richtext",
+            ".root .column_control_v1:not(.column_control_v1 *):not(:has(> .row.fxg-row--has-bgcolor)):has(> .row > .fxg-col.col-sm-2:first-child > div > .aem-Grid > .image_v2):has(> .row > .fxg-col:nth-child(2) > div > .aem-Grid > .richtext):not(:has(> .row > .fxg-col > div > .aem-Grid > .title_v1))"
+          ]
+        },
+        {
+          "id": "7",
+          "name": "Be a proactive shipper or recipient",
+          "selector": [
+            ".root .title_v1:has(> h2#documents) ~ .title_v1"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-promo",
+            "columns-promo"
+          ],
+          "defaultContent": [
+            ".root .title_v1:has(> h2#documents) ~ .title_v1"
+          ]
+        },
+        {
+          "id": "8",
+          "name": "FAQs",
+          "selector": [
+            ".root .title_v1:has(> h2#faqs)"
+          ],
+          "style": null,
+          "blocks": [
+            "accordion"
+          ],
+          "defaultContent": [
+            ".root .title_v1:has(> h2#faqs)"
+          ]
+        },
+        {
+          "id": "9",
+          "name": "Jump links panel, heading left, light (gap page: billing-online, inside the hero component)",
+          "selector": [
+            ".root .hero_landingpage_v1 .column_control_v1:has(> .row.fxg-row--has-bgcolor a[href^=\"#\"])"
+          ],
+          "style": "light, jump-links, heading-left",
+          "blocks": [],
+          "defaultContent": [
+            ".root .hero_landingpage_v1 .column_control_v1:has(> .row.fxg-row--has-bgcolor a[href^=\"#\"])"
+          ]
+        },
+        {
+          "id": "10",
+          "name": "Jump links panel, heading left (gap page: service-guide)",
+          "selector": [
+            ".root .column_control_v1:not(.column_control_v1 *, .hero_landingpage_v1 *):has(> .row > .fxg-col:first-child > div > .aem-Grid > .title_v1):not(:has(> .row > .fxg-col:first-child > div > .aem-Grid > .image_v2)):has(> .row > .fxg-col:nth-child(2) a[href^=\"#\"])"
+          ],
+          "style": "jump-links, heading-left",
+          "blocks": [],
+          "defaultContent": [
+            ".root .column_control_v1:not(.column_control_v1 *, .hero_landingpage_v1 *):has(> .row > .fxg-col:first-child > div > .aem-Grid > .title_v1):not(:has(> .row > .fxg-col:first-child > div > .aem-Grid > .image_v2)):has(> .row > .fxg-col:nth-child(2) a[href^=\"#\"])"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "faq-index",
+      "urls": [
+        "https://www.fedex.com/en-us/customer-support/faqs.html",
+        "https://www.fedex.com/en-us/customer-support.html"
+      ],
+      "coverageGaps": [],
+      "description": "Support app pages: title, guided FAQ category navigation with grouped question lists, quick-link tabs and support-ticket lookup",
+      "blocks": [],
+      "representativeUrl": "https://www.fedex.com/en-us/customer-support/faqs.html"
+    },
+    {
+      "name": "hub-landing",
+      "urls": [
+        "https://www.fedex.com/en-us/shipping/international.html",
+        "https://www.fedex.com/en-us/shipping.html",
+        "https://www.fedex.com/en-us/shipping/packing.html",
+        "https://www.fedex.com/en-us/shipping/schedule-manage-pickups.html",
+        "https://www.fedex.com/en-us/small-business.html"
+      ],
+      "coverageGaps": [],
+      "description": "Long-form section hub: photo hero or title, notification, jump links, icon card grids, alternating media-text rows, rate widget, accordions and resource card grids",
+      "blocks": [
+        {
+          "name": "hero-landing",
+          "instances": [
+            ".hero_landingpage_v1:has(.fxg-landing-hero h1)"
+          ]
+        },
+        {
+          "name": "notification",
+          "instances": [
+            "div.notifications"
+          ]
+        },
+        {
+          "name": "cards-icon",
+          "instances": [
+            ".root .column_control_v1:not(.column_control_v1 *, .accordion_selector *, .featured_offer_v2 *, .hero_landingpage_v1 *):not(:has(> .row > .fxg-col:first-child.fxg-desktop--hide)):has(> .row > .fxg-col:nth-child(3) > div > .aem-Grid > .image_v2):has(> .row > .fxg-col:nth-child(2) > div > .aem-Grid > .image_v2):has(> .row > .fxg-col:first-child > div > .aem-Grid > .image_v2):not(:has(> .row > .fxg-col > div > .aem-Grid > :is(.title_v1, .column_control_v1, .featured_offer_v2, .button_v1)))",
+            ".root .column_control_v1:not(.column_control_v1 *, .accordion_selector *, .featured_offer_v2 *, .hero_landingpage_v1 *):not(:has(> .row > .fxg-col:first-child.fxg-desktop--hide)):has(> .row > .fxg-col.col-sm-6:first-child > div > .aem-Grid > .column_control_v1):has(> .row > .fxg-col:nth-child(2) > div > .aem-Grid > .column_control_v1):not(:has(> .row > .fxg-col:first-child > div > .aem-Grid > .image_v2))"
+          ]
+        },
+        {
+          "name": "columns-promo",
+          "instances": [
+            ".root div.featured_offer_v2:not(.column_control_v1 *)",
+            ".root .column_control_v1:not(.column_control_v1 *, .accordion_selector *, .featured_offer_v2 *, .hero_landingpage_v1 *):not(:has(> .row > .fxg-col:first-child.fxg-desktop--hide)):has(> .row > .fxg-col.col-sm-6:first-child > div > .aem-Grid > :is(.image_v2, .video_v1)):not(:has(> .row > .fxg-col:first-child > div > .aem-Grid > .title_v1)):has(> .row > .fxg-col:nth-child(2) > div > .aem-Grid > .title_v1):not(:has(> .row > .fxg-col:nth-child(3)))",
+            ".root .column_control_v1:not(.column_control_v1 *, .accordion_selector *, .featured_offer_v2 *, .hero_landingpage_v1 *):not(:has(> .row > .fxg-col:first-child.fxg-desktop--hide)):has(> .row > .fxg-col:first-child > div > .aem-Grid > .title_v1):not(:has(> .row > .fxg-col:first-child > div > .aem-Grid > :is(.image_v2, .video_v1))):has(> .row > .fxg-col:nth-child(2) > div > .aem-Grid > :is(.image_v2, .video_v1)):not(:has(> .row > .fxg-col:nth-child(2) > div > .aem-Grid > .title_v1)):not(:has(> .row > .fxg-col:nth-child(3)))"
+          ]
+        },
+        {
+          "name": "widget",
+          "instances": [
+            "div.genericAppContainer"
+          ]
+        },
+        {
+          "name": "cards-horizontal",
+          "instances": [
+            ".root .column_control_v1:not(.column_control_v1 *, .accordion_selector *, .featured_offer_v2 *, .hero_landingpage_v1 *):not(:has(> .row > .fxg-col:first-child.fxg-desktop--hide)):has(> .row > .fxg-col:first-child:is(.col-sm-2, .col-sm-3, .col-sm-4) > div > .aem-Grid > .image_v2):not(:has(> .row > .fxg-col:first-child > div > .aem-Grid > .title_v1)):has(> .row > .fxg-col:nth-child(2) > div > .aem-Grid > .title_v1):not(:has(> .row > .fxg-col:nth-child(3)))"
+          ]
+        },
+        {
+          "name": "accordion",
+          "instances": [
+            ".root div.accordion_selector:not(.accordion_selector + .accordion_selector, .accordion_selector *)"
+          ]
+        },
+        {
+          "name": "cards-promo",
+          "instances": [
+            ".root .column_control_v1:not(.column_control_v1 *, .accordion_selector *, .featured_offer_v2 *, .hero_landingpage_v1 *):not(:has(> .row > .fxg-col:first-child.fxg-desktop--hide)):has(> .row > .fxg-col:first-child > div > .aem-Grid > .featured_offer_v2)",
+            ".root .column_control_v1:not(.column_control_v1 *, .accordion_selector *, .featured_offer_v2 *, .hero_landingpage_v1 *):not(:has(> .row > .fxg-col:first-child.fxg-desktop--hide)):has(> .row > .fxg-col:first-child > div > .aem-Grid > :is(.image_v2, .video_v1) ~ .title_v1):has(> .row > .fxg-col:nth-child(2) > div > .aem-Grid > .title_v1)"
+          ]
+        },
+        {
+          "name": "columns-steps",
+          "instances": [
+            ".root .column_control_v1:not(.column_control_v1 *, .accordion_selector *, .featured_offer_v2 *, .hero_landingpage_v1 *):not(:has(> .row > .fxg-col:first-child.fxg-desktop--hide)):has(> .row > .fxg-col:first-child > div > .aem-Grid > .image_v2):has(> .row > .fxg-col:nth-child(2) > div > .aem-Grid > .column_control_v1):not(:has(> .row > .fxg-col:nth-child(3)))"
+          ]
+        }
+      ],
+      "representativeUrl": "https://www.fedex.com/en-us/shipping/international.html",
+      "sections": [
+        {
+          "id": "1",
+          "name": "Landing hero",
+          "selector": [
+            ".root .hero_landingpage_v1"
+          ],
+          "style": null,
+          "blocks": [
+            "hero-landing"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "2",
+          "name": "Jump links panel",
+          "selector": [
+            ".root .column_control_v1:has(> .row.fxg-row--has-bgcolor):has(+ .column_control_v1 > .row.fxg-row--has-bgcolor a[href^=\"#\"])",
+            ".root .column_control_v1:has(> .row.fxg-row--has-bgcolor .title_v1):has(> .row.fxg-row--has-bgcolor a[href^=\"#\"])"
+          ],
+          "style": "light, jump-links",
+          "blocks": [],
+          "defaultContent": [
+            ".root .column_control_v1:has(> .row.fxg-row--has-bgcolor):has(+ .column_control_v1 > .row.fxg-row--has-bgcolor a[href^=\"#\"]) h2",
+            ".root .column_control_v1:has(> .row.fxg-row--has-bgcolor .title_v1) + .column_control_v1:has(> .row.fxg-row--has-bgcolor a[href^=\"#\"])",
+            ".root .column_control_v1:has(> .row.fxg-row--has-bgcolor .title_v1):has(> .row.fxg-row--has-bgcolor a[href^=\"#\"])"
+          ]
+        },
+        {
+          "id": "3",
+          "name": "Start here",
+          "selector": [
+            ".root .column_control_v1:has(> .row.fxg-row--has-bgcolor a[href^=\"#\"]) ~ .title_v1",
+            ".root .column_control_v1:has(> .row.fxg-row--has-bgcolor a[href^=\"#\"]) ~ .fxg-wrapper"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-icon",
+            "columns-promo"
+          ],
+          "defaultContent": [
+            ".root .column_control_v1:has(> .row.fxg-row--has-bgcolor a[href^=\"#\"]) ~ .title_v1:has(> h3)"
+          ]
+        },
+        {
+          "id": "4",
+          "name": "Compare services and rates (#compare)",
+          "selector": [
+            ".root .title_v1:has(> h2#compare)"
+          ],
+          "style": null,
+          "blocks": [
+            "widget",
+            "cards-horizontal",
+            "accordion",
+            "columns-promo"
+          ],
+          "defaultContent": [
+            ".root .title_v1:has(> h2#compare)",
+            ".root .title_v1:has(> h2#compare) + .richtext",
+            ".root .column_control_v1:not(.column_control_v1 *):has(> .row > .fxg-col.col-sm-3:first-child > div > .aem-Grid > .image_v2):not(:has(> .row > .fxg-col > div > .aem-Grid > .title_v1))"
+          ]
+        },
+        {
+          "id": "5",
+          "name": "Customs documents (#customs-documents)",
+          "selector": [
+            ".root .title_v1:has(> h2#customs-documents)"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-promo"
+          ],
+          "defaultContent": [
+            ".root .title_v1:has(> h2#customs-documents)",
+            ".root .title_v1:has(> h2#customs-documents) + .richtext"
+          ]
+        },
+        {
+          "id": "6",
+          "name": "Customs clearance (#customs-clearance)",
+          "selector": [
+            ".root .title_v1:has(> h2#customs-clearance)"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-horizontal",
+            "cards-promo"
+          ],
+          "defaultContent": [
+            ".root .title_v1:has(> h2#customs-clearance)",
+            ".root .title_v1:has(> h2#customs-clearance) + .richtext"
+          ]
+        },
+        {
+          "id": "7",
+          "name": "Shipping and packing resources (#prep)",
+          "selector": [
+            ".root .title_v1:has(> h2#prep)"
+          ],
+          "style": null,
+          "blocks": [
+            "columns-steps",
+            "cards-promo"
+          ],
+          "defaultContent": [
+            ".root .title_v1:has(> h2#prep)",
+            ".root .title_v1:has(> h2#prep) + .richtext"
+          ]
+        },
+        {
+          "id": "8",
+          "name": "Global business shipping tools (#global-business-shipping-tools)",
+          "selector": [
+            ".root .title_v1:has(> h2#global-business-shipping-tools)"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-icon",
+            "columns-promo"
+          ],
+          "defaultContent": [
+            ".root .title_v1:has(> h2#global-business-shipping-tools)",
+            ".root .title_v1:has(> h2#global-business-shipping-tools) + .richtext"
+          ]
+        },
+        {
+          "id": "9",
+          "name": "FAQs",
+          "selector": [
+            ".root .title_v1:has(> h2):has(+ .accordion_selector)"
+          ],
+          "style": null,
+          "blocks": [
+            "accordion"
+          ],
+          "defaultContent": [
+            ".root .title_v1:has(> h2):has(+ .accordion_selector)"
+          ]
+        }
+      ]
+    },
+    {
       "name": "home",
       "urls": [
         "https://www.fedex.com/en-us/home.html"
       ],
-      "representativeUrl": "https://www.fedex.com/en-us/home.html",
+      "coverageGaps": [],
       "description": "FedEx homepage: hero with shipping tools tabs, alert, icon quick links, feature columns, promo cards and legal footnotes",
       "blocks": [
         {
@@ -62,7 +517,6 @@
           ]
         }
       ],
-      "urlPattern": "/en-us/*",
       "sections": [
         {
           "id": "1",
@@ -169,7 +623,325 @@
             "div.fxg-wrapper div.experiencefragment:nth-of-type(2)"
           ]
         }
+      ],
+      "representativeUrl": "https://www.fedex.com/en-us/home.html",
+      "urlPattern": "/en-us/*"
+    },
+    {
+      "name": "service-overview",
+      "urls": [
+        "https://www.fedex.com/en-us/shipping/freight.html",
+        "https://www.fedex.com/en-us/manage-account.html"
+      ],
+      "coverageGaps": [],
+      "description": "Service overview with title or photo hero, icon link row, link-list columns, media-text rows, numbered steps and FAQ accordions",
+      "blocks": [
+        {
+          "name": "hero-landing",
+          "instances": [
+            ".hero_landingpage_v1:has(.fxg-landing-hero h1)"
+          ]
+        },
+        {
+          "name": "notification",
+          "instances": [
+            "div.notifications"
+          ]
+        },
+        {
+          "name": "cards-icon-links",
+          "instances": [
+            ".root div.advanced_table_v1:not(.accordion_selector *)"
+          ]
+        },
+        {
+          "name": "accordion",
+          "instances": [
+            ".root div.accordion_selector:not(:has(.accordion_selector)):not(.accordion_selector + .accordion_selector)"
+          ]
+        },
+        {
+          "name": "columns-promo",
+          "instances": [
+            ".root .column_control_v1:not(.column_control_v1 *, .accordion_selector *, .featured_offer_v2 *, .hero_landingpage_v1 *, .tabs_v1 *, .carousel_v1 *, .advanced_table_v1 *):not(:has(> .row > .fxg-col:first-child.fxg-desktop--hide)):has(> .row > .fxg-col:nth-child(2)):not(:has(> .row > .fxg-col:nth-child(3))):has(> .row > .fxg-col:nth-child(2) > div > .aem-Grid > :is(.image_v2, .video_v1)):not(:has(> .row > .fxg-col:nth-child(2) > div > .aem-Grid > :is(.title_v1, .richtext, .column_control_v1))):not(:has(> .row > .fxg-col:first-child > div > .aem-Grid > :is(.image_v2, .video_v1))):has(> .row > .fxg-col:first-child > div > .aem-Grid > :is(.title_v1, .richtext, .column_control_v1))",
+            ".root .column_control_v1:not(.column_control_v1 *, .accordion_selector *, .featured_offer_v2 *, .hero_landingpage_v1 *, .tabs_v1 *, .carousel_v1 *, .advanced_table_v1 *):not(:has(> .row > .fxg-col:first-child.fxg-desktop--hide)):has(> .row > .fxg-col:nth-child(2)):not(:has(> .row > .fxg-col:nth-child(3))):has(> .row > .fxg-col:first-child > div > .aem-Grid > .column_control_v1 .title_v1):has(> .row > .fxg-col:nth-child(2) > div > .aem-Grid > .column_control_v1 .image_v2):not(:has(> .row > .fxg-col:nth-child(2) .title_v1)):not(:has(> .row > .fxg-col:first-child > div > .aem-Grid > :is(.image_v2, .video_v1)))"
+          ]
+        },
+        {
+          "name": "cards-icon",
+          "instances": [
+            ".root .column_control_v1:not(.column_control_v1 *, .accordion_selector *, .featured_offer_v2 *, .hero_landingpage_v1 *, .tabs_v1 *, .carousel_v1 *, .advanced_table_v1 *):not(:has(> .row > .fxg-col:first-child.fxg-desktop--hide)):has(> .row > .fxg-col.col-sm-6:first-child > div > .aem-Grid > .column_control_v1 > .row > .fxg-col:first-child > div > .aem-Grid > .image_v2):not(:has(> .row > .fxg-col:first-child > div > .aem-Grid > :is(.image_v2, .title_v1, .richtext))):not(:has(> .row > .fxg-col:nth-child(2) > div > .aem-Grid > :not(.spacer, .column_control_v1)))"
+          ]
+        },
+        {
+          "name": "cards-horizontal",
+          "instances": [
+            ".root .column_control_v1:not(.column_control_v1 *, .accordion_selector *, .featured_offer_v2 *, .hero_landingpage_v1 *, .tabs_v1 *, .carousel_v1 *, .advanced_table_v1 *):not(:has(> .row > .fxg-col:first-child.fxg-desktop--hide)):has(> .row > .fxg-col:nth-child(2)):not(:has(> .row > .fxg-col:nth-child(3))):has(> .row > .fxg-col:first-child:is(.col-sm-2, .col-sm-3, .col-sm-4) > div > .aem-Grid > .image_v2):not(:has(> .row > .fxg-col:first-child > div > .aem-Grid > .title_v1)):has(> .row > .fxg-col:nth-child(2) > div > .aem-Grid > .title_v1):not(:has(> .row > .fxg-col.col-sm-3:first-child + .fxg-col.col-sm-8))",
+            ".root .column_control_v1:not(.column_control_v1 *, .accordion_selector *, .featured_offer_v2 *, .hero_landingpage_v1 *, .tabs_v1 *, .carousel_v1 *, .advanced_table_v1 *):not(:has(> .row > .fxg-col:first-child.fxg-desktop--hide)):has(> .row > .fxg-col:nth-child(3) > div > .aem-Grid > .title_v1):has(> .row > .fxg-col:nth-child(2) > div > .aem-Grid > .image_v2):not(:has(> .row > .fxg-col:nth-child(2) > div > .aem-Grid > .title_v1)):not(:has(> .row > .fxg-col:first-child > div > .aem-Grid > :not(.spacer))):not(:has(> .row > .fxg-col:nth-child(4)))",
+            ".root .column_control_v1:not(.column_control_v1 *, .accordion_selector *, .featured_offer_v2 *, .hero_landingpage_v1 *, .tabs_v1 *, .carousel_v1 *, .advanced_table_v1 *):not(:has(> .row > .fxg-col:first-child.fxg-desktop--hide)):has(> .row > .fxg-col:first-child > div > .aem-Grid > .image_v2):not(:has(> .row > .fxg-col:first-child > div > .aem-Grid > .title_v1)):has(> .row > .fxg-col:nth-child(2) > div > .aem-Grid > .title_v1):has(> .row > .fxg-col:nth-child(3) > div > .aem-Grid > .button_v1):not(:has(> .row > .fxg-col:nth-child(3) > div > .aem-Grid > :not(.spacer, .button_v1))):not(:has(> .row > .fxg-col:nth-child(4)))"
+          ]
+        },
+        {
+          "name": "widget",
+          "instances": [
+            "div.genericAppContainer"
+          ]
+        },
+        {
+          "name": "columns-steps",
+          "instances": [
+            ".root .column_control_v1:not(.column_control_v1 *, .accordion_selector *, .featured_offer_v2 *, .hero_landingpage_v1 *, .tabs_v1 *, .carousel_v1 *, .advanced_table_v1 *):not(:has(> .row > .fxg-col:first-child.fxg-desktop--hide)):has(> .row > .fxg-col.col-sm-3:first-child > div > .aem-Grid > .image_v2):has(> .row > .fxg-col.col-sm-8:nth-child(2) > div > .aem-Grid > .title_v1):has(> .row > .fxg-col:nth-child(2)):not(:has(> .row > .fxg-col:nth-child(3))):not(.root .column_control_v1:not(.column_control_v1 *, .accordion_selector *, .featured_offer_v2 *, .hero_landingpage_v1 *, .tabs_v1 *, .carousel_v1 *, .advanced_table_v1 *):not(:has(> .row > .fxg-col:first-child.fxg-desktop--hide)):has(> .row > .fxg-col.col-sm-3:first-child > div > .aem-Grid > .image_v2):has(> .row > .fxg-col.col-sm-8:nth-child(2) > div > .aem-Grid > .title_v1):has(> .row > .fxg-col:nth-child(2)):not(:has(> .row > .fxg-col:nth-child(3))) ~ *)"
+          ]
+        }
+      ],
+      "representativeUrl": "https://www.fedex.com/en-us/shipping/freight.html",
+      "sections": [
+        {
+          "id": "1",
+          "name": "Photo hero",
+          "selector": [
+            ".root .hero_landingpage_v1"
+          ],
+          "style": null,
+          "blocks": [
+            "hero-landing"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "2",
+          "name": "Open-account band",
+          "selector": [
+            ".root > .aem-Grid > .experiencefragment:has(> .xf-content-height > .aem-Grid > .column_control_v1 > .row.fxg-row--has-bgcolor)"
+          ],
+          "style": "blue",
+          "blocks": [],
+          "defaultContent": [
+            ".root > .aem-Grid > .experiencefragment:has(> .xf-content-height > .aem-Grid > .column_control_v1 > .row.fxg-row--has-bgcolor) :is(.richtext, .button_v1)"
+          ]
+        },
+        {
+          "id": "3",
+          "name": "Jump links",
+          "selector": [
+            ".root .column_control_v1:has(> .row.fxg-row--has-bgcolor .title_v1):has(~ .column_control_v1 > .row.fxg-row--has-bgcolor a[href^=\"#\"])"
+          ],
+          "style": "light, jump-links, three-columns",
+          "blocks": [],
+          "defaultContent": [
+            ".root .column_control_v1:has(> .row.fxg-row--has-bgcolor .title_v1):has(~ .column_control_v1 > .row.fxg-row--has-bgcolor a[href^=\"#\"]) h2",
+            ".root .column_control_v1:has(> .row.fxg-row--has-bgcolor a[href^=\"#\"]):not(:has(> .row > .fxg-col:first-child.fxg-desktop--hide))"
+          ]
+        },
+        {
+          "id": "4",
+          "name": "What is freight?",
+          "selector": [
+            ".root .column_control_v1:has(> .row.fxg-row--has-bgcolor a[href^=\"#\"]) ~ .accordion_selector"
+          ],
+          "style": null,
+          "blocks": [
+            "accordion",
+            "columns-promo"
+          ],
+          "defaultContent": [
+            ".root .title_v1:has(> h2#what-is-freight)"
+          ]
+        },
+        {
+          "id": "5",
+          "name": "Air freight shipping options",
+          "selector": [
+            ".root .title_v1:has(> h2#fedex-air-freight-services)"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-icon-links",
+            "accordion"
+          ],
+          "defaultContent": [
+            ".root .title_v1:has(> h2#fedex-air-freight-services)"
+          ]
+        },
+        {
+          "id": "6",
+          "name": "Big shipments. Big benefits.",
+          "selector": [
+            ".root .title_v1:has(> h2#big-shipments)"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-icon",
+            "columns-promo",
+            "cards-horizontal"
+          ],
+          "defaultContent": [
+            ".root .title_v1:has(> h2#big-shipments)"
+          ]
+        },
+        {
+          "id": "7",
+          "name": "Freight rates",
+          "selector": [
+            ".root .title_v1:has(> h2#calculators)"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-horizontal",
+            "widget"
+          ],
+          "defaultContent": [
+            ".root .title_v1:has(> h2#calculators)",
+            ".root .title_v1:has(> h2#calculators) + .richtext",
+            ".root .title_v1:has(> h2#calculators) ~ .button_v1"
+          ]
+        },
+        {
+          "id": "8",
+          "name": "Ready to ship?",
+          "selector": [
+            ".root .title_v1:has(> h2#ready-to-ship)"
+          ],
+          "style": null,
+          "blocks": [
+            "columns-steps"
+          ],
+          "defaultContent": [
+            ".root .title_v1:has(> h2#ready-to-ship)",
+            ".root .title_v1:has(> h2#ready-to-ship) + .title_v1"
+          ]
+        },
+        {
+          "id": "9",
+          "name": "FAQs",
+          "selector": [
+            ".root .title_v1:has(> h2#FAQs)",
+            ".root .title_v1:has(> h2#faqs)"
+          ],
+          "style": null,
+          "blocks": [
+            "accordion"
+          ],
+          "defaultContent": [
+            ".root .title_v1:has(> h2#FAQs)",
+            ".root .title_v1:has(> h2#faqs)"
+          ]
+        },
+        {
+          "id": "10",
+          "name": "Account management tools (gap page: manage-account)",
+          "selector": [
+            ".root .title_v1:has(> h2#account-management-tools)"
+          ],
+          "style": "jump-links, three-columns",
+          "blocks": [],
+          "defaultContent": [
+            ".root .title_v1:has(> h2#account-management-tools)",
+            ".root .title_v1:has(> h2#account-management-tools) + .richtext",
+            ".root .title_v1:has(> h2#account-management-tools) ~ .column_control_v1:has(> .row > .fxg-col:nth-child(3)):not(:has(> .row > .fxg-col > div > .aem-Grid > :not(.spacer, .button_v1)))"
+          ]
+        },
+        {
+          "id": "11",
+          "name": "Billing and reporting (gap page: manage-account)",
+          "selector": [
+            ".root .title_v1:has(> h2#billing-and-reporting)"
+          ],
+          "style": "jump-links, three-columns",
+          "blocks": [],
+          "defaultContent": [
+            ".root .title_v1:has(> h2#billing-and-reporting)",
+            ".root .title_v1:has(> h2#billing-and-reporting) + .richtext",
+            ".root .title_v1:has(> h2#billing-and-reporting) ~ .column_control_v1:has(> .row > .fxg-col:nth-child(3)):not(:has(> .row > .fxg-col > div > .aem-Grid > :not(.spacer, .button_v1)))"
+          ]
+        },
+        {
+          "id": "12",
+          "name": "Shipping and tracking (gap page: manage-account)",
+          "selector": [
+            ".root .title_v1:has(> h2#shipping-and-tracking)"
+          ],
+          "style": "jump-links, three-columns",
+          "blocks": [
+            "columns-promo"
+          ],
+          "defaultContent": [
+            ".root .title_v1:has(> h2#shipping-and-tracking)",
+            ".root .title_v1:has(> h2#shipping-and-tracking) + .richtext",
+            ".root .title_v1:has(> h2#shipping-and-tracking) ~ .column_control_v1:has(> .row > .fxg-col:nth-child(3)):not(:has(> .row > .fxg-col > div > .aem-Grid > :not(.spacer, .button_v1)))"
+          ]
+        },
+        {
+          "id": "13",
+          "name": "Claims and support (gap page: manage-account)",
+          "selector": [
+            ".root .title_v1:has(> h2#claims-and-support)"
+          ],
+          "style": "jump-links, three-columns",
+          "blocks": [],
+          "defaultContent": [
+            ".root .title_v1:has(> h2#claims-and-support)",
+            ".root .title_v1:has(> h2#claims-and-support) + .richtext",
+            ".root .title_v1:has(> h2#claims-and-support) ~ .column_control_v1:has(> .row > .fxg-col:nth-child(3)):not(:has(> .row > .fxg-col > div > .aem-Grid > :not(.spacer, .button_v1)))"
+          ]
+        },
+        {
+          "id": "14",
+          "name": "Manage your account for specialized services (gap page: manage-account; closes the last jump-links section)",
+          "selector": [
+            ".root .title_v1:has(> h2#manage-specialized-services)"
+          ],
+          "style": null,
+          "blocks": [
+            "accordion"
+          ],
+          "defaultContent": [
+            ".root .title_v1:has(> h2#manage-specialized-services)"
+          ]
+        },
+        {
+          "id": "15",
+          "name": "Still have questions panel (gap page: manage-account)",
+          "selector": [
+            ".root .column_control_v1:not(.column_control_v1 *):has(> .row.fxg-row--has-bgcolor > .fxg-col.col-sm-10:first-child > div > .aem-Grid > .column_control_v1)"
+          ],
+          "style": "light",
+          "blocks": [],
+          "defaultContent": [
+            ".root .column_control_v1:not(.column_control_v1 *):has(> .row.fxg-row--has-bgcolor > .fxg-col.col-sm-10:first-child > div > .aem-Grid > .column_control_v1)"
+          ]
+        }
       ]
+    },
+    {
+      "name": "comparison-landing",
+      "urls": [
+        "https://www.fedex.com/en-us/open-account.html"
+      ],
+      "coverageGaps": [],
+      "description": "Sign-up landing with centered title, two-option choice cards, icon benefit row, comparison table and FAQ list",
+      "blocks": [],
+      "representativeUrl": "https://www.fedex.com/en-us/open-account.html"
+    },
+    {
+      "name": "guide-article",
+      "urls": [
+        "https://www.fedex.com/en-us/shipping/returns.html"
+      ],
+      "coverageGaps": [],
+      "description": "Text-heavy guide with centered title, icon step list, jump links and question/answer sections with media-text promos",
+      "blocks": [],
+      "representativeUrl": "https://www.fedex.com/en-us/shipping/returns.html"
+    },
+    {
+      "name": "tool-landing",
+      "urls": [
+        "https://www.fedex.com/en-us/tracking.html"
+      ],
+      "coverageGaps": [],
+      "description": "Tool page with centered title and tabbed input form, icon cards and a promo banner",
+      "blocks": [],
+      "representativeUrl": "https://www.fedex.com/en-us/tracking.html"
     }
   ]
 }

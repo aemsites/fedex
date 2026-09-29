@@ -1,0 +1,74 @@
+/*
+ * table: full content width, plain bold header row, 1px row lines, no shading
+ * or stripes. The table scrolls horizontally inside the block on small screens.
+ */
+.table {
+  --table-rule: 1px solid var(--border-color);
+  --table-cell-padding: var(--space-3) var(--space-4);
+  --table-min-width: 480px;
+}
+
+.table .table-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.table table {
+  width: 100%;
+  min-width: var(--table-min-width);
+  border-collapse: collapse;
+  font-size: var(--body-font-size-s);
+  line-height: var(--body-line-height);
+}
+
+.table tr {
+  border-bottom: var(--table-rule);
+}
+
+.table thead tr {
+  border-top: var(--table-rule);
+}
+
+.table th,
+.table td {
+  padding: var(--table-cell-padding);
+  text-align: start;
+  vertical-align: top;
+}
+
+.table th {
+  font-weight: var(--font-weight-bold);
+}
+
+.table th > :first-child,
+.table td > :first-child {
+  margin-top: 0;
+}
+
+.table th > :last-child,
+.table td > :last-child {
+  margin-bottom: 0;
+}
+
+/* check-mark cells (✓ or a single icon) and their column header are centered */
+.table .table-cell-check {
+  text-align: center;
+}
+
+.table .table-cell-check img,
+.table .table-cell-check .icon {
+  display: inline-block;
+  width: var(--icon-size-s);
+  height: var(--icon-size-s);
+  vertical-align: middle;
+}
+
+@media (width >= 768px) {
+  .table {
+    --table-min-width: 0;
+  }
+
+  .table table {
+    font-size: var(--body-font-size-m);
+  }
+}

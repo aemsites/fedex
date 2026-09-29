@@ -46,6 +46,22 @@
   margin-top: var(--space-2);
 }
 
+/*
+ * warning: amber border and 4px left accent, amber tint, warning triangle.
+ * The triangle is two-colour (amber fill, dark outline and "!"), so it is drawn
+ * as a background image in the same ::before box instead of a single-colour mask.
+ */
+.notification.warning {
+  --notification-bg: var(--warning-background-color);
+
+  border-color: var(--warning-color);
+}
+
+.notification.warning::before {
+  background: url('/icons/warning.svg') center / contain no-repeat;
+  mask: none;
+}
+
 @media (width >= 768px) {
   .notification {
     --notification-icon-inset: var(--space-4);

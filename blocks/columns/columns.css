@@ -97,6 +97,55 @@
   margin-bottom: var(--space-6);
 }
 
+/* steps: intro, ordered list with circled numbers, small-print footnote beside an image */
+.columns.steps {
+  --columns-step-size: var(--icon-size-m);
+  --columns-step-gap: var(--space-4);
+  --columns-steps-indent: var(--space-6);
+}
+
+.columns.steps ol {
+  margin: 0 0 var(--space-4);
+  padding: 0 0 0 var(--columns-steps-indent);
+  list-style: none;
+  counter-reset: columns-step;
+}
+
+.columns.steps ol > li {
+  position: relative;
+  min-height: var(--columns-step-size);
+  padding-left: calc(var(--columns-step-size) + var(--columns-step-gap));
+  counter-increment: columns-step;
+}
+
+.columns.steps ol > li + li {
+  margin-top: var(--space-4);
+}
+
+.columns.steps ol > li::before {
+  content: counter(columns-step);
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--columns-step-size);
+  height: var(--columns-step-size);
+  border: 1px solid var(--color-purple);
+  border-radius: 50%;
+  color: var(--color-purple);
+  font-size: var(--body-font-size-s);
+  line-height: 1;
+}
+
+/* footnote after the steps: small print aligned with the step text */
+.columns.steps ol ~ p {
+  padding-left: calc(var(--columns-steps-indent) + var(--columns-step-size) + var(--columns-step-gap));
+  font-size: var(--body-font-size-xs);
+}
+
 /* feature: heading, h3 + text pairs in a grid, image */
 .columns.feature h2 {
   margin-bottom: var(--space-6);
@@ -149,6 +198,16 @@
     padding: var(--space-8);
   }
 
+  /* steps: 30% image left, steps right, top-aligned */
+  .columns.steps > div {
+    align-items: flex-start;
+    gap: var(--space-8);
+  }
+
+  .columns.steps > div > .columns-img-col {
+    flex: 0 0 30%;
+  }
+
   /* feature and promo: text left, image right, top-aligned */
   .columns.feature > div,
   .columns.promo > div {
@@ -183,5 +242,97 @@
 
   .columns.promo > div > .columns-img-col {
     flex: 0 0 44%;
+  }
+}
+
+/*
+ * steps without an image column (one cell): a centered narrow column of body-size
+ * text (not the small print of other full-width rows); bigger circles from 768px.
+ * Each step may hold a title, a description and sub-bullets (loose lists wrap
+ * them in <p>). Steps beside an image keep their spacing.
+ */
+.columns.steps.columns-1-cols ol > li > p {
+  margin: 0;
+}
+
+.columns.steps.columns-1-cols > .columns-full {
+  max-width: var(--content-narrow-width-s);
+  margin-inline: auto;
+}
+
+.columns.steps.columns-1-cols .columns-full p {
+  font-size: inherit;
+}
+
+.columns.steps.columns-1-cols .columns-full ol ~ p {
+  font-size: var(--body-font-size-xs);
+}
+
+.columns.steps.columns-1-cols ol > li > ul,
+.columns.steps.columns-1-cols .columns-full ol > li > p + p {
+  margin: var(--space-1) 0 0;
+  font-size: var(--body-font-size-s);
+}
+
+/* overlay: mobile keeps the image stacked above the text, no translucency */
+.columns.overlay .columns-img-col picture {
+  display: block;
+}
+
+@media (width >= 768px) {
+  /* steps without an image column: bigger circles, more space between steps */
+  .columns.steps.columns-1-cols {
+    --columns-step-size: var(--icon-size-step);
+    --columns-steps-indent: 0;
+  }
+
+  .columns.steps.columns-1-cols ol > li::before {
+    font-size: var(--body-font-size-l);
+  }
+
+  .columns.steps.columns-1-cols ol > li + li {
+    margin-top: var(--space-8);
+  }
+
+  /*
+   * overlay: the image fills the row as a background, the text sits on a
+   * translucent panel over it. The panel side follows the cell order:
+   * text second = panel right, text first = panel left.
+   */
+  .columns.overlay {
+    --columns-overlay-panel-width: 390px;
+  }
+
+  .columns.overlay > :has(> .columns-img-col) {
+    position: relative;
+    align-items: center;
+    aspect-ratio: 970 / 494;
+    padding-inline: var(--space-10);
+  }
+
+  .columns.overlay > div > .columns-img-col {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .columns.overlay > div > .columns-img-col picture,
+  .columns.overlay > div > .columns-img-col img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .columns.overlay > div > div:not(.columns-img-col) {
+    position: relative;
+    z-index: 1;
+    flex: 0 1 var(--columns-overlay-panel-width);
+    box-sizing: border-box;
+    padding: var(--space-8);
+    background-color: var(--overlay-panel-color);
+  }
+
+  .columns.overlay > div > .columns-img-col:first-child ~ div:not(.columns-img-col) {
+    margin-inline-start: auto;
   }
 }

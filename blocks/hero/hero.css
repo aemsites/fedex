@@ -61,6 +61,78 @@
   color: var(--color-white);
 }
 
+/*
+ * landing: text left on a light band, photo right with a diagonal edge.
+ * Mobile: photo stacked above the text.
+ */
+.hero-container:has(.hero.landing) {
+  padding: 0 0 var(--space-8);
+  background-color: var(--light-color);
+  color: var(--text-color);
+}
+
+.hero-container:has(.hero.landing) .hero-bg {
+  position: relative;
+  margin-inline: calc(-1 * var(--content-gutter));
+  aspect-ratio: 727 / 463;
+}
+
+.hero.landing {
+  text-align: start;
+}
+
+.hero.landing .hero-content {
+  padding-top: var(--space-6);
+}
+
+.hero.landing h1 {
+  margin-bottom: var(--space-4);
+  color: var(--text-color);
+  font-size: var(--heading-font-size-xl);
+  line-height: var(--heading-line-height);
+}
+
+.hero.landing a:any-link:not(.button) {
+  color: var(--link-color);
+}
+
+.hero.landing .button-wrapper {
+  margin-bottom: 0;
+}
+
+/*
+ * purple (with landing): the authored picture is a baked banner (purple-to-orange
+ * gradient, diagonal and photo in one image). Mobile: the picture is hidden and
+ * the text is centered, dark on white, with a full-width button.
+ */
+.hero-container:has(.hero.purple) {
+  --hero-banner-min-height: 350px;
+
+  padding: var(--space-8) 0;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.hero-container:has(.hero.purple) .hero-bg {
+  display: none;
+}
+
+.hero.purple {
+  text-align: center;
+}
+
+.hero.purple .hero-content {
+  padding-top: 0;
+}
+
+.hero.purple h1 {
+  color: var(--text-color);
+}
+
+.hero.purple .button-wrapper a.button {
+  width: 100%;
+}
+
 @media (width >= 768px) {
   .hero-container {
     --hero-heading-line-height: var(--body-line-height);
@@ -70,5 +142,63 @@
 
   .hero-container .hero-wrapper + div {
     margin-top: var(--space-12);
+  }
+
+  /* landing: photo fills the right half of the band, clipped on a diagonal */
+  .hero-container:has(.hero.landing) {
+    padding: var(--space-12) 0;
+  }
+
+  .hero-container:has(.hero.landing) .hero-bg {
+    position: absolute;
+    inset: 0 0 0 50%;
+    margin: 0;
+    aspect-ratio: auto;
+    clip-path: polygon(30% 0, 100% 0, 100% 100%, 0 100%);
+  }
+
+  .hero.landing .hero-content {
+    max-width: 50%;
+    padding-top: 0;
+  }
+
+  .hero.landing h1 {
+    font-size: var(--heading-font-size-xxl);
+    line-height: var(--hero-heading-line-height);
+  }
+
+  /* purple: the banner fills the whole block behind white, left-aligned text */
+  .hero-container:has(.hero.purple) {
+    box-sizing: border-box;
+    min-height: var(--hero-banner-min-height);
+    padding: var(--space-18) 0 var(--space-16);
+    background-color: var(--dark-color);
+    color: var(--color-white);
+  }
+
+  .hero-container:has(.hero.purple) .hero-bg {
+    display: block;
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    aspect-ratio: auto;
+    clip-path: none;
+  }
+
+  .hero-container:has(.hero.purple) .hero-bg img {
+    object-position: right center;
+  }
+
+  .hero.purple {
+    text-align: start;
+  }
+
+  .hero.purple h1,
+  .hero.purple a:any-link:not(.button) {
+    color: var(--color-white);
+  }
+
+  .hero.purple .button-wrapper a.button {
+    width: auto;
   }
 }
