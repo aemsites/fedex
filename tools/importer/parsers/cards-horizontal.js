@@ -1,23 +1,60 @@
 /* eslint-disable */
 /* global WebImporter */
 /**
- * Parser for cards-horizontal. Base: cards. Source: https://www.fedex.com/en-us/home.html
- * Instances: ... .aem-Grid > div.column_control_v1:nth-of-type(21), (23), (25)
+ * Parser for cards-horizontal. Base: cards.
+ * Templates: home (https://www.fedex.com/en-us/home.html, column_control_v1:nth-of-type(21), (23), (25))
+ * and hub-landing (https://www.fedex.com/en-us/shipping/international.html, shipping.html,
+ * packing.html, schedule-manage-pickups.html, small-business.html).
  *
- * Output (matches blocks/cards/cards.js, variant horizontal): ONE block, 2 columns,
+ * Output (matches blocks/cards/cards.js, variant horizontal [+ light]): ONE block, 2 columns,
  * 1 row per item. Cell 1 = picture, Cell 2 = h3 title, p text, p > a CTA (plain link).
  *
- * The source renders each item as its own column_control_v1. The block is built on the
- * first instance; the following sibling instances (separated only by spacers) are
- * consumed into the same table and removed. When the parser is later invoked on a
- * consumed instance, it just removes it, so exactly one cards-horizontal table results.
+ * The source renders each item as its own column_control_v1 (image column col-sm-2/3/4 +
+ * text column). The block is built on the first instance; the following sibling items
+ * (separated only by spacers) are consumed into the same table and removed. When the parser is
+ * later invoked on a consumed instance, it just removes it, so exactly one table results per run.
+ * A sibling only joins the run when it has the same horizontal shape (image-only first column,
+ * titled second column, no third column) and the same panel colour, so e.g. a following 2-up
+ * video card grid (cards-promo) or a white row after a #fafafa row is left alone.
+ *
+ * Landing additions:
+ * - `light`: the row is the #fafafa panel (.fxg-row--has-bgcolor with a non-white inline
+ *   background-color; the class alone counts when there is no inline style) ->
+ *   `Cards (horizontal, light)` (international "Clear customs. And a path forward.").
+ * - .fxg-desktop--hide (mobile/tablet-only) copies of the text and image are skipped.
+ * The homepage rows have neither, so the homepage output is unchanged.
  */
 const CONSUMED = 'data-cards-horizontal-consumed';
+const HIDDEN = '.fxg-desktop--hide';
+const HEADING = '.title_v1 h1, .title_v1 h2, .title_v1 h3, .title_v1 h4, .title_v1 h5, .title_v1 h6';
+
+function isHidden(el, root) {
+  const hidden = el.closest(HIDDEN);
+  return !!hidden && root.contains(hidden);
+}
+
+function visibleCols(item) {
+  return [...item.querySelectorAll(':scope > .row > .fxg-col')].filter((c) => !isHidden(c, item));
+}
+
+// #fafafa panel row
+function isLight(item) {
+  const row = item.querySelector(':scope > .row');
+  if (!row || !row.classList.contains('fxg-row--has-bgcolor')) return false;
+  const bg = ((row.style && row.style.backgroundColor) || '').replace(/\s+/g, '').toLowerCase();
+  if (!bg) return true;
+  return !/^(#fff(fff)?|white|rgb\(255,255,255\)|transparent|rgba\(0,0,0,0\))$/.test(bg);
+}
 
 function isItem(el) {
-  return el && el.matches && el.matches('div.column_control_v1')
-    && !!el.querySelector('.image_v2 img, img')
-    && !!el.querySelector('.title_v1 h1, .title_v1 h2, .title_v1 h3, .title_v1 h4, .title_v1 h5, .title_v1 h6');
+  if (!el || !el.matches || !el.matches('div.column_control_v1')) return false;
+  if (!el.querySelector('.image_v2 img, img') || !el.querySelector(HEADING)) return false;
+  // Same horizontal shape as the matched instances: image column, then a titled text column
+  const cols = visibleCols(el);
+  if (cols.length !== 2) return false;
+  const [first, second] = cols;
+  return !!first.querySelector('.image_v2 img') && !first.querySelector('.title_v1')
+    && !!second.querySelector('.title_v1');
 }
 
 function isFiller(el) {
@@ -28,21 +65,29 @@ function isFiller(el) {
 }
 
 function buildRow(item, document) {
-  const cols = [...item.querySelectorAll(':scope > .row > .fxg-col')];
+  const cols = [...item.querySelectorAll(':scope > .row > .fxg-col')].filter((c) => !isHidden(c, item));
   const scopeImg = cols.find((c) => c.querySelector('.image_v2 img')) || item;
-  const scopeText = cols.find((c) => c.querySelector('.title_v1, .richtext, .button_v1')) || item;
+  // Text columns: usually one; banner-landing billing has icon | heading | text (3 columns)
+  let textCols = cols.filter((c) => c !== scopeImg && c.querySelector('.title_v1, .richtext, .button_v1'));
+  if (!textCols.length) textCols = [item];
+  const inText = (sel) => textCols.flatMap((c) => [...c.querySelectorAll(sel)]);
 
-  const img = scopeImg.querySelector('.fxg-desktop-image img') || scopeImg.querySelector('.image_v2 img, img');
-  const title = scopeText.querySelector('.title_v1 h1, .title_v1 h2, .title_v1 h3, .title_v1 h4, .title_v1 h5, .title_v1 h6');
-  const paras = [...scopeText.querySelectorAll('.richtext p')].filter((p) => p.textContent.trim());
-  const cta = scopeText.querySelector('.button_v1 a[href], a.fxg-link[href]');
+  // first desktop rendition that is not hidden everywhere (service-guide carries a hidden duplicate)
+  const img = [...scopeImg.querySelectorAll('.fxg-desktop-image img')].find((i) => !isHidden(i, item))
+    || scopeImg.querySelector('.fxg-desktop-image img')
+    || [...scopeImg.querySelectorAll('.image_v2 img, img')].find((i) => !isHidden(i, item));
+  const title = inText(HEADING).find((h) => !isHidden(h, item));
+  // paragraphs and lists of the text columns (freight "Find air freight support": a list of links)
+  const paras = inText('.richtext p, .richtext ul, .richtext ol')
+    .filter((p) => !p.parentElement.closest('ul, ol, p') && p.textContent.trim() && !isHidden(p, item));
+  const cta = inText('.button_v1 a[href], a.fxg-link[href]').find((a) => !isHidden(a, item));
 
   let imageCell = '';
   if (img) {
     const ni = document.createElement('img');
     ni.src = img.src || img.getAttribute('src');
     const alt = img.getAttribute('alt');
-    ni.alt = alt && alt !== 'null' ? alt : '';
+    ni.alt = alt && !/^(null|""|'')$/.test(alt.trim()) ? alt : '';
     imageCell = ni;
   }
 
@@ -53,7 +98,7 @@ function buildRow(item, document) {
     body.push(h3);
   }
   paras.forEach((p) => {
-    const np = document.createElement('p');
+    const np = document.createElement(p.tagName === 'P' ? 'p' : p.tagName.toLowerCase());
     np.innerHTML = p.innerHTML.trim();
     body.push(np);
   });
@@ -65,6 +110,9 @@ function buildRow(item, document) {
     // Source shouts one label in caps ("VIEW LANES AND GET A QUOTE"); normalise to sentence case
     if (text.length > 3 && text === text.toUpperCase()) text = text.charAt(0) + text.slice(1).toLowerCase();
     a.textContent = text;
+    // FedEx button styles map to button emphasis in fedex-cleanup.js (freight *See multiweight services*)
+    const cls = ['fxg-button--orange', 'fxg-button--transparent', 'fxg-link--rounded_button'].filter((c) => cta.classList.contains(c));
+    if (cls.length) a.className = cls.join(' ');
     p.append(a);
     body.push(p);
   }
@@ -80,10 +128,11 @@ export default function parse(element, { document }) {
   }
 
   // Collect this instance + following sibling items (skipping spacers)
+  const light = isLight(element);
   const items = [element];
   let next = element.nextElementSibling;
   while (next) {
-    if (isItem(next)) {
+    if (isItem(next) && isLight(next) === light) {
       items.push(next);
     } else if (!isFiller(next)) {
       break;
@@ -104,6 +153,7 @@ export default function parse(element, { document }) {
     item.remove();
   });
 
-  const block = WebImporter.Blocks.createBlock(document, { name: 'cards (horizontal)', cells });
+  const name = light ? 'Cards (horizontal, light)' : 'cards (horizontal)';
+  const block = WebImporter.Blocks.createBlock(document, { name, cells });
   element.replaceWith(block);
 }

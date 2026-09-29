@@ -179,6 +179,156 @@
   font-size: var(--cards-title-size);
 }
 
+/* horizontal: icon artwork (square-ish image) is shown whole, not cropped to 727:463 */
+.cards.horizontal .cards-card-icon img {
+  width: var(--icon-size-xxl);
+  aspect-ratio: auto;
+  object-fit: contain;
+}
+
+/* promo: a button CTA is pinned to the bottom like the text CTA */
+.cards.promo .cards-card-body .button-wrapper {
+  margin: auto 0 0;
+  padding-top: var(--cards-cta-offset);
+}
+
+/*
+ * logos: centered grid of image-only logo items (optionally linked), no borders.
+ * Logos are contained (never cropped) in a box of consistent height.
+ * 2 per row on mobile, 3 from 768px, 4 from 1024px (3 for 3, 6 or 9 logos).
+ */
+.cards.logos {
+  --cards-logo-height: var(--icon-size-xl);
+}
+
+.cards.logos > ul {
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-6);
+  align-items: center;
+}
+
+.cards.logos > ul > li {
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  background: none;
+}
+
+.cards.logos .cards-card-image {
+  width: 100%;
+}
+
+.cards.logos .cards-card-image a {
+  display: block;
+}
+
+.cards.logos .cards-card-image img {
+  width: 100%;
+  height: var(--cards-logo-height);
+  aspect-ratio: auto;
+  object-fit: contain;
+}
+
+@media (width >= 768px) {
+  .cards.logos {
+    --cards-logo-height: var(--icon-size-xxl);
+  }
+
+  .cards.logos > ul {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (width >= 1024px) {
+  .cards.logos > ul {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .cards.logos.cards-3-items > ul,
+  .cards.logos.cards-6-items > ul,
+  .cards.logos.cards-9-items > ul {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/*
+ * icon: icon left of heading, text and link; 1 column on mobile, 2 from 768px.
+ * The block also carries the global .icon class, so reset its 24px icon box.
+ */
+.cards.icon {
+  --cards-icon-size: var(--icon-size-xl);
+
+  display: block;
+  width: auto;
+  height: auto;
+}
+
+.cards.icon > ul {
+  grid-template-columns: 1fr;
+  gap: var(--space-8);
+}
+
+.cards.icon > ul > li {
+  display: grid;
+  grid-template-columns: var(--cards-icon-size) 1fr;
+  gap: 0 var(--space-4);
+  align-items: start;
+  border: 0;
+  background: none;
+}
+
+.cards.icon .cards-card-image img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: auto;
+  object-fit: contain;
+}
+
+.cards.icon .cards-card-body {
+  padding: 0;
+}
+
+.cards.icon .cards-card-body h3 {
+  margin: 0 0 var(--space-1);
+  font-size: var(--heading-font-size-xs);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--body-line-height);
+  letter-spacing: var(--body-letter-spacing);
+}
+
+.cards.icon .cards-card-body p {
+  margin: 0 0 var(--space-3);
+}
+
+/* centered (with icon): icon on top, centered text */
+.cards.icon.centered > ul > li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  text-align: center;
+}
+
+.cards.icon.centered .cards-card-image {
+  width: var(--cards-icon-size);
+}
+
+/* light: panel background on the block; promo puts the panel behind each card body */
+.cards.light {
+  padding: var(--space-6) var(--content-gutter);
+  background-color: var(--panel-color);
+}
+
+.cards.promo.light {
+  padding: 0;
+  background: none;
+}
+
+.cards.promo.light .cards-card-body {
+  padding: var(--space-4);
+  background-color: var(--panel-color);
+}
+
 @media (width >= 768px) {
   .cards.icon-links {
     --cards-icon-size: 67%;
@@ -228,5 +378,32 @@
 
   .cards.horizontal .cards-card-body {
     padding-inline: var(--cards-gutter);
+  }
+
+  .cards.horizontal .cards-card-icon img {
+    margin-inline: auto;
+  }
+
+  /* icon: 2 columns; centered: 3 columns */
+  .cards.icon > ul {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-8) var(--space-6);
+  }
+
+  .cards.icon.centered > ul {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* promo with exactly 2 cards: 2 across */
+  .cards.promo.cards-2-items > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cards.light {
+    padding: var(--space-8);
+  }
+
+  .cards.promo.light .cards-card-body {
+    padding: var(--space-5) var(--space-4);
   }
 }

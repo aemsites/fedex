@@ -1,0 +1,61 @@
+/* click-to-play video (scripts/video.js): poster + play button, iframe on top once playing */
+.video-embed {
+  --video-play-size: var(--icon-size-xl);
+
+  position: relative;
+  line-height: 0;
+}
+
+.video-embed picture,
+.video-embed img {
+  display: block;
+  width: 100%;
+}
+
+.video-embed .video-play {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  margin: 0;
+  border: 0;
+  padding: 0;
+  background: none;
+  cursor: pointer;
+}
+
+/* play icon: dark circle with a white triangle */
+.video-embed .video-play::before,
+.video-embed .video-play::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.video-embed .video-play::before {
+  width: var(--video-play-size);
+  height: var(--video-play-size);
+  border-radius: 50%;
+  background-color: var(--overlay-color);
+}
+
+.video-embed .video-play::after {
+  width: calc(var(--video-play-size) / 3);
+  height: calc(var(--video-play-size) / 3);
+  margin-left: calc(var(--video-play-size) / 24);
+  background-color: var(--color-white);
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+}
+
+.video-embed .video-play:focus-visible {
+  outline-offset: calc(-1 * var(--space-1));
+}
+
+.video-embed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}

@@ -1,3 +1,5 @@
+import decorateVideo, { setVideoTitle } from '../../scripts/video.js';
+
 /**
  * Groups each h3 and the content after it (up to the next heading) into a feature item.
  * @param {Element} cell The column cell holding the features
@@ -25,7 +27,11 @@ function buildFeatures(cell) {
 /**
  * columns: each row is a row of columns; an image-only cell becomes an image column.
  * A row with a single cell spans the full width.
- * Variants: feature (h3 + text pairs become a feature grid), promo, light (panel background).
+ * A poster image + Kaltura link cell becomes a click-to-play video column.
+ * Variants: feature (h3 + text pairs become a feature grid), promo, light (panel background),
+ * steps (ordered list with circled numbers beside an image, or centered on its own when
+ * authored as one cell; CSS only), overlay (with promo: text on a translucent panel over
+ * the image from 768px, panel side follows the cell order; CSS only).
  */
 export default function decorate(block) {
   const cols = [...block.firstElementChild.children];
@@ -36,6 +42,10 @@ export default function decorate(block) {
     if (row.children.length === 1) row.classList.add('columns-full');
     [...row.children].forEach((col) => {
       const pic = col.querySelector('picture');
+      if (pic && decorateVideo(col)) {
+        col.classList.add('columns-img-col', 'columns-video-col');
+        return;
+      }
       if (pic && col.children.length === 1 && !col.textContent.trim()) {
         col.classList.add('columns-img-col');
         return;
@@ -49,5 +59,9 @@ export default function decorate(block) {
         }
       });
     });
+
+    // video: name the player after the row's heading
+    const heading = row.querySelector('h1, h2, h3, h4, h5, h6');
+    if (heading) setVideoTitle(row.querySelector('.video-embed'), heading.textContent.trim());
   });
 }

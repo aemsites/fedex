@@ -24,9 +24,12 @@
   --color-blue: #007ab7;
   --color-blue-hover: #00689c;
   --color-gray-dark: #333;
+  --color-gray: #b2b2b2;
   --color-gray-light: #f2f2f2;
   --color-gray-lightest: #fafafa;
   --color-white: #fff;
+  --color-amber: #f7b118;
+  --color-amber-lightest: #fefaf1;
 
   /* semantic colors */
   --background-color: var(--color-white);
@@ -34,6 +37,12 @@
   --light-color: var(--color-gray-light);
   --dark-color: var(--color-purple);
   --panel-color: var(--color-gray-lightest);
+  --border-color: var(--color-gray);
+  --overlay-color: rgb(0 0 0 / 60%);
+  --band-blue-color: var(--color-blue);
+  --overlay-panel-color: rgb(255 255 255 / 75%);
+  --warning-color: var(--color-amber);
+  --warning-background-color: var(--color-amber-lightest);
   --link-color: var(--text-color);
   --link-hover-color: var(--color-blue);
   --focus-color: var(--color-blue);
@@ -81,11 +90,16 @@
   --section-spacing: var(--space-8);
   --content-max-width: 970px;
   --content-gutter: 15px;
+  --content-narrow-width: 800px;
+  --content-narrow-width-s: 620px;
 
   /* sizes */
   --icon-size-s: 24px;
   --icon-size-m: 32px;
   --icon-size-l: 40px;
+  --icon-size-step: 58px;
+  --icon-size-xl: 80px;
+  --icon-size-xxl: 120px;
   --touch-target-size: 44px;
   --control-height: 56px;
 
@@ -383,9 +397,130 @@ main > .section.dark a:any-link:not(.button) {
   color: inherit;
 }
 
+/*
+ * blue: full-width brand-blue band with white centered text (white on #007ab7 is 4.7:1).
+ * A paragraph holding only a link shows it as a white uppercase text CTA.
+ */
+main > .section.blue {
+  margin: 0;
+  padding: var(--space-10) 0;
+  background-color: var(--band-blue-color);
+  color: var(--color-white);
+  text-align: center;
+}
+
+main > .section.blue a:any-link:not(.button) {
+  color: var(--color-white);
+}
+
+main > .section.blue p > a:only-child:not(.button) {
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--button-letter-spacing);
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+main > .section.blue p > a:only-child:not(.button):hover,
+main > .section.blue p > a:only-child:not(.button):focus-visible {
+  text-decoration: underline;
+}
+
+main > .section.blue :focus-visible {
+  outline-color: var(--color-white);
+}
+
+main > .section.blue .default-content-wrapper > :last-child {
+  margin-bottom: 0;
+}
+
+/*
+ * jump-links: a heading (or lead paragraph), then in-page links, either one per
+ * paragraph or as a bulleted list. Links are blue with no bullets; 2 columns from
+ * 768px. Modifiers: three-columns (3 columns from 1024px), heading-left (from 768px
+ * the heading takes the left third and the links the rest).
+ */
+main > .section.jump-links .default-content-wrapper > :first-child,
+main > .section.jump-links .default-content-wrapper > :is(h1, h2, h3, h4, h5, h6) {
+  margin: 0 0 var(--space-4);
+  font-size: var(--heading-font-size-m);
+  font-weight: var(--font-weight-light);
+  line-height: var(--heading-line-height);
+  letter-spacing: var(--heading-letter-spacing);
+  text-align: center;
+  break-after: avoid;
+}
+
+main > .section.jump-links .default-content-wrapper > * + p,
+main > .section.jump-links .default-content-wrapper > ul > li {
+  margin: 0 0 var(--space-3);
+  break-inside: avoid;
+}
+
+main > .section.jump-links .default-content-wrapper > ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+main > .section.jump-links p > a:only-child:any-link:not(.button),
+main > .section.jump-links li > a:only-child:any-link:not(.button) {
+  color: var(--color-blue);
+  font-weight: var(--font-weight-medium);
+  text-decoration: none;
+}
+
+main > .section.jump-links p > a:only-child:not(.button):hover,
+main > .section.jump-links p > a:only-child:not(.button):focus-visible,
+main > .section.jump-links li > a:only-child:not(.button):hover,
+main > .section.jump-links li > a:only-child:not(.button):focus-visible {
+  color: var(--color-blue-hover);
+  text-decoration: underline;
+}
+
 /* center: centers buttons in the section's default content (combine, e.g. "light, center") */
 main > .section.center .default-content-wrapper .button-wrapper {
   text-align: center;
+}
+
+/*
+ * checklist: plain bulleted lists in the section's default content get purple
+ * circled checkmarks instead of discs, in a centered narrow column.
+ * Nested lists keep their normal bullets.
+ */
+main > .section.checklist .default-content-wrapper > ul {
+  max-width: var(--content-narrow-width);
+  margin-inline: auto;
+  padding: 0;
+  list-style: none;
+}
+
+main > .section.checklist .default-content-wrapper > ul > li {
+  position: relative;
+  min-height: var(--icon-size-m);
+  padding-left: calc(var(--icon-size-m) + var(--space-4));
+}
+
+main > .section.checklist .default-content-wrapper > ul > li + li {
+  margin-top: var(--space-4);
+}
+
+main > .section.checklist .default-content-wrapper > ul > li::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--icon-size-m);
+  height: var(--icon-size-m);
+  background-color: var(--color-purple);
+  mask: url('/icons/check.svg') center / contain no-repeat;
+}
+
+main > .section.checklist .default-content-wrapper > ul > li > p {
+  margin: 0;
+}
+
+main > .section.checklist .default-content-wrapper > ul > li ul {
+  margin: var(--space-2) 0 0;
 }
 
 @media (width >= 768px) {
@@ -394,8 +529,50 @@ main > .section.center .default-content-wrapper .button-wrapper {
     padding-block: var(--space-8);
   }
 
+  main > .section.jump-links .default-content-wrapper:not(:has(> ul)),
+  main > .section.jump-links .default-content-wrapper > ul {
+    column-count: 2;
+    column-gap: var(--space-6);
+  }
+
+  main > .section.jump-links .default-content-wrapper > :first-child,
+  main > .section.jump-links .default-content-wrapper > :is(h1, h2, h3, h4, h5, h6) {
+    column-span: all;
+  }
+
+  /* heading-left: heading in the left third, links in 2 columns to its right */
+  main > .section.jump-links.heading-left .default-content-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: var(--space-6);
+    align-items: start;
+  }
+
+  main > .section.jump-links.heading-left .default-content-wrapper > :first-child {
+    grid-column: 1;
+    grid-row: 1 / span 99;
+    margin: 0;
+    text-align: start;
+  }
+
+  main > .section.jump-links.heading-left .default-content-wrapper > :not(:first-child) {
+    grid-column: auto;
+  }
+
+  main > .section.jump-links.heading-left .default-content-wrapper > ul {
+    grid-column: 2 / -1;
+  }
+
   main > .section.light > div,
   main > .section.highlight > div {
     padding-inline: var(--space-6);
+  }
+}
+
+@media (width >= 1024px) {
+  /* three-columns: jump links in 3 columns (not with heading-left) */
+  main > .section.jump-links.three-columns:not(.heading-left) .default-content-wrapper:not(:has(> ul)),
+  main > .section.jump-links.three-columns .default-content-wrapper > ul {
+    column-count: 3;
   }
 }

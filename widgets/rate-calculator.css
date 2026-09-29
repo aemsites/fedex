@@ -1,0 +1,17 @@
+/* rate-calculator widget: placeholder panel linking to the FedEx rating app */
+.rate-calculator {
+  text-align: center;
+}
+
+.rate-calculator .rate-calculator-panel > :first-child {
+  margin-top: 0;
+}
+
+.rate-calculator .rate-calculator-panel > :last-child {
+  margin-bottom: 0;
+}
+
+.rate-calculator h2 {
+  margin-bottom: var(--space-4);
+  font-size: var(--heading-font-size-l);
+}

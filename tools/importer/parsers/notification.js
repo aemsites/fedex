@@ -31,7 +31,21 @@ export default function parse(element, { document }) {
     content.push(p);
   });
 
-  if (!content.length) {
+  // Landing pages (hub-landing, e.g. shipping.html): optional CTA(s) in
+  // .fxg-notifications__buttons (plain a.fxg-link--blue text CTA) -> paragraph holding only
+  // the link. The homepage notice has no buttons, so its output is unchanged.
+  const buttonLinks = [...contents.querySelectorAll('.fxg-notifications__buttons a[href]')]
+    .filter((a) => a.textContent.trim() && !/^\/?#$/.test(a.getAttribute('href')) && !a.closest('.fxg-desktop--hide'));
+  const ctas = buttonLinks.map((src) => {
+    const p = document.createElement('p');
+    const a = document.createElement('a');
+    a.href = src.href || src.getAttribute('href');
+    a.textContent = src.textContent.replace(/\s+/g, ' ').trim();
+    p.append(a);
+    return p;
+  });
+
+  if (!content.length && !ctas.length) {
     const text = contents.textContent.replace(/\s+/g, ' ').trim();
     if (!text) {
       element.remove();
@@ -41,8 +55,14 @@ export default function parse(element, { document }) {
     p.textContent = text;
     content.push(p);
   }
+  content.push(...ctas);
 
   const cells = [[content]];
-  const block = WebImporter.Blocks.createBlock(document, { name: 'notification', cells });
+  // Amber alert (banner-landing, claims "The legacy online claims application is now retired"):
+  // .fxg-notifications--theme-warning -> Notification (warning). The homepage and hub notices are
+  // --theme-informational, so their block name is unchanged.
+  const warning = !!element.querySelector('.fxg-notifications--theme-warning')
+    || element.matches('.fxg-notifications--theme-warning');
+  const block = WebImporter.Blocks.createBlock(document, { name: warning ? 'Notification (warning)' : 'notification', cells });
   element.replaceWith(block);
 }
