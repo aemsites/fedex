@@ -50,6 +50,18 @@ function logoCell(comp, root, document) {
   return ni;
 }
 
+// Guide-article (returns): the instance is the logo carousel_v1 itself (static Cards (logos) grid; arrows,
+// dots and slides dropped). Every slide repeats the heading ("Drop off FedEx returns at:"); it is kept
+// once, as default content right before the block (same heading level as the source).
+function carouselHeading(carousel, document) {
+  const h = [...carousel.querySelectorAll('.title_v1 h1, .title_v1 h2, .title_v1 h3, .title_v1 h4, .title_v1 h5, .title_v1 h6')]
+    .find((el) => !isHidden(el, carousel) && el.textContent.trim());
+  if (!h) return null;
+  const nh = document.createElement(h.tagName.toLowerCase());
+  nh.textContent = h.textContent.replace(/\s+/g, ' ').trim();
+  return nh;
+}
+
 export default function parse(element, { document }) {
   const rows = [element];
   let next = element.nextElementSibling;
@@ -82,5 +94,7 @@ export default function parse(element, { document }) {
   }
 
   const block = WebImporter.Blocks.createBlock(document, { name: 'Cards (logos)', cells });
+  const heading = element.matches('.carousel_v1') ? carouselHeading(element, document) : null;
   element.replaceWith(block);
+  if (heading) block.before(heading);
 }

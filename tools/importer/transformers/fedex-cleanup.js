@@ -545,6 +545,23 @@ export default function transform(hookName, element, payload) {
       element.querySelectorAll('div.spacer').forEach((el) => {
         if (!el.textContent.trim() && !el.querySelector('img, picture, video, iframe, table')) el.remove();
       });
+      // Divider components (returns: div.hr_v1 > div.hr_v1 > hr around the jump links). Their <hr> would
+      // become an extra, empty section next to the template's section break.
+      element.querySelectorAll('div.hr_v1').forEach((el) => {
+        if (el.isConnected && !el.closest('table') && !el.textContent.trim()
+          && !el.querySelector('img, picture, video, iframe, table, a')) el.remove();
+      });
+      // Adjacent one-item lists in default content (returns "How do I schedule a pickup ...": the editor
+      // saved <ul><li/></ul><ul><li/></ul>) -> one list; html2md would otherwise emit two lists.
+      element.querySelectorAll('ul + ul').forEach((ul) => {
+        const prev = ul.previousElementSibling;
+        if (!prev || !prev.isConnected || ul.closest('table') || prev.matches('[class], [id]') || ul.matches('[class], [id]')) return;
+        let between = prev.nextSibling;
+        while (between && between !== ul && between.nodeType === 3 && !between.textContent.trim()) between = between.nextSibling;
+        if (between !== ul) return;
+        prev.append(...ul.children);
+        ul.remove();
+      });
       // Title-only landing hero (manage-account: .hero_landingpage_v1 h1.fxg-hero-landing-title, no photo)
       // stays default content. Left inside the hero's wrapper divs, html2md glues the next block table
       // onto the H1 line, so keep just the heading.

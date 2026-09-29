@@ -739,7 +739,7 @@
           "selector": [
             ".root .column_control_v1:has(> .row.fxg-row--has-bgcolor a[href^=\"#\"]) ~ .accordion_selector"
           ],
-          "style": null,
+          "style": "center-headings",
           "blocks": [
             "accordion",
             "columns-promo"
@@ -754,7 +754,7 @@
           "selector": [
             ".root .title_v1:has(> h2#fedex-air-freight-services)"
           ],
-          "style": null,
+          "style": "center-headings",
           "blocks": [
             "cards-icon-links",
             "accordion"
@@ -769,7 +769,7 @@
           "selector": [
             ".root .title_v1:has(> h2#big-shipments)"
           ],
-          "style": null,
+          "style": "center-headings",
           "blocks": [
             "cards-icon",
             "columns-promo",
@@ -785,7 +785,7 @@
           "selector": [
             ".root .title_v1:has(> h2#calculators)"
           ],
-          "style": null,
+          "style": "center-headings",
           "blocks": [
             "cards-horizontal",
             "widget"
@@ -802,7 +802,7 @@
           "selector": [
             ".root .title_v1:has(> h2#ready-to-ship)"
           ],
-          "style": null,
+          "style": "center-headings",
           "blocks": [
             "columns-steps"
           ],
@@ -818,7 +818,7 @@
             ".root .title_v1:has(> h2#FAQs)",
             ".root .title_v1:has(> h2#faqs)"
           ],
-          "style": null,
+          "style": "center-headings",
           "blocks": [
             "accordion"
           ],
@@ -1049,8 +1049,207 @@
       ],
       "coverageGaps": [],
       "description": "Text-heavy guide with centered title, icon step list, jump links and question/answer sections with media-text promos",
-      "blocks": [],
-      "representativeUrl": "https://www.fedex.com/en-us/shipping/returns.html"
+      "blocks": [
+        {
+          "name": "cards-horizontal",
+          "instances": [
+            ".root .column_control_v1:not(.column_control_v1 *, .accordion_selector *, .featured_offer_v2 *, .hero_landingpage_v1 *, .tabs_v1 *, .carousel_v1 *):not(:has(> .row > .fxg-col:nth-child(3))):has(> .row > .fxg-col.col-sm-4:first-child > div > .aem-Grid > .column_control_v1 > .row > .fxg-col:first-child > div > .aem-Grid > .image_v2):has(> .row > .fxg-col.col-sm-4:first-child > div > .aem-Grid > .column_control_v1 > .row > .fxg-col:nth-child(2) > div > .aem-Grid > .richtext):has(> .row > .fxg-col.col-sm-8:nth-child(2) > div > .aem-Grid > .richtext)",
+            ".root .column_control_v1:not(.column_control_v1 *, .accordion_selector *, .featured_offer_v2 *, .hero_landingpage_v1 *, .tabs_v1 *, .carousel_v1 *):not(:has(> .row > .fxg-col:nth-child(3))):has(> .row > .fxg-col.col-sm-2:first-child > div > .aem-Grid > .image_v2):not(:has(> .row > .fxg-col:first-child > div > .aem-Grid > :is(.richtext, .button_v1, .column_control_v1))):has(> .row > .fxg-col:nth-child(2) > div > .aem-Grid > .richtext):not(:has(> .row > .fxg-col:nth-child(2) > div > .aem-Grid > :is(.title_v1, .button_v1, .image_v2, .column_control_v1)))"
+          ]
+        },
+        {
+          "name": "columns-promo",
+          "instances": [
+            ".root div.featured_offer_v2:not(.column_control_v1 *)",
+            ".root .column_control_v1:not(.column_control_v1 *, .accordion_selector *, .featured_offer_v2 *, .hero_landingpage_v1 *, .tabs_v1 *, .carousel_v1 *):not(:has(> .row > .fxg-col:nth-child(3))):not(:has(> .row.fxg-row--has-bgcolor)):has(> .row > .fxg-col.col-sm-4:first-child > div > .aem-Grid > .image_v2):not(:has(> .row > .fxg-col:first-child > div > .aem-Grid > :is(.title_v1, .richtext, .button_v1, .column_control_v1, .video_v1))):has(> .row > .fxg-col.col-sm-8:nth-child(2) > div > .aem-Grid > .title_v1):not(:has(> .row > .fxg-col:nth-child(2) > div > .aem-Grid > :is(.image_v2, .video_v1)))"
+          ]
+        },
+        {
+          "name": "cards-logos",
+          "instances": [
+            ".root div.carousel_v1:has(.image_v2 img)"
+          ]
+        }
+      ],
+      "representativeUrl": "https://www.fedex.com/en-us/shipping/returns.html",
+      "sections": [
+        {
+          "id": "1",
+          "name": "Title and return situations",
+          "selector": [
+            ".h1title:has(h1)"
+          ],
+          "style": "center",
+          "blocks": [
+            "cards-horizontal"
+          ],
+          "defaultContent": [
+            ".h1title h1",
+            ".root .cmp-container > .richtext:first-child"
+          ]
+        },
+        {
+          "id": "2",
+          "name": "Simple returns video promo",
+          "selector": [
+            ".root .experiencefragment:has(.featured_offer_v2)"
+          ],
+          "style": null,
+          "blocks": [
+            "columns-promo"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "3",
+          "name": "Jump links",
+          "selector": [
+            ".root .column_control_v1:not(.column_control_v1 *, .accordion_selector *, .featured_offer_v2 *, .hero_landingpage_v1 *, .tabs_v1 *, .carousel_v1 *):has(> .row > .fxg-col:first-child > div > .aem-Grid > .title_v1 :is(h2, h3, h4)):has(> .row > .fxg-col:nth-child(2) > div > .aem-Grid > .button_v1 a[href^=\"#\"]):not(:has(> .row > .fxg-col:first-child .image_v2))"
+          ],
+          "style": "jump-links, heading-left",
+          "blocks": [],
+          "defaultContent": [
+            ".root .column_control_v1:not(.column_control_v1 *, .accordion_selector *, .featured_offer_v2 *, .hero_landingpage_v1 *, .tabs_v1 *, .carousel_v1 *):has(> .row > .fxg-col:first-child > div > .aem-Grid > .title_v1 :is(h2, h3, h4)):has(> .row > .fxg-col:nth-child(2) > div > .aem-Grid > .button_v1 a[href^=\"#\"]):not(:has(> .row > .fxg-col:first-child .image_v2)) .title_v1",
+            ".root .column_control_v1:not(.column_control_v1 *, .accordion_selector *, .featured_offer_v2 *, .hero_landingpage_v1 *, .tabs_v1 *, .carousel_v1 *):has(> .row > .fxg-col:first-child > div > .aem-Grid > .title_v1 :is(h2, h3, h4)):has(> .row > .fxg-col:nth-child(2) > div > .aem-Grid > .button_v1 a[href^=\"#\"]):not(:has(> .row > .fxg-col:first-child .image_v2)) .button_v1 a"
+          ]
+        },
+        {
+          "id": "4",
+          "name": "Creating a returns label",
+          "selector": [
+            ".root .title_v1:has(> h2#creatingareturnslabel)"
+          ],
+          "style": "center-headings",
+          "blocks": [],
+          "defaultContent": [
+            ".root .title_v1:has(> h2#creatingareturnslabel)",
+            ".root .title_v1:has(> h2#creatingareturnslabel) ~ .title_v1",
+            ".root .title_v1:has(> h2#creatingareturnslabel) ~ .richtext",
+            ".root .title_v1:has(> h2#creatingareturnslabel) ~ .button_v1"
+          ]
+        },
+        {
+          "id": "5",
+          "name": "Printing returns labels",
+          "selector": [
+            ".root .title_v1:has(> h2#printingreturnlabels)"
+          ],
+          "style": "center-headings",
+          "blocks": [],
+          "defaultContent": [
+            ".root .title_v1:has(> h2#printingreturnlabels)",
+            ".root .title_v1:has(> h2#printingreturnlabels) ~ .title_v1",
+            ".root .title_v1:has(> h2#printingreturnlabels) ~ .richtext",
+            ".root .title_v1:has(> h2#printingreturnlabels) ~ .button_v1"
+          ]
+        },
+        {
+          "id": "6",
+          "name": "Sending a return with reusable packaging",
+          "selector": [
+            ".root .title_v1:has(> h2#reusable)"
+          ],
+          "style": "center-headings",
+          "blocks": [
+            "columns-promo"
+          ],
+          "defaultContent": [
+            ".root .title_v1:has(> h2#reusable)",
+            ".root .title_v1:has(> h2#reusable) ~ .title_v1",
+            ".root .title_v1:has(> h2#reusable) ~ .richtext",
+            ".root .title_v1:has(> h2#reusable) ~ .button_v1"
+          ]
+        },
+        {
+          "id": "7",
+          "name": "FedEx pickup and dropoff for returns",
+          "selector": [
+            ".root .title_v1:has(> h2#PickupandDropoffs)"
+          ],
+          "style": "center-headings",
+          "blocks": [
+            "cards-logos"
+          ],
+          "defaultContent": [
+            ".root .title_v1:has(> h2#PickupandDropoffs)",
+            ".root .title_v1:has(> h2#PickupandDropoffs) ~ .title_v1",
+            ".root .title_v1:has(> h2#PickupandDropoffs) ~ .richtext",
+            ".root .title_v1:has(> h2#PickupandDropoffs) ~ .button_v1"
+          ]
+        },
+        {
+          "id": "8",
+          "name": "QR code returns",
+          "selector": [
+            ".root .title_v1:has(> h2#qRcodereturns)"
+          ],
+          "style": "center-headings",
+          "blocks": [],
+          "defaultContent": [
+            ".root .title_v1:has(> h2#qRcodereturns)",
+            ".root .title_v1:has(> h2#qRcodereturns) ~ .title_v1",
+            ".root .title_v1:has(> h2#qRcodereturns) ~ .richtext",
+            ".root .title_v1:has(> h2#qRcodereturns) ~ .button_v1"
+          ]
+        },
+        {
+          "id": "9",
+          "name": "Getting support for returns",
+          "selector": [
+            ".root .title_v1:has(> h2#gettingsupportforreturns)"
+          ],
+          "style": "center-headings",
+          "blocks": [],
+          "defaultContent": [
+            ".root .title_v1:has(> h2#gettingsupportforreturns)",
+            ".root .title_v1:has(> h2#gettingsupportforreturns) ~ .title_v1",
+            ".root .title_v1:has(> h2#gettingsupportforreturns) ~ .richtext",
+            ".root .title_v1:has(> h2#gettingsupportforreturns) ~ .button_v1"
+          ]
+        },
+        {
+          "id": "10",
+          "name": "Tracking FedEx returns",
+          "selector": [
+            ".root .title_v1:has(> h2#trackingFedExreturns)"
+          ],
+          "style": "center-headings",
+          "blocks": [],
+          "defaultContent": [
+            ".root .title_v1:has(> h2#trackingFedExreturns)",
+            ".root .title_v1:has(> h2#trackingFedExreturns) ~ .title_v1",
+            ".root .title_v1:has(> h2#trackingFedExreturns) ~ .richtext",
+            ".root .title_v1:has(> h2#trackingFedExreturns) ~ .button_v1"
+          ]
+        },
+        {
+          "id": "11",
+          "name": "How to handle USPS returns and UPS returns",
+          "selector": [
+            ".root .title_v1:has(> h2#USPSreturnsandUPSreturns)"
+          ],
+          "style": "center-headings",
+          "blocks": [],
+          "defaultContent": [
+            ".root .title_v1:has(> h2#USPSreturnsandUPSreturns)",
+            ".root .title_v1:has(> h2#USPSreturnsandUPSreturns) ~ .title_v1",
+            ".root .title_v1:has(> h2#USPSreturnsandUPSreturns) ~ .richtext",
+            ".root .title_v1:has(> h2#USPSreturnsandUPSreturns) ~ .button_v1"
+          ]
+        },
+        {
+          "id": "12",
+          "name": "Returns promos",
+          "selector": [
+            ".root div.featured_offer_v2:not(.experiencefragment *, .column_control_v1 *, .featured_offer_v2 ~ *)"
+          ],
+          "style": null,
+          "blocks": [
+            "columns-promo"
+          ],
+          "defaultContent": []
+        }
+      ]
     },
     {
       "name": "tool-landing",

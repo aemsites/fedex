@@ -487,6 +487,11 @@ main > .section.center-buttons .default-content-wrapper .button-wrapper {
   text-align: center;
 }
 
+/* center-headings: centers only the section's H2 topic headings, answers stay left (e.g. returns) */
+main > .section.center-headings .default-content-wrapper h2 {
+  text-align: center;
+}
+
 /*
  * checklist: plain bulleted lists in the section's default content get purple
  * circled checkmarks instead of discs, in a centered narrow column.

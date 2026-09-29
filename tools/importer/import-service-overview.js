@@ -142,7 +142,7 @@ const PAGE_TEMPLATE = {
       "selector": [
         ".root .column_control_v1:has(> .row.fxg-row--has-bgcolor a[href^=\"#\"]) ~ .accordion_selector"
       ],
-      "style": null,
+      "style": "center-headings",
       "blocks": [
         "accordion",
         "columns-promo"
@@ -157,7 +157,7 @@ const PAGE_TEMPLATE = {
       "selector": [
         ".root .title_v1:has(> h2#fedex-air-freight-services)"
       ],
-      "style": null,
+      "style": "center-headings",
       "blocks": [
         "cards-icon-links",
         "accordion"
@@ -172,7 +172,7 @@ const PAGE_TEMPLATE = {
       "selector": [
         ".root .title_v1:has(> h2#big-shipments)"
       ],
-      "style": null,
+      "style": "center-headings",
       "blocks": [
         "cards-icon",
         "columns-promo",
@@ -188,7 +188,7 @@ const PAGE_TEMPLATE = {
       "selector": [
         ".root .title_v1:has(> h2#calculators)"
       ],
-      "style": null,
+      "style": "center-headings",
       "blocks": [
         "cards-horizontal",
         "widget"
@@ -205,7 +205,7 @@ const PAGE_TEMPLATE = {
       "selector": [
         ".root .title_v1:has(> h2#ready-to-ship)"
       ],
-      "style": null,
+      "style": "center-headings",
       "blocks": [
         "columns-steps"
       ],
@@ -221,7 +221,7 @@ const PAGE_TEMPLATE = {
         ".root .title_v1:has(> h2#FAQs)",
         ".root .title_v1:has(> h2#faqs)"
       ],
-      "style": null,
+      "style": "center-headings",
       "blocks": [
         "accordion"
       ],
