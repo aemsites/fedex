@@ -477,8 +477,13 @@ main > .section.jump-links li > a:only-child:not(.button):focus-visible {
   text-decoration: underline;
 }
 
-/* center: centers buttons in the section's default content (combine, e.g. "light, center") */
-main > .section.center .default-content-wrapper .button-wrapper {
+/* center: centers the section's default content: headings, text and buttons (e.g. open-account) */
+main > .section.center .default-content-wrapper {
+  text-align: center;
+}
+
+/* center-buttons: centers only the buttons, text stays left (combine, e.g. "light, center-buttons") */
+main > .section.center-buttons .default-content-wrapper .button-wrapper {
   text-align: center;
 }
 

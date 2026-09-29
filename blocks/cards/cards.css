@@ -313,6 +313,11 @@
   width: var(--cards-icon-size);
 }
 
+/* centered (with promo): centered text and CTA/button (e.g. open-account choice panels) */
+.cards.promo.centered .cards-card-body {
+  text-align: center;
+}
+
 /* light: panel background on the block; promo puts the panel behind each card body */
 .cards.light {
   padding: var(--space-6) var(--content-gutter);
@@ -405,5 +410,12 @@
 
   .cards.promo.light .cards-card-body {
     padding: var(--space-5) var(--space-4);
+  }
+}
+
+/* icon + three-columns: 3 across on desktop (e.g. open-account "Discover the benefits") */
+@media (width >= 1024px) {
+  .cards.icon.three-columns > ul {
+    grid-template-columns: repeat(3, 1fr);
   }
 }

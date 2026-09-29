@@ -20,6 +20,13 @@
  * maps them to button emphasis (*VIEW SHIPPING SUPPLIES*); fxg-link--blue/bluebold stay plain.
  * The homepage cards use none of these, so the homepage output is unchanged.
  * .fxg-desktop--hide (mobile/tablet-only) content is never copied.
+ *
+ * comparison-landing (https://www.fedex.com/en-us/open-account.html, instance holding a
+ * .conditionalform): two grey choice panels without images -> `Cards (promo, light, centered)`,
+ * 1 row per panel, a single content cell (no image cell): h3 (desktop heading), text, CTA (the
+ * orange "Create an account" keeps fxg-button--orange -> <strong> in fedex-cleanup.js). The
+ * "How often do you ship?" dropdown becomes one plain line per option (label: sentence with the
+ * rates PDF link + "Create an account" link, see CONDITIONAL_OPTIONS); the select is dropped.
  */
 const BUTTON_CLASSES = ['fxg-button--orange', 'fxg-button--transparent', 'fxg-link--rounded_button'];
 const HIDDEN = '.fxg-desktop--hide';
@@ -94,11 +101,111 @@ function videoCell(scope, title, document) {
   return cell;
 }
 
+// comparison-landing (open-account.html) "How often do you ship?" conditionalform. The option
+// contents are loaded at runtime (the snapshot's .fxg-content-container is empty), so they were
+// captured from the live page by selecting each option (migration-work/oa-condform.cjs over
+// Bright Data, 2026-09-29; desktop copy, <br> line wraps dropped). Keyed by the <option> label.
+const CONDITIONAL_OPTIONS = {
+  'Fewer than 15 shipments per month': {
+    sentence: 'Straightforward prices from the get-go. Ship coast to coast for as little as $11.06. <a href="https://www.fedex.com/content/dam/fedex-com/hdn/1_wMKnlw2LiL6R0tx.pdf">See how much you can save with FedEx</a>.',
+    signup: 'https://www.fedex.com/register/contact?enrollmentid=US11467SAM',
+  },
+  '15–49 shipments per month': {
+    sentence: 'Straightforward prices from the get-go. Ship coast to coast for as little as $11.06. <a href="https://www.fedex.com/content/dam/fedex-com/hdn/PSb_euGaM410sMtV8tY.pdf">See how much you can save with FedEx</a>.',
+    signup: 'https://www.fedex.com/register/contact?enrollmentid=US11469SAM',
+  },
+  '50+ shipments per month': {
+    sentence: `Straightforward prices from the get-go. Ship coast to coast for as little as $11.06. And with your high shipping volume, you're eligible for <a href="https://www.fedex.com/content/dam/fedex-com/hdn/PSc_1KoA69ELcaj2w8q.pdf">lower rates</a>.`,
+    signup: 'https://www.fedex.com/register/contact?enrollmentid=US11470SAM',
+  },
+};
+
+// Inline copy of a source paragraph: <br> wraps -> space, zero-width spaces and attributes other
+// than href dropped, source whitespace collapsed
+function inlineCopy(p, document) {
+  const clone = p.cloneNode(true);
+  clone.querySelectorAll('br').forEach((br) => br.replaceWith(' '));
+  clone.querySelectorAll('span, font').forEach((s) => s.replaceWith(...s.childNodes));
+  [...clone.querySelectorAll('*')].forEach((n) => {
+    [...n.attributes].forEach((a) => { if (a.name !== 'href') n.removeAttribute(a.name); });
+  });
+  const np = document.createElement('p');
+  np.innerHTML = clone.innerHTML.replace(/\u200B/g, '').replace(/\s+/g, ' ').replace(/\s+([.,])/g, '$1').trim();
+  np.querySelectorAll('a').forEach((a) => { a.innerHTML = a.innerHTML.trim(); });
+  return np;
+}
+
+// One line per dropdown option: "<label>: <sentence with rates link> <Create an account link>"
+function optionLines(form, document) {
+  return [...form.querySelectorAll('select option')]
+    .filter((o) => !o.hasAttribute('disabled') && clean(o.value || o.textContent))
+    .map((o) => {
+      const label = clean(o.textContent) || clean(o.value);
+      const known = CONDITIONAL_OPTIONS[label] || CONDITIONAL_OPTIONS[clean(o.value)];
+      const p = document.createElement('p');
+      p.innerHTML = known ? `${label}: ${known.sentence} ` : label;
+      if (known && known.signup) {
+        const a = document.createElement('a');
+        a.href = known.signup;
+        a.textContent = 'Create an account';
+        p.append(a);
+      }
+      return p;
+    });
+}
+
+// Grey choice panels without images (comparison-landing): one content cell per panel
+function parseChoicePanels(element, cols, document) {
+  const cells = [];
+  cols.forEach((col) => {
+    const visible = (el) => !isHidden(el, col) && !el.closest('.conditionalform');
+    const title = [...col.querySelectorAll('.title_v1 h1, .title_v1 h2, .title_v1 h3, .title_v1 h4, .title_v1 h5, .title_v1 h6')]
+      .find((h) => visible(h) && clean(h.textContent));
+    const paras = [...col.querySelectorAll('.richtext p')]
+      .filter((p) => visible(p) && clean(p.textContent.replace(/\u200B/g, '')));
+    const cta = [...col.querySelectorAll('.button_v1 a[href]')]
+      .find((a) => visible(a) && !/^\/?#$/.test(a.getAttribute('href') || ''));
+    const body = [];
+    if (title) {
+      const h3 = document.createElement('h3');
+      h3.textContent = clean(title.textContent);
+      body.push(h3);
+    }
+    paras.forEach((p) => body.push(inlineCopy(p, document)));
+    if (cta) {
+      const p = document.createElement('p');
+      const a = document.createElement('a');
+      a.href = cta.href || cta.getAttribute('href');
+      a.textContent = clean(cta.textContent);
+      // orange button class kept: fedex-cleanup.js wraps it in <strong> (primary button)
+      const cls = BUTTON_CLASSES.filter((c) => cta.classList.contains(c));
+      if (cls.length) a.className = cls.join(' ');
+      p.append(a);
+      body.push(p);
+    }
+    const form = col.querySelector('.conditionalform');
+    if (form && !isHidden(form, col)) body.push(...optionLines(form, document));
+    if (body.length) cells.push([body]);
+  });
+  if (!cells.length) {
+    element.remove();
+    return;
+  }
+  const block = WebImporter.Blocks.createBlock(document, { name: 'Cards (promo, light, centered)', cells });
+  element.replaceWith(block);
+}
+
 export default function parse(element, { document }) {
   const row = element.querySelector(':scope > .row') || element;
   let cols = [...row.querySelectorAll(':scope > .fxg-col')];
   if (!cols.length) cols = [...element.querySelectorAll('.fxg-col')];
   cols = cols.filter((c) => !isHidden(c, element));
+
+  // comparison-landing choice panels (no images, "How often do you ship?" dropdown)
+  if (element.querySelector('.conditionalform')) {
+    parseChoicePanels(element, cols, document);
+    return;
+  }
 
   let featured = false;
   const cells = [];
