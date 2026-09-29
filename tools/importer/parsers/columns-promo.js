@@ -404,9 +404,25 @@ function parsePlainColumns(element, cols, document) {
   element.replaceWith(block);
 }
 
+// Guide-article (returns "Sending a return with reusable packaging"): a white row with a narrow
+// photo-only column (col-sm-4) and a titled text column (col-sm-8: title_v1, richtext, button_v1)
+// is plain `Columns` too: 1 row, 2 cells (photo | h3, text, link), cells in source order.
+// The promo shapes use col-sm-6 or text-first rows, so they never reach this branch.
+function isNarrowPhotoText(row, cols) {
+  if (cols.length !== 2 || row.classList.contains('fxg-row--has-bgcolor')) return false;
+  const [photo, text] = cols;
+  return photo.matches('.col-sm-4') && !clean(photo.textContent) && !!photo.querySelector('.image_v2 img')
+    && text.matches('.col-sm-8') && [...gridOf(text).children].some((g) => g.matches('.title_v1'))
+    && !text.querySelector('.image_v2, .video_v1');
+}
+
 function parseColumnControl(element, document) {
   const row = element.querySelector(':scope > .row') || element;
   const cols = [...row.querySelectorAll(':scope > .fxg-col')].filter((c) => !isHidden(c, element));
+  if (!element.querySelector(VIDEO) && isNarrowPhotoText(row, cols)) {
+    parsePlainColumns(element, cols, document);
+    return;
+  }
   if (!element.querySelector(VIDEO) && isPlainShape(cols)) {
     parsePlainColumns(element, cols, document);
     return;

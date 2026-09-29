@@ -23,6 +23,14 @@
  *   `Cards (horizontal, light)` (international "Clear customs. And a path forward.").
  * - .fxg-desktop--hide (mobile/tablet-only) copies of the text and image are skipped.
  * The homepage rows have neither, so the homepage output is unchanged.
+ *
+ * Guide-article addition (https://www.fedex.com/en-us/shipping/returns.html "return situations"):
+ * "label rows" = [col-sm-4: nested column_control_v1 (icon | richtext bold label)] [text column:
+ * richtext + 1-2 button_v1 text links], no title_v1. Still 2 cells per card: cell 1 = the icon,
+ * cell 2 = the label paragraph (bold), the text, then EVERY link, each in its own paragraph;
+ * in-page links (#x) stay relative so fedex-cleanup.js rewrites them to EDS heading ids.
+ * A label-row leader only merges following label rows. Rows without the nested label keep the
+ * original behaviour.
  */
 const CONSUMED = 'data-cards-horizontal-consumed';
 const HIDDEN = '.fxg-desktop--hide';
@@ -55,6 +63,33 @@ function isItem(el) {
   const [first, second] = cols;
   return !!first.querySelector('.image_v2 img') && !first.querySelector('.title_v1')
     && !!second.querySelector('.title_v1');
+}
+
+// Label-row (returns): the visible label paragraphs of the nested [icon | label] row in the image column
+function nestedLabels(imageCol, root) {
+  if (!imageCol) return [];
+  const nested = imageCol.querySelector(':scope > div > .aem-Grid > .column_control_v1');
+  if (!nested || !nested.querySelector('.image_v2 img')) return [];
+  return [...nested.querySelectorAll(':scope > .row > .fxg-col .richtext p')]
+    .filter((p) => !isHidden(p, root) && p.textContent.replace(/ /g, ' ').trim());
+}
+
+function isLabelItem(el) {
+  if (!el || !el.matches || !el.matches('div.column_control_v1')) return false;
+  const cols = visibleCols(el);
+  if (cols.length !== 2) return false;
+  const [first, second] = cols;
+  return nestedLabels(first, el).length > 0
+    && !!second.querySelector(':scope > div > .aem-Grid > .richtext')
+    && !second.querySelector(':scope > div > .aem-Grid > :is(.image_v2, .column_control_v1)');
+}
+
+function labelParagraph(p, document) {
+  const np = document.createElement('p');
+  const strong = document.createElement('strong');
+  strong.textContent = p.textContent.replace(/[\s ]+/g, ' ').trim();
+  np.append(strong);
+  return np;
 }
 
 function isFiller(el) {
@@ -92,6 +127,9 @@ function buildRow(item, document) {
   }
 
   const body = [];
+  // Label rows (returns): bold label paragraph(s) from the nested row in the icon column
+  const labels = scopeImg !== item ? nestedLabels(scopeImg, item) : [];
+  labels.forEach((p) => body.push(labelParagraph(p, document)));
   if (title) {
     const h3 = document.createElement('h3');
     h3.textContent = title.textContent.replace(/\s+/g, ' ').trim();
@@ -102,10 +140,17 @@ function buildRow(item, document) {
     np.innerHTML = p.innerHTML.trim();
     body.push(np);
   });
-  if (cta) {
+  // Label rows keep every link (returns "Create a shipping label" + "Find full-service locations")
+  const ctas = labels.length
+    ? inText('.button_v1 a[href]').filter((a) => !isHidden(a, item) && a.textContent.trim())
+    : [cta].filter(Boolean);
+  ctas.forEach((link) => {
     const p = document.createElement('p');
     const a = document.createElement('a');
-    a.href = cta.href || cta.getAttribute('href');
+    const raw = link.getAttribute('href') || '';
+    // label rows: in-page anchors stay relative (#x) for the jump-link rewrite in fedex-cleanup.js
+    a.href = labels.length && raw.startsWith('#') ? raw : (link.href || raw);
+    const cta = link;
     let text = cta.textContent.replace(/\s+/g, ' ').trim();
     // Source shouts one label in caps ("VIEW LANES AND GET A QUOTE"); normalise to sentence case
     if (text.length > 3 && text === text.toUpperCase()) text = text.charAt(0) + text.slice(1).toLowerCase();
@@ -115,7 +160,7 @@ function buildRow(item, document) {
     if (cls.length) a.className = cls.join(' ');
     p.append(a);
     body.push(p);
-  }
+  });
   if (!imageCell && !body.length) return null;
   return [imageCell, body.length ? body : ''];
 }
@@ -129,10 +174,11 @@ export default function parse(element, { document }) {
 
   // Collect this instance + following sibling items (skipping spacers)
   const light = isLight(element);
+  const labelRun = isLabelItem(element); // returns label rows only merge label rows
   const items = [element];
   let next = element.nextElementSibling;
   while (next) {
-    if (isItem(next) && isLight(next) === light) {
+    if ((labelRun ? isLabelItem(next) : isItem(next)) && isLight(next) === light) {
       items.push(next);
     } else if (!isFiller(next)) {
       break;
