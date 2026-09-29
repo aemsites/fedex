@@ -2,14 +2,11 @@
 /* global WebImporter */
 
 // PARSER IMPORTS
-import heroParser from './parsers/hero.js';
-import tabsShippingParser from './parsers/tabs-shipping.js';
-import notificationParser from './parsers/notification.js';
-import cardsIconLinksParser from './parsers/cards-icon-links.js';
-import columnsFeatureParser from './parsers/columns-feature.js';
 import cardsPromoParser from './parsers/cards-promo.js';
-import columnsPromoParser from './parsers/columns-promo.js';
+import cardsIconParser from './parsers/cards-icon.js';
 import cardsHorizontalParser from './parsers/cards-horizontal.js';
+import tableParser from './parsers/table.js';
+import accordionParser from './parsers/accordion.js';
 
 // TRANSFORMER IMPORTS
 import fedexCleanupTransformer from './transformers/fedex-cleanup.js';
@@ -17,179 +14,139 @@ import fedexSectionsTransformer from './transformers/fedex-sections.js';
 
 // PARSER REGISTRY
 const parsers = {
-  'hero': heroParser,
-  'tabs-shipping': tabsShippingParser,
-  'notification': notificationParser,
-  'cards-icon-links': cardsIconLinksParser,
-  'columns-feature': columnsFeatureParser,
   'cards-promo': cardsPromoParser,
-  'columns-promo': columnsPromoParser,
+  'cards-icon': cardsIconParser,
   'cards-horizontal': cardsHorizontalParser,
+  'table': tableParser,
+  'accordion': accordionParser,
 };
 
 // PAGE TEMPLATE CONFIGURATION - embedded from tools/importer/page-templates.json
 const PAGE_TEMPLATE = {
-  "name": "home",
-  "description": "FedEx homepage: hero with shipping tools tabs, alert, icon quick links, feature columns, promo cards and legal footnotes",
+  "name": "comparison-landing",
   "urls": [
-    "https://www.fedex.com/en-us/home.html"
+    "https://www.fedex.com/en-us/open-account.html"
   ],
+  "coverageGaps": [],
+  "description": "Sign-up landing with centered title, two-option choice cards, icon benefit row, comparison table and FAQ list",
   "blocks": [
-    {
-      "name": "hero",
-      "instances": [
-        "div.fxg-hero.fxg-hero_homepage > div.fxg-hero__image"
-      ]
-    },
-    {
-      "name": "tabs-shipping",
-      "instances": [
-        "div.fxg-hero__header > ul.fxg-cube-container"
-      ]
-    },
-    {
-      "name": "notification",
-      "instances": [
-        "div.notifications"
-      ]
-    },
-    {
-      "name": "cards-icon-links",
-      "instances": [
-        "div.advanced_table_v1"
-      ]
-    },
-    {
-      "name": "columns-feature",
-      "instances": [
-        "div.fxg-wrapper div.experiencefragment .xf-content-height > .aem-Grid > div.column_control_v1:nth-of-type(7)"
-      ]
-    },
     {
       "name": "cards-promo",
       "instances": [
-        "div.fxg-wrapper div.experiencefragment .xf-content-height > .aem-Grid > div.column_control_v1:nth-of-type(12)"
+        ".root .column_control_v1:has(.conditionalform)"
       ]
     },
     {
-      "name": "columns-promo",
+      "name": "cards-icon",
       "instances": [
-        "div.featured_offer_v2"
+        ".root .column_control_v1:has(> .row > .fxg-col.col-sm-4):not(:has(.col-sm-10))",
+        ".root .column_control_v1:has(> .row > .fxg-col.col-sm-4):has(.col-sm-10)"
       ]
     },
     {
       "name": "cards-horizontal",
       "instances": [
-        "div.fxg-wrapper div.experiencefragment .xf-content-height > .aem-Grid > div.column_control_v1:nth-of-type(21)",
-        "div.fxg-wrapper div.experiencefragment .xf-content-height > .aem-Grid > div.column_control_v1:nth-of-type(23)",
-        "div.fxg-wrapper div.experiencefragment .xf-content-height > .aem-Grid > div.column_control_v1:nth-of-type(25)"
+        ".root .column_control_v1:has(.fxg-row--has-bgcolor)"
+      ]
+    },
+    {
+      "name": "table",
+      "instances": [
+        ".root .column_control_v1:has(+ .hr_v1):not(.hr_v1 + *)"
+      ]
+    },
+    {
+      "name": "accordion",
+      "instances": [
+        ".root .accordion_selector"
       ]
     }
   ],
+  "representativeUrl": "https://www.fedex.com/en-us/open-account.html",
   "sections": [
     {
       "id": "1",
-      "name": "Hero + shipping tools tabs",
+      "name": "Page title + account choice",
       "selector": [
-        ".hero_homepage_v1"
+        ".root .hero_landingpage_v1"
       ],
-      "style": null,
-      "blocks": [
-        "hero",
-        "tabs-shipping"
-      ],
-      "defaultContent": []
-    },
-    {
-      "id": "2",
-      "name": "Alert banner",
-      "selector": [
-        "div.notifications"
-      ],
-      "style": null,
-      "blocks": [
-        "notification"
-      ],
-      "defaultContent": []
-    },
-    {
-      "id": "3",
-      "name": "Icon quick links",
-      "selector": [
-        "div.advanced_table_v1"
-      ],
-      "style": null,
-      "blocks": [
-        "cards-icon-links"
-      ],
-      "defaultContent": []
-    },
-    {
-      "id": "4",
-      "name": "Why ship with FedEx?",
-      "selector": [
-        "div.fxg-wrapper div.experiencefragment .xf-content-height > .aem-Grid > div.column_control_v1:nth-of-type(7)"
-      ],
-      "style": "light, center-buttons",
-      "blocks": [
-        "columns-feature"
-      ],
-      "defaultContent": [
-        "div.fxg-wrapper div.experiencefragment .xf-content-height > .aem-Grid > div.column_control_v1:nth-of-type(8)"
-      ]
-    },
-    {
-      "id": "5",
-      "name": "Delivery that works around you",
-      "selector": [
-        "div.fxg-wrapper div.experiencefragment .xf-content-height > .aem-Grid > div.title_v1:nth-of-type(10)"
-      ],
-      "style": null,
+      "style": "center",
       "blocks": [
         "cards-promo"
       ],
       "defaultContent": [
-        "div.fxg-wrapper div.experiencefragment .xf-content-height > .aem-Grid > div.title_v1:nth-of-type(10) h2"
+        ".root .hero_landingpage_v1 h1",
+        ".root .title_v1:has(h5)"
       ]
     },
     {
-      "id": "6",
-      "name": "Go global with confidence",
+      "id": "2",
+      "name": "Built-in savings",
       "selector": [
-        "div.fxg-wrapper div.experiencefragment .xf-content-height > .aem-Grid > div.title_v1:nth-of-type(14)"
+        ".root .title_v1:has(h2):has(+ .spacer + .column_control_v1)"
       ],
-      "style": null,
+      "style": "center",
       "blocks": [
-        "columns-promo"
+        "cards-icon"
       ],
       "defaultContent": [
-        "div.fxg-wrapper div.experiencefragment .xf-content-height > .aem-Grid > div.title_v1:nth-of-type(14) h2"
+        ".root .title_v1:has(h2):has(+ .spacer + .column_control_v1)"
       ]
     },
     {
-      "id": "7",
-      "name": "Smarter shipping for growing businesses",
+      "id": "3",
+      "name": "Discover the benefits",
       "selector": [
-        "div.fxg-wrapper div.experiencefragment .xf-content-height > .aem-Grid > div.title_v1:nth-of-type(19)"
+        ".root .title_v1:has(h2):has(+ .spacer + .table)"
+      ],
+      "style": "center",
+      "blocks": [
+        "cards-icon"
+      ],
+      "defaultContent": [
+        ".root .title_v1:has(h2):has(+ .spacer + .table)"
+      ]
+    },
+    {
+      "id": "4",
+      "name": "Already have an account?",
+      "selector": [
+        ".root .column_control_v1:has(.fxg-row--has-bgcolor)"
       ],
       "style": null,
       "blocks": [
         "cards-horizontal"
       ],
+      "defaultContent": []
+    },
+    {
+      "id": "5",
+      "name": "Business vs personal comparison",
+      "selector": [
+        ".root .title_v1:has(h3):has(+ .richtext + .spacer + .column_control_v1)"
+      ],
+      "style": null,
+      "blocks": [
+        "table"
+      ],
       "defaultContent": [
-        "div.fxg-wrapper div.experiencefragment .xf-content-height > .aem-Grid > div.title_v1:nth-of-type(19) h2"
+        ".root .title_v1:has(h3):has(+ .richtext + .spacer + .column_control_v1)",
+        ".root .title_v1:has(h3):has(+ .richtext + .spacer + .column_control_v1) + .richtext"
       ]
     },
     {
-      "id": "8",
-      "name": "Legal footnotes",
+      "id": "6",
+      "name": "FAQs",
       "selector": [
-        "div.fxg-wrapper div.experiencefragment:nth-of-type(2)"
+        ".root .title_v1:has(h2):has(+ .title_v1)"
       ],
       "style": null,
-      "blocks": [],
+      "blocks": [
+        "accordion"
+      ],
       "defaultContent": [
-        "div.fxg-wrapper div.experiencefragment:nth-of-type(2)"
+        ".root .title_v1:has(h2):has(+ .title_v1) ~ .title_v1",
+        ".root .title_v1:has(h2):has(+ .title_v1) ~ .richtext"
       ]
     }
   ]
@@ -287,7 +244,20 @@ export default {
       .replace(/\.html?$/, '');
     const path = WebImporter.FileUtils.sanitizePath(rawPath === '' ? '/index' : rawPath);
 
-    return [{
+    // The bulk runner saves one document per URL, so a fragment (e.g. freight's table answer)
+    // is imported as its own URL: <page>.html?fragment=<index> returns only that fragment.
+    const fragmentIndex = new URL(params.originalURL).searchParams.get('fragment');
+    if (fragmentIndex !== null) {
+      const f = (document.importFragments || [])[Number(fragmentIndex) || 0];
+      if (!f) throw new Error(`No fragment ${fragmentIndex} on ${params.originalURL}`);
+      return {
+        element: f.element,
+        path: WebImporter.FileUtils.sanitizePath(f.path),
+        report: { title: f.title || f.path, template: `${PAGE_TEMPLATE.name}-fragment`, blocks: ['table'] },
+      };
+    }
+
+    return {
       element: main,
       path,
       report: {
@@ -295,6 +265,6 @@ export default {
         template: PAGE_TEMPLATE.name,
         blocks: pageBlocks.map((b) => b.name),
       },
-    }];
+    };
   },
 };

@@ -561,7 +561,7 @@
           "selector": [
             "div.fxg-wrapper div.experiencefragment .xf-content-height > .aem-Grid > div.column_control_v1:nth-of-type(7)"
           ],
-          "style": "light, center",
+          "style": "light, center-buttons",
           "blocks": [
             "columns-feature"
           ],
@@ -920,8 +920,127 @@
       ],
       "coverageGaps": [],
       "description": "Sign-up landing with centered title, two-option choice cards, icon benefit row, comparison table and FAQ list",
-      "blocks": [],
-      "representativeUrl": "https://www.fedex.com/en-us/open-account.html"
+      "blocks": [
+        {
+          "name": "cards-promo",
+          "instances": [
+            ".root .column_control_v1:has(.conditionalform)"
+          ]
+        },
+        {
+          "name": "cards-icon",
+          "instances": [
+            ".root .column_control_v1:has(> .row > .fxg-col.col-sm-4):not(:has(.col-sm-10))",
+            ".root .column_control_v1:has(> .row > .fxg-col.col-sm-4):has(.col-sm-10)"
+          ]
+        },
+        {
+          "name": "cards-horizontal",
+          "instances": [
+            ".root .column_control_v1:has(.fxg-row--has-bgcolor)"
+          ]
+        },
+        {
+          "name": "table",
+          "instances": [
+            ".root .column_control_v1:has(+ .hr_v1):not(.hr_v1 + *)"
+          ]
+        },
+        {
+          "name": "accordion",
+          "instances": [
+            ".root .accordion_selector"
+          ]
+        }
+      ],
+      "representativeUrl": "https://www.fedex.com/en-us/open-account.html",
+      "sections": [
+        {
+          "id": "1",
+          "name": "Page title + account choice",
+          "selector": [
+            ".root .hero_landingpage_v1"
+          ],
+          "style": "center",
+          "blocks": [
+            "cards-promo"
+          ],
+          "defaultContent": [
+            ".root .hero_landingpage_v1 h1",
+            ".root .title_v1:has(h5)"
+          ]
+        },
+        {
+          "id": "2",
+          "name": "Built-in savings",
+          "selector": [
+            ".root .title_v1:has(h2):has(+ .spacer + .column_control_v1)"
+          ],
+          "style": "center",
+          "blocks": [
+            "cards-icon"
+          ],
+          "defaultContent": [
+            ".root .title_v1:has(h2):has(+ .spacer + .column_control_v1)"
+          ]
+        },
+        {
+          "id": "3",
+          "name": "Discover the benefits",
+          "selector": [
+            ".root .title_v1:has(h2):has(+ .spacer + .table)"
+          ],
+          "style": "center",
+          "blocks": [
+            "cards-icon"
+          ],
+          "defaultContent": [
+            ".root .title_v1:has(h2):has(+ .spacer + .table)"
+          ]
+        },
+        {
+          "id": "4",
+          "name": "Already have an account?",
+          "selector": [
+            ".root .column_control_v1:has(.fxg-row--has-bgcolor)"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-horizontal"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "5",
+          "name": "Business vs personal comparison",
+          "selector": [
+            ".root .title_v1:has(h3):has(+ .richtext + .spacer + .column_control_v1)"
+          ],
+          "style": null,
+          "blocks": [
+            "table"
+          ],
+          "defaultContent": [
+            ".root .title_v1:has(h3):has(+ .richtext + .spacer + .column_control_v1)",
+            ".root .title_v1:has(h3):has(+ .richtext + .spacer + .column_control_v1) + .richtext"
+          ]
+        },
+        {
+          "id": "6",
+          "name": "FAQs",
+          "selector": [
+            ".root .title_v1:has(h2):has(+ .title_v1)"
+          ],
+          "style": null,
+          "blocks": [
+            "accordion"
+          ],
+          "defaultContent": [
+            ".root .title_v1:has(h2):has(+ .title_v1) ~ .title_v1",
+            ".root .title_v1:has(h2):has(+ .title_v1) ~ .richtext"
+          ]
+        }
+      ]
     },
     {
       "name": "guide-article",

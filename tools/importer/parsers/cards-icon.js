@@ -19,6 +19,10 @@
  *    - Adjacent sibling instances of this shape (separated only by spacers) form one block, e.g.
  *      international "Discover global business shipping tools": 3 x 2 items -> 6 rows. Consumed
  *      siblings are removed so they are not imported twice.
+ * `three-columns`: shape 1 with 3 visible columns (comparison-landing, open-account.html
+ *    "Discover the benefits": 3 x col-sm-4, each 2 items of small icon col-sm-2 + sentence
+ *    col-sm-10) -> `Cards (icon, three-columns)`, rows read row-major. The hub/banner nested
+ *    grids have 2 columns, so their output is unchanged.
  * `light`: the outer row is the #fafafa panel (.fxg-row--has-bgcolor with a non-white inline
  * background-color; the class alone counts when there is no inline style), e.g. shipping.html.
  * .fxg-desktop--hide (mobile/tablet-only) content is never copied.
@@ -226,6 +230,8 @@ export default function parse(element, { document }) {
 
   const variants = ['icon'];
   if (!nested) variants.push('centered');
+  // 3-up nested grid (open-account "Discover the benefits": 3 x col-sm-4, 2 items each)
+  if (nested && cols(element).length === 3) variants.push('three-columns');
   if (light) variants.push('light');
   const block = WebImporter.Blocks.createBlock(document, { name: `Cards (${variants.join(', ')})`, cells });
   element.replaceWith(block);

@@ -12,7 +12,8 @@ One row per card. A cell holding only an image becomes the card image; all other
 - `promo`: borderless image-top cards, 727:463 images, CTA pinned to the bottom (1 → 3 per row from 768px)
 - `horizontal`: stacked list, 727:463 images; from 768px the image takes 1/4 on the left, the text 3/4. Square-ish icon artwork is shown whole (up to 120px), not cropped
 - `icon`: icon left of a **heading** (author as H3), text and link; 1 column on mobile, 2 from 768px
-- `centered`: modifier for `icon`: the icon sits on top and the text is centered, 3 per row from 768px. Example: `Cards (icon, centered)`
+- `centered`: modifier for `icon`: the icon sits on top and the text is centered, 3 per row from 768px. Example: `Cards (icon, centered)`. With `promo`, the card text and CTA/button are centered. Example: `Cards (promo, light, centered)`
+- `three-columns`: modifier for `icon`: 3 per row from 1024px (2 from 768px). Example: `Cards (icon, three-columns)`
 - `light`: light panel background (`--panel-color`, #fafafa), the same look as `Columns (light)`. With `promo`, each card body gets the panel instead of the whole block. Examples: `Cards (horizontal, light)`, `Cards (promo, light)`
 - `logos`: centered grid of partner/retailer logos. One row per logo: an image, optionally linked (link the image itself, or put a link next to it in the row; the link text is not shown). Other text is ignored. Logos are contained, never cropped, at a consistent height (80px, 120px from 768px); no borders. 2 per row on mobile, 3 from 768px, 4 from 1024px (3, 6 or 9 logos stay 3 per row). Example: `Cards (logos)`
 

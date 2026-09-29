@@ -14,6 +14,14 @@
  * Also accepts an "equivalent div grid": a column_control_v1 whose columns are the cells of one
  * row, or a container of column_control_v1 rows (first row = header).
  *
+ * Sibling-run grid (comparison-landing, https://www.fedex.com/en-us/open-account.html): the matched
+ * column_control_v1 is directly followed by a .hr_v1. It is the header row ("" | Business account |
+ * Personal account); the following sibling column_control_v1 rows, separated by .hr_v1, are the
+ * data rows (label | business | personal; a check-mark image cell keeps its image, an empty cell
+ * stays empty). The run stops at the first sibling that is neither (the mobile .table.parbase
+ * copies, removed by fedex-cleanup as .fxg-desktop--hide). The consumed rows and separators are
+ * removed from the DOM. Mobile/tablet renditions (.fxg-desktop--hide) inside cells are dropped.
+ *
  * Usage:
  *   - as a parser: parse(element, { document }) replaces a `div.table` / `table` element.
  *   - as a helper (accordion answers -> fragments): `parse.buildTable(source, document)` returns
@@ -83,7 +91,46 @@ function buildTable(source, document) {
   return WebImporter.Blocks.createBlock(document, { name: 'Table', cells });
 }
 
+// comparison-landing (open-account.html "Business vs personal"): the leader column_control_v1 is
+// the header row; each following sibling column_control_v1 (separated by .hr_v1) is a data row.
+// The run stops at the first sibling that is neither (the mobile .table.parbase copies).
+function siblingRun(element) {
+  const rows = [element];
+  const separators = [];
+  let next = element.nextElementSibling;
+  while (next && next.matches('.hr_v1, .column_control_v1')) {
+    (next.matches('.hr_v1') ? separators : rows).push(next);
+    next = next.nextElementSibling;
+  }
+  return { rows, separators };
+}
+
+// Desktop copy of one grid cell (mobile/tablet renditions dropped)
+function gridCell(col) {
+  const grid = col.querySelector(':scope > div > .aem-Grid') || col;
+  const copy = grid.cloneNode(true);
+  copy.querySelectorAll('.fxg-desktop--hide, .spacer, hr').forEach((n) => n.remove());
+  return copy;
+}
+
+function buildGridRunTable(element, document) {
+  const { rows, separators } = siblingRun(element);
+  const cells = rows.map((cc, i) => [...cc.querySelectorAll(':scope > .row > .fxg-col')]
+    .filter((c) => !c.matches('.fxg-desktop--hide'))
+    .map((c) => cellContent(gridCell(c), document, i === 0)));
+  const width = Math.max(...cells.map((r) => r.length));
+  cells.forEach((r) => { while (r.length < width) r.push(''); });
+  return { block: WebImporter.Blocks.createBlock(document, { name: 'Table', cells }), consumed: [...rows.slice(1), ...separators] };
+}
+
 export default function parse(element, { document }) {
+  if (element.matches('.column_control_v1') && element.nextElementSibling
+    && element.nextElementSibling.matches('.hr_v1')) {
+    const { block, consumed } = buildGridRunTable(element, document);
+    consumed.forEach((el) => el.remove());
+    element.replaceWith(block);
+    return;
+  }
   const block = buildTable(element, document);
   if (!block) {
     element.remove();
