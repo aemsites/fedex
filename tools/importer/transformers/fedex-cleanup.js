@@ -545,6 +545,25 @@ export default function transform(hookName, element, payload) {
       element.querySelectorAll('div.spacer').forEach((el) => {
         if (!el.textContent.trim() && !el.querySelector('img, picture, video, iframe, table')) el.remove();
       });
+      // Title-only landing hero (manage-account: .hero_landingpage_v1 h1.fxg-hero-landing-title, no photo)
+      // stays default content. Left inside the hero's wrapper divs, html2md glues the next block table
+      // onto the H1 line, so keep just the heading.
+      element.querySelectorAll('.hero_landingpage_v1:not(.fedex-hero-extracted)').forEach((hero) => {
+        const h1 = hero.querySelector('h1');
+        if (!h1 || hero.querySelector('img, picture, table')) return;
+        h1.removeAttribute('class');
+        h1.innerHTML = h1.innerHTML.trim();
+        hero.replaceWith(h1);
+      });
+      // Bare default-content links (manage-account: div.button_v1 > div.link > a) -> <p><a>. A bare
+      // <a> holding a <sup> (e.g. "FedEx Delivery Manager®") makes html2md drop every block
+      // separator on the page (headings, tables and section breaks run together).
+      element.querySelectorAll('div > a').forEach((a) => {
+        if (a.closest('table')) return;
+        const p = a.ownerDocument.createElement('p');
+        a.replaceWith(p);
+        p.append(a);
+      });
     }
 
     // 3. Global chrome (migrated separately)

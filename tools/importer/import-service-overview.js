@@ -409,13 +409,20 @@ export default {
       .replace(/\.html?$/, '');
     const path = WebImporter.FileUtils.sanitizePath(rawPath === '' ? '/index' : rawPath);
 
-    const extraDocs = (document.importFragments || []).map((f) => ({
-      element: f.element,
-      path: WebImporter.FileUtils.sanitizePath(f.path),
-      report: { title: f.title || f.path, template: `${PAGE_TEMPLATE.name}-fragment`, blocks: [] },
-    }));
+    // The bulk runner saves one document per URL, so a fragment (e.g. freight's table answer)
+    // is imported as its own URL: <page>.html?fragment=<index> returns only that fragment.
+    const fragmentIndex = new URL(params.originalURL).searchParams.get('fragment');
+    if (fragmentIndex !== null) {
+      const f = (document.importFragments || [])[Number(fragmentIndex) || 0];
+      if (!f) throw new Error(`No fragment ${fragmentIndex} on ${params.originalURL}`);
+      return {
+        element: f.element,
+        path: WebImporter.FileUtils.sanitizePath(f.path),
+        report: { title: f.title || f.path, template: `${PAGE_TEMPLATE.name}-fragment`, blocks: ['table'] },
+      };
+    }
 
-    return [{
+    return {
       element: main,
       path,
       report: {
@@ -423,6 +430,6 @@ export default {
         template: PAGE_TEMPLATE.name,
         blocks: pageBlocks.map((b) => b.name),
       },
-    }, ...extraDocs];
+    };
   },
 };
