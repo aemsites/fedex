@@ -356,7 +356,7 @@ main img {
   display: none; /* mobile: text only, as on the source */
   height: var(--icon-size-m);
   width: var(--icon-size-m);
-  margin-inline-end: var(--space-4);
+  margin-inline-end: var(--space-5);
   vertical-align: middle;
 }
 
