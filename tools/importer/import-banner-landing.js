@@ -325,7 +325,7 @@ const PAGE_TEMPLATE = {
       "selector": [
         ".root .title_v1:has(> h2#dropoffwithoutprintedlabel)"
       ],
-      "style": "center",
+      "style": "center-desktop",
       "blocks": [
         "cards-horizontal"
       ],
