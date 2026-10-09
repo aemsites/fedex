@@ -11,16 +11,33 @@ const nextId = (prefix) => {
   return `${prefix}-${uid}`;
 };
 
+const LOCALE = /^[a-z]{2}-[a-z]{2}$/;
+const DEFAULT_LOCALE = 'en-us';
+
+/** Fetches the first path that responds ok, in order. */
+async function fetchFirst([path, ...rest]) {
+  if (!path) return null;
+  const resp = await fetch(path);
+  if (resp.ok) return { html: await resp.text(), base: resp.url };
+  return fetchFirst(rest);
+}
+
 /**
- * Fetches the nav fragment. Metadata-independent on purpose: /content first
- * (local aem up), then the site root (DA / EDS preview + publish).
+ * Fetches the nav fragment of the current locale (/{locale}/nav, e.g. /de-ch/nav).
+ * Metadata-independent on purpose. Pages under /content (local aem up) read from
+ * /content. Falls back to the default locale nav, then the legacy root nav.
  * @returns {Promise<{html: string, base: string}|null>}
  */
 async function fetchNav() {
-  let resp = await fetch('/content/nav.plain.html');
-  if (!resp.ok) resp = await fetch('/nav.plain.html');
-  if (!resp.ok) return null;
-  return { html: await resp.text(), base: resp.url };
+  const segments = window.location.pathname.split('/').filter(Boolean);
+  const root = segments[0] === 'content' ? '/content' : '';
+  const first = segments[root ? 1 : 0];
+  const locale = LOCALE.test(first || '') ? first : DEFAULT_LOCALE;
+  return fetchFirst([...new Set([
+    `${root}/${locale}/nav.plain.html`,
+    `${root}/${DEFAULT_LOCALE}/nav.plain.html`,
+    `${root}/nav.plain.html`,
+  ])]);
 }
 
 /**
