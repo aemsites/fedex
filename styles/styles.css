@@ -351,6 +351,13 @@ main img {
   width: 100%;
 }
 
+/* inline icon in default-content text (drop-off: :help-question: before "If you have questions") */
+.default-content-wrapper p > .icon {
+  height: var(--icon-size-m);
+  width: var(--icon-size-m);
+  vertical-align: middle;
+}
+
 /* sections */
 main > .section {
   margin: var(--section-spacing) 0;

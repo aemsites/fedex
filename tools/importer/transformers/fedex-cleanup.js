@@ -465,6 +465,25 @@ function removeChatWidget(element, useTextFallback) {
 const isHidden = (el) => el.matches('[hidden], [style*="display:none"], [style*="display: none"]')
   || (el.matches('.fxg-desktop--hide') && el.matches('.fxg-tablet--hide') && el.matches('.fxg-mobile--hide'));
 
+// Inline icons next to text (drop-off-package: help-question.svg at max-width 30px before
+// "If you have questions, ...") -> EDS icon token rendered from /icons/<name>.svg, instead of a
+// full-width image. Only icons that exist in /icons are converted (others would 404).
+const INLINE_ICONS = ['help-question'];
+const INLINE_ICON_MAX_WIDTH = 48;
+
+function convertInlineIcons(element, doc) {
+  element.querySelectorAll('img[src*="/brand-icons/"]').forEach((img) => {
+    const name = (img.getAttribute('src').split('?')[0].match(/([\w-]+)\.svg$/) || [])[1];
+    if (!INLINE_ICONS.includes(name) || !(parseFloat(img.style.maxWidth) <= INLINE_ICON_MAX_WIDTH)) return;
+    const component = img.closest('.fxg-image-component__image') || img.parentElement;
+    if (!component || !cleanText(component)) return; // icon must sit inline with text
+    img.replaceWith(doc.createTextNode(`:${name}:`));
+  });
+}
+
+// Note: <u> around links is unwrapped in tools/importer/fedex-preprocess.js (the import scripts'
+// `preprocess` hook) - helix-importer drops text next to `u > a` before transform() runs.
+
 export default function transform(hookName, element, payload) {
   const templateName = (payload && payload.template && payload.template.name) || '';
   const isHome = templateName === 'home';
@@ -496,6 +515,8 @@ export default function transform(hookName, element, payload) {
       element.querySelectorAll('.fxg-desktop--hide').forEach((el) => el.setAttribute(DUPLICATE_MARKER, 'true'));
       // In-page link targets (h2#compare, h2#customs-documents, ...)
       markJumpLinkTargets(element);
+      // Small brand icons inline with text -> :icon: tokens (before parsers see them as images)
+      convertInlineIcons(element, (payload && payload.document) || element.ownerDocument);
     }
 
     // 2. Tracking pixels / sprite images trailing the page. Must run before their sibling
@@ -565,6 +586,9 @@ export default function transform(hookName, element, payload) {
     // 2. Spacers inside the content grids
     WebImporter.DOMUtils.remove(element, [`${CONTENT_GRID} > div.spacer`]);
     if (!isFrozen) {
+      // Anchors without a destination (drop-off-package: <a data-analytics="img|Question Mark Icon"><img></a>)
+      // -> keep only their content; html2md would emit an empty link (<a href="">) around the image.
+      element.querySelectorAll('a:not([href]), a[href=""]').forEach((a) => a.replaceWith(...a.childNodes));
       // Landing pages: spacers live in .cmp-container grids (div.spacer > div.fxg-spacer)
       element.querySelectorAll('div.spacer').forEach((el) => {
         if (!el.textContent.trim() && !el.querySelector('img, picture, video, iframe, table')) el.remove();

@@ -77,11 +77,13 @@
 }
 
 .columns.promo.light {
+  --columns-promo-p-margin-top: var(--space-1);
+
   padding: 0;
 }
 
 .columns.promo > div {
-  gap: 0;
+  gap: var(--columns-promo-row-gap, 0);
 }
 
 .columns.promo > div > div:not(.columns-img-col) {
@@ -93,8 +95,14 @@
   font-size: var(--heading-font-size-m);
 }
 
-.columns.promo p {
-  margin-bottom: var(--space-6);
+/* body copy margins; light and plain promos set their own (CTA rows keep the button spacing) */
+.columns.promo p:where(:not(.button-wrapper)) {
+  margin-block: var(--columns-promo-p-margin-top, 0) var(--columns-promo-p-margin-bottom, var(--space-6));
+}
+
+/* light promo: the image fills its column */
+.columns.promo.light .columns-img-col img {
+  object-fit: cover;
 }
 
 /* steps: intro, ordered list with circled numbers, small-print footnote beside an image */
@@ -334,5 +342,41 @@
 
   .columns.overlay > div > .columns-img-col:first-child ~ div:not(.columns-img-col) {
     margin-inline-start: auto;
+  }
+}
+
+/*
+ * plain promo (no light or overlay): an unpanelled text and image pair. Both
+ * columns carry a small inset and no vertical padding (the block margin keeps
+ * it apart from neighbouring blocks), the title follows the global h3 scale,
+ * the body copy uses tight 4px / 8px margins and the columns split 50/50 from 768px.
+ */
+.columns.promo:not(.light, .overlay) {
+  --columns-promo-p-margin-top: var(--space-1);
+  --columns-promo-p-margin-bottom: var(--space-2);
+  --columns-promo-row-gap: var(--space-4);
+
+  margin-block: var(--space-8);
+}
+
+.columns.promo:not(.light, .overlay) > div > div {
+  padding: 0 var(--content-gutter);
+}
+
+.columns.promo:not(.light, .overlay) h3 {
+  font-size: var(--heading-font-size-l);
+}
+
+@media (width >= 768px) {
+  .columns.promo:not(.light, .overlay) {
+    --columns-promo-row-gap: 0;
+  }
+
+  .columns.promo:not(.light, .overlay) > div > div {
+    padding: 0 var(--space-3);
+  }
+
+  .columns.promo:not(.light, .overlay) > div > .columns-img-col {
+    flex: 1;
   }
 }
