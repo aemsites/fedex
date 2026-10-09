@@ -16,6 +16,7 @@ import accordionParser from './parsers/accordion.js';
 
 // TRANSFORMER IMPORTS
 import fedexCleanupTransformer from './transformers/fedex-cleanup.js';
+import fedexPreprocess from './fedex-preprocess.js';
 import fedexSectionsTransformer from './transformers/fedex-sections.js';
 
 // PARSER REGISTRY
@@ -261,6 +262,85 @@ const PAGE_TEMPLATE = {
       "defaultContent": [
         ".root .column_control_v1:not(.column_control_v1 *, .hero_landingpage_v1 *):has(> .row > .fxg-col:first-child > div > .aem-Grid > .title_v1):not(:has(> .row > .fxg-col:first-child > div > .aem-Grid > .image_v2)):has(> .row > .fxg-col:nth-child(2) a[href^=\"#\"])"
       ]
+    },
+    {
+      "id": "11",
+      "name": "Drop off on the go - icon jump links (gap page: drop-off-package)",
+      "selector": [
+        ".root .title_v1:has(~ .title_v1 > h2#packagedropoff)"
+      ],
+      "style": null,
+      "blocks": [
+        "cards-icon-links"
+      ],
+      "defaultContent": [
+        ".root .title_v1:has(~ .title_v1 > h2#packagedropoff)"
+      ]
+    },
+    {
+      "id": "12",
+      "name": "Where can I drop off - partner logos (gap page: drop-off-package)",
+      "selector": [
+        ".root .title_v1:has(> h2#packagedropoff)"
+      ],
+      "style": null,
+      "blocks": [
+        "cards-logos"
+      ],
+      "defaultContent": [
+        ".root .title_v1:has(> h2#packagedropoff)",
+        ".root .title_v1:has(> h2#packagedropoff) + .richtext"
+      ]
+    },
+    {
+      "id": "13",
+      "name": "How does drop off work - steps (gap page: drop-off-package)",
+      "selector": [
+        ".root .title_v1:has(> h2#dropoffwork)"
+      ],
+      "style": null,
+      "blocks": [
+        "cards-promo"
+      ],
+      "defaultContent": [
+        ".root .title_v1:has(> h2#dropoffwork)"
+      ]
+    },
+    {
+      "id": "16",
+      "name": "Help line with icon, centered (gap page: drop-off-package)",
+      "selector": [
+        ".root .title_v1:has(> h2#dropoffwork) ~ .richtext:has(.fxg-image-component a[href*=\"/customer-support/call-us\"])"
+      ],
+      "style": "center",
+      "blocks": [],
+      "defaultContent": [
+        ".root .title_v1:has(> h2#dropoffwork) ~ .richtext:has(.fxg-image-component a[href*=\"/customer-support/call-us\"])"
+      ]
+    },
+    {
+      "id": "14",
+      "name": "Drop off without a printed label (gap page: drop-off-package)",
+      "selector": [
+        ".root .title_v1:has(> h2#dropoffwithoutprintedlabel)"
+      ],
+      "style": null,
+      "blocks": [],
+      "defaultContent": [
+        ".root .title_v1:has(> h2#dropoffwithoutprintedlabel)"
+      ]
+    },
+    {
+      "id": "15",
+      "name": "Promo panels (gap page: drop-off-package)",
+      "selector": [
+        ".root .title_v1:has(> h2#dropoffwithoutprintedlabel) ~ .featured_offer_v2"
+      ],
+      "style": null,
+      "blocks": [
+        "columns-promo"
+      ],
+      "defaultContent": []
     }
   ]
 };
@@ -316,6 +396,9 @@ function findBlocksOnPage(document, template) {
 }
 
 export default {
+  // Runs before helix-importer's own DOM preprocessing (which would drop text next to `u > a`)
+  preprocess: fedexPreprocess,
+
   transform: (payload) => {
     const { document, url, params } = payload;
     const main = document.body;

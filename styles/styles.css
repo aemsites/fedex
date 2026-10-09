@@ -351,6 +351,21 @@ main img {
   width: 100%;
 }
 
+/* inline icon in default-content text (drop-off: :help-question: before "If you have questions") */
+.default-content-wrapper p > .icon {
+  display: none; /* mobile: text only, as on the source */
+  height: var(--icon-size-m);
+  width: var(--icon-size-m);
+  margin-inline-end: var(--space-5);
+  vertical-align: middle;
+}
+
+@media (width >= 768px) {
+  .default-content-wrapper p > .icon {
+    display: inline-block;
+  }
+}
+
 /* sections */
 main > .section {
   margin: var(--section-spacing) 0;

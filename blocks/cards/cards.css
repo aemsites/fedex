@@ -156,6 +156,18 @@
 .cards.promo {
   --cards-row-gap: var(--space-9);
   --cards-title-spacing: var(--space-4);
+
+  /* promo steps (see below) */
+  --cards-step-label-size: var(--heading-font-size-xl);
+  --cards-step-label-spacing: var(--space-6) 0 var(--space-4);
+  --cards-step-title-size: 20px;
+  --cards-step-title-align: center;
+  --cards-step-image-width: 60%;
+}
+
+/* cards never widen their 1fr track (e.g. a broken or unsized image's min-content) */
+.cards.promo > ul > li {
+  min-width: 0;
 }
 
 .cards.promo .cards-card-body h3 {
@@ -334,6 +346,44 @@
   background-color: var(--panel-color);
 }
 
+/*
+ * promo steps: a card body opening with a bold-only label paragraph followed by the title
+ * (e.g. drop-off "STEP 1" cards) shows the label as a centered light panel above a larger
+ * light title, above square step art (source renders it 1:1). Other promo cards are unaffected.
+ */
+.cards.promo > ul > li:has(> .cards-card-body > p:first-child > strong:only-child):has(> .cards-card-body > p:first-child + h3) .cards-card-image img {
+  display: block;
+  width: var(--cards-step-image-width);
+  margin-inline: auto;
+  aspect-ratio: 1;
+}
+
+.cards.promo > ul > li:has(> .cards-card-body > p:first-child > strong:only-child):has(> .cards-card-body > p:first-child + h3) .cards-card-body {
+  padding-top: 0;
+}
+
+.cards.promo .cards-card-body > p:first-child:has(> strong:only-child):has(+ h3) {
+  margin: var(--cards-step-label-spacing);
+  padding: var(--space-2);
+  background-color: var(--panel-color);
+  font-size: var(--cards-step-label-size);
+  line-height: var(--body-line-height);
+  letter-spacing: normal;
+  text-align: center;
+}
+
+.cards.promo .cards-card-body > p:first-child:has(+ h3) > strong:only-child {
+  font-weight: var(--font-weight-light);
+}
+
+.cards.promo .cards-card-body > p:first-child:has(> strong:only-child) + h3 {
+  margin: var(--space-5) 0;
+  font-size: var(--cards-step-title-size);
+  font-weight: var(--font-weight-light);
+  line-height: var(--heading-line-height);
+  text-align: var(--cards-step-title-align);
+}
+
 @media (width >= 768px) {
   .cards.icon-links {
     --cards-icon-size: 67%;
@@ -356,6 +406,13 @@
 
   .cards.promo {
     --cards-cta-offset: var(--space-2);
+
+    /* step label stays 32px: the l token is 32px from here (xl grows to 40px) */
+    --cards-step-label-size: var(--heading-font-size-l);
+    --cards-step-label-spacing: var(--space-9) 0 var(--space-6);
+    --cards-step-title-size: var(--heading-font-size-m);
+    --cards-step-title-align: start;
+    --cards-step-image-width: 100%;
   }
 
   .cards.promo > ul {

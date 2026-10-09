@@ -126,7 +126,32 @@
 }
 
 .hero.purple h1 {
+  margin: 0 0 var(--space-5);
   color: var(--text-color);
+}
+
+.hero.purple p {
+  margin: var(--space-1) 0 var(--space-2);
+}
+
+/* the CTA sits right under the subtext; a link after it gets its own gap */
+.hero.purple .button-wrapper {
+  margin: 0;
+}
+
+.hero.purple .button-wrapper + p {
+  margin-top: var(--space-6);
+}
+
+/*
+ * flex column so the heading, subtext and CTA margins add up instead of collapsing
+ * (the source keeps them in separate wrappers). The :has() branch covers content
+ * where the picture paragraph swallowed the heading and text.
+ */
+.hero.purple .hero-content,
+.hero.purple .hero-content > p:has(> h1) {
+  display: flex;
+  flex-direction: column;
 }
 
 .hero.purple .button-wrapper a.button {
@@ -191,6 +216,10 @@
 
   .hero.purple {
     text-align: start;
+  }
+
+  .hero.purple h1 {
+    line-height: var(--heading-line-height);
   }
 
   .hero.purple h1,
