@@ -477,6 +477,11 @@ function convertInlineIcons(element, doc) {
     if (!INLINE_ICONS.includes(name) || !(parseFloat(img.style.maxWidth) <= INLINE_ICON_MAX_WIDTH)) return;
     const component = img.closest('.fxg-image-component__image') || img.parentElement;
     if (!component || !cleanText(component)) return; // icon must sit inline with text
+    // Source spaces the text with a run of &nbsp; after the icon (or its link): keep one space,
+    // the gap is styled (styles.css, icon-led default-content paragraph)
+    const holder = img.parentElement.matches('a') && img.parentElement.childNodes.length === 1 ? img.parentElement : img;
+    const next = holder.nextSibling;
+    if (next && next.nodeType === 3) next.textContent = next.textContent.replace(/^\s+/, ' '); // \s includes &nbsp;
     img.replaceWith(doc.createTextNode(`:${name}:`));
   });
 }

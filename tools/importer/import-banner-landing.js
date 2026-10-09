@@ -307,6 +307,18 @@ const PAGE_TEMPLATE = {
       ]
     },
     {
+      "id": "16",
+      "name": "Help line with icon, centered (gap page: drop-off-package)",
+      "selector": [
+        ".root .title_v1:has(> h2#dropoffwork) ~ .richtext:has(.fxg-image-component a[href*=\"/customer-support/call-us\"])"
+      ],
+      "style": "center",
+      "blocks": [],
+      "defaultContent": [
+        ".root .title_v1:has(> h2#dropoffwork) ~ .richtext:has(.fxg-image-component a[href*=\"/customer-support/call-us\"])"
+      ]
+    },
+    {
       "id": "14",
       "name": "Drop off without a printed label (gap page: drop-off-package)",
       "selector": [
