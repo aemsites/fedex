@@ -31,6 +31,11 @@
  * in-page links (#x) stay relative so fedex-cleanup.js rewrites them to EDS heading ids.
  * A label-row leader only merges following label rows. Rows without the nested label keep the
  * original behaviour.
+ *
+ * Banner-landing drop-off addition ("Can I drop off without a printed label?"): "text rows" =
+ * plain row, [col-sm-2: image_v2 only] [col-sm-10: richtext only], no title_v1. Cell 1 = icon,
+ * cell 2 = the paragraph(s) with inline links/bold. A text-row leader only merges text rows;
+ * leaders matched by the other selectors keep the original run logic.
  */
 const CONSUMED = 'data-cards-horizontal-consumed';
 const HIDDEN = '.fxg-desktop--hide';
@@ -82,6 +87,25 @@ function isLabelItem(el) {
   return nestedLabels(first, el).length > 0
     && !!second.querySelector(':scope > div > .aem-Grid > .richtext')
     && !second.querySelector(':scope > div > .aem-Grid > :is(.image_v2, .column_control_v1)');
+}
+
+// Text row (banner-landing drop-off "Can I drop off without a printed label?"): plain (no bgcolor)
+// row, col-sm-2 image-only column + col-sm-10 richtext-only column, no title. Only merges rows
+// of the same shape; never applies to bgcolor (light) rows, titled rows or label rows.
+function isTextItem(el) {
+  if (!el || !el.matches || !el.matches('div.column_control_v1')) return false;
+  const row = el.querySelector(':scope > .row');
+  if (!row || row.classList.contains('fxg-row--has-bgcolor')) return false;
+  const cols = visibleCols(el);
+  if (cols.length !== 2) return false;
+  const [first, second] = cols;
+  const items = (c) => [...c.querySelectorAll(':scope > div > .aem-Grid > *')]
+    .filter((x) => !x.matches('.spacer') && !isHidden(x, el));
+  const a = items(first);
+  const b = items(second);
+  return first.matches('.col-sm-2') && second.matches('.col-sm-10')
+    && a.length > 0 && a.every((x) => x.matches('.image_v2')) && !!first.querySelector('.image_v2 img')
+    && b.length > 0 && b.every((x) => x.matches('.richtext'));
 }
 
 function labelParagraph(p, document) {
@@ -175,10 +199,15 @@ export default function parse(element, { document }) {
   // Collect this instance + following sibling items (skipping spacers)
   const light = isLight(element);
   const labelRun = isLabelItem(element); // returns label rows only merge label rows
+  // drop-off text rows (image | richtext, no title) only merge text rows
+  const textRun = !labelRun && !isItem(element) && isTextItem(element);
+  let sameShape = isItem;
+  if (labelRun) sameShape = isLabelItem;
+  else if (textRun) sameShape = isTextItem;
   const items = [element];
   let next = element.nextElementSibling;
   while (next) {
-    if ((labelRun ? isLabelItem(next) : isItem(next)) && isLight(next) === light) {
+    if (sameShape(next) && isLight(next) === light) {
       items.push(next);
     } else if (!isFiller(next)) {
       break;
