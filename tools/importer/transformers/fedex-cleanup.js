@@ -18,7 +18,7 @@
  *     ones), fix page metadata in <head>, prepare jump-link targets, and remove overlays/widgets
  *     that live outside the content grid.
  *   - afterTransform: remove the marked duplicates, spacers and the global chrome, then
- *     rewrite jump links and map CTA classes.
+ *     rewrite jump links and www.fedex.com page links, and map CTA classes.
  *
  * FROZEN TEMPLATES: the homepage import (template `home`, tools/importer/import-home.js) must keep
  * producing identical output. Rules added for the landing pages that could touch homepage content
@@ -71,6 +71,10 @@ const METADATA_KEYS = [
 const IMAGE_META = ['og:image', 'twitter:image', 'og:twitter_image']
   .map((k) => `meta[property="${k}"], meta[name="${k}"]`).join(', ');
 const NON_PUBLIC_HOST_RE = /^(localhost|127\.0\.0\.1|wwwtest\.fedex\.com)$/i;
+
+// Links to .html pages on this host become internal links without the extension
+// (https://www.fedex.com/en-us/shipping/returns.html -> /en-us/shipping/returns).
+const INTERNAL_LINK_HOST = 'www.fedex.com';
 
 // Login-state-only / hidden furniture inside the content (verified live and in migration-work/cleaned.html, claims):
 //  - div.link.fxg-auth-button-link.cc-aem-u-display--none  ("Start a claim", "File batch claims", ... logged-in only)
@@ -400,6 +404,26 @@ function rewriteJumpLinks(element) {
   element.querySelectorAll(`[${ANCHOR_TEXT_ATTR}]`).forEach((a) => a.removeAttribute(ANCHOR_TEXT_ATTR));
 }
 
+// afterTransform (parsers done, so block links are included): links to .html pages on www.fedex.com ->
+// internal links without .html (query and hash kept). Relative source hrefs are resolved against the
+// page URL first. Other hosts and non-.html paths (e.g. /fedextrack/) are left unchanged.
+function rewriteInternalLinks(element, payload) {
+  const base = (payload && payload.params && payload.params.originalURL) || 'https://www.fedex.com/';
+  element.querySelectorAll('a[href]').forEach((a) => {
+    const href = a.getAttribute('href').trim();
+    if (!href || href.startsWith('#')) return;
+    let url;
+    try {
+      url = new URL(href, base);
+    } catch (e) {
+      return;
+    }
+    if (!/^https?:$/.test(url.protocol) || url.hostname.toLowerCase() !== INTERNAL_LINK_HOST) return;
+    if (!/\.html$/i.test(url.pathname)) return;
+    a.setAttribute('href', `${url.pathname.replace(/\.html$/i, '')}${url.search}${url.hash}`);
+  });
+}
+
 function removeSectionSubNav(element) {
   element.querySelectorAll('nav.fxg-navbar').forEach((nav) => {
     if (!nav.isConnected) return;
@@ -607,6 +631,9 @@ export default function transform(hookName, element, payload) {
 
     // 6. Jump links -> EDS heading ids (#compare -> #compare-international-shipping-services-and-rates)
     if (!isFrozen) rewriteJumpLinks(element);
+
+    // 6a. www.fedex.com .html links -> internal links without .html (all templates, including frozen `home`)
+    rewriteInternalLinks(element, payload);
 
     // 6b. blob: images (all templates - blob URLs can never be imported)
     removeBlobImages(element);
