@@ -119,8 +119,10 @@
   gap: var(--cards-row-gap) 0;
 }
 
+/* min-width: cards never widen their 1fr track (e.g. a broken or unsized image's min-content) */
 .cards.promo > ul > li,
 .cards.horizontal > ul > li {
+  min-width: 0;
   border: 0;
   padding-inline: var(--cards-gutter);
   background: none;
@@ -163,11 +165,6 @@
   --cards-step-title-size: 20px;
   --cards-step-title-align: center;
   --cards-step-image-width: 60%;
-}
-
-/* cards never widen their 1fr track (e.g. a broken or unsized image's min-content) */
-.cards.promo > ul > li {
-  min-width: 0;
 }
 
 .cards.promo .cards-card-body h3 {
@@ -347,6 +344,35 @@
 }
 
 /*
+ * horizontal text rows: a card whose body is a single paragraph with bold inline links and
+ * no heading (e.g. drop-off "Can I drop off without a printed label?") shows its artwork whole
+ * at half width, centred above the text; a 1/6 column beside it from 768px (see below).
+ * Other horizontal cards are unaffected.
+ */
+.cards.horizontal:has(> ul > li > .cards-card-body > p:only-child > strong) {
+  --cards-row-gap: var(--space-10);
+
+  margin-block: var(--space-6) 30px;
+}
+
+.cards.horizontal > ul > li:has(> .cards-card-body > p:only-child > strong) {
+  padding-inline: var(--space-3);
+}
+
+.cards.horizontal > ul > li:has(> .cards-card-body > p:only-child > strong) .cards-card-image img {
+  display: block;
+  width: 50%;
+  height: auto;
+  margin-inline: auto;
+  aspect-ratio: auto;
+  object-fit: contain;
+}
+
+.cards.horizontal > ul > li:has(> .cards-card-body > p:only-child > strong) .cards-card-body {
+  padding-top: 26px;
+}
+
+/*
  * promo steps: a card body opening with a bold-only label paragraph followed by the title
  * (e.g. drop-off "STEP 1" cards) shows the label as a centered light panel above a larger
  * light title, above square step art (source renders it 1:1). Other promo cards are unaffected.
@@ -467,6 +493,31 @@
 
   .cards.promo.light .cards-card-body {
     padding: var(--space-5) var(--space-4);
+  }
+
+  /* horizontal text rows: 1/6 artwork column, text vertically centred on it */
+  .cards.horizontal:has(> ul > li > .cards-card-body > p:only-child > strong) {
+    --cards-row-gap: var(--space-8);
+
+    margin-block: var(--space-10);
+  }
+
+  .cards.horizontal > ul > li:has(> .cards-card-body > p:only-child > strong) {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 5fr);
+    align-items: center;
+    padding-inline: 0;
+  }
+
+  .cards.horizontal > ul > li:has(> .cards-card-body > p:only-child > strong) .cards-card-image {
+    padding-inline: var(--cards-gutter);
+  }
+
+  .cards.horizontal > ul > li:has(> .cards-card-body > p:only-child > strong) .cards-card-image img {
+    width: 100%;
+  }
+
+  .cards.horizontal > ul > li:has(> .cards-card-body > p:only-child > strong) .cards-card-body {
+    padding-top: 0;
   }
 }
 

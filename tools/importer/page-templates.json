@@ -44,7 +44,8 @@
           "instances": [
             ".root .column_control_v1:not(.column_control_v1 *, .accordion_selector *, .featured_offer_v2 *, .hero_landingpage_v1 *, .tabs_v1 *, .carousel_v1 *):not(:has(> .row > .fxg-col:first-child.fxg-desktop--hide)):has(> .row > .fxg-col:first-child:is(.col-sm-2, .col-sm-3, .col-sm-4) > div > .aem-Grid > .image_v2):not(:has(> .row > .fxg-col:first-child > div > .aem-Grid > .title_v1)):has(> .row > .fxg-col:nth-child(2) > div > .aem-Grid > .title_v1):not(:has(> .row > .fxg-col:nth-child(3)))",
             ".root .column_control_v1:not(.column_control_v1 *, .accordion_selector *, .featured_offer_v2 *, .hero_landingpage_v1 *, .tabs_v1 *, .carousel_v1 *):not(:has(> .row > .fxg-col:first-child.fxg-desktop--hide)):has(> .row.fxg-row--has-bgcolor > .fxg-col:first-child:is(.col-sm-2, .col-sm-3) > div > .aem-Grid > .image_v2):not(:has(> .row > .fxg-col:first-child > div > .aem-Grid > :is(.title_v1, .richtext))):has(> .row > .fxg-col:nth-child(2) > div > .aem-Grid > .richtext):not(:has(> .row > .fxg-col:nth-child(2) > div > .aem-Grid > .title_v1)):not(:has(> .row > .fxg-col:nth-child(3)))",
-            ".root .column_control_v1:not(.column_control_v1 *, .accordion_selector *, .featured_offer_v2 *, .hero_landingpage_v1 *, .tabs_v1 *, .carousel_v1 *):not(:has(> .row > .fxg-col:first-child.fxg-desktop--hide)):has(> .row > .fxg-col.col-sm-2:first-child > div > .aem-Grid > .image_v2):has(> .row > .fxg-col.col-sm-2:nth-child(2) > div > .aem-Grid > .title_v1):has(> .row > .fxg-col:nth-child(3) > div > .aem-Grid > .richtext):not(:has(> .row > .fxg-col:nth-child(4)))"
+            ".root .column_control_v1:not(.column_control_v1 *, .accordion_selector *, .featured_offer_v2 *, .hero_landingpage_v1 *, .tabs_v1 *, .carousel_v1 *):not(:has(> .row > .fxg-col:first-child.fxg-desktop--hide)):has(> .row > .fxg-col.col-sm-2:first-child > div > .aem-Grid > .image_v2):has(> .row > .fxg-col.col-sm-2:nth-child(2) > div > .aem-Grid > .title_v1):has(> .row > .fxg-col:nth-child(3) > div > .aem-Grid > .richtext):not(:has(> .row > .fxg-col:nth-child(4)))",
+            ".root .title_v1:has(> h2#dropoffwithoutprintedlabel) ~ .column_control_v1:not(.title_v1:has(> h2#dropoffwithoutprintedlabel) ~ .featured_offer_v2 ~ *):not(:has(> .row > .fxg-col:first-child.fxg-desktop--hide)):has(> .row:not(.fxg-row--has-bgcolor) > .fxg-col.col-sm-2:first-child > div > .aem-Grid > .image_v2):not(:has(> .row > .fxg-col:first-child > div > .aem-Grid > :is(.title_v1, .richtext, .button_v1))):has(> .row > .fxg-col.col-sm-10:nth-child(2) > div > .aem-Grid > .richtext):not(:has(> .row > .fxg-col:nth-child(2) > div > .aem-Grid > :is(.title_v1, .image_v2, .button_v1, .column_control_v1))):not(:has(> .row > .fxg-col:nth-child(3)))"
           ]
         },
         {
@@ -292,8 +293,10 @@
           "selector": [
             ".root .title_v1:has(> h2#dropoffwithoutprintedlabel)"
           ],
-          "style": null,
-          "blocks": [],
+          "style": "center-desktop",
+          "blocks": [
+            "cards-horizontal"
+          ],
           "defaultContent": [
             ".root .title_v1:has(> h2#dropoffwithoutprintedlabel)"
           ]
