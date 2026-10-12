@@ -1,41 +1,82 @@
-/* language switch: inline list of the country's languages, current one bold;
-   spacing instead of separators so a wrapped line doesn't start with one */
-.language-switch .language-switch-list {
+/* language switch: dropdown as on the source (bordered box with the current language and a
+   chevron, the language list opening below it) */
+.language-switch {
+  --language-switch-border: 1px solid rgb(89 89 91 / 50%);
+  --language-switch-chevron: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 12' fill='none' stroke='black' stroke-width='1.5'%3E%3Cpath d='M1 1l9 10 9-10'/%3E%3C/svg%3E");
+
+  position: relative;
+  margin-top: var(--space-4);
+  border: var(--language-switch-border);
+}
+
+.language-switch .language-switch-trigger {
+  box-sizing: border-box;
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  gap: 0 var(--space-5);
+  justify-content: space-between;
+  gap: var(--space-4);
+  width: 100%;
+  min-height: var(--touch-target-size);
   margin: 0;
+  border: 0;
+  padding: var(--space-5) var(--space-4) var(--space-4);
+  background: none;
+  color: var(--text-color);
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-m);
+  font-weight: var(--font-weight-light);
+  line-height: var(--body-line-height);
+  text-align: start;
+  cursor: pointer;
+}
+
+.language-switch .language-switch-trigger::after {
+  content: '';
+  flex: none;
+  width: var(--space-5);
+  height: var(--space-3);
+  background-color: currentcolor;
+  mask: var(--language-switch-chevron) center / contain no-repeat;
+}
+
+.language-switch .language-switch-trigger[aria-expanded="true"]::after {
+  transform: rotate(180deg);
+}
+
+.language-switch .language-switch-list {
+  position: absolute;
+  top: 100%;
+  inset-inline: -1px;
+  z-index: 1;
+  margin: 0;
+  border: var(--language-switch-border);
   padding: 0;
+  background-color: var(--panel-color);
   list-style: none;
 }
 
-.language-switch .language-switch-list li {
-  display: flex;
-  align-items: center;
+.language-switch .language-switch-list[hidden] {
+  display: none;
 }
 
 .language-switch .language-switch-list a:any-link {
-  display: inline-flex;
-  align-items: center;
-  min-height: var(--touch-target-size);
-  color: inherit;
+  display: block;
+  padding: var(--space-4);
+  background-color: var(--color-white);
+  color: var(--text-color);
+  font-size: var(--body-font-size-m);
+  font-weight: var(--font-weight-light);
+  line-height: var(--body-line-height);
   text-decoration: none;
 }
 
 .language-switch .language-switch-list a:hover {
-  text-decoration: underline;
+  background-color: var(--panel-color);
+  text-decoration: none;
 }
 
-.language-switch .language-switch-current a:any-link {
-  font-weight: var(--font-weight-bold);
-}
-
-/* mouse / trackpad: source row rhythm (touch keeps --touch-target-size) */
-
-/* breakpoint-exception: FedEx design-system breakpoints are 768px/1024px */
-@media (width >= 768px) and (pointer: fine) {
-  .language-switch .language-switch-list a:any-link {
-    min-height: var(--space-6);
+@media (prefers-reduced-motion: no-preference) {
+  .language-switch .language-switch-trigger::after {
+    transition: transform 0.2s;
   }
 }

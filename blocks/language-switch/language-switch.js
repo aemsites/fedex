@@ -1,10 +1,13 @@
-// Language switch: every language of the page's country, each linking to the same page in
-// that language (/de-de/shipping -> /en-de/shipping). Authored as language links, one per
-// row, e.g. [Deutsch](https://www.fedex.com/de-de/home.html); the link text is the label and
-// the first path segment (language-country) is the locale. Where the same page doesn't exist
-// in a language, the link falls back to that language's home, then to the authored link.
+// Language switch: a dropdown (as on the source) of every language of the page's country, each
+// linking to the same page in that language (/de-de/shipping -> /en-de/shipping). Authored as
+// language links, one per row, e.g. [Deutsch](https://www.fedex.com/de-de/home.html); the link
+// text is the label and the first path segment (language-country) is the locale. Where the
+// same page doesn't exist in a language, the link falls back to that language's home, then to
+// the authored link. An optional data-labelledby (heading id) names the control.
 
 import { splitLocalePath, localizePath } from '../../scripts/locale-fragment.js';
+
+let uid = 0;
 
 /** Locale of an authored link (first path segment), or null. */
 function linkLocale(a) {
@@ -75,6 +78,46 @@ export default async function decorate(block) {
       link.href = await resolveTarget(locale, a.href);
     }
   }));
+  if (!list.children.length) return;
 
-  block.replaceChildren(list);
+  // dropdown as on the source: a button showing the current language, the list below it
+  uid += 1;
+  list.id = `language-switch-list-${uid}`;
+  const currentLink = list.querySelector('[aria-current]') || list.querySelector('a');
+  const button = document.createElement('button');
+  button.type = 'button';
+  button.className = 'language-switch-trigger';
+  button.setAttribute('aria-controls', list.id);
+  const value = document.createElement('span');
+  value.className = 'language-switch-value';
+  value.id = `language-switch-value-${uid}`;
+  value.textContent = currentLink.textContent;
+  value.lang = currentLink.lang;
+  button.append(value);
+  // named by the column heading (e.g. "Sprache: Deutsch") when the footer provides one
+  const { labelledby } = block.dataset;
+  if (labelledby) {
+    button.setAttribute('aria-labelledby', `${labelledby} ${value.id}`);
+    list.setAttribute('aria-labelledby', labelledby);
+  }
+
+  const toggle = (open) => {
+    button.setAttribute('aria-expanded', open ? 'true' : 'false');
+    list.hidden = !open;
+  };
+  toggle(false);
+  button.addEventListener('click', () => toggle(button.getAttribute('aria-expanded') !== 'true'));
+  block.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape' || button.getAttribute('aria-expanded') !== 'true') return;
+    toggle(false);
+    button.focus();
+  });
+  block.addEventListener('focusout', (e) => {
+    if (e.relatedTarget && !block.contains(e.relatedTarget)) toggle(false);
+  });
+  document.addEventListener('click', (e) => {
+    if (!block.contains(e.target)) toggle(false);
+  });
+
+  block.replaceChildren(button, list);
 }

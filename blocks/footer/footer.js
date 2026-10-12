@@ -260,11 +260,9 @@ export default async function decorate(block) {
   block.textContent = '';
   block.append(sections);
 
-  // blocks inside the fragment (the language switch), labelled by their column heading
+  // blocks inside the fragment (the language switch; data-labelledby = its column heading)
   await Promise.all([...sections.querySelectorAll('.footer-block > div')].map(async (el) => {
     decorateBlock(el);
     await loadBlock(el);
-    const { labelledby } = el.dataset;
-    if (labelledby) el.querySelector('ul')?.setAttribute('aria-labelledby', labelledby);
   }));
 }

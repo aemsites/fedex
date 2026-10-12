@@ -97,11 +97,6 @@ footer .footer-locale-icon {
   height: var(--icon-size-s);
 }
 
-/* language switch block (blocks/language-switch) under the country link */
-footer .footer-block {
-  margin-top: var(--space-2);
-}
-
 /* social row: heading above a paged icon scroller */
 footer .footer-social {
   padding-bottom: var(--space-18);
