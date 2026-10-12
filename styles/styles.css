@@ -533,9 +533,18 @@ main .default-content-wrapper:has(+ .cards-wrapper > .cards.logos) > h2:last-chi
   margin-bottom: var(--space-4);
 }
 
-/* a CTA directly above a logo grid (e.g. drop-off "Find FedEx drop off locations near you") */
+/*
+ * a CTA directly above a logo grid (e.g. drop-off "Find FedEx drop off locations near you"):
+ * centred at all widths and capped at the source's 280px (a long label wraps to 2 lines),
+ * 40px below the text on mobile (21px from 768px), with the source's space down to the logos.
+ */
 main .default-content-wrapper:has(+ .cards-wrapper > .cards.logos) > .button-wrapper:last-child {
-  margin-bottom: var(--space-12);
+  margin: 40px 0 106px;
+  text-align: center;
+}
+
+main .default-content-wrapper:has(+ .cards-wrapper > .cards.logos) > .button-wrapper:last-child > a.button {
+  max-width: 280px;
 }
 
 /*
@@ -590,6 +599,10 @@ main > .section.checklist .default-content-wrapper > ul > li ul {
     text-align: center;
   }
 
+  main .default-content-wrapper:has(+ .cards-wrapper > .cards.logos) > .button-wrapper:last-child {
+    margin: 21px 0 34px;
+  }
+
   main > .section.jump-links .default-content-wrapper:not(:has(> ul)),
   main > .section.jump-links .default-content-wrapper > ul {
     column-count: 2;
@@ -635,5 +648,9 @@ main > .section.checklist .default-content-wrapper > ul > li ul {
   main > .section.jump-links.three-columns:not(.heading-left) .default-content-wrapper:not(:has(> ul)),
   main > .section.jump-links.three-columns .default-content-wrapper > ul {
     column-count: 3;
+  }
+
+  main .default-content-wrapper:has(+ .cards-wrapper > .cards.logos) > .button-wrapper:last-child {
+    margin-bottom: var(--space-16);
   }
 }

@@ -253,10 +253,12 @@
   display: block;
 }
 
+/* max-width/max-height default to the cell width / no cap (see the CTA-introduced logos below) */
 .cards.logos .cards-card-image img {
   width: auto;
-  max-width: 100%;
+  max-width: var(--cards-logo-max-width, 100%);
   height: var(--cards-logo-height);
+  max-height: var(--cards-logo-max-height, none);
   aspect-ratio: auto;
   object-fit: contain;
 }
@@ -566,5 +568,60 @@
 
     margin-top: 0;
     padding-top: var(--space-3);
+  }
+}
+
+/*
+ * logos introduced by a CTA (drop-off "Find FedEx drop off locations near you"): the source's
+ * column-control logo grid. Each logo sits in a 12px-padded cell, at most 80% of the cell wide and
+ * a fixed share of the cell width tall, so wordmarks come out 80% wide and icon logos at their
+ * source height, vertically centred in the row. One logo per row on mobile (the source's carousel,
+ * unrolled), 3 across from 768px in the source's 690px tablet column. The bottom padding keeps the
+ * source's space down to the next heading. Other logos blocks (e.g. returns) are unaffected.
+ */
+main .default-content-wrapper:has(> .button-wrapper:last-child) + .cards-wrapper > .cards.logos {
+  --cards-logo-height: auto;
+  --cards-logo-max-width: 80%;
+  --cards-logo-max-height: 36cqi;
+
+  padding-bottom: 98px;
+}
+
+main .default-content-wrapper:has(> .button-wrapper:last-child) + .cards-wrapper > .cards.logos > ul {
+  grid-template-columns: 1fr;
+  gap: var(--space-10) 0;
+  padding-inline: var(--content-gutter);
+}
+
+main .default-content-wrapper:has(> .button-wrapper:last-child) + .cards-wrapper > .cards.logos > ul > li {
+  padding-inline: var(--space-3);
+}
+
+/* the cell is the query container, so the logo height cap (cqi) scales with the cell width */
+main .default-content-wrapper:has(> .button-wrapper:last-child) + .cards-wrapper > .cards.logos .cards-card-image {
+  container-type: inline-size;
+}
+
+@media (width >= 768px) {
+  main .default-content-wrapper:has(> .button-wrapper:last-child) + .cards-wrapper > .cards.logos {
+    --cards-logo-max-height: 42.5cqi;
+
+    padding: 0 var(--space-6) 13px;
+  }
+
+  main .default-content-wrapper:has(> .button-wrapper:last-child) + .cards-wrapper > .cards.logos > ul {
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 44px;
+    padding-inline: 0;
+  }
+}
+
+@media (width >= 1024px) {
+  main .default-content-wrapper:has(> .button-wrapper:last-child) + .cards-wrapper > .cards.logos {
+    padding: 0 0 26px;
+  }
+
+  main .default-content-wrapper:has(> .button-wrapper:last-child) + .cards-wrapper > .cards.logos > ul {
+    row-gap: var(--space-16);
   }
 }
