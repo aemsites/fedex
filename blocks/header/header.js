@@ -2,6 +2,8 @@
 // All copy, links and images come from the nav fragment; this file only adds
 // structure, controls and behaviour.
 
+import { loadLocaleFragment } from '../../scripts/locale-fragment.js';
+
 const DESKTOP = window.matchMedia('(width >= 1024px)');
 const TABLET_UP = window.matchMedia('(width >= 768px)');
 
@@ -10,35 +12,6 @@ const nextId = (prefix) => {
   uid += 1;
   return `${prefix}-${uid}`;
 };
-
-const LOCALE = /^[a-z]{2}-[a-z]{2}$/;
-const DEFAULT_LOCALE = 'en-us';
-
-/** Fetches the first path that responds ok, in order. */
-async function fetchFirst([path, ...rest]) {
-  if (!path) return null;
-  const resp = await fetch(path);
-  if (resp.ok) return { html: await resp.text(), base: resp.url };
-  return fetchFirst(rest);
-}
-
-/**
- * Fetches the nav fragment of the current locale (/{locale}/nav, e.g. /de-ch/nav).
- * Metadata-independent on purpose. Pages under /content (local aem up) read from
- * /content. Falls back to the default locale nav, then the legacy root nav.
- * @returns {Promise<{html: string, base: string}|null>}
- */
-async function fetchNav() {
-  const segments = window.location.pathname.split('/').filter(Boolean);
-  const root = segments[0] === 'content' ? '/content' : '';
-  const first = segments[root ? 1 : 0];
-  const locale = LOCALE.test(first || '') ? first : DEFAULT_LOCALE;
-  return fetchFirst([...new Set([
-    `${root}/${locale}/nav.plain.html`,
-    `${root}/${DEFAULT_LOCALE}/nav.plain.html`,
-    `${root}/nav.plain.html`,
-  ])]);
-}
 
 /**
  * Resolves fragment-relative image paths against the fragment URL, so
@@ -301,7 +274,8 @@ function toggleMobileMenu(nav, force) {
  * @param {Element} block The header block element
  */
 export default async function decorate(block) {
-  const navData = await fetchNav();
+  // /{locale}/nav (e.g. /de-ch/nav), then /en-us/nav, then the legacy root /nav
+  const navData = await loadLocaleFragment('nav');
   if (!navData) return;
 
   const fragment = document.createElement('div');

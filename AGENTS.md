@@ -21,6 +21,8 @@ Edge Delivery Services. Read a block first. Omissions are in the repo or known.
 - PR body: Summary, `## Preview`, Testing. Preview is a `| Page | Before | After |` table, one row per affected page (incl. pages sharing a changed block): Before `main--fedex--aemsites.aem.page/{path}`, After `{branch}--fedex--aemsites.aem.page/{path}`. Check every link returns 200. Example: PR #3.
 - DA content is shared across branches. Uploaded content for an unmerged PR → add a "Merge soon" note.
 - All committed files are served. Use `.hlxignore`.
+- Header/footer load `/{locale}/nav` and `/{locale}/footer` (locale = first path segment), then `/en-us/…`, then root `/nav`, `/footer`. Shared loader: `scripts/locale-fragment.js`; `npm test`.
+- Footers are imported per locale from `{locale}/home.html`: `tools/importer/import-footer.js`, `urls-footer.txt`. Never copy another locale's footer.
 - Skills: `/plugin marketplace add adobe/skills`, then `aem-edge-delivery-services` (24 skills, incl. `docs-search`).
 
 ## fedex.com (source site)
