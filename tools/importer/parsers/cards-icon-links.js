@@ -8,8 +8,22 @@
  *   Cell 1 = icon image, Cell 2 = paragraph with a single (plain) link.
  * Uses the desktop copy (table.large-only); the small-only / mobile tables are ignored.
  * Iterates the table cells (th/td), not the anchors, and takes the desktop image rendition.
+ *
+ * Line breaks: a <br> inside the source label ("Can I drop off<br> without a printed label?") is
+ * kept as a real <br> in the link text (surrounding whitespace trimmed) so the label wraps where the
+ * source wraps. FROZEN: the homepage (template `home`, see FROZEN_TEMPLATES in
+ * transformers/fedex-cleanup.js) keeps the original behaviour (<br> -> space) so its import output
+ * stays identical. Parsers don't receive the template name, so home is detected from the page URL.
  */
-export default function parse(element, { document }) {
+function isHomePage(document, url, params) {
+  const pageUrl = (params && params.originalURL) || url || (document && document.URL) || '';
+  let path = '';
+  try { path = new URL(pageUrl).pathname; } catch (e) { path = String(pageUrl); }
+  return /\/home\.html$/i.test(path) || /^\/(?:[a-z]{2}-[a-z]{2}\/?)?$/i.test(path);
+}
+
+export default function parse(element, { document, url, params }) {
+  const keepBreaks = !isHomePage(document, url, params);
   const table = element.querySelector('table.large-only')
     || element.querySelector('table:not(.small-only)')
     || element.querySelector('table');
@@ -66,12 +80,25 @@ export default function parse(element, { document }) {
       // in-page anchors (drop-off #packagedropoff) stay relative for the jump-link rewrite
       if (href && href.startsWith('#')) a.setAttribute('href', href);
       else a.href = srcLink.href || href;
-      // <br> inside the label ("Service<br>alerts") becomes a space
-      a.textContent = [...srcLink.childNodes]
-        .map((n) => (n.nodeName === 'BR' ? ' ' : n.textContent))
-        .join('')
-        .replace(/\s+/g, ' ')
-        .trim();
+      if (keepBreaks) {
+        // keep <br> as a real line break; split the label at each <br> and trim around it
+        const label = srcLink.cloneNode(true);
+        label.querySelectorAll('br').forEach((br) => br.replaceWith(document.createTextNode('\u0000')));
+        const lines = label.textContent.split('\u0000')
+          .map((part) => part.replace(/\s+/g, ' ').trim())
+          .filter(Boolean);
+        lines.forEach((t, i) => {
+          if (i) a.append(document.createElement('br'));
+          a.append(document.createTextNode(t));
+        });
+      } else {
+        // FROZEN home: <br> inside the label ("Service<br>alerts") becomes a space
+        a.textContent = [...srcLink.childNodes]
+          .map((n) => (n.nodeName === 'BR' ? ' ' : n.textContent))
+          .join('')
+          .replace(/\s+/g, ' ')
+          .trim();
+      }
       p.append(a);
       textCell = p;
     }
