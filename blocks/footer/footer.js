@@ -2,6 +2,8 @@
 // a social row and a legal bar. All copy, links and images come from the footer
 // fragment; this file only adds structure, controls and behaviour.
 
+import { loadLocaleFragment } from '../../scripts/locale-fragment.js';
+
 const TABLET_UP = window.matchMedia('(width >= 768px)');
 const REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)');
 
@@ -10,18 +12,6 @@ const nextId = (prefix) => {
   uid += 1;
   return `${prefix}-${uid}`;
 };
-
-/**
- * Fetches the footer fragment. Metadata-independent on purpose: /content first
- * (local aem up), then the site root (DA / EDS preview + publish).
- * @returns {Promise<{html: string, base: string}|null>}
- */
-async function fetchFooter() {
-  let resp = await fetch('/content/footer.plain.html');
-  if (!resp.ok) resp = await fetch('/footer.plain.html');
-  if (!resp.ok) return null;
-  return { html: await resp.text(), base: resp.url };
-}
 
 /**
  * Resolves fragment-relative image paths against the fragment URL and marks
@@ -147,8 +137,8 @@ function buildDisclosure(list, labelPara) {
 }
 
 /**
- * Builds one group of the link band: a titled link column (one or more lists)
- * or an untitled utility column (links, optional disclosure).
+ * Builds one group of the link band: a titled link column (only lists) or a
+ * locale column (country link, optional disclosure), titled ("Language") or not.
  */
 function buildGroup({ heading, nodes }) {
   const group = document.createElement('div');
@@ -159,7 +149,7 @@ function buildGroup({ heading, nodes }) {
     group.append(heading);
   }
   const lists = nodes.filter(isList);
-  if (heading && lists.length) {
+  if (heading && lists.length && lists.length === nodes.length) {
     const columns = document.createElement('div');
     columns.className = 'footer-group-lists';
     columns.style.setProperty('--footer-sub-columns', lists.length);
@@ -186,9 +176,17 @@ function buildGroup({ heading, nodes }) {
   return group;
 }
 
+/** Default column template (footer.css) is tuned for four groups. */
+const DEFAULT_NAV_COLUMNS = 4;
+
 function decorateLinkSection(section, inner, source) {
   section.classList.add('footer-nav');
-  splitGroups(source).forEach((group) => inner.append(buildGroup(group)));
+  const groups = splitGroups(source);
+  groups.forEach((group) => inner.append(buildGroup(group)));
+  // locales author three to five groups; keep them on one row from tablet up
+  if (groups.length !== DEFAULT_NAV_COLUMNS) {
+    inner.style.setProperty('--footer-nav-columns', `repeat(${groups.length}, minmax(0, 1fr))`);
+  }
 }
 
 /** Decorative chevron for the pager buttons (UI chrome, not content). */
@@ -282,7 +280,8 @@ function decorateLegalSection(section, inner) {
  * @param {Element} block The footer block element
  */
 export default async function decorate(block) {
-  const data = await fetchFooter();
+  // /{locale}/footer (e.g. /de-ch/footer), then /en-us/footer, then the legacy root /footer
+  const data = await loadLocaleFragment('footer');
   if (!data) return;
 
   const fragment = document.createElement('div');
