@@ -270,7 +270,7 @@ const PAGE_TEMPLATE = {
       "selector": [
         ".root .title_v1:has(~ .title_v1 > h2#packagedropoff)"
       ],
-      "style": null,
+      "style": "center",
       "blocks": [
         "cards-icon-links"
       ],
@@ -284,7 +284,7 @@ const PAGE_TEMPLATE = {
       "selector": [
         ".root .title_v1:has(> h2#packagedropoff)"
       ],
-      "style": null,
+      "style": "center-desktop",
       "blocks": [
         "cards-logos"
       ],
@@ -299,7 +299,7 @@ const PAGE_TEMPLATE = {
       "selector": [
         ".root .title_v1:has(> h2#dropoffwork)"
       ],
-      "style": null,
+      "style": "center-desktop",
       "blocks": [
         "cards-promo"
       ],

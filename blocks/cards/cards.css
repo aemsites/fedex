@@ -223,8 +223,10 @@
   background: none;
 }
 
+/* the image box shrinks to the logo and is centred in its cell (wide logos still fit the cell) */
 .cards.logos .cards-card-image {
   width: 100%;
+  text-align: center;
 }
 
 .cards.logos .cards-card-image a {
@@ -232,7 +234,8 @@
 }
 
 .cards.logos .cards-card-image img {
-  width: 100%;
+  width: auto;
+  max-width: 100%;
   height: var(--cards-logo-height);
   aspect-ratio: auto;
   object-fit: contain;
