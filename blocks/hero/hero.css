@@ -103,12 +103,13 @@
 /*
  * purple (with landing): the authored picture is a baked banner (purple-to-orange
  * gradient, diagonal and photo in one image). Mobile: the picture is hidden and
- * the text is centered, dark on white, with a full-width button.
+ * the text is centered, dark on white, with a centered button of up to 300px.
+ * Below 1024px the text sits 30px from the edge (15px gutter + 15px inset).
  */
 .hero-container:has(.hero.purple) {
   --hero-banner-min-height: 350px;
 
-  padding: var(--space-8) 0;
+  padding: 15px 0;
   background-color: var(--background-color);
   color: var(--text-color);
 }
@@ -122,7 +123,7 @@
 }
 
 .hero.purple .hero-content {
-  padding-top: 0;
+  padding: 0 var(--content-gutter);
 }
 
 .hero.purple h1 {
@@ -130,17 +131,29 @@
   color: var(--text-color);
 }
 
+.hero.purple .hero-content h1 {
+  margin-top: 10px;
+  font-size: 40px;
+}
+
 .hero.purple p {
   margin: var(--space-1) 0 var(--space-2);
+  line-height: 20px;
 }
 
 /* the CTA sits right under the subtext; a link after it gets its own gap */
 .hero.purple .button-wrapper {
-  margin: 0;
+  margin: 0 0 var(--space-6);
 }
 
 .hero.purple .button-wrapper + p {
-  margin-top: var(--space-6);
+  margin-top: 0;
+  line-height: var(--body-line-height);
+}
+
+.hero.purple a:any-link:not(.button) {
+  color: var(--color-blue);
+  font-weight: var(--font-weight-medium);
 }
 
 /*
@@ -154,8 +167,21 @@
   flex-direction: column;
 }
 
+/* the source caps the CTA at 300 x 82px (longer labels wrap to two lines) */
 .hero.purple .button-wrapper a.button {
   width: 100%;
+  max-width: 300px;
+  max-height: 82px;
+  overflow: hidden;
+  border: 0;
+}
+
+/*
+ * drop-off: the only purple hero with a text link after the CTA. Its source uses
+ * a roomier CTA, a 400px text column and a tighter banner (50px top / 30px bottom).
+ */
+.hero.purple:has(.button-wrapper + p) .button-wrapper a.button {
+  padding: 19px 30px;
 }
 
 @media (width >= 768px) {
@@ -214,20 +240,58 @@
     object-position: right center;
   }
 
+  .hero-container:has(.hero.purple .button-wrapper + p) {
+    padding: 50px 0 30px;
+  }
+
   .hero.purple {
     text-align: start;
+  }
+
+  .hero.purple .hero-content {
+    max-width: 450px;
+  }
+
+  .hero.purple:has(.button-wrapper + p) .hero-content {
+    max-width: 400px;
   }
 
   .hero.purple h1 {
     line-height: var(--heading-line-height);
   }
 
-  .hero.purple h1,
+  .hero.purple .hero-content h1 {
+    margin-top: 0;
+    color: var(--color-white);
+    font-size: var(--heading-font-size-xxl);
+  }
+
+  .hero.purple p {
+    line-height: var(--body-line-height);
+  }
+
   .hero.purple a:any-link:not(.button) {
     color: var(--color-white);
   }
 
+  .hero.purple .button-wrapper:last-child {
+    margin-bottom: 0;
+  }
+
   .hero.purple .button-wrapper a.button {
     width: auto;
+  }
+}
+
+/* tablet: centre the banner so the text sits on the purple gradient, not the photo */
+@media (width >= 768px) and (width < 1024px) {
+  .hero-container:has(.hero.purple) .hero-bg img {
+    object-position: 50% 0;
+  }
+}
+
+@media (width >= 1024px) {
+  .hero.purple .hero-content {
+    padding-inline: 0;
   }
 }
