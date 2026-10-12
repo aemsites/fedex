@@ -554,6 +554,11 @@ main > .section.checklist .default-content-wrapper > ul > li ul {
     padding-block: var(--space-8);
   }
 
+  /* center-desktop: like center, but only from 768px; text stays left on mobile (e.g. drop-off) */
+  main > .section.center-desktop .default-content-wrapper {
+    text-align: center;
+  }
+
   main > .section.jump-links .default-content-wrapper:not(:has(> ul)),
   main > .section.jump-links .default-content-wrapper > ul {
     column-count: 2;
