@@ -416,6 +416,17 @@ function isNarrowPhotoText(row, cols) {
     && !text.querySelector('.image_v2, .video_v1');
 }
 
+// 8/4 promo row (drop-off "Can I get packing help?": text col-sm-8 | image col-sm-4, 647/323px at
+// 1440) -> extra `wide-text` variant so the block keeps the 2:1 split. Either column order;
+// 6/6 and other splits keep the 50/50 promo.
+function isWideTextSplit(cols) {
+  if (cols.length !== 2) return false;
+  const isText = (c) => !!c.querySelector('.title_v1, .richtext, .button_v1');
+  const text = cols.find(isText);
+  const media = cols.find((c) => !isText(c));
+  return !!text && !!media && text.matches('.col-sm-8') && media.matches('.col-sm-4');
+}
+
 function parseColumnControl(element, document) {
   const row = element.querySelector(':scope > .row') || element;
   const cols = [...row.querySelectorAll(':scope > .fxg-col')].filter((c) => !isHidden(c, element));
@@ -450,7 +461,10 @@ function parseColumnControl(element, document) {
     return;
   }
 
-  const name = isLightRow(row) ? 'Columns (promo, light)' : 'Columns (promo)';
+  const variants = ['promo'];
+  if (isLightRow(row)) variants.push('light');
+  if (isWideTextSplit(cols)) variants.push('wide-text');
+  const name = `Columns (${variants.join(', ')})`;
   const block = WebImporter.Blocks.createBlock(document, { name, cells: [cells] });
   element.replaceWith(block);
 }

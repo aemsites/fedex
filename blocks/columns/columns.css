@@ -100,9 +100,18 @@
   margin-block: var(--columns-promo-p-margin-top, 0) var(--columns-promo-p-margin-bottom, var(--space-6));
 }
 
-/* light promo: the image fills its column */
+/* promo buttons wrap at the source's 300px max width (plain promos: 280px, below) */
+.columns.promo a.button {
+  max-width: 300px;
+}
+
+/* light promo: the image fills its column; the button centers on mobile */
 .columns.promo.light .columns-img-col img {
   object-fit: cover;
+}
+
+.columns.promo.light .button-wrapper {
+  text-align: center;
 }
 
 /* steps: intro, ordered list with circled numbers, small-print footnote beside an image */
@@ -251,6 +260,10 @@
   .columns.promo > div > .columns-img-col {
     flex: 0 0 44%;
   }
+
+  .columns.promo.light .button-wrapper {
+    text-align: start;
+  }
 }
 
 /*
@@ -287,6 +300,10 @@
   display: block;
 }
 
+.columns.promo.overlay h3 {
+  margin-bottom: var(--space-5);
+}
+
 @media (width >= 768px) {
   /* steps without an image column: bigger circles, more space between steps */
   .columns.steps.columns-1-cols {
@@ -304,18 +321,19 @@
 
   /*
    * overlay: the image fills the row as a background, the text sits on a
-   * translucent panel over it. The panel side follows the cell order:
-   * text second = panel right, text first = panel left.
+   * translucent 390px panel inset 30px from the row edges; the panel's
+   * content sets the row height. The panel side follows the cell order:
+   * text second = panel right, text first = panel left. Button centered.
    */
   .columns.overlay {
     --columns-overlay-panel-width: 390px;
+    --columns-overlay-inset: 30px;
   }
 
   .columns.overlay > :has(> .columns-img-col) {
     position: relative;
-    align-items: center;
-    aspect-ratio: 970 / 494;
-    padding-inline: var(--space-10);
+    align-items: flex-start;
+    padding: var(--columns-overlay-inset);
   }
 
   .columns.overlay > div > .columns-img-col {
@@ -329,6 +347,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: left top;
   }
 
   .columns.overlay > div > div:not(.columns-img-col) {
@@ -336,8 +355,17 @@
     z-index: 1;
     flex: 0 1 var(--columns-overlay-panel-width);
     box-sizing: border-box;
-    padding: var(--space-8);
+    padding: 50px 60px;
     background-color: var(--overlay-panel-color);
+  }
+
+  .columns.overlay > div > div:not(.columns-img-col) .button-wrapper {
+    margin: 27px 0 0;
+    text-align: center;
+  }
+
+  .columns.promo.overlay h3 {
+    margin-top: var(--space-5);
   }
 
   .columns.overlay > div > .columns-img-col:first-child ~ div:not(.columns-img-col) {
@@ -367,6 +395,25 @@
   font-size: var(--heading-font-size-l);
 }
 
+.columns.promo:not(.light, .overlay) a.button {
+  max-width: 280px;
+}
+
+/*
+ * wide-text (with plain or light promo): a 2:1 text/image split from 768px
+ * (source col-sm-8 / col-sm-4). The title takes the h2 scale, centered on
+ * mobile under the image, 4px above the body (24px from 768px).
+ */
+.columns.promo.wide-text:not(.light) {
+  --columns-promo-row-gap: var(--space-3);
+}
+
+.columns.promo.wide-text h3 {
+  margin-bottom: 0;
+  font-size: var(--heading-font-size-xl);
+  text-align: center;
+}
+
 @media (width >= 768px) {
   .columns.promo:not(.light, .overlay) {
     --columns-promo-row-gap: 0;
@@ -378,5 +425,89 @@
 
   .columns.promo:not(.light, .overlay) > div > .columns-img-col {
     flex: 1;
+  }
+
+  .columns.promo.wide-text:not(.light) {
+    --columns-promo-row-gap: 0;
+  }
+
+  .columns.promo.wide-text > div > .columns-img-col {
+    box-sizing: border-box;
+    flex: 0 0 calc(100% / 3);
+  }
+
+  .columns.promo.wide-text h3 {
+    margin-bottom: var(--space-6);
+    text-align: start;
+  }
+}
+
+/*
+ * drop-off promo stack (the section holding a plain wide-text promo): the
+ * source's own spacing between the stacked promos and before the footnote,
+ * its light and plain promo title margins, and an overlay that drops the
+ * photo on mobile (text on a grey panel: #333 behind the 75% white box).
+ */
+.columns-container:has(.columns.promo.wide-text:not(.light)) {
+  --columns-stack-gap: 41px;
+  --columns-stack-gap-after-overlay: 36px;
+  --columns-stack-gap-end: 39px;
+}
+
+.columns-container:has(.columns.promo.wide-text:not(.light)) .columns-wrapper:has(+ .default-content-wrapper) > .columns.promo {
+  margin-bottom: var(--columns-stack-gap-end);
+}
+
+.columns-container:has(.columns.promo.wide-text:not(.light)) .columns-wrapper:has(> .columns.promo) + .columns-wrapper > .columns.promo {
+  margin-top: var(--columns-stack-gap);
+}
+
+.columns-container:has(.columns.promo.wide-text:not(.light)) .columns-wrapper:has(> .columns.overlay) + .columns-wrapper > .columns.promo {
+  margin-top: var(--columns-stack-gap-after-overlay);
+}
+
+.columns-container:has(.columns.promo.wide-text:not(.light)) .columns.overlay h3 {
+  margin-top: var(--space-1);
+  line-height: 1.5;
+}
+
+.columns-container:has(.columns.promo.wide-text:not(.light)) .columns.promo.light h3 {
+  margin-bottom: var(--space-5);
+}
+
+.columns-container:has(.columns.promo.wide-text:not(.light)) .columns.promo:not(.light, .overlay, .wide-text) h3 {
+  margin: 10px 0 15px;
+}
+
+@media (width < 768px) {
+  .columns-container:has(.columns.promo.wide-text:not(.light)) .columns.overlay > div {
+    background-color: var(--color-gray-dark);
+  }
+
+  .columns-container:has(.columns.promo.wide-text:not(.light)) .columns.overlay > div > .columns-img-col {
+    display: none;
+  }
+
+  .columns-container:has(.columns.promo.wide-text:not(.light)) .columns.overlay > div > div:not(.columns-img-col) {
+    padding: 10px var(--space-5);
+    background-color: var(--overlay-panel-color);
+  }
+
+  .columns-container:has(.columns.promo.wide-text:not(.light)) .columns.overlay h3,
+  .columns-container:has(.columns.promo.wide-text:not(.light)) .columns.overlay p:where(:not(.button-wrapper)) {
+    margin-bottom: var(--space-1);
+  }
+
+  .columns-container:has(.columns.promo.wide-text:not(.light)) .columns.overlay .button-wrapper {
+    margin: 11px 0 0;
+    text-align: center;
+  }
+}
+
+@media (width >= 768px) {
+  .columns-container:has(.columns.promo.wide-text:not(.light)) {
+    --columns-stack-gap: 46px;
+    --columns-stack-gap-after-overlay: 56px;
+    --columns-stack-gap-end: 54px;
   }
 }

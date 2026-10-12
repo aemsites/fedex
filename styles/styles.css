@@ -80,6 +80,7 @@
   --space-4: 16px;
   --space-5: 20px;
   --space-6: 24px;
+  --space-7: 28px;
   --space-8: 32px;
   --space-9: 36px;
   --space-10: 40px;
@@ -366,6 +367,26 @@ main img {
   }
 }
 
+/*
+ * section headings: a default-content H2 gets the FedEx title spacing,
+ * 28px above / 24px below on mobile, 48px / 40px from 768px.
+ * Section styles with their own heading spacing (e.g. jump-links) override it.
+ */
+main .default-content-wrapper > h2 {
+  margin: var(--space-7) 0 var(--space-6);
+}
+
+/* a heading right under an illustration keeps the body-heading spacing (e.g. pickups) */
+main .default-content-wrapper > p:has(> picture:only-child) + h2 {
+  margin: var(--space-6) 0 var(--space-4);
+}
+
+@media (width >= 768px) {
+  main .default-content-wrapper > h2 {
+    margin: var(--space-12) 0 var(--space-10);
+  }
+}
+
 /* sections */
 main > .section {
   margin: var(--section-spacing) 0;
@@ -505,6 +526,16 @@ main > .section.center-buttons .default-content-wrapper .button-wrapper {
 /* center-headings: centers only the section's H2 topic headings, answers stay left (e.g. returns) */
 main > .section.center-headings .default-content-wrapper h2 {
   text-align: center;
+}
+
+/* a heading directly above a logo grid sits close to it (e.g. returns "Drop off FedEx returns at:") */
+main .default-content-wrapper:has(+ .cards-wrapper > .cards.logos) > h2:last-child {
+  margin-bottom: var(--space-4);
+}
+
+/* a CTA directly above a logo grid (e.g. drop-off "Find FedEx drop off locations near you") */
+main .default-content-wrapper:has(+ .cards-wrapper > .cards.logos) > .button-wrapper:last-child {
+  margin-bottom: var(--space-12);
 }
 
 /*
