@@ -1,7 +1,8 @@
-// FedEx footer: titled link groups, a locale column with a language disclosure,
+// FedEx footer: titled link groups, a locale column with the language switch block,
 // a social row and a legal bar. All copy, links and images come from the footer
 // fragment; this file only adds structure, controls and behaviour.
 
+import { buildBlock, decorateBlock, loadBlock } from '../../scripts/aem.js';
 import { loadLocaleFragment } from '../../scripts/locale-fragment.js';
 
 const TABLET_UP = window.matchMedia('(width >= 768px)');
@@ -61,84 +62,21 @@ function splitGroups(section) {
   return groups;
 }
 
-/**
- * Picks the list item that represents the current page: the entry whose link
- * path starts with a segment of the current URL (e.g. /en-us/), else the first.
- */
-function findCurrentItem(items) {
-  const here = window.location.pathname.split('/').filter(Boolean);
-  const match = items.find((li) => {
-    const a = li.querySelector('a');
-    if (!a) return false;
-    const [first] = new URL(a.href, window.location.href).pathname.split('/').filter(Boolean);
-    return first && here.includes(first);
-  });
-  return match || items[0];
-}
-
-function setDisclosure(button, panel, open) {
-  button.setAttribute('aria-expanded', open ? 'true' : 'false');
-  panel.hidden = !open;
-}
+const isBlock = (el) => el.tagName === 'DIV' && el.classList.length > 0;
 
 /**
- * Turns an authored list into a disclosure (button + list). The optional label
- * paragraph names the control for assistive technology; the button shows the
- * current entry.
- * @param {Element} list
- * @param {Element} [labelPara]
- * @returns {Element} the disclosure wrapper
+ * The language switch of a locale column: the authored language-switch block, or one
+ * built from a language list (footers authored before the block).
  */
-function buildDisclosure(list, labelPara) {
-  const items = [...list.children];
-  const current = findCurrentItem(items);
-  const currentLink = current?.querySelector('a');
-  if (currentLink) currentLink.setAttribute('aria-current', 'true');
-
-  const wrapper = document.createElement('div');
-  wrapper.className = 'footer-disclosure';
-
-  const button = document.createElement('button');
-  button.type = 'button';
-  button.className = 'footer-disclosure-trigger';
-  const panelId = nextId('footer-disclosure');
-  button.setAttribute('aria-controls', panelId);
-  if (labelPara) {
-    const hidden = document.createElement('span');
-    hidden.className = 'footer-visually-hidden';
-    hidden.textContent = `${labelPara.textContent.trim()}: `;
-    button.append(hidden);
-    labelPara.remove();
-  }
-  const value = document.createElement('span');
-  value.className = 'footer-disclosure-value';
-  value.textContent = (currentLink || current)?.textContent.trim() || '';
-  button.append(value);
-
-  list.id = panelId;
-  list.classList.add('footer-disclosure-panel');
-  wrapper.append(button, list);
-  const toggle = (open) => setDisclosure(button, list, open);
-  toggle(false);
-
-  button.addEventListener('click', () => toggle(button.getAttribute('aria-expanded') !== 'true'));
-  wrapper.addEventListener('keydown', (e) => {
-    if (e.key !== 'Escape' || button.getAttribute('aria-expanded') !== 'true') return;
-    toggle(false);
-    button.focus();
-  });
-  wrapper.addEventListener('focusout', (e) => {
-    if (e.relatedTarget && !wrapper.contains(e.relatedTarget)) toggle(false);
-  });
-  document.addEventListener('click', (e) => {
-    if (!wrapper.contains(e.target)) toggle(false);
-  });
-  return wrapper;
+function languageSwitch(node) {
+  if (isBlock(node)) return node;
+  const links = [...node.querySelectorAll('a[href]')];
+  return buildBlock('language-switch', links.map((a) => [a]));
 }
 
 /**
  * Builds one group of the link band: a titled link column (only lists) or a
- * locale column (country link, optional disclosure), titled ("Language") or not.
+ * locale column (country link, optional language switch), titled ("Language") or not.
  */
 function buildGroup({ heading, nodes }) {
   const group = document.createElement('div');
@@ -164,10 +102,16 @@ function buildGroup({ heading, nodes }) {
 
   group.classList.add('footer-locale');
   nodes.forEach((node, i) => {
-    const prev = nodes[i - 1];
-    if (isList(node)) {
-      group.append(buildDisclosure(node, prev && isTextOnly(prev) ? prev : null));
+    if (isList(node) || isBlock(node)) {
+      // blocks get their own wrapper (decorateBlock marks the parent as *-wrapper)
+      const wrapper = document.createElement('div');
+      wrapper.className = 'footer-block';
+      const block = languageSwitch(node);
+      if (heading) block.dataset.labelledby = heading.id;
+      wrapper.append(block);
+      group.append(wrapper);
     } else if (!(isTextOnly(node) && nodes[i + 1] && isList(nodes[i + 1]))) {
+      // a text-only paragraph right before the list is the old dropdown label: dropped
       if (node.querySelector('a')) node.classList.add('footer-locale-link');
       node.querySelectorAll('img').forEach((img) => img.classList.add('footer-locale-icon'));
       group.append(node);
@@ -315,4 +259,12 @@ export default async function decorate(block) {
 
   block.textContent = '';
   block.append(sections);
+
+  // blocks inside the fragment (the language switch), labelled by their column heading
+  await Promise.all([...sections.querySelectorAll('.footer-block > div')].map(async (el) => {
+    decorateBlock(el);
+    await loadBlock(el);
+    const { labelledby } = el.dataset;
+    if (labelledby) el.querySelector('ul')?.setAttribute('aria-labelledby', labelledby);
+  }));
 }

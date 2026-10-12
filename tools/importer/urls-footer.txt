@@ -1,6 +1,7 @@
 https://www.fedex.com/de-ch/home.html
 https://www.fedex.com/de-de/home.html
 https://www.fedex.com/en-ca/home.html
+https://www.fedex.com/en-de/home.html
 https://www.fedex.com/en-gb/home.html
 https://www.fedex.com/en-in/home.html
 https://www.fedex.com/en-us/home.html

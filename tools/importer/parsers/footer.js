@@ -11,12 +11,13 @@
  *   .fxg-copyright        .fxg-title "© FedEx 1995-YYYY" + legal links
  *
  * Output (three sections, as /footer):
- *   <div> h2 + ul(s) per column ... [h2 locale title] p>a(globe img + country) [p label] ul languages </div>
+ *   <div> h2 + ul(s) per column ... [h2 locale title] p>a(globe img + country)
+ *         Language Switch block (one language link per row) </div>
  *   <div> h2 social title, ul li a > img(icon, alt) </div>
  *   <div> p copyright, ul legal links </div>
  *
  * Copy, hrefs, link order and optional parts come only from the source; missing parts
- * (no locale title, no language label, no legal links) are omitted.
+ * (no locale title, no languages, no legal links) are omitted.
  */
 
 const IMAGES = 'https://content.da.live/aemsites/fedex/images';
@@ -145,11 +146,14 @@ function buildLinkSection(doc, footer) {
       a.prepend(img(doc, 'globe.svg'));
       section.append(para(doc, a));
     }
+    // the source dropdown (all languages of the country) -> Language Switch block,
+    // one language link per row; the dropdown's instruction label is not carried over
     const items = [...nav.querySelectorAll('.dropdown-item')].filter((a) => a.getAttribute('href'));
     if (items.length) {
-      const label = clean({ textContent: nav.querySelector('.dropdown-toggle')?.getAttribute('aria-label') || '' });
-      if (label) section.append(para(doc, label));
-      section.append(list(doc, items.map((a) => link(doc, a))));
+      section.append(WebImporter.Blocks.createBlock(doc, {
+        name: 'Language Switch',
+        cells: items.map((a) => [link(doc, a)]),
+      }));
     }
   }
   return section;

@@ -1,0 +1,41 @@
+/* language switch: inline list of the country's languages, current one bold;
+   spacing instead of separators so a wrapped line doesn't start with one */
+.language-switch .language-switch-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 var(--space-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.language-switch .language-switch-list li {
+  display: flex;
+  align-items: center;
+}
+
+.language-switch .language-switch-list a:any-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--touch-target-size);
+  color: inherit;
+  text-decoration: none;
+}
+
+.language-switch .language-switch-list a:hover {
+  text-decoration: underline;
+}
+
+.language-switch .language-switch-current a:any-link {
+  font-weight: var(--font-weight-bold);
+}
+
+/* mouse / trackpad: source row rhythm (touch keeps --touch-target-size) */
+
+/* breakpoint-exception: FedEx design-system breakpoints are 768px/1024px */
+@media (width >= 768px) and (pointer: fine) {
+  .language-switch .language-switch-list a:any-link {
+    min-height: var(--space-6);
+  }
+}

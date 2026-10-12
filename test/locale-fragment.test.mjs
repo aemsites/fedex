@@ -4,10 +4,28 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
   DEFAULT_LOCALE,
+  splitLocalePath,
+  localizePath,
   resolveLocale,
   localeFragmentPaths,
   loadLocaleFragment,
 } from '../scripts/locale-fragment.js';
+
+test('splits root, locale and the rest of a page path', () => {
+  assert.deepEqual(splitLocalePath('/de-de/shipping/international'), { root: '', locale: 'de-de', rest: '/shipping/international' });
+  assert.deepEqual(splitLocalePath('/content/en-de/home'), { root: '/content', locale: 'en-de', rest: '/home' });
+  assert.deepEqual(splitLocalePath('/de-de/'), { root: '', locale: 'de-de', rest: '' });
+  assert.deepEqual(splitLocalePath('/docs/library/blocks/cards'), { root: '', locale: null, rest: '/docs/library/blocks/cards' });
+  assert.deepEqual(splitLocalePath('/de/home'), { root: '', locale: null, rest: '/de/home' });
+});
+
+test('localizes a page path: same page in another language-country', () => {
+  assert.equal(localizePath('/de-de/shipping/international', 'en-de'), '/en-de/shipping/international');
+  assert.equal(localizePath('/en-us/shipping/drop-off-package', 'es-us'), '/es-us/shipping/drop-off-package');
+  assert.equal(localizePath('/content/fr-ch/home', 'it-ch'), '/content/it-ch/home');
+  assert.equal(localizePath('/de-de', 'en-de'), '/en-de/home');
+  assert.equal(localizePath('/docs/library/blocks/cards', 'es-us'), null);
+});
 
 test('resolves the locale from the first path segment', () => {
   assert.deepEqual(resolveLocale('/de-ch/home'), { root: '', locale: 'de-ch' });

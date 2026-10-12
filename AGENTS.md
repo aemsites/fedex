@@ -23,6 +23,8 @@ Edge Delivery Services. Read a block first. Omissions are in the repo or known.
 - All committed files are served. Use `.hlxignore`.
 - Header/footer load `/{locale}/nav` and `/{locale}/footer` (locale = first path segment), then `/en-us/…`, then root `/nav`, `/footer`. Shared loader: `scripts/locale-fragment.js`; `npm test`.
 - Footers are imported per locale from `{locale}/home.html`: `tools/importer/import-footer.js`, `urls-footer.txt`. Never copy another locale's footer.
+- Footer languages: `language-switch` block (country's languages, authored links). Links go to the same path in each `{language}-{country}`, else its `/home`, else the authored link.
+- Locales mirror fedex.com, not en-us: most en-us pages don't exist in other countries. Check the source before importing a tree.
 - Skills: `/plugin marketplace add adobe/skills`, then `aem-edge-delivery-services` (24 skills, incl. `docs-search`).
 
 ## fedex.com (source site)
