@@ -25,6 +25,31 @@ npm i
 npm run lint
 ```
 
+## Translated UI labels
+
+Author a `placeholders` sheet in each locale folder with `Key` and `Text` columns,
+published as `/{locale}/placeholders.json` (EDS JSON with a `data` array).
+The `/en-us/placeholders.json` sheet is required and supplies fallback values for
+keys missing from a locale sheet.
+
+```js
+import { fetchPlaceholders } from '../../scripts/placeholders.js';
+
+const labels = await fetchPlaceholders();
+input.placeholder = labels.trackingId;
+input.setAttribute('aria-label', labels.trackingId);
+```
+
+Keys such as `tracking-id` or `Tracking ID` become `trackingId`. Values remain
+plain strings; use `textContent` for visible labels, not `innerHTML`.
+The helper resolves the locale from the page path, including the local `/content`
+prefix. An optional page pathname can be passed explicitly. Requests are cached
+and shared across blocks. A missing locale sheet (404) logs a warning and uses
+English; other HTTP, network, and malformed-data errors reject and can be retried.
+A key absent from both sheets remains undefined; consumers must report missing
+required labels. Page-specific text and CTA labels should stay in localized
+authored content.
+
 ## Local development
 
 1. Create a new repository based on the `aem-boilerplate` template
