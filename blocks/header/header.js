@@ -1,8 +1,15 @@
 // FedEx header: desktop click-dropdown nav, inline query forms and an expandable search.
-// All copy, links and images come from the nav fragment; this file only adds
-// structure, controls and behaviour.
+// All copy, links and images come from the nav fragment; labels of the controls this file
+// adds come from the locale placeholders sheet (/{locale}/placeholders.json):
+//   skipToMainContent   skip link, when the nav authors none
+//   mainNavigation      nav landmark name
+//   openNavigation      hamburger button (closed)
+//   closeNavigation     hamburger button (open)
+//   closeSearch         search close button, when the close icon has no alt text
+// This file only adds structure, controls and behaviour.
 
-import { loadLocaleFragment, resolveLocale } from '../../scripts/locale-fragment.js';
+import { loadLocaleFragment } from '../../scripts/locale-fragment.js';
+import { fetchPlaceholders } from '../../scripts/placeholders.js';
 
 const DESKTOP = window.matchMedia('(width >= 1024px)');
 const TABLET_UP = window.matchMedia('(width >= 768px)');
@@ -25,15 +32,29 @@ function resolveImages(root, base) {
 }
 
 /**
- * Skip link label by page language, for navs without an authored skip link (fedex.com has one
- * only on some locales). Wording as previously authored in the site's navs.
+ * Loads the header labels (see the file comment). A missing sheet or key is reported and the
+ * label left out, so the header still renders.
+ * @returns {Promise<(key: string) => string|undefined>}
  */
-const SKIP_LABELS = {
-  de: 'Zum Hauptinhalt springen',
-  en: 'Skip to main content',
-  es: 'Saltar al contenido principal',
-  fr: 'Aller au contenu principal',
-};
+async function loadLabels() {
+  let labels = {};
+  try {
+    labels = await fetchPlaceholders();
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error('header: placeholders could not be loaded', error);
+  }
+  const reported = new Set();
+  return (key) => {
+    const value = labels[key];
+    if (value === undefined && !reported.has(key)) {
+      reported.add(key);
+      // eslint-disable-next-line no-console
+      console.error(`header: missing placeholder "${key}"`);
+    }
+    return value;
+  };
+}
 
 /** Turns an in-page link into a skip link: first tab stop, moves focus to its target. */
 function decorateSkipLink(section, a) {
@@ -239,12 +260,19 @@ function decorateDropdowns(section, nav) {
   });
 }
 
+/** Sets (or, without a value, removes) an element's aria-label. */
+function setAriaLabel(el, value) {
+  if (value) el.setAttribute('aria-label', value);
+  else el.removeAttribute('aria-label');
+}
+
 /**
  * Builds the expandable search from a section holding a query link.
  * @param {Element} section
  * @param {Element} nav
+ * @param {(key: string) => string|undefined} label placeholder lookup
  */
-function decorateSearch(section, nav) {
+function decorateSearch(section, nav, label) {
   const link = [...section.querySelectorAll('a')].find(isQueryLink);
   if (!link) return;
   const openIcon = link.querySelector('img')?.cloneNode(true);
@@ -268,7 +296,7 @@ function decorateSearch(section, nav) {
   const close = document.createElement('button');
   close.type = 'button';
   close.className = 'nav-search-close';
-  close.setAttribute('aria-label', closeIcon?.alt || 'Close');
+  setAriaLabel(close, closeIcon?.alt || label('closeSearch'));
   if (closeIcon) close.append(closeIcon);
   closePara?.remove();
 
@@ -289,7 +317,7 @@ function toggleMobileMenu(nav, force) {
   if (open) closeDropdowns(nav);
   nav.classList.toggle('menu-open', open);
   btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-  btn.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+  setAriaLabel(btn, open ? btn.dataset.labelClose : btn.dataset.labelOpen);
   document.body.style.overflowY = open && !DESKTOP.matches ? 'hidden' : '';
 }
 
@@ -298,8 +326,9 @@ function toggleMobileMenu(nav, force) {
  * @param {Element} block The header block element
  */
 export default async function decorate(block) {
-  // /{locale}/nav (e.g. /de-ch/nav), then /en-us/nav, then the legacy root /nav
-  const navData = await loadLocaleFragment('nav');
+  // /{locale}/nav (e.g. /de-ch/nav), then /en-us/nav, then the legacy root /nav;
+  // labels from /{locale}/placeholders.json (en-us for missing keys), loaded in parallel
+  const [navData, label] = await Promise.all([loadLocaleFragment('nav'), loadLabels()]);
   if (!navData) return;
 
   const fragment = document.createElement('div');
@@ -308,7 +337,7 @@ export default async function decorate(block) {
 
   const nav = document.createElement('nav');
   nav.id = 'nav';
-  nav.setAttribute('aria-label', 'Main');
+  setAriaLabel(nav, label('mainNavigation'));
 
   const sections = [...fragment.children].filter((el) => el.tagName === 'DIV');
   let dropGroups = 0;
@@ -331,13 +360,12 @@ export default async function decorate(block) {
         decorateSkipLink(section, a);
         p?.remove();
       });
-      // no authored skip link: add one in the page language
-      if (!skipLinks.length) {
+      // no authored skip link: add one, labelled from the placeholders
+      const skipLabel = skipLinks.length ? '' : label('skipToMainContent');
+      if (skipLabel) {
         const a = document.createElement('a');
         a.href = '#main';
-        const [language] = resolveLocale(window.location.pathname).locale.split('-');
-        a.textContent = SKIP_LABELS[language] || SKIP_LABELS.en;
-        a.lang = SKIP_LABELS[language] ? language : 'en';
+        a.textContent = skipLabel;
         decorateSkipLink(section, a);
       }
     } else if (hasDropdowns) {
@@ -346,7 +374,7 @@ export default async function decorate(block) {
       decorateDropdowns(section, nav);
     } else if (hasQuery) {
       section.classList.add('nav-search');
-      decorateSearch(section, nav);
+      decorateSearch(section, nav, label);
     }
     // any image not in the brand bar is non-critical
     if (i > 0) {
@@ -371,7 +399,11 @@ export default async function decorate(block) {
     hamburgerBtn.setAttribute('aria-controls', menuSections.id);
   }
   hamburgerBtn.setAttribute('aria-expanded', 'false');
-  hamburgerBtn.setAttribute('aria-label', 'Open navigation');
+  const labelOpen = label('openNavigation');
+  const labelClose = label('closeNavigation');
+  if (labelOpen) hamburgerBtn.dataset.labelOpen = labelOpen;
+  if (labelClose) hamburgerBtn.dataset.labelClose = labelClose;
+  setAriaLabel(hamburgerBtn, labelOpen);
   hamburgerBtn.innerHTML = '<span class="nav-hamburger-icon"></span>';
   hamburgerBtn.addEventListener('click', () => toggleMobileMenu(nav));
   hamburger.append(hamburgerBtn);
