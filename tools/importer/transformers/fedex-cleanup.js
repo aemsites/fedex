@@ -441,6 +441,10 @@ const CHAT_WIDGET_SELECTORS = [
   'div.chat-widget',
   'app-chat-icon',
   'app-chat',
+  // "Ask FedEx" support drawer (newer DSM widget), verified live on nl-nl/customer-support/faq.html:
+  //   body > div#dsm-widget-container > dsm-digital-support-manager > fdx-common-core > div.support-drawer
+  'div#dsm-widget-container',
+  'dsm-digital-support-manager',
 ];
 // Main content containers the fallback must never remove (verified in cleaned.html)
 const MAIN_CONTENT = 'div.fxg-main-content, div.root.responsivegrid';
