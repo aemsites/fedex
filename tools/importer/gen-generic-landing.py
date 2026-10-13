@@ -1,0 +1,93 @@
+# Builds the `generic-landing` template (page-templates.json) and tools/importer/import-generic-landing.js
+# (from import-generic-landing.js.tmpl). Edit this file, not the generated script.
+# Block selectors: the union of the landing templates' selectors (first template wins the block order),
+# plus the nl-nl additions below. URLs: tools/importer/urls-generic-landing.txt (pages, then the
+# <page>.html?fragment=<n> URLs the import log reports as IMPORT_FRAGMENTS <path> <count>).
+# Run from the repo root: python3 tools/importer/gen-generic-landing.py
+import json
+
+TPL = 'tools/importer/page-templates.json'
+# comparison-landing is left out: its selectors were written for the one open-account page and are
+# catch-alls elsewhere (any column_control_v1 with a col-sm-4 column = cards-icon, any row with a
+# background colour = cards-horizontal, any column_control_v1 before an hr_v1 = table)
+SOURCES = ['banner-landing', 'hub-landing', 'service-overview', 'guide-article']
+DROP = set()
+NOT_IN_BLOCK = ':not(.column_control_v1 *, .accordion_selector *, .featured_offer_v2 *, .hero_landingpage_v1 *, .tabs_v1 *, .carousel_v1 *)'
+EXTRA = {
+    # dangerous-goods classes: [col-sm-3 icon (image or nested icon row) | col-sm-9 richtext]
+    'cards-horizontal': [
+        '.root .column_control_v1' + NOT_IN_BLOCK
+        + ':not(:has(> .row > .fxg-col:first-child.fxg-desktop--hide)):not(:has(> .row.fxg-row--has-bgcolor))'
+        + ':has(> .row > .fxg-col.col-sm-3:first-child .image_v2 img)'
+        + ':not(:has(> .row > .fxg-col:first-child :is(.title_v1, .richtext, .button_v1)))'
+        + ':has(> .row > .fxg-col.col-sm-9:nth-child(2) > div > .aem-Grid > .richtext)'
+        + ':not(:has(> .row > .fxg-col:nth-child(2) > div > .aem-Grid > :is(.title_v1, .image_v2, .button_v1, .column_control_v1)))'
+        + ':not(:has(> .row > .fxg-col:nth-child(3)))',
+    ],
+    # data tables (country pages, luxury-goods): div.table > table.fxg-table; any other table left in
+    # the content (surcharges: table.cc-aem-c-table in div.fuelsurcharg-[dynamic-]datalookup), since a
+    # raw table would become a bogus block. Tables in accordion answers / tabs are handled by those
+    # parsers; tables inside other blocks are detached by their container's parser first.
+    'table': [
+        '.root div.table:not(.accordion_selector *, .tabs_v1 *, .fxg-desktop--hide, .fxg-desktop--hide *)',
+        '.root table:not(.accordion_selector *, .tabs_v1 *, .fxg-desktop--hide *)',
+    ],
+    # last: plain multi-column rows nobody else claimed (parser leaves non-grids alone)
+    'columns': [
+        '.root .column_control_v1' + NOT_IN_BLOCK + ':not(:has(> .row > .fxg-col:first-child.fxg-desktop--hide))',
+    ],
+}
+PARSER_FILES = {
+    'hero-landing': 'heroLanding', 'notification': 'notification', 'cards-icon': 'cardsIcon',
+    'cards-icon-links': 'cardsIconLinks', 'cards-horizontal': 'cardsHorizontal',
+    'columns-promo': 'columnsPromo', 'columns-steps': 'columnsSteps', 'cards-promo': 'cardsPromo',
+    'tabs': 'tabs', 'cards-logos': 'cardsLogos', 'accordion': 'accordion', 'widget': 'widget',
+    'table': 'table', 'columns': 'columns',
+}
+
+d = json.load(open(TPL))
+by_name = {t['name']: t for t in d['templates']}
+blocks = {}
+for src in SOURCES:
+    for b in by_name[src]['blocks']:
+        lst = blocks.setdefault(b['name'], [])
+        for s in b['instances']:
+            if s not in DROP and s not in lst:
+                lst.append(s)
+# logo carousels only: an article carousel (healthcare "Zorg: 3 strategieën voor succes", image +
+# title link per slide) would lose its titles in cards-logos; it stays default content
+blocks['cards-logos'] = [s.replace('.root div.carousel_v1:has(.image_v2 img)',
+                                   '.root div.carousel_v1:has(.image_v2 img):not(:has(.title_v1, .button_v1 a))')
+                         for s in blocks.get('cards-logos', [])]
+for name, sels in EXTRA.items():
+    lst = blocks.setdefault(name, [])
+    lst.extend(s for s in sels if s not in lst)
+# table and columns run last (containers first; columns only sees what is left)
+order = [n for n in blocks if n not in ('table', 'columns')] + ['table', 'columns']
+
+urls = [l.strip() for l in open('tools/importer/urls-generic-landing.txt') if l.strip()]
+template = {
+    'name': 'generic-landing',
+    'urls': [u for u in urls if '?fragment=' not in u],
+    'coverageGaps': [
+        'Forms (AEM forms div.start > form.fxg-forms, adaptive forms): no form block yet, fields dropped, text kept',
+        'Standalone Kaltura video (div.video_v1 outside media-text rows): no video block yet',
+        'Section styles (light panels, centred headings) are not derived: generic section breaks only',
+    ],
+    'description': 'Generic FedEx landing page (nl-nl shipping tree): title or photo hero, then container sections of icon cards, media-text rows, card grids, tabs, accordions, data tables and text; sections from the top-level page grid',
+    'blocks': [{'name': n, 'instances': blocks[n]} for n in order],
+    'representativeUrl': 'https://www.fedex.com/nl-nl/shipping.html',
+}
+d['templates'] = [t for t in d['templates'] if t['name'] != 'generic-landing'] + [template]
+with open(TPL, 'w') as f:
+    json.dump(d, f, indent=2, ensure_ascii=False)
+    f.write('\n')
+
+imports = '\n'.join(f"import {PARSER_FILES[n]}Parser from './parsers/{n}.js';" for n in order)
+registry = '\n'.join(f"  '{n}': {PARSER_FILES[n]}Parser," for n in order)
+script = open('tools/importer/import-generic-landing.js.tmpl').read()
+script = (script.replace('__PARSER_IMPORTS__', imports)
+          .replace('__PARSER_REGISTRY__', registry)
+          .replace('__TEMPLATE__', json.dumps(template, indent=2, ensure_ascii=False)))
+open('tools/importer/import-generic-landing.js', 'w').write(script)
+print('blocks:', {n: len(blocks[n]) for n in order}, 'urls:', len(template['urls']))

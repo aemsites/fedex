@@ -131,8 +131,19 @@ function textCell(textCol, root, document) {
         hasHeading = true;
       }
     } else if (comp.matches('.richtext')) {
-      [...comp.querySelectorAll('p')].forEach((p) => {
+      // Description of the text cell (the row stays icon cell | text cell): paragraphs and lists in
+      // source order (nl-nl international-economy: "Afleverdagen", "Afmetingen en gewicht van
+      // pakketten" are bullet lists); list-item paragraphs stay inside their list
+      [...comp.querySelectorAll('p, ul, ol')].filter((el) => !el.parentElement.closest('p, ul, ol')).forEach((p) => {
         if (isHidden(p, root) || !p.textContent.replace(/ /g, ' ').trim()) return;
+        if (p.matches('ul, ol')) {
+          const list = normalizeSpace(p.cloneNode(true));
+          list.removeAttribute('class');
+          list.querySelectorAll('*').forEach((el) => { el.removeAttribute('class'); el.removeAttribute('style'); });
+          list.querySelectorAll('span').forEach((s) => s.replaceWith(...s.childNodes));
+          body.push(list);
+          return;
+        }
         if (!body.length && isBoldOnly(p)) {
           const h3 = document.createElement('h3');
           h3.textContent = clean(p.textContent);

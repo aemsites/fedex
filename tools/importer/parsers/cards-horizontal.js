@@ -36,6 +36,9 @@
  * plain row, [col-sm-2: image_v2 only] [col-sm-10: richtext only], no title_v1. Cell 1 = icon,
  * cell 2 = the paragraph(s) with inline links/bold. A text-row leader only merges text rows;
  * leaders matched by the other selectors keep the original run logic.
+ * generic-landing (https://www.fedex.com/nl-nl/shipping/dangerous-goods.html, the nine classes):
+ * the same text rows as [col-sm-3 | col-sm-9], the icon either an image_v2 or a nested
+ * column_control_v1 holding only that image; rows are separated by spacer + hr_v1 (fillers).
  */
 const CONSUMED = 'data-cards-horizontal-consumed';
 const HIDDEN = '.fxg-desktop--hide';
@@ -103,8 +106,13 @@ function isTextItem(el) {
     .filter((x) => !x.matches('.spacer') && !isHidden(x, el));
   const a = items(first);
   const b = items(second);
-  return first.matches('.col-sm-2') && second.matches('.col-sm-10')
-    && a.length > 0 && a.every((x) => x.matches('.image_v2')) && !!first.querySelector('.image_v2 img')
+  // icon column: image_v2 only, or (nl-nl dangerous-goods classes) a nested row holding only the icon
+  const isIcon = (x) => x.matches('.image_v2') || (x.matches('.column_control_v1')
+    && !!x.querySelector('.image_v2 img') && !x.querySelector('.title_v1, .richtext, .button_v1'));
+  const widths = (first.matches('.col-sm-2') && second.matches('.col-sm-10'))
+    || (first.matches('.col-sm-3') && second.matches('.col-sm-9'));
+  return widths
+    && a.length > 0 && a.every(isIcon) && !!first.querySelector('.image_v2 img')
     && b.length > 0 && b.every((x) => x.matches('.richtext'));
 }
 

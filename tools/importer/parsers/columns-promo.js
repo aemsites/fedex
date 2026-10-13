@@ -131,6 +131,21 @@ function cleanParagraph(p, document) {
   return np;
 }
 
+// Paragraphs and lists of the text cell, in source order (nl-nl mobile, supply-chain: the featured
+// offers hold bullet lists; the en-us homepage offer has none, so its output is unchanged)
+function textBlocks(scope) {
+  return [...scope.querySelectorAll('.richtext p, .richtext ul, .richtext ol')]
+    .filter((el) => !el.parentElement.closest('p, ul, ol') && el.textContent.replace(/ /g, ' ').trim());
+}
+
+function cleanBlock(el, document) {
+  if (el.matches('p')) return cleanParagraph(el, document);
+  const list = el.cloneNode(true);
+  [list, ...list.querySelectorAll('*')].forEach((n) => { n.removeAttribute('class'); n.removeAttribute('style'); });
+  list.querySelectorAll('span').forEach((s) => s.replaceWith(...s.childNodes));
+  return list;
+}
+
 // #fafafa panel row (block-level light modifier)
 function isLightRow(row) {
   if (!row || !row.classList.contains('fxg-row--has-bgcolor')) return false;
@@ -144,7 +159,7 @@ function parseFeaturedOffer(element, document) {
   const offer = element.querySelector('.fxg-featured-offer') || element;
   const detail = offer.querySelector('.fxg-featured-offer__detail') || element;
   const title = detail.querySelector('.title_v1 h1, .title_v1 h2, .title_v1 h3, .title_v1 h4, .title_v1 h5, h2, h3, h4');
-  const paras = [...detail.querySelectorAll('.richtext p')].filter((p) => p.textContent.replace(/ /g, ' ').trim());
+  const paras = textBlocks(detail);
   let cta = [...detail.querySelectorAll('.button_v1 a[href], a[href]')]
     .find((a) => !a.classList.contains('fxg-featured-button') && a.textContent.trim() && !/^\/?#$/.test(a.getAttribute('href')));
   // Landing: the featured button itself is the CTA ("START SAVING")
@@ -152,7 +167,7 @@ function parseFeaturedOffer(element, document) {
 
   const textCell = [];
   if (title) textCell.push(titleHeading(title, document));
-  paras.forEach((p) => textCell.push(cleanParagraph(p, document)));
+  paras.forEach((p) => textCell.push(cleanBlock(p, document)));
   if (cta) textCell.push(ctaParagraph(cta, document));
 
   // Media: Kaltura player (landing layout4) or image
@@ -198,8 +213,12 @@ function parseOverlay(element, offer, document) {
   const title = [...item.querySelectorAll('.title_v1 h1, .title_v1 h2, .title_v1 h3, .title_v1 h4, .title_v1 h5, .title_v1 h6')]
     .find((h) => !isHidden(h, element));
   if (title) textCell.push(titleHeading(title, document));
-  [...item.querySelectorAll('.richtext p')].forEach((p) => {
+  textBlocks(item).forEach((p) => {
     if (isHidden(p, element) || !clean(p.textContent)) return;
+    if (!p.matches('p')) {
+      textCell.push(cleanBlock(p, document));
+      return;
+    }
     // a first paragraph that is only a large-font span is the panel heading
     const only = p.children.length === 1 && p.firstElementChild.matches('span[class*="fxg-font-size-"]')
       && clean(p.firstElementChild.textContent) === clean(p.textContent);

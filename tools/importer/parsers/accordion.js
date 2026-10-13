@@ -56,11 +56,45 @@ function normalizeSpace(el) {
   return el;
 }
 
+// Small key/value tables (2 columns, up to 4 rows), e.g. nl-nl dangerous-goods/why-ship-with-fedex:
+// one per country ("Gevaarlijke Goederen | Ja", "Droogijs en lithiumbatterijen section II | Ja").
+// The row stays label cell | content cell; such a table stays in the content cell as a list
+// ("**Gevaarlijke Goederen**: Ja") instead of a fragment each (that page alone would need 123
+// fragment documents). Larger tables still go to a fragment.
+function isKeyValueTable(table) {
+  const rows = [...table.rows];
+  return rows.length > 0 && rows.length <= 4 && rows.every((r) => r.cells.length === 2);
+}
+
+function keyValueList(table, document) {
+  const ul = document.createElement('ul');
+  [...table.rows].forEach((row) => {
+    const key = clean(row.cells[0].textContent);
+    const value = clean(row.cells[1].textContent);
+    if (!key && !value) return;
+    const li = document.createElement('li');
+    if (key && value) {
+      const strong = document.createElement('strong');
+      strong.textContent = key;
+      li.append(strong, `: ${value}`);
+    } else {
+      li.textContent = key || value;
+    }
+    ul.append(li);
+  });
+  return ul.children.length ? ul : null;
+}
+
 function richtextNodes(rt, root, document) {
   const box = rt.querySelector('.cc-aem-c-richtext') || rt;
   const out = [];
   [...box.children].forEach((child) => {
     if (isHidden(child, root)) return;
+    if (child.matches('table') && isKeyValueTable(child)) {
+      const list = keyValueList(child, document);
+      if (list) out.push(list);
+      return;
+    }
     if (child.matches('p, ul, ol, h1, h2, h3, h4, h5, h6, table')) {
       if (!child.textContent.replace(/ /g, ' ').trim() && !child.querySelector('img')) return;
       const clone = normalizeSpace(child.cloneNode(true));
@@ -113,6 +147,11 @@ function walkGrid(grid, root, document, out) {
       }
     } else if (comp.matches('.richtext')) {
       out.push(...richtextNodes(comp, root, document));
+    } else if (comp.matches('.table') || comp.matches('table')) {
+      // only key/value tables get here (any other table sends the answer to a fragment)
+      const table = comp.matches('table') ? comp : comp.querySelector('table');
+      const list = table && isKeyValueTable(table) ? keyValueList(table, document) : null;
+      if (list) out.push(list);
     } else if (comp.matches('.button_v1')) {
       [...comp.querySelectorAll('a[href]')]
         .filter((a) => !isHidden(a, root) && clean(a.textContent) && !/^\/?#$/.test(a.getAttribute('href')))
@@ -134,6 +173,24 @@ function walkGrid(grid, root, document, out) {
           const g = col.querySelector(':scope > div > .aem-Grid') || col.querySelector('.aem-Grid');
           if (g) walkGrid(g, root, document, out);
         });
+    } else if (comp.matches('div.accordion_selector')) {
+      // A nested accordion inside an answer of a plain FAQ run (nl-nl out-of-home-deliveries: the
+      // regions under "Onze FedEx-locaties zijn over de hele wereld te vinden"): blocks can't nest,
+      // so each nested item becomes a bold label + its content inside this answer cell. (Grouped
+      // FAQs, where the inner run is parsed first, never get here - see the group handling in parse().)
+      const acc = comp.querySelector('.fxg-accordion, .cc-aem-c-accordion') || comp;
+      const labelEl = acc.querySelector('.cc-aem-c-accordion__button__text')
+        || acc.querySelector('.cc-aem-c-accordion__button, button');
+      const label = clean(labelEl && labelEl.textContent);
+      if (label) {
+        const p = document.createElement('p');
+        const strong = document.createElement('strong');
+        strong.textContent = label;
+        p.append(strong);
+        out.push(p);
+      }
+      const panel = acc.querySelector('.cc-aem-c-accordion__item') || acc;
+      walkGrid(panel.querySelector(':scope > .aem-Grid') || panel, root, document, out);
     } else if (comp.matches('.aem-Grid, .responsivegrid, .container, .cmp-container')) {
       walkGrid(comp, root, document, out);
     }
@@ -164,7 +221,9 @@ function fragmentPath(label, pageUrl) {
 }
 
 function tableFragment(grid, item, label, document, ctx) {
-  const tables = [...grid.querySelectorAll('table')].filter((t) => !isHidden(t, item));
+  // tables of nested accordions are theirs; key/value tables stay inline as lists
+  const tables = [...grid.querySelectorAll('table')]
+    .filter((t) => !isHidden(t, item) && !isKeyValueTable(t) && t.closest('div.accordion_selector') === item);
   if (!tables.length) return null;
   const fragment = document.createElement('div');
   // intro text / other content first, then one Table block per source table (source order)

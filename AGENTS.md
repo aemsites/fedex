@@ -25,6 +25,7 @@ Edge Delivery Services. Read a block first. Omissions are in the repo or known.
 - Navs and footers are imported per locale from `{locale}/home.html`: `tools/importer/import-nav.js` / `import-footer.js`, `urls-nav.txt` / `urls-footer.txt`. Never copy another locale's nav or footer.
 - Footer languages: `language-switch` block (country's languages, authored links). Links go to the same path in each `{language}-{country}`, else its `/home`, else the authored link.
 - Locales mirror fedex.com, not en-us: most en-us pages don't exist in other countries. Check the source before importing a tree.
+- Mixed landing-page trees: `generic-landing` (`import-generic-landing.js` is generated; edit `gen-generic-landing.py`). Tables/accordions in tabs and accordions become fragments: add the `?fragment=N` URLs the log reports (`IMPORT_FRAGMENTS`).
 - UI labels: `/{locale}/placeholders.json` via `scripts/placeholders.js` (header reads its control labels there). Keys kebab-case (`skip-to-main-content`; `skipToMainContent` would become `skiptomaincontent`). Uploaded sheet JSON needs `":type": "sheet"` or preview fails.
 - Skills: `/plugin marketplace add adobe/skills`, then `aem-edge-delivery-services` (24 skills, incl. `docs-search`).
 
