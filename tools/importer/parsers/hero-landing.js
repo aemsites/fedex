@@ -11,7 +11,8 @@
  *   picture, h1, intro paragraph(s), CTA paragraph.
  * - Picture: .fxg-landing-hero__background-image > img (fallbacks: any non-data img, CSS background-image).
  * - H1: <br> becomes a space ("A world of international<br>shipping services").
- * - Intro: .fxg-subtext richtext paragraphs; the mobile-only copy (.fxg-desktop--hide) is skipped.
+ * - Intro: .fxg-subtext richtext paragraphs, sub-headings and lists; the mobile-only copy
+ *   (.fxg-desktop--hide) is skipped. Column grids inside the banner follow the block as default content.
  * - CTA: .button_v1 a; the FedEx CTA class (fxg-button--orange etc.) is kept on the link so
  *   fedex-cleanup.js maps it to the button emphasis (**Ship Now**). Other links stay plain.
  */
@@ -176,20 +177,32 @@ export default function parse(element, { document }) {
     h1.innerHTML = clone.innerHTML.replace(/\s+/g, ' ').trim();
   }
 
-  // Intro text (desktop copy only)
+  // Column grids inside the banner (nl-nl international-priority-express / -economy: the service
+  // details next to the title) are not hero copy: they follow the block as default content.
+  const innerGrids = [...hero.querySelectorAll('.column_control_v1')]
+    .filter((cc) => !isHidden(cc, element) && !cc.parentElement.closest('.column_control_v1') && !isJumpPanel(cc));
+  const inGrid = (el) => innerGrids.some((g) => g.contains(el));
+
+  // Intro text (desktop copy only) of the single hero cell (project convention: picture, h1,
+  // subheading text, CTA in one cell): paragraphs, plus sub-headings and lists in source order
+  // (nl-nl supply-chain, automotive: "Uw supply chain optimaliseren" + bullet list)
   const scope = hero.querySelector('.fxg-subtext') || hero;
-  const paras = [...scope.querySelectorAll('.richtext p, .cc-aem-c-richtext p')]
-    .filter((p, i, all) => all.indexOf(p) === i && !isHidden(p, element) && clean(p.textContent))
+  const TEXT = ['p', 'ul', 'ol', 'h2', 'h3', 'h4', 'h5', 'h6']
+    .flatMap((t) => [`.richtext ${t}`, `.cc-aem-c-richtext ${t}`]).join(', ');
+  const paras = [...scope.querySelectorAll(TEXT)]
+    .filter((p, i, all) => all.indexOf(p) === i && !isHidden(p, element) && clean(p.textContent)
+      && !inGrid(p) && !p.parentElement.closest('p, ul, ol'))
     .map((p) => {
-      const np = document.createElement('p');
+      const np = document.createElement(p.tagName.toLowerCase());
       np.innerHTML = normalizeSpace(p.cloneNode(true)).innerHTML.replace(/(&nbsp;|\s)+$/g, '').trim();
       np.querySelectorAll('span').forEach((s) => s.replaceWith(...s.childNodes));
+      np.querySelectorAll('*').forEach((n) => { n.removeAttribute('class'); n.removeAttribute('style'); });
       return np;
     });
 
   // CTA(s)
   const ctas = [...hero.querySelectorAll('.button_v1 a[href], a.fxg-button[href]')]
-    .filter((a, i, all) => all.indexOf(a) === i && !isHidden(a, element) && clean(a.textContent) && !/^\/?#$/.test(a.getAttribute('href')))
+    .filter((a, i, all) => all.indexOf(a) === i && !isHidden(a, element) && !inGrid(a) && clean(a.textContent) && !/^\/?#$/.test(a.getAttribute('href')))
     // .fxg-auth-button-link is the signed-in alternative of the CTA before it; drop it when it
     // points at the same URL (claims: "Log in" / "Start a claim"), keep it otherwise
     // (small-business: "Open an account" + "Ship Now").
@@ -213,6 +226,7 @@ export default function parse(element, { document }) {
   // "FedEx account holders can take advantage of exclusive benefits..." band) is kept as
   // default content right after the block. Mobile-only duplicates are skipped.
   const after = [];
+  walkComponents({ children: innerGrids }, element, document, after);
   if (hero !== element) {
     [...element.children]
       .filter((child) => child !== hero && !child.contains(hero))
