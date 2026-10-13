@@ -2,7 +2,7 @@
 // All copy, links and images come from the nav fragment; this file only adds
 // structure, controls and behaviour.
 
-import { loadLocaleFragment } from '../../scripts/locale-fragment.js';
+import { loadLocaleFragment, resolveLocale } from '../../scripts/locale-fragment.js';
 
 const DESKTOP = window.matchMedia('(width >= 1024px)');
 const TABLET_UP = window.matchMedia('(width >= 768px)');
@@ -21,6 +21,30 @@ function resolveImages(root, base) {
   root.querySelectorAll('img').forEach((img) => {
     const src = img.getAttribute('src');
     if (src && !/^(https?:|data:|\/)/.test(src)) img.src = new URL(src, base).href;
+  });
+}
+
+/**
+ * Skip link label by page language, for navs without an authored skip link (fedex.com has one
+ * only on some locales). Wording as previously authored in the site's navs.
+ */
+const SKIP_LABELS = {
+  de: 'Zum Hauptinhalt springen',
+  en: 'Skip to main content',
+  es: 'Saltar al contenido principal',
+  fr: 'Aller au contenu principal',
+};
+
+/** Turns an in-page link into a skip link: first tab stop, moves focus to its target. */
+function decorateSkipLink(section, a) {
+  a.classList.add('nav-skip');
+  section.prepend(a);
+  a.addEventListener('click', (e) => {
+    const target = document.getElementById(a.hash.slice(1)) || document.querySelector('main');
+    if (!target) return;
+    e.preventDefault();
+    if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
+    target.focus();
   });
 }
 
@@ -301,19 +325,21 @@ export default async function decorate(block) {
         logo.fetchPriority = 'high';
       }
       // in-page links in the brand bar become skip links (visible on focus)
-      section.querySelectorAll('a[href^="#"]').forEach((a) => {
-        a.classList.add('nav-skip');
+      const skipLinks = [...section.querySelectorAll('a[href^="#"]')];
+      skipLinks.forEach((a) => {
         const p = a.closest('p');
-        section.prepend(a); // first tab stop
+        decorateSkipLink(section, a);
         p?.remove();
-        a.addEventListener('click', (e) => {
-          const target = document.getElementById(a.hash.slice(1)) || document.querySelector('main');
-          if (!target) return;
-          e.preventDefault();
-          if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
-          target.focus();
-        });
       });
+      // no authored skip link: add one in the page language
+      if (!skipLinks.length) {
+        const a = document.createElement('a');
+        a.href = '#main';
+        const [language] = resolveLocale(window.location.pathname).locale.split('-');
+        a.textContent = SKIP_LABELS[language] || SKIP_LABELS.en;
+        a.lang = SKIP_LABELS[language] ? language : 'en';
+        decorateSkipLink(section, a);
+      }
     } else if (hasDropdowns) {
       section.classList.add(dropGroups === 0 ? 'nav-sections' : 'nav-tools');
       dropGroups += 1;
