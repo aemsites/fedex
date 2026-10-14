@@ -151,8 +151,10 @@ function teaserRow(doc, item) {
   const a = doc.createElement('a');
   a.setAttribute('href', item.path);
   if (item.heading) {
-    // the CTA keeps its text and button style (em = secondary, strong = primary)
+    // the CTA keeps its text and button style (em = secondary, strong = primary); this runs
+    // before fedex-cleanup maps the FedEx button classes to em / strong, so they are copied
     a.textContent = clean(item.link.textContent);
+    if (item.link.getAttribute('class')) a.setAttribute('class', item.link.getAttribute('class'));
     let wrapped = a;
     let parent = item.link.parentElement;
     while (parent && /^(EM|STRONG)$/.test(parent.tagName)) {
