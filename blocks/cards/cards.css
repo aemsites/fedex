@@ -864,6 +864,22 @@ main .default-content-wrapper:has(> .button-wrapper:last-child) + .cards-wrapper
 }
 
 /*
+ * teasers: a card whose title is the link (row authored as the bare page link) shows it as the
+ * source's blue title link (how-to-hub/articles "How to ship a bike"), underlined on hover
+ */
+.cards.teasers .cards-card-body h3 > a:any-link {
+  color: var(--color-blue);
+  font-weight: var(--font-weight-medium);
+  text-decoration: none;
+}
+
+.cards.teasers .cards-card-body h3 > a:hover,
+.cards.teasers .cards-card-body h3 > a:focus-visible {
+  color: var(--color-blue-hover);
+  text-decoration: underline;
+}
+
+/*
  * promo cards on the brand band (ship-to-apac / ship-to-europe "Deskundig advies"): the links
  * are white 16px medium text in sentence case, not the uppercase text CTA
  */

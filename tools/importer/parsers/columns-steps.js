@@ -320,7 +320,10 @@ export default function parse(element, { document }) {
   }
   const columns = cols(element);
   const imageCol = columns.find((c) => c.querySelector('.image_v2') && !c.querySelector('.richtext, .column_control_v1, .title_v1'));
-  const textCol = columns.find((c) => c !== imageCol);
+  // Columns convention kept: one row, cells = [image | text] in source order (text only when there
+  // is no image). The text column is not an empty spacer column (en-us how-to-ship-automotive:
+  // [empty col-sm-3 | title + text], whose text was read from the empty column and lost).
+  const textCol = columns.find((c) => c !== imageCol && !isEmptyCol(c)) || columns.find((c) => c !== imageCol);
 
   const image = imageCol ? imageOf(imageCol, element, document) : null;
 

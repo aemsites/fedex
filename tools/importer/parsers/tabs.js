@@ -107,6 +107,10 @@ function walkGrid(grid, root, document, out) {
         p.append(newImage(img, document));
         out.push(p);
       }
+    } else if (comp.matches('.accordion_selector')) {
+      // an accordion in a panel's row (en-us how-to-ship-batteries "UN numbers for wet batteries"
+      // in step 1's text column): kept for panelFragment, which parses the fragment's accordions
+      out.push(comp.cloneNode(true));
     } else if (comp.matches('.column_control_v1')) {
       [...comp.querySelectorAll(':scope > .row > .fxg-col')]
         .filter((col) => !isHidden(col, root))

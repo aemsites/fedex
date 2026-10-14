@@ -42,6 +42,8 @@ Each row is a row of columns (max 4). A cell holding only an image becomes an im
 | image | ## heading, text, bullets |
 
 - `divided`: two titled columns with a 1px vertical rule between them from 768px (stacked, no rule, on mobile). Each column starts with a centered `### title`. An ordered list shows purple circled numbers (the same CSS as `steps`, 48px circles, no number images); a bulleted list whose items each start with an icon image shows the icon (53px) left of the item's bold title paragraph and text paragraph, without bullets. Example: nl-nl `/shipping/freight-services` "Hoe verzendt u uw vracht | Wat kan ik verzenden?".
+- `icon-lists`: columns of photo, `### title`, text and a bulleted list whose items each start with an icon image: the icon (30px) sits left of its one-line text, without bullets (the icon list of `divided`, without the rule). Example: en-us `/sweepstakes` "Check out some of our past sweepstakes" (the prizes per sweepstakes).
+- `teasers`: a row holding only a link to a page of this site becomes [text | image] from that page: its title, description and the link as CTA (`*link*` = outlined button), then its image (metadata Image). Combine with the layout variants, e.g. `Columns (promo, light, teasers)` (en-us `/sweepstakes`: the current sweepstakes, read from its page). A row whose page does not exist is dropped. See `Cards (teasers)` for the link label rules.
 
 | Columns (divided) | |
 |---|---|

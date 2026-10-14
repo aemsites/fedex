@@ -28,6 +28,7 @@ import columnsParser from './parsers/columns.js';
 // TRANSFORMER IMPORTS
 import fedexCleanupTransformer from './transformers/fedex-cleanup.js';
 import fedexLandingTransformer from './transformers/fedex-landing.js';
+import fedexTeasersTransformer, { resolveTeaserAnchors } from './transformers/fedex-teasers.js';
 import fedexPreprocess from './fedex-preprocess.js';
 
 // PARSER REGISTRY
@@ -132,7 +133,40 @@ const PAGE_TEMPLATE = {
     "https://www.fedex.com/nl-nl/shipping/schedule-pickup.html",
     "https://www.fedex.com/nl-nl/shipping/out-of-home-deliveries.html",
     "https://www.fedex.com/nl-nl/shipping/ebr-declaration-form.html",
-    "https://www.fedex.com/nl-nl/shipping/cbam-account-number-submission.html"
+    "https://www.fedex.com/nl-nl/shipping/cbam-account-number-submission.html",
+    "https://www.fedex.com/en-us/TopicList.html",
+    "https://www.fedex.com/en-us/accessibility.html",
+    "https://www.fedex.com/en-us/surround.html",
+    "https://www.fedex.com/en-us/how-to-hub/articles.html",
+    "https://www.fedex.com/en-us/custom-critical.html",
+    "https://www.fedex.com/en-us/custom-critical/documents-and-resources.html",
+    "https://www.fedex.com/en-us/custom-critical/contact-us.html",
+    "https://www.fedex.com/en-us/digital/premium-features/sustainability-insights.html",
+    "https://www.fedex.com/en-us/shipping/international/duties-and-taxes.html",
+    "https://www.fedex.com/en-us/sweepstakes.html",
+    "https://www.fedex.com/en-us/sweepstakes/slope-to-shore/slopetoshoresweepstakesover.html",
+    "https://www.fedex.com/en-us/sweepstakes/nfl-champion-shipper.html",
+    "https://www.fedex.com/en-us/sweepstakes/vacay-your-way.html",
+    "https://www.fedex.com/en-us/sweepstakes/vacay-your-way/vacay-your-way-sweepstakes-over.html",
+    "https://www.fedex.com/en-us/sweepstakes/fedexcup-sweepstakes/fedexcup-sweepstakes-over.html",
+    "https://www.fedex.com/en-us/sweepstakes/nfl-gameface.html",
+    "https://www.fedex.com/en-us/sweepstakes/nfl-superbowl.html",
+    "https://www.fedex.com/en-us/shipping/how-to-ship-jewelry.html",
+    "https://www.fedex.com/en-us/shipping/how-to-ship-a-bike.html",
+    "https://www.fedex.com/en-us/shipping/how-to-ship-furniture.html",
+    "https://www.fedex.com/en-us/shipping/how-to-ship-flowers-and-plants.html",
+    "https://www.fedex.com/en-us/shipping/how-to-ship-perishables.html",
+    "https://www.fedex.com/en-us/shipping/how-to-ship-clothes.html",
+    "https://www.fedex.com/en-us/shipping/how-to-ship-automotive.html",
+    "https://www.fedex.com/en-us/shipping/how-to-ship-artwork.html",
+    "https://www.fedex.com/en-us/shipping/how-to-ship-computers.html",
+    "https://www.fedex.com/en-us/shipping/how-to-ship-luggage.html",
+    "https://www.fedex.com/en-us/shipping/how-to-ship-clinical-samples.html",
+    "https://www.fedex.com/en-us/shipping/how-to-ship-batteries.html",
+    "https://www.fedex.com/en-us/shipping/how-to-ship-a-tv-monitor.html",
+    "https://www.fedex.com/en-us/shipping/how-to-ship-firearms.html",
+    "https://www.fedex.com/en-us/shipping/how-to-ship-guitars.html",
+    "https://www.fedex.com/en-us/shipping/guidelines-for-shipping-tobacco.html"
   ],
   "coverageGaps": [
     "Forms (AEM forms div.start > form.fxg-forms, adaptive forms): no form block yet, fields dropped, text kept",
@@ -229,7 +263,7 @@ const PAGE_TEMPLATE = {
       "name": "columns-steps",
       "instances": [
         ".root .column_control_v1:not(.column_control_v1 *, .accordion_selector *, .featured_offer_v2 *, .hero_landingpage_v1 *, .tabs_v1 *, .carousel_v1 *):not(:has(> .row > .fxg-col:first-child.fxg-desktop--hide)):has(> .row > .fxg-col.col-sm-3:first-child):has(> .row > .fxg-col.col-sm-9:nth-child(2) > div > .aem-Grid > .richtext):not(:has(> .row > .fxg-col:first-child > div > .aem-Grid > :not(.spacer))):not(:has(> .row > .fxg-col:nth-child(3)))",
-        ".root .column_control_v1:not(.column_control_v1 *, .accordion_selector *, .featured_offer_v2 *, .hero_landingpage_v1 *):not(:has(> .row > .fxg-col:first-child.fxg-desktop--hide)):has(> .row > .fxg-col:first-child > div > .aem-Grid > .image_v2):has(> .row > .fxg-col:nth-child(2) > div > .aem-Grid > .column_control_v1):not(:has(> .row > .fxg-col:nth-child(3)))",
+        ".root .column_control_v1:not(.column_control_v1 *, .accordion_selector *, .featured_offer_v2 *, .hero_landingpage_v1 *):not(:has(> .row > .fxg-col:first-child.fxg-desktop--hide)):has(> .row > .fxg-col:first-child > div > .aem-Grid > .image_v2):not(:has(> .row > .fxg-col:first-child > div > .aem-Grid > :is(.title_v1, .richtext))):has(> .row > .fxg-col:nth-child(2) > div > .aem-Grid > .column_control_v1):not(:has(> .row > .fxg-col:nth-child(3)))",
         ".root .column_control_v1:not(.column_control_v1 *, .accordion_selector *, .featured_offer_v2 *, .hero_landingpage_v1 *, .tabs_v1 *, .carousel_v1 *, .advanced_table_v1 *):not(:has(> .row > .fxg-col:first-child.fxg-desktop--hide)):has(> .row > .fxg-col.col-sm-3:first-child > div > .aem-Grid > .image_v2):has(> .row > .fxg-col.col-sm-8:nth-child(2) > div > .aem-Grid > .title_v1):has(> .row > .fxg-col:nth-child(2)):not(:has(> .row > .fxg-col:nth-child(3))):not(.root .column_control_v1:not(.column_control_v1 *, .accordion_selector *, .featured_offer_v2 *, .hero_landingpage_v1 *, .tabs_v1 *, .carousel_v1 *, .advanced_table_v1 *):not(:has(> .row > .fxg-col:first-child.fxg-desktop--hide)):has(> .row > .fxg-col.col-sm-3:first-child > div > .aem-Grid > .image_v2):has(> .row > .fxg-col.col-sm-8:nth-child(2) > div > .aem-Grid > .title_v1):has(> .row > .fxg-col:nth-child(2)):not(:has(> .row > .fxg-col:nth-child(3))) ~ *)"
       ]
     },
@@ -297,9 +331,11 @@ const PAGE_TEMPLATE = {
   "representativeUrl": "https://www.fedex.com/nl-nl/shipping.html"
 };
 
-// TRANSFORMER REGISTRY - cleanup first, then the generic landing rules (section breaks from the
-// page grid, jump links, forms); no template sections, so fedex-sections.js is not used
+// TRANSFORMER REGISTRY - listings / detail pages first (teaser image metadata; teaser blocks read
+// from the detail pages), then cleanup, then the generic landing rules (section breaks from the page grid, jump links,
+// forms); no template sections, so fedex-sections.js is not used
 const transformers = [
+  fedexTeasersTransformer,
   fedexCleanupTransformer,
   fedexLandingTransformer,
 ];
@@ -391,8 +427,12 @@ export default {
   // Awaited by the bulk runner before the transform
   onLoad: async ({ document }) => rejectHomepageTestVariant(document),
 
-  // Runs before helix-importer's own DOM preprocessing (which would drop text next to `u > a`)
-  preprocess: fedexPreprocess,
+  // Runs before helix-importer's own DOM preprocessing (which would drop text next to `u > a`, and
+  // the empty anchors that in-page links to teasers point at)
+  preprocess: (payload) => {
+    fedexPreprocess(payload);
+    resolveTeaserAnchors(payload.document.body, (payload.params && payload.params.originalURL) || payload.url);
+  },
 
   transform: (payload) => {
     const { document, url, params } = payload;

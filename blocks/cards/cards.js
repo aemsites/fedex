@@ -1,5 +1,6 @@
 import { createOptimizedPicture } from '../../scripts/aem.js';
 import decorateVideo, { setVideoTitle } from '../../scripts/video.js';
+import { anchorTeaser, buildTeaser, teaserLink } from '../../scripts/teasers.js';
 
 /**
  * Flags a card image as an icon (square-ish artwork rather than a 727:463 photo),
@@ -56,15 +57,46 @@ function buildLogo(row, li) {
 }
 
 /**
+ * teasers: fills each row that only links to a page of this site with that page's image, title,
+ * description and the link as CTA (scripts/teasers.js); rows whose page cannot be loaded go.
+ * @param {Element} block The cards block
+ */
+async function expandTeasers(block) {
+  await Promise.all([...block.children].map(async (row) => {
+    const a = teaserLink(row);
+    if (!a) return;
+    const teaser = await buildTeaser(a);
+    if (!teaser) {
+      row.remove();
+      return;
+    }
+    const cells = [];
+    if (teaser.picture) {
+      const image = document.createElement('div');
+      image.append(teaser.picture);
+      cells.push(image);
+    }
+    const body = document.createElement('div');
+    body.append(...teaser.body);
+    cells.push(body);
+    row.replaceChildren(...cells);
+    row.dataset.teaser = teaser.id;
+  }));
+}
+
+/**
  * cards: one row per card. An image-only cell becomes the card image, all other
  * cells are merged into the card body. A paragraph holding only a plain link
  * becomes the card CTA. A poster image + Kaltura link cell becomes a click-to-play video.
  * Variants: icon-links (icon + link, whole item clickable), promo, horizontal,
  * icon (icon + heading/text/link grid), centered (icon-top, centered; with icon),
  * light (panel background), logos (image-only logo grid, optionally linked).
+ * teasers: rows that only link to a page of this site are filled from that page (see
+ * expandTeasers), combined with any layout variant.
  * Layout-only modifiers (CSS): large, two-columns, three-columns, compact, icon-right, arrows.
  */
-export default function decorate(block) {
+export default async function decorate(block) {
+  if (block.classList.contains('teasers')) await expandTeasers(block);
   const iconLinks = block.classList.contains('icon-links');
   const icon = block.classList.contains('icon');
   const horizontal = block.classList.contains('horizontal');
@@ -78,6 +110,7 @@ export default function decorate(block) {
     const cells = [...row.children];
     if (!cells.some((c) => c.textContent.trim() || c.querySelector('picture'))) return;
     const li = document.createElement('li');
+    if (row.dataset.teaser) anchorTeaser(li, row.dataset.teaser);
     if (logos) {
       if (buildLogo(row, li)) ul.append(li);
       return;
