@@ -228,6 +228,9 @@ export default function parse(element, { document, url, params }) {
     return;
   }
 
-  const block = WebImporter.Blocks.createBlock(document, { name: 'Tabs', cells });
+  // fedex.com "striped" tabs (grey tiles, purple active tile; nl-nl ship-to-apac) -> Tabs (striped);
+  // rows stay tab label | panel content
+  const striped = !!element.querySelector('.fxg-tab--striped, [data-view-type="striped"]');
+  const block = WebImporter.Blocks.createBlock(document, { name: striped ? 'Tabs (striped)' : 'Tabs', cells });
   element.replaceWith(block);
 }

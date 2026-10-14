@@ -15,3 +15,4 @@ Not the same as Tabs Shipping (`blocks/tabs-shipping`), which is the homepage to
 
 ## Variants
 - *(none)*: underline tabs
+- `striped`: grey tab tiles sharing the row, the active tab brand purple with white bold text (e.g. nl-nl ship-to-apac "Ga verder met FedEx"). On mobile the tiles keep their label width and the row scrolls. Example: `Tabs (striped)`

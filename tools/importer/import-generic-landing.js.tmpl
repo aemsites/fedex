@@ -43,6 +43,12 @@ function executeTransformers(hookName, element, payload) {
   });
 }
 
+// a component whose content (children with text or images) is all mobile-only
+function mobileOnly(element) {
+  const parts = [...element.children].filter((c) => c.textContent.trim() || c.querySelector('img'));
+  return parts.length > 0 && parts.every((c) => c.matches('.fxg-desktop--hide'));
+}
+
 /**
  * Find all blocks on the page based on the embedded template configuration.
  * All elements are collected before any parser runs; an element matched by several blocks is
@@ -63,7 +69,11 @@ function findBlocksOnPage(document, template) {
         console.warn(`Block "${blockDef.name}" selector is invalid: ${selector}`);
       }
       elements.forEach((element) => {
-        if (claimed.has(element)) return;
+        // mobile-only renditions (.fxg-desktop--hide) are never imported; fedex-cleanup removes
+        // them after the parsers, too late for a block built from one (nl-nl/home: a
+        // featured_offer_v2 whose only content is a mobile-only wrapper, "We maken logistiek
+        // eenvoudig voor uw bedrijf")
+        if (claimed.has(element) || element.closest('.fxg-desktop--hide') || mobileOnly(element)) return;
         claimed.add(element);
         pageBlocks.push({
           name: blockDef.name, selector, element, section: blockDef.section || null,
@@ -88,7 +98,21 @@ function findBlocksOnPage(document, template) {
   return pageBlocks;
 }
 
+// EU homepages (nl-nl/home) run an Optimizely A/B test on the hero: the test variant replaces the
+// authored hero and shipping tools with script-rendered web components (homepage-a-hero,
+// homepage-b-links). The authored control is imported (decision of 2026-10-13); assignment is
+// random per fresh visitor and happens before the importer can act, so a page served as the test
+// variant fails here and is re-run (the bulk runner reports it as failed).
+function rejectHomepageTestVariant(document) {
+  if (document.querySelector('homepage-a-hero, homepage-b-links')) {
+    throw new Error('AB_TEST_VARIANT: fedex.com served the homepage test variant; re-run to get the authored control');
+  }
+}
+
 export default {
+  // Awaited by the bulk runner before the transform
+  onLoad: async ({ document }) => rejectHomepageTestVariant(document),
+
   // Runs before helix-importer's own DOM preprocessing (which would drop text next to `u > a`)
   preprocess: fedexPreprocess,
 

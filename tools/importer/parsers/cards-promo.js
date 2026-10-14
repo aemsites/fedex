@@ -208,7 +208,8 @@ export default function parse(element, { document }) {
   }
 
   let featured = false;
-  const cells = [];
+  const cells = []; // one row per card: image | text (library Cards convention, unchanged)
+  const titles = [];
   cols.forEach((col) => {
     const offer = col.querySelector('.featured_offer_v2');
     if (offer) featured = true;
@@ -229,6 +230,7 @@ export default function parse(element, { document }) {
       : (col.querySelector('.fxg-desktop-image img')
         || [...col.querySelectorAll('.image_v2 img, img')].find((i) => !isHidden(i, col)));
     if (!img && !player && !title && !paras.length && !cta) return;
+    titles.push(title);
 
     let imageCell = '';
     if (player) {
@@ -275,7 +277,12 @@ export default function parse(element, { document }) {
   }
 
   // featured_offer_v2 cards carry their body on the #fafafa panel -> light modifier
-  const name = featured ? 'Cards (promo, light)' : 'cards (promo)';
+  // `centered`: every card title is centred from the small breakpoint up (nl-nl shipping.html
+  // "Internationaal verzenden", home "Tijdbesparende tips": cc-aem-u-align--center@small)
+  const centered = titles.length > 0
+    && titles.every((t) => t && t.classList.contains('cc-aem-u-align--center@small'));
+  let name = featured ? 'Cards (promo, light)' : 'cards (promo)';
+  if (centered) name = featured ? 'Cards (promo, light, centered)' : 'Cards (promo, centered)';
   const block = WebImporter.Blocks.createBlock(document, { name, cells });
   element.replaceWith(block);
 }

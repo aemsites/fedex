@@ -369,6 +369,215 @@
 }
 
 /*
+ * icon-links with a description (nl-nl shipping "Servicegids, tarieven en retouren"): each item is
+ * icon | link + description paragraph. Larger icons, the description sits below the link as
+ * plain text (not part of the link). Icon-links without a description are unaffected.
+ */
+.cards.icon-links:has(.cards-card-body > p + p) {
+  --cards-icon-size: 96px;
+  --cards-icon-gap: var(--space-6);
+  --cards-icon-list-gap: var(--space-10);
+}
+
+.cards.icon-links .cards-card-body > p + p {
+  margin-top: var(--space-4);
+}
+
+/* arrows: a decorative chevron after each text CTA */
+.cards.arrows .cards-card-cta a::after {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-left: var(--space-2);
+  border-top: 2px solid;
+  border-right: 2px solid;
+  vertical-align: 1px;
+  transform: rotate(45deg);
+}
+
+/*
+ * horizontal + compact (nl-nl shipping "Hulpmiddelen en tools"): small icons instead of photos,
+ * a bold 20px title, the text and CTA close below it. From 768px the icon is centred in a 1/6
+ * column, the text takes 5/6.
+ */
+.cards.horizontal.compact {
+  --cards-row-gap: var(--space-8);
+  --cards-title-spacing: var(--space-4);
+  --cards-title-size: 20px;
+  --cards-cta-offset: 6px;
+  --cards-compact-icon-size: var(--icon-size-xl);
+}
+
+.cards.horizontal.compact .cards-card-image img {
+  width: var(--cards-compact-icon-size);
+  aspect-ratio: auto;
+  object-fit: contain;
+}
+
+.cards.horizontal.compact .cards-card-body h3 {
+  font-weight: var(--font-weight-bold);
+  line-height: var(--heading-line-height);
+  letter-spacing: normal;
+}
+
+.cards.horizontal.compact .cards-card-body p {
+  margin: 10px 0 0;
+}
+
+.cards.horizontal.compact .cards-card-body .cards-card-cta {
+  margin: 0;
+  padding-top: var(--cards-cta-offset);
+}
+
+/* horizontal + light + compact (nl-nl freight "Specialistische oplossingen"): a panel per row */
+.cards.horizontal.light.compact {
+  --cards-row-gap: var(--space-6);
+  --cards-title-size: 18px;
+
+  padding: 0;
+  background: none;
+}
+
+.cards.horizontal.light.compact > ul > li {
+  padding: var(--space-5) var(--space-4);
+  background-color: var(--panel-color);
+}
+
+/*
+ * promo + centered without light (nl-nl shipping "Internationaal verzenden", home "Tijdbesparende
+ * tips"): large light titles 36px below the image and 24px above the text, the CTA/button follows
+ * the text (not pinned to the bottom) and buttons are 300px wide (long labels wrap, as in the source).
+ * Promo, light, centered (open-account choice panels) is unaffected.
+ */
+.cards.promo.centered:not(.light) {
+  --cards-title-spacing: var(--space-9);
+
+  /* nl-nl home: space above the "Laatste nieuws" promo that follows in the same section */
+  margin-bottom: var(--space-6);
+}
+
+.cards.promo.centered:not(.light) .cards-card-body h3 {
+  margin-bottom: var(--space-6);
+  font-size: var(--heading-font-size-l);
+  font-weight: var(--font-weight-light);
+  line-height: var(--heading-line-height);
+}
+
+.cards.promo.centered:not(.light) .cards-card-body h3 + p {
+  margin-top: 0;
+}
+
+.cards.promo.centered:not(.light) .cards-card-body .cards-card-cta,
+.cards.promo.centered:not(.light) .cards-card-body .button-wrapper {
+  margin-top: 0;
+  padding-top: var(--space-3);
+}
+
+.cards.promo.centered:not(.light) .button-wrapper .button {
+  width: 300px;
+  max-width: 100%;
+}
+
+/*
+ * icon + centered + large (nl-nl shipping "Vracht / E-commerce"): 144px circle photos, the linked
+ * title as dark light-weight 24px text (underlined, the link is the heading). From 768px the title
+ * keeps room for two lines so the texts line up.
+ */
+.cards.icon.centered.large {
+  --cards-icon-size: 144px;
+}
+
+.cards.icon.centered.large .cards-card-image img {
+  aspect-ratio: 1;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.cards.icon.centered.large .cards-card-body h3 {
+  margin-bottom: var(--space-3);
+  font-size: var(--heading-font-size-m);
+  font-weight: var(--font-weight-light);
+  letter-spacing: var(--heading-letter-spacing);
+}
+
+/*
+ * icon + centered + two-columns (nl-nl freight "Waarom zou u FedEx kiezen"): 96px icons, large
+ * light titles 36px below the icon; 2 per row from 768px in the source's 12px-inset column.
+ */
+.cards.icon.centered.two-columns {
+  --cards-icon-size: 96px;
+}
+
+.cards.icon.centered.two-columns .cards-card-body > :last-child {
+  margin-bottom: 0;
+}
+
+.cards.icon.centered.two-columns .cards-card-body h3 {
+  margin: 20px 0 var(--space-6);
+  font-size: var(--heading-font-size-l);
+  font-weight: var(--font-weight-light);
+  line-height: var(--heading-line-height);
+  letter-spacing: var(--heading-letter-spacing);
+}
+
+/* the variants above from 768px */
+@media (width >= 768px) {
+  .cards.icon.centered.large .cards-card-body h3 {
+    min-height: calc(2 * var(--body-line-height) * 1em);
+  }
+
+  .cards.icon.centered.two-columns > ul {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+    padding-inline: var(--space-3);
+  }
+
+  .cards.icon-links:has(.cards-card-body > p + p) {
+    --cards-icon-size: 128px;
+    --cards-icon-item-padding: 0 var(--space-3);
+    --cards-icon-list-gap: 0;
+    --cards-icon-list-inset: 0;
+  }
+
+  .cards.horizontal.compact {
+    --cards-title-spacing: 2px;
+    --cards-compact-icon-size: 96px;
+  }
+
+  .cards.horizontal.compact > ul > li {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 5fr);
+  }
+
+  .cards.horizontal.compact .cards-card-image {
+    padding-inline: 0;
+  }
+
+  .cards.horizontal.compact .cards-card-image img {
+    display: block;
+    margin-inline: auto;
+  }
+
+  /* icon-right: the icon (still the first cell) in a 1/6 column on the right, vertically centred */
+  .cards.horizontal.icon-right > ul > li {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 1fr);
+    align-items: center;
+  }
+
+  .cards.horizontal.icon-right .cards-card-image {
+    grid-area: 1 / 2;
+  }
+
+  .cards.horizontal.icon-right .cards-card-body {
+    grid-area: 1 / 1;
+  }
+
+  .cards.horizontal.light.compact > ul > li {
+    padding: var(--space-4) 0;
+  }
+}
+
+/*
  * horizontal text rows: a card whose body is a single paragraph with bold inline links and
  * no heading (e.g. drop-off "Can I drop off without a printed label?") shows its artwork whole
  * at half width, centred above the text; a 1/6 column beside it from 768px (see below).
@@ -443,9 +652,10 @@
     --cards-icon-list-gap: 0;
   }
 
+  /* equal columns: a long label must not widen its column (and shrink the others' icons) */
   .cards.icon-links > ul {
     grid-template-columns: none;
-    grid-auto-columns: 1fr;
+    grid-auto-columns: minmax(0, 1fr);
     grid-auto-flow: column;
   }
 
@@ -519,6 +729,15 @@
 
   /* promo with exactly 2 cards: 2 across */
   .cards.promo.cards-2-items > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /*
+   * centered promo with exactly 4 cards (nl-nl ship-to-apac "Deskundig advies"): 2 x 2, 4 across
+   * from 1024px; two-columns keeps 2 per row (healthcare "Temperatuurgecontroleerde verpakkingen")
+   */
+  .cards.promo.two-columns > ul,
+  .cards.promo.centered.cards-4-items > ul {
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -623,5 +842,11 @@ main .default-content-wrapper:has(> .button-wrapper:last-child) + .cards-wrapper
 
   main .default-content-wrapper:has(> .button-wrapper:last-child) + .cards-wrapper > .cards.logos > ul {
     row-gap: var(--space-16);
+  }
+}
+
+@media (width >= 1024px) {
+  .cards.promo.centered.cards-4-items:not(.two-columns) > ul {
+    grid-template-columns: repeat(4, 1fr);
   }
 }

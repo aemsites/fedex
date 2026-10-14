@@ -29,6 +29,24 @@ Each row is a row of columns (max 4). A cell holding only an image becomes an im
 |---|---|
 | image | ### heading, text, *outlined CTA* |
 
+- `centered`: short, centered columns, each `#### title`, a paragraph and a CTA paragraph (`*link*` = outlined pill button). From 768px the columns sit side by side in a 912px area (3 × 288px, 24px gaps) and each CTA is pushed to the bottom of its column, so the buttons line up even when the texts differ in length. Titles are 20px regular. Put it in a `dark` section for the purple band with white outline buttons (nl-nl `/shipping` "Bereken uw tarieven | Open een account | Vraag een ophaling aan"); on the band the block uses the source spacing (36px above the titles, 44px below the buttons, ~277px band).
+
+| Columns (centered) | | |
+|---|---|---|
+| #### title, text, *CTA link* | #### title, text, *CTA link* | #### title, text, *CTA link* |
+
+- `one-third`: image | text. From 768px the image column takes 1/3 and the text 2/3 (each with a 12px inset), tops aligned; the `##` heading keeps the 40px section-title gap below it, then a paragraph and an optional bulleted list. On mobile the image (max 300px, centered) sits above the text. Example: nl-nl `/shipping/freight-services` "Wij maken vrachtvervoer eenvoudiger dan u denkt".
+
+| Columns (one-third) | |
+|---|---|
+| image | ## heading, text, bullets |
+
+- `divided`: two titled columns with a 1px vertical rule between them from 768px (stacked, no rule, on mobile). Each column starts with a centered `### title`. An ordered list shows purple circled numbers (the same CSS as `steps`, 48px circles, no number images); a bulleted list whose items each start with an icon image shows the icon (53px) left of the item's bold title paragraph and text paragraph, without bullets. Example: nl-nl `/shipping/freight-services` "Hoe verzendt u uw vracht | Wat kan ik verzenden?".
+
+| Columns (divided) | |
+|---|---|
+| ### title, 1. **Step** text, 2. … | ### title, • icon / **Title** / text, • … |
+
 A column holding a poster image plus a link to a Kaltura video (`https://www.kaltura.com/index.php/extwidget/preview/partner_id/4296983/uiconf_id/55255333/entry_id/<entryId>`) becomes a click-to-play video column (shared helper `scripts/video.js`), e.g. in `Columns (promo)`. The player loads only after the click and doesn't autoplay when the user prefers reduced motion.
 
 Example: `Columns (promo, light)`.

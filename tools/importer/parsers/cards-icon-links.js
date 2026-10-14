@@ -30,13 +30,20 @@ export default function parse(element, { document, url, params }) {
   // banner-landing (service-guide quick links, drop-off 4-up anchor links): a column_control_v1
   // whose columns each hold an icon (.image_v2) and a link (.button_v1); one item per visible column
   const isGrid = !table && element.matches('.column_control_v1');
-  if (!table && !isGrid) {
+  // generic-landing (nl-nl/home "Beheer uw zendingen"): a carousel_v1 (Owl) of icon + link slides;
+  // one card row per slide, icon cell | link cell as for the other shapes (Owl's .cloned loop
+  // copies are dropped by the href guard below)
+  const isCarousel = !table && !isGrid && element.matches('.carousel_v1');
+  if (!table && !isGrid && !isCarousel) {
     element.remove();
     return;
   }
 
   let units;
-  if (isGrid) {
+  if (isCarousel) {
+    units = [...element.querySelectorAll('.owl-item:not(.cloned)')];
+    if (!units.length) units = [...element.querySelectorAll('.cmp-container')].filter((c) => c.querySelector('.image_v2') && c.querySelector('.button_v1 a[href]'));
+  } else if (isGrid) {
     const hidden = (el) => { const h = el.closest('.fxg-desktop--hide'); return !!h && element.contains(h); };
     units = [...element.querySelectorAll(':scope > .row > .fxg-col')]
       .filter((c) => !hidden(c) && c.querySelector('.button_v1 a[href]'));

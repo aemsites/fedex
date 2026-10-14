@@ -1,6 +1,7 @@
 /*
  * table: full content width, plain bold header row, 1px row lines, no shading
  * or stripes. The table scrolls horizontally inside the block on small screens.
+ * Variant brand: see below.
  */
 .table {
   --table-rule: 1px solid var(--border-color);
@@ -63,6 +64,48 @@
   vertical-align: middle;
 }
 
+/*
+ * brand: a brand-purple header row with white centered labels, 14px body text,
+ * no row lines, cells centered vertically. An icon before a cell's text (e.g. the
+ * first column's "clock SNELHEID") sits inline at 30px, centered on the text.
+ */
+.table.brand {
+  --table-rule: none;
+}
+
+.table.brand table {
+  font-size: var(--body-font-size-s);
+}
+
+.table.brand th {
+  background-color: var(--dark-color);
+  color: var(--color-white);
+  font-weight: var(--font-weight-medium);
+  text-align: center;
+  vertical-align: middle;
+}
+
+.table.brand td {
+  font-weight: var(--font-weight-regular);
+  vertical-align: middle;
+}
+
+/* the source's authored column widths (20% | 43% | 37%, freight-services) */
+.table.brand th:first-child {
+  width: 20%;
+}
+
+.table.brand th:nth-child(2) {
+  width: 43%;
+}
+
+.table.brand td img {
+  width: 30px; /* source icon size */
+  height: 30px;
+  margin-inline-end: var(--space-2);
+  vertical-align: middle;
+}
+
 @media (width >= 768px) {
   .table {
     --table-min-width: 0;
@@ -70,5 +113,14 @@
 
   .table table {
     font-size: var(--body-font-size-m);
+  }
+
+  /* source: 940px table (15px inset), 20px / 35px cell padding */
+  .table.brand {
+    --table-cell-padding: var(--space-5) 35px;
+  }
+
+  .table.brand .table-scroll {
+    padding-inline: var(--content-gutter);
   }
 }

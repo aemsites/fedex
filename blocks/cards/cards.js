@@ -62,13 +62,16 @@ function buildLogo(row, li) {
  * Variants: icon-links (icon + link, whole item clickable), promo, horizontal,
  * icon (icon + heading/text/link grid), centered (icon-top, centered; with icon),
  * light (panel background), logos (image-only logo grid, optionally linked).
+ * Layout-only modifiers (CSS): large, two-columns, three-columns, compact, icon-right, arrows.
  */
 export default function decorate(block) {
   const iconLinks = block.classList.contains('icon-links');
   const icon = block.classList.contains('icon');
   const horizontal = block.classList.contains('horizontal');
   const logos = block.classList.contains('logos');
-  const imageWidth = iconLinks || icon ? '160' : '750';
+  // icons are small (large icon photos are 144px, so they get a 2x rendition)
+  let imageWidth = iconLinks || icon ? '160' : '750';
+  if (icon && block.classList.contains('large')) imageWidth = '320';
   const ul = document.createElement('ul');
 
   [...block.children].forEach((row) => {

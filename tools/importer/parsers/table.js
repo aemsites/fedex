@@ -27,6 +27,8 @@
  *   - as a helper (accordion answers -> fragments): `parse.buildTable(source, document)` returns
  *     the Table block element without touching the source.
  */
+import { wrapInlineRuns } from '../utils/components.js';
+
 function clean(text) {
   return (text || '').replace(/\s+/g, ' ').trim();
 }
@@ -52,6 +54,8 @@ function cellContent(src, document, header) {
   if (header) clone.querySelectorAll('b, strong').forEach((b) => b.replaceWith(...b.childNodes));
   const div = document.createElement('div');
   div.innerHTML = clone.innerHTML.replace(/(&nbsp;|\s)+$/g, '').trim();
+  // link + footnote mark before a paragraph (ship-to-apac tabs) stay one paragraph
+  if (div.querySelector(':scope > sup')) wrapInlineRuns(div, document);
   const nodes = [...div.childNodes];
   return nodes.length && clean(div.textContent + (div.querySelector('img') ? 'x' : '')) ? nodes : '';
 }
@@ -88,7 +92,17 @@ function buildTable(source, document) {
     })
     .filter((row) => row.some((c) => c !== ''));
   if (!cells.length) return null;
-  return WebImporter.Blocks.createBlock(document, { name: 'Table', cells });
+  // row/cell structure unchanged (library Table convention: header row, then one row per data
+  // row); only the variant name differs
+  return WebImporter.Blocks.createBlock(document, { name: brandHeader(table) ? 'Table (brand)' : 'Table', cells });
+}
+
+// `brand`: the header row is authored on FedEx purple (nl-nl freight-services "Vind de juiste
+// vrachtservice": <tr style="background-color: #4D148C; color: white">)
+function brandHeader(table) {
+  const tr = table && table.querySelector('tr');
+  const bg = ((tr && tr.getAttribute('style')) || '').replace(/\s+/g, '').toLowerCase();
+  return /background(-color)?:(#4d148c|rgb\(77,20,140\))/.test(bg);
 }
 
 // comparison-landing (open-account.html "Business vs personal"): the leader column_control_v1 is

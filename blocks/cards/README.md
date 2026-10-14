@@ -12,10 +12,21 @@ One row per card. A cell holding only an image becomes the card image; all other
 - `promo`: borderless image-top cards, 727:463 images, CTA pinned to the bottom (1 → 3 per row from 768px)
 - `horizontal`: stacked list, 727:463 images; from 768px the image takes 1/4 on the left, the text 3/4. Square-ish icon artwork is shown whole (up to 120px), not cropped
 - `icon`: icon left of a **heading** (author as H3), text and link; 1 column on mobile, 2 from 768px
-- `centered`: modifier for `icon`: the icon sits on top and the text is centered, 3 per row from 768px. Example: `Cards (icon, centered)`. With `promo`, the card text and CTA/button are centered. Example: `Cards (promo, light, centered)`
+- `centered`: modifier for `icon`: the icon sits on top and the text is centered, 3 per row from 768px. Example: `Cards (icon, centered)`. With `promo`, the card text and CTA/button are centered. Example: `Cards (promo, light, centered)`. Without `light`, the title is large and light (24px, 32px from 768px), 36px below the image; the CTA follows the text instead of being pinned to the bottom, and buttons are 300px wide (long labels wrap). Example: `Cards (promo, centered)`
+- `large`: modifier for `icon, centered`: 144px round photos (author any photo; it is cropped to a circle) and a light 24px title. Author the title as a linked H3 (`### [Title](link)`): it shows as dark underlined text. From 768px the title keeps room for two lines so the texts line up. Example: `Cards (icon, centered, large)`
+- `two-columns`: modifier for `icon, centered`: 96px icons, large light titles (24px, 32px from 768px), 2 per row from 768px. Example: `Cards (icon, centered, two-columns)`; with `promo`: 2 cards per row from 768px (e.g. 4 cards as 2 x 2). `Cards (promo, centered)` with exactly 4 cards shows them 2 x 2 from 768px and 4 across from 1024px
 - `three-columns`: modifier for `icon`: 3 per row from 1024px (2 from 768px). Example: `Cards (icon, three-columns)`
+- `compact`: modifier for `horizontal`: small icon artwork instead of photos (80px, 96px from 768px) and a bold 20px title with the text and CTA close below it. From 768px the icon is centered in a 1/6 column on the left. With `light`, each row gets its own panel and the title is 18px. Examples: `Cards (horizontal, compact)`, `Cards (horizontal, light, compact)`
+- `icon-right`: modifier for `horizontal`: from 768px the image/icon sits on the right (1/6 column, vertically centered) and the text on the left. Keep the image as the first cell; on mobile it stays above the text. Example: `Cards (horizontal, light, compact, icon-right)`
+- `arrows`: adds a decorative chevron (›) after each text CTA. Example: `Cards (icon-links, arrows)`
 - `light`: light panel background (`--panel-color`, #fafafa), the same look as `Columns (light)`. With `promo`, each card body gets the panel instead of the whole block. Examples: `Cards (horizontal, light)`, `Cards (promo, light)`
 - `logos`: centered grid of partner/retailer logos. One row per logo: an image, optionally linked (link the image itself, or put a link next to it in the row; the link text is not shown). Other text is ignored. Logos are contained, never cropped, at a consistent height (80px, 120px from 768px); no borders. 2 per row on mobile, 3 from 768px, 4 from 1024px (3, 6 or 9 logos stay 3 per row). Example: `Cards (logos)`
+
+Icon-links with a description: put a text paragraph after the link (`icon | link, description`). The icons are larger (96px, 128px from 768px) and the description sits below the link as plain text. Only the icon and the link are clickable; the description is not part of the link.
+
+| Cards (icon-links, arrows) | |
+|---|---|
+| icon | link, description |
 
 Promo with exactly 2 cards lays out 2 across from 768px. In promo, an italic/bold link button is pinned to the card bottom like the text CTA.
 

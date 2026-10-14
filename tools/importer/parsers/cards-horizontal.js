@@ -236,7 +236,14 @@ export default function parse(element, { document }) {
     item.remove();
   });
 
-  const name = light ? 'Cards (horizontal, light)' : 'cards (horizontal)';
+  // `compact`: the source styles the item titles as small bold headings (inline
+  // font-weight:bold on the title_v1 heading, nl-nl shipping "Hulpmiddelen en tools")
+  const compact = items.some((item) => [...item.querySelectorAll('.title_v1 :is(h2, h3, h4)')]
+    .some((h) => /font-weight:\s*(bold|[6-9]00)/i.test(h.getAttribute('style') || '')));
+  const variants = ['horizontal'];
+  if (light) variants.push('light');
+  if (compact) variants.push('compact');
+  const name = variants.length > 1 ? `Cards (${variants.join(', ')})` : 'cards (horizontal)';
   const block = WebImporter.Blocks.createBlock(document, { name, cells });
   element.replaceWith(block);
 }

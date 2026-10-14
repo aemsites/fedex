@@ -76,12 +76,56 @@
   height: auto;
 }
 
+/*
+ * striped: grey tab tiles in a row, the active one brand purple with white bold text and 4px
+ * taller on both sides (nl-nl ship-to-apac "Ga verder met FedEx"). No underline.
+ */
+.tabs.striped .tabs-list {
+  align-items: center;
+  gap: 1px;
+  min-height: 56px;
+  border-bottom: 0;
+}
+
+.tabs.striped .tabs-tab {
+  min-height: 48px;
+  margin: 0;
+  border: 0;
+  padding: var(--space-2) var(--space-4);
+  background-color: var(--light-color);
+  font-size: var(--body-font-size-s);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.15;
+  text-align: center;
+}
+
+.tabs.striped .tabs-tab[aria-selected='true'] {
+  min-height: 56px;
+  background-color: var(--dark-color);
+  color: var(--color-white);
+  font-weight: var(--font-weight-bold);
+}
+
 @media (width >= 768px) {
   .tabs .tabs-list {
     gap: var(--space-10);
   }
 
+
   .tabs .tabs-tab {
     max-width: none;
+  }
+}
+
+@media (width >= 768px) {
+  /* striped: the tiles share the row (labels wrap onto two lines, as in the source) */
+  .tabs.striped .tabs-list {
+    gap: 1px;
+    padding-inline: 14px;
+  }
+
+  .tabs.striped .tabs-tab {
+    flex: 1 1 0;
+    padding-inline: var(--space-6);
   }
 }
