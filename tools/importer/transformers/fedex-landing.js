@@ -361,16 +361,26 @@ function convertJumpLinkGrids(element, doc) {
     // the list starts a new section, so it does not take the panel and jump-link styles
     const page = pageGrid(element);
     if (wrap.parentElement !== page) {
-      let next = wrap.nextElementSibling;
-      while (next && !hasContent(next)) next = next.nextElementSibling;
-      if (next) wrap.after(doc.createElement('hr'));
+      // the break goes at the first level (up to the page grid) where content follows: the list
+      // may close a nested container (how-to-ship-a-bike: [title panel + list] is a container
+      // inside the container that goes on with "Shipping a bike")
+      const sibling = (el, dir) => {
+        let s = el[dir];
+        while (s && !hasContent(s)) s = s[dir];
+        return s;
+      };
+      const breakAt = (el, dir) => {
+        let at = el;
+        while (at.parentElement && at.parentElement !== page && !sibling(at, dir)) at = at.parentElement;
+        const s = sibling(at, dir);
+        if (!s || s.matches('hr')) return;
+        if (dir === 'nextElementSibling') at.after(doc.createElement('hr'));
+        else at.before(doc.createElement('hr'));
+      };
+      breakAt(wrap, 'nextElementSibling');
       // ... and the list (with the title panel above it, "Learn how to ship:") starts one
-      let prev = wrap.previousElementSibling;
-      while (prev && !hasContent(prev)) prev = prev.previousElementSibling;
-      const start = prev && textPanel(prev) && rowBg(prev) === bg ? prev : wrap;
-      let before = start.previousElementSibling;
-      while (before && !hasContent(before)) before = before.previousElementSibling;
-      if (before && !before.matches('hr')) start.before(doc.createElement('hr'));
+      const prev = sibling(wrap, 'previousElementSibling');
+      breakAt(prev && textPanel(prev) && rowBg(prev) === bg ? prev : wrap, 'previousElementSibling');
     }
   });
 }
