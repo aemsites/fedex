@@ -149,6 +149,16 @@ function analyse(cells) {
   const paths = [...new Set(links.map(teaserPath))];
   if (paths.length !== 1 || !paths[0]) return null;
   const link = links.find((a) => teaserPath(a));
+  // a teaser is short: the link stands alone (a CTA paragraph or the linked title, not a link in
+  // running text), no lists, at most two text paragraphs. Content that links to a detail page
+  // (tracking/picture-proof-delivery: the benefit lists with "track your package" in the text,
+  // tracking/advanced feature cards) stays authored.
+  const block = link.closest('p, h1, h2, h3, h4, h5, h6, li') || link.parentElement;
+  if (clean(block.textContent) !== clean(link.textContent) || block.matches('li')) return null;
+  if (cells.some((c) => c.querySelector('ul, ol'))) return null;
+  const texts = cells.flatMap((c) => [...c.querySelectorAll('p')])
+    .filter((p) => clean(p.textContent) && !p.querySelector('a[href]'));
+  if (texts.length > 2) return null;
   const heading = cells.some((c) => c.querySelector('h1, h2, h3, h4, h5, h6'));
   return { path: paths[0], link, heading };
 }
