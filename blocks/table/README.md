@@ -22,6 +22,7 @@ To put a table inside an Accordion answer, author the table in a fragment and pu
 | What matters most? | Best choice | Delivery |
 | icon LABEL | **Service** | text |
 |  | **Service** | text |
-- `striped`: no row lines; every other data row (from the first) on the light panel colour, cells centered vertically, 14px text. Example: `Table (striped)`
+- `striped`: no row lines; every other data row (from the first) on the light panel colour, cells centered vertically, 14px text. Links in cells are purple; a link alone in its paragraph is a blue uppercase text CTA; a heading in a cell (`#### Service name`) is shown at 20px above its description. Example: `Table (striped)`
+- `purple-headers`: modifier for `striped`: the header labels in the lighter FedEx purple at 18px. Example: `Table (striped, purple-headers)`
 
 Code text in a cell (`` `8.00 - 11.30 uur` ``) is shown as a small purple badge, in every variant (fedex.com's time labels next to a service name).

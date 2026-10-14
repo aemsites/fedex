@@ -77,7 +77,22 @@ function splitCards(members, document) {
     const cells = cols.map((col) => card(image(col, rootOf(col), document), textContent(col, rootOf(col), document, { heading: 'h3' })));
     // 2 cards per source row (healthcare 2 x 2) -> two-columns; otherwise the block's own grid
     const perRow = columns(members[0]).length;
-    return { name: `Cards (promo, centered${perRow === 2 && cells.length > 2 ? ', two-columns' : ''})`, cells };
+    // links ending in the source's orange ">" (ship-to-apac "Hoe verzend ik naar China >"): the
+    // arrow is drawn by the block (`arrows`), not kept in the link text
+    let arrows = false;
+    cells.forEach(([, body]) => (Array.isArray(body) ? body : []).forEach((el) => {
+      el.querySelectorAll && el.querySelectorAll('a').forEach((a) => {
+        const last = a.lastChild;
+        if (last && last.nodeType === 3 && /\s*>\s*$/.test(last.textContent)) {
+          last.textContent = last.textContent.replace(/\s*>\s*$/, '');
+          arrows = true;
+        }
+      });
+    }));
+    const variants = ['promo', 'centered'];
+    if (perRow === 2 && cells.length > 2) variants.push('two-columns');
+    if (arrows) variants.push('arrows');
+    return { name: `Cards (${variants.join(', ')})`, cells };
   }
   const photo = srcs.some((s) => s && !/\.svg$/i.test(s));
   const cells = cols.map((col) => card(image(col, rootOf(col), document), textContent(col, rootOf(col), document, { heading: 'h3', linkTitle: true })));

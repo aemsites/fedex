@@ -7,6 +7,7 @@
   --table-rule: 1px solid var(--border-color);
   --table-cell-padding: var(--space-3) var(--space-4);
   --table-min-width: 480px;
+  --table-link-color: #671caa; /* the lighter FedEx purple of the source's table links */
 }
 
 .table .table-scroll {
@@ -38,7 +39,10 @@
 }
 
 .table th {
-  font-weight: var(--font-weight-bold);
+  color: var(--table-th-color, inherit);
+  font-size: var(--table-th-font-size, inherit);
+  font-weight: var(--table-th-font-weight, var(--font-weight-bold));
+  letter-spacing: var(--table-th-letter-spacing, inherit);
 }
 
 .table th > :first-child,
@@ -112,6 +116,14 @@
  */
 .table.striped {
   --table-rule: none;
+  --table-th-font-weight: var(--font-weight-medium); /* source: medium, 1px letter-spacing */
+  --table-th-letter-spacing: 1px;
+}
+
+/* purple-headers: header labels in the lighter purple at 18px (send-parcel-to-*) */
+.table.purple-headers {
+  --table-th-color: var(--table-link-color);
+  --table-th-font-size: 18px; /* source size */
 }
 
 .table.striped tbody tr:nth-child(odd) {
@@ -120,6 +132,35 @@
 
 .table.striped td {
   vertical-align: middle;
+}
+
+/* links in the cells (service names) in the lighter FedEx purple, as authored on the source */
+.table.striped td a:any-link {
+  color: var(--table-link-color);
+}
+
+/* a service name set large above its description (authored as a heading in the cell) */
+.table.striped td h4 {
+  margin: 0 0 var(--space-2);
+  font-size: 20px; /* source size */
+  font-weight: var(--font-weight-regular);
+  line-height: var(--heading-line-height);
+}
+
+/* a link on its own line ("Meer informatie") is a blue uppercase text CTA */
+.table.striped td p > a:only-child:any-link {
+  color: var(--color-blue);
+  font-size: var(--body-font-size-xs);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--button-letter-spacing);
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.table.striped td p > a:only-child:hover,
+.table.striped td p > a:only-child:focus-visible {
+  color: var(--color-blue-hover);
+  text-decoration: underline;
 }
 
 /* a badge in a cell (authored as code): the source's purple label, e.g. "8.00 - 11.30 uur" */
