@@ -240,9 +240,14 @@ export default function parse(element, { document }) {
   // font-weight:bold on the title_v1 heading, nl-nl shipping "Hulpmiddelen en tools")
   const compact = items.some((item) => [...item.querySelectorAll('.title_v1 :is(h2, h3, h4)')]
     .some((h) => /font-weight:\s*(bold|[6-9]00)/i.test(h.getAttribute('style') || '')));
+  // `large`: every item title is a default-style title (fxg-title--default: 32px light on the
+  // source; nl-nl ship-to-europe "Betrouwbaarheid"); en-us titles are custom 24px
+  const titles = items.flatMap((item) => [...item.querySelectorAll('.title_v1 :is(h2, h3, h4)')]);
+  const large = !compact && titles.length > 0 && titles.every((h) => h.classList.contains('fxg-title--default'));
   const variants = ['horizontal'];
   if (light) variants.push('light');
   if (compact) variants.push('compact');
+  if (large) variants.push('large');
   const name = variants.length > 1 ? `Cards (${variants.join(', ')})` : 'cards (horizontal)';
   const block = WebImporter.Blocks.createBlock(document, { name, cells });
   element.replaceWith(block);

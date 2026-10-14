@@ -11,3 +11,5 @@ The CTA follows the usual button formatting: ***bold italic*** = orange outline 
 ## Variants
 - *(none)*: light panel (`--panel-color`, #fafafa), 936px wide and centered. The columns are 2/12 icon, 6/12 text, 4/12 CTA, and the title is 25px. Example: nl-nl/shipping "Verzend slimmer met tips van experts".
 - `dark`: brand purple panel (`--dark-color`) across the full 970px content width, with white text and links. The columns are 3/12 icon, 6/12 text, 3/12 CTA, and the title is 21px. An *italic* CTA is a white outline pill that fills white with purple text on hover. Example: `Banner (dark)` on nl-nl/shipping/freight-services "Vracht verzenden met FedEx".
+
+Small print in the title ("Verzend naar Azië vanaf € 16,67 excl. btw") is authored as subscript and shown as 14px text on the baseline.

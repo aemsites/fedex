@@ -131,8 +131,13 @@ function mergeSplitRows(element) {
     const cols = visibleCols(cc);
     const sig = cols.map(colWidth).join('|');
     if (cols.length < 2 || cc.querySelector('.column_control_v1') || rowBg(cc)) return;
-    const run = siblingRun(cc, (n) => visibleCols(n).map(colWidth).join('|') === sig
-      && !n.querySelector('.column_control_v1') && !rowBg(n));
+    // a later row may fill only the first columns (ship-to-europe: "Focus op..." links under the
+    // first two of four photos)
+    const run = siblingRun(cc, (n) => {
+      const nsig = visibleCols(n).map(colWidth).join('|');
+      return (nsig === sig || (nsig && sig.startsWith(`${nsig}|`)))
+        && !n.querySelector('.column_control_v1') && !rowBg(n);
+    });
     if (run.length < 2 || !run.slice(1).some(oneKindRow)) return;
     // A row that is not one kind starts the next row of cards (healthcare: image + title row,
     // text row, image + title row, text row = 2 x 2 cards); the groups share one split id, so
@@ -396,8 +401,27 @@ function unwrapCenteredPanels(element, doc) {
       }
     }
     const nodes = [...grid.childNodes];
-    if (styles.length) nodes.push(styleMarker(doc, styles.join(', ')));
-    cc.replaceWith(...nodes);
+    if (!top) {
+      cc.replaceWith(...nodes);
+      return;
+    }
+    // A top-level panel holding several topics (ship-to-europe: the de-minimis banner, then
+    // "Meer manieren om in Europa te leveren") gets a break before each further H2 title, as a
+    // wrapper does; every part keeps the panel's look.
+    const out = [];
+    let seen = false;
+    nodes.forEach((n) => {
+      if (n.nodeType === 1 && hasContent(n)) {
+        if (seen && isTopicTitle(n)) {
+          if (styles.length) out.push(styleMarker(doc, styles.join(', ')));
+          out.push(doc.createElement('hr'));
+        }
+        seen = true;
+      }
+      out.push(n);
+    });
+    if (styles.length) out.push(styleMarker(doc, styles.join(', ')));
+    cc.replaceWith(...out);
   });
 }
 
@@ -519,8 +543,9 @@ export default function transform(hookName, element, payload) {
   promoteFirstHeading(element, doc);
   mergeSplitRows(element);
   insertSectionBreaks(element, doc);
-  markCenteredIntros(element, doc);
+  // after the panels are unwrapped: a centred title inside a panel opens its section too
   unwrapCenteredPanels(element, doc);
+  markCenteredIntros(element, doc);
   convertJumpLinks(element, doc);
   tagShapes(element);
 }
