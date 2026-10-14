@@ -411,7 +411,7 @@ export default {
       const parser = parsers[block.name];
       if (parser) {
         try {
-          parser(block.element, { document, url, params });
+          parser(block.element, { document, url, params, template: PAGE_TEMPLATE.name });
         } catch (e) {
           console.error(`Failed to parse ${block.name} (${block.selector}):`, e);
         }

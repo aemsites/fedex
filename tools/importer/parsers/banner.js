@@ -27,6 +27,13 @@ function visible(el, root) {
 function inline(src, document, tag) {
   const el = document.createElement(tag);
   const clone = src.cloneNode(true);
+  // small print inside the title ("Verzend naar Azië vanaf € 16,67 <small>excl. btw</small>",
+  // span.cc-aem-u-font-size--small) -> <sub>, which the block shows as small inline text
+  clone.querySelectorAll('span.cc-aem-u-font-size--small').forEach((s) => {
+    const sub = document.createElement('sub');
+    sub.append(...s.childNodes);
+    s.replaceWith(sub);
+  });
   clone.querySelectorAll('span, font').forEach((s) => s.replaceWith(...s.childNodes));
   clone.querySelectorAll('*').forEach((n) => { n.removeAttribute('class'); n.removeAttribute('style'); });
   el.innerHTML = clone.innerHTML.replace(/\s+/g, ' ').replace(/(&nbsp;|\s)+$/g, '').trim();

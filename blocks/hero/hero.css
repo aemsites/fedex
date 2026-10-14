@@ -184,6 +184,23 @@
   padding: 19px 30px;
 }
 
+/*
+ * full-image (with landing): the picture is a baked banner too (white fade, diagonal and
+ * photo in one image, nl-nl ship-to-europe). Mobile: the photo end of it stacked above the text, as landing.
+ * From 768px the banner fills the whole block behind the dark, left-aligned text.
+ */
+.hero-container:has(.hero.landing.full-image) {
+  background-color: var(--background-color);
+}
+
+.hero-container:has(.hero.landing.full-image) .hero-bg {
+  background-color: var(--background-color);
+}
+
+.hero-container:has(.hero.landing.full-image) .hero-bg img {
+  object-position: right center;
+}
+
 @media (width >= 768px) {
   .hero-container {
     --hero-heading-line-height: var(--body-line-height);
@@ -293,5 +310,22 @@
 @media (width >= 1024px) {
   .hero.purple .hero-content {
     padding-inline: 0;
+  }
+}
+
+/* full-image from 768px: the whole banner behind the text (no light band, no diagonal clip) */
+@media (width >= 768px) {
+  .hero-container:has(.hero.landing.full-image) {
+    box-sizing: border-box;
+    min-height: 350px; /* the banner's 1200x350 crop */
+  }
+
+  .hero-container:has(.hero.landing.full-image) .hero-bg {
+    inset: 0;
+    clip-path: none;
+  }
+
+  .hero.landing.full-image .hero-content {
+    max-width: 470px;
   }
 }

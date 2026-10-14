@@ -134,7 +134,7 @@ function isJumpPanel(el) {
     || (el.matches('.column_control_v1') && !!el.querySelector(':scope > .row.fxg-row--has-bgcolor a[href^="#"]'));
 }
 
-export default function parse(element, { document }) {
+export default function parse(element, { document, template }) {
   if (element.matches('.fedex-hero-extracted')) return;
   const hero = element.querySelector('.fxg-landing-hero') || element;
 
@@ -241,7 +241,10 @@ export default function parse(element, { document }) {
       .forEach((child) => walkComponents({ children: [child] }, element, document, after));
   }
 
-  const name = isPurple(element, hero) ? 'Hero (landing, purple)' : 'Hero (landing)';
+  // generic-landing (nl-nl): the light heroes' pictures are baked banners too (white fade,
+  // diagonal and photo in one 1200x350 / 2400x700 image) -> `full-image`, shown whole
+  let name = isPurple(element, hero) ? 'Hero (landing, purple)' : 'Hero (landing)';
+  if (template === 'generic-landing' && name === 'Hero (landing)' && picture) name = 'Hero (landing, full-image)';
   const block = WebImporter.Blocks.createBlock(document, { name, cells });
   element.replaceWith(block);
   if (after.length) block.after(...after);

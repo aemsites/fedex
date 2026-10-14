@@ -142,3 +142,9 @@
     padding-inline-start: var(--space-6);
   }
 }
+
+/* small print in the title ("excl. btw", authored as subscript): 14px on the baseline */
+.banner h3 sub {
+  font-size: var(--body-font-size-s);
+  vertical-align: baseline;
+}

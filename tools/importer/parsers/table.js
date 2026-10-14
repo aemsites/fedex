@@ -42,8 +42,22 @@ function normalizeSpace(el) {
   return el;
 }
 
+// A run on its own background colour inside a cell is a badge ("8.00 - 11.30 uur" on purple next
+// to a service name, nl-nl ship-to-europe / send-parcel-to-*): kept as <code> (the block shows
+// it as a badge); the text inside loses its bold.
+const BADGE_BG = /background(-color)?\s*:\s*(?!transparent|rgba\(0,\s*0,\s*0,\s*0\)|#fff|white)[^;]+/i;
+function markBadges(cell, document) {
+  cell.querySelectorAll('span[style]').forEach((span) => {
+    if (!BADGE_BG.test(span.getAttribute('style') || '') || !clean(span.textContent)) return;
+    const code = document.createElement('code');
+    code.textContent = clean(span.textContent);
+    span.replaceWith(code);
+  });
+}
+
 function cellContent(src, document, header) {
   const clone = normalizeSpace(src.cloneNode(true));
+  markBadges(clone, document);
   clone.querySelectorAll('span, font').forEach((s) => s.replaceWith(...s.childNodes));
   clone.querySelectorAll('input, script, style').forEach((n) => n.remove());
   [...clone.querySelectorAll('*')].forEach((n) => {
@@ -94,7 +108,12 @@ function buildTable(source, document) {
   if (!cells.length) return null;
   // row/cell structure unchanged (library Table convention: header row, then one row per data
   // row); only the variant name differs
-  return WebImporter.Blocks.createBlock(document, { name: brandHeader(table) ? 'Table (brand)' : 'Table', cells });
+  // `striped`: fedex.com striped-row tables without borders (nl-nl ship-to-europe tab tables)
+  const variants = [];
+  if (brandHeader(table)) variants.push('brand');
+  if (table && table.classList.contains('fxg-table--striped-row')) variants.push('striped');
+  const name = variants.length ? `Table (${variants.join(', ')})` : 'Table';
+  return WebImporter.Blocks.createBlock(document, { name, cells });
 }
 
 // `brand`: the header row is authored on FedEx purple (nl-nl freight-services "Vind de juiste
