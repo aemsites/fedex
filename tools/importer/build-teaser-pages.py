@@ -1,5 +1,8 @@
-# Builds tools/importer/teaser-pages.js: the detail pages that a listing teases AND that are part of
-# the migration (listed in a tools/importer/urls-*.txt file), with the listing's teaser image.
+# Builds tools/importer/teaser-pages.js: the detail pages that a listing teases AND that are
+# imported with the generic-landing importer (tools/importer/urls-generic-landing.txt: it is the one
+# that writes the teaser image as metadata Image), with the listing's teaser image. A page teased
+# by several listings with different photos keeps the image it already has in teaser-pages.js (so
+# a rebuild does not change published teasers), else the first listing's.
 #  - transformers/fedex-teasers.js uses it twice: a detail page gets that image as its metadata Image
 #    (fedex.com's og:image is the FedEx logo on every page), and a listing's teaser blocks become
 #    link-only `teasers` rows that blocks/cards and blocks/columns fill from the detail page.
@@ -7,25 +10,32 @@
 # Input: tools/importer/teasers-collected.json, the output of collect-teasers.js run in a fedex.com
 # page on the listings (how-to-hub/articles, sweepstakes). Re-run both after adding listings or URLs.
 # Run from the repo root: python3 tools/importer/build-teaser-pages.py
-import glob
 import json
 import re
 
 collected = json.load(open('tools/importer/teasers-collected.json'))
 migrated = set()
-for f in glob.glob('tools/importer/urls-*.txt'):
-    if 'representative' in f:
-        continue
+for f in ['tools/importer/urls-generic-landing.txt']:
     for line in open(f):
         line = line.strip()
         if line.startswith('https://www.fedex.com/') and '?' not in line:
             migrated.add(re.sub(r'\.html$', '', line[len('https://www.fedex.com'):]))
+
+previous = {}
+try:
+    text = open('tools/importer/teaser-pages.js').read()
+    previous = json.loads(text[text.index('{'):text.rindex('}') + 1])
+except (FileNotFoundError, ValueError):
+    pass
 
 pages = {}
 for path, teasers in sorted(collected.items()):
     if path not in migrated:
         continue
     first = teasers[0]
+    kept = previous.get(path, {}).get('image')
+    if kept:
+        first = next((t for t in teasers if t['image'] == kept), {**first, 'image': kept, 'alt': previous[path].get('alt', '')})
     pages[path] = {
         'image': first['image'],
         'alt': first['alt'],

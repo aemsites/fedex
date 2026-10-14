@@ -8,7 +8,7 @@ __PARSER_IMPORTS__
 
 // TRANSFORMER IMPORTS
 import fedexCleanupTransformer from './transformers/fedex-cleanup.js';
-import fedexLandingTransformer from './transformers/fedex-landing.js';
+import fedexLandingTransformer, { markAdaptiveForms } from './transformers/fedex-landing.js';
 import fedexTeasersTransformer, { resolveTeaserAnchors } from './transformers/fedex-teasers.js';
 import fedexPreprocess from './fedex-preprocess.js';
 
@@ -117,9 +117,11 @@ export default {
   onLoad: async ({ document }) => rejectHomepageTestVariant(document),
 
   // Runs before helix-importer's own DOM preprocessing (which would drop text next to `u > a`, and
-  // the empty anchors that in-page links to teasers point at)
+  // the empty anchors that in-page links to teasers point at) and before cleanup drops the
+  // adaptive form configs
   preprocess: (payload) => {
     fedexPreprocess(payload);
+    markAdaptiveForms(payload.document);
     resolveTeaserAnchors(payload.document.body, (payload.params && payload.params.originalURL) || payload.url);
   },
 

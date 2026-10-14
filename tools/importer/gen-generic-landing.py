@@ -87,6 +87,12 @@ for src in SOURCES:
 blocks['cards-logos'] = [s.replace('.root div.carousel_v1:has(.image_v2 img)',
                                    '.root div.carousel_v1:has(.image_v2 img):not(:has(.title_v1, .button_v1 a))')
                          for s in blocks.get('cards-logos', [])]
+# advanced tables are icon-link grids on the homepages (every cell an icon + link); a comparison
+# table (en-us tracking/advanced "Which FedEx tracking tool is right for you?": text cells) is a
+# data table, left to the table parser (the component is also div.table)
+blocks['cards-icon-links'] = [s.replace('.root div.advanced_table_v1:not(.accordion_selector *)',
+                                        '.root div.advanced_table_v1:not(.accordion_selector *):not(:has(td:not(:has(a[href]))))')
+                              for s in blocks.get('cards-icon-links', [])]
 # image-column steps: the image column holds only the image (international.html "Prep for a smooth
 # trip"); a grid whose columns each open with a photo and go on with a title, text and nested
 # icon rows (en-us sweepstakes "Check out some of our past sweepstakes") is not a steps row

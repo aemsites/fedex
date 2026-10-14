@@ -609,6 +609,73 @@ function unwrapUntitledAccordions(element) {
   });
 }
 
+// FAQ layout (en-us customer-support/faqs/*): a column control [col-sm-4 FAQ navigation (tagged
+// pages navigation / content navigation experience fragments) | col-sm-8 content]. The content
+// stays in place; the "Did this information help you?" survey is dropped (a placeholder on the
+// source: "Placement only & does not work"); the navigation follows the content as a section of
+// its own with style `faq-navigation` (styles.css lays it out as the left sidebar from 768px, as
+// the nl-nl FAQ pages imported by transformers/fedex-faq.js).
+const FAQ_NAV = '.fxg-taggedpages--navigation, .js-taggedpages-faq-navigation, .content_navigation';
+
+function convertFaqLayout(element, doc) {
+  element.querySelectorAll('.root .column_control_v1').forEach((cc) => {
+    if (!cc.isConnected || cc.parentElement.closest('.column_control_v1')) return;
+    const cols = visibleCols(cc);
+    if (cols.length !== 2 || !cols[0].querySelector(FAQ_NAV)) return;
+    const [side, content] = cols.map(colGrid);
+    if (!side || !content) return;
+    [...content.children].forEach((comp) => {
+      if (/^Did this information help you\?/i.test(clean(comp.textContent))) comp.remove();
+    });
+    // a title-only hero before the layout (the FAQ start page: h1 + intro) spans the page above the
+    // sidebar and content (style faq-title)
+    const hero = [...element.querySelectorAll('.root .hero_landingpage_v1')]
+      .find((h) => (h.compareDocumentPosition(cc) & 4) && h.querySelector('h1') && !h.querySelector('img'));
+    if (hero) hero.after(styleMarker(doc, 'faq-title'));
+    const nav = doc.createElement('div');
+    nav.className = 'faq-sidebar';
+    nav.append(...side.children, styleMarker(doc, 'faq-navigation'));
+    cc.replaceWith(...content.children, doc.createElement('hr'), nav);
+  });
+}
+
+// AEM adaptive forms (en-us accessibility "Our commitment to your feedback"): div.aemform holds a
+// JSON config naming the form ("formPath": ".../aaf/us/accessibility-feedback.en-us.html"); the
+// form itself is rendered by script. markAdaptiveForms (called from the import script's preprocess
+// hook, before cleanup drops scripts) replaces the component with a marker naming the Edge Delivery
+// form definition, /{locale}/forms/{name}.json (made with the forms migration tooling, uploaded as
+// a sheet); afterTransform turns the marker into a Form block linking it (a block made before the
+// parsers would be read as a data table).
+const FORM_MARKER = 'data-fedex-form';
+
+export function markAdaptiveForms(document) {
+  document.querySelectorAll('.root div.aemform').forEach((comp) => {
+    let name = null;
+    const config = comp.querySelector('script[data-config="js-adaptiveform-config"]');
+    try {
+      const formPath = config && JSON.parse(config.textContent).formPath;
+      name = formPath && new URL(formPath, 'https://www.fedex.com/').pathname.split('/').pop().split('.')[0];
+    } catch (e) {
+      name = null;
+    }
+    if (!name) return;
+    const marker = document.createElement('p');
+    marker.setAttribute(FORM_MARKER, name);
+    marker.textContent = `form ${name}`;
+    comp.replaceWith(marker);
+  });
+}
+
+function createFormBlocks(element, doc, locale) {
+  element.querySelectorAll(`[${FORM_MARKER}]`).forEach((marker) => {
+    const href = `/${locale}/forms/${marker.getAttribute(FORM_MARKER)}.json`;
+    const a = doc.createElement('a');
+    a.setAttribute('href', href);
+    a.textContent = href;
+    marker.replaceWith(WebImporter.Blocks.createBlock(doc, { name: 'Form', cells: [[a]] }));
+  });
+}
+
 function stripForms(element) {
   element.querySelectorAll('.root form').forEach((form) => {
     FORM_FIELDS.forEach((sel) => form.querySelectorAll(sel).forEach((el) => {
@@ -649,12 +716,15 @@ export default function transform(hookName, element, payload) {
     element.querySelectorAll('li, td, th, div[class] > div > div')
       .forEach((el) => { if (el.querySelector(':scope > sup')) wrapInlineRuns(el, doc); });
     createSectionMetadata(element, doc);
+    const original = payload && payload.params && payload.params.originalURL;
+    createFormBlocks(element, doc, original ? new URL(original).pathname.split('/')[1] : 'en-us');
     removeEmptySections(element);
     return;
   }
   if (hookName !== 'beforeTransform') return;
   removeHiddenContent(element);
   unwrapUntitledAccordions(element);
+  convertFaqLayout(element, doc);
   stripForms(element);
   promoteFirstHeading(element, doc);
   mergeSplitRows(element);

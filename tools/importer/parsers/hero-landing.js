@@ -218,6 +218,25 @@ export default function parse(element, { document, template }) {
       || !all.slice(0, i).some((b) => (b.href || b.getAttribute('href')) === (a.href || a.getAttribute('href'))))
     .map((a) => ctaParagraph(a, document));
 
+  // Hero block convention kept: one row, one cell (picture, h1, intro, CTAs). A banner without
+  // intro text of its own can carry it in a richtext beside the banner, in the hero component's own
+  // grid (en-us customer-support/faqs/receiving: "Learn more about tracking, managing, and picking
+  // up your delivery at a FedEx location."): those paragraphs are the intro.
+  if (!paras.length && hero !== element) {
+    [...element.querySelectorAll('.richtext')]
+      .filter((rt) => !hero.contains(rt) && !rt.closest('.column_control_v1') && !isHidden(rt, element))
+      .forEach((rt) => {
+        [...rt.querySelectorAll('p')].filter((p) => clean(p.textContent) && !isHidden(p, element)).forEach((p) => {
+          const np = document.createElement('p');
+          np.innerHTML = normalizeSpace(p.cloneNode(true)).innerHTML.replace(/(&nbsp;|\s)+$/g, '').trim();
+          np.querySelectorAll('span').forEach((s) => s.replaceWith(...s.childNodes));
+          np.querySelectorAll('*').forEach((n) => { n.removeAttribute('class'); n.removeAttribute('style'); });
+          paras.push(np);
+        });
+        rt.remove();
+      });
+  }
+
   if (!h1 && !picture && !paras.length) {
     element.remove();
     return;

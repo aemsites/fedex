@@ -9,7 +9,12 @@
 async (listingUrls) => {
   const clean = (t) => (t || '').replace(/\s+/g, ' ').trim();
   const photo = (el) => [...el.querySelectorAll('img')]
-    .find((i) => !/\.svg(\?|$)|jumplink|_Icon_/i.test(i.getAttribute('src') || ''));
+    // teaser photos are JPEG / WebP; icons are PNG or SVG ("Purple Courier Icon - Small.png"
+    // beside the FAQ category links, the "Purple 4.png" step numbers on tracking guides)
+    .find((i) => {
+      const file = (i.getAttribute('src') || '').split('/').pop().split('?')[0];
+      return /\.(jpe?g|webp)$/i.test(file) && !/icon|jumplink/i.test(file);
+    });
   const out = {};
   for (const listing of listingUrls) {
     const res = await fetch(listing, { credentials: 'include' });

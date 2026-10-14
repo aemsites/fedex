@@ -621,13 +621,18 @@ export default function transform(hookName, element, payload) {
       });
       // Title-only landing hero (manage-account: .hero_landingpage_v1 h1.fxg-hero-landing-title, no photo)
       // stays default content. Left inside the hero's wrapper divs, html2md glues the next block table
-      // onto the H1 line, so keep just the heading.
+      // onto the H1 line, so keep just the heading and the text paragraphs after it (en-us
+      // customer-support/faqs: "From shipping and delivery to billing…", which was lost).
       element.querySelectorAll('.hero_landingpage_v1:not(.fedex-hero-extracted)').forEach((hero) => {
         const h1 = hero.querySelector('h1');
         if (!h1 || hero.querySelector('img, picture, table')) return;
         h1.removeAttribute('class');
         h1.innerHTML = h1.innerHTML.trim();
-        hero.replaceWith(h1);
+        const texts = [...hero.querySelectorAll('p, ul, ol')]
+          .filter((el) => (h1.compareDocumentPosition(el) & 4) && el.textContent.trim()
+            && !el.parentElement.closest('p, ul, ol') && !el.closest('.fxg-desktop--hide'));
+        texts.forEach((el) => el.removeAttribute('class'));
+        hero.replaceWith(h1, ...texts);
       });
       // Bare default-content links (manage-account: div.button_v1 > div.link > a) -> <p><a>. A bare
       // <a> holding a <sup> (e.g. "FedEx Delivery Manager®") makes html2md drop every block
