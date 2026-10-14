@@ -181,6 +181,12 @@ function panelFragment(grid, root, label, document, ctx) {
     const leaf = all.find((a) => !a.querySelector('div.accordion_selector')) || all[0];
     accordionParser(leaf, { document, url: ctx.url, params: { originalURL: ctx.url } });
   }
+  // a centred intro text in the panel (ship-to-apac "Flexibele afleveropties…",
+  // cc-aem-u-align--center@small) -> the fragment section gets style center-intro
+  const intro = panelComponents(grid, root).find((c) => c.matches('.richtext, .title_v1'));
+  if (intro && intro.querySelector('[class*="align--center@small"]')) {
+    fragment.append(WebImporter.Blocks.createBlock(document, { name: 'Section Metadata', cells: { style: 'center-intro' } }));
+  }
   const path = fragmentPath(label, ctx.url, document);
   if (!document.importFragments) document.importFragments = [];
   document.importFragments.push({ element: fragment, path, title: label });

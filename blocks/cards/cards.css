@@ -530,7 +530,8 @@
   /* a plain (unlinked) title is the source's 32px default title (ship-to-europe "Gemak") */
   .cards.icon.centered.large .cards-card-body h3:not(:has(> a)) {
     min-height: 0;
-    font-size: var(--heading-font-size-xl);
+    font-size: var(--heading-font-size-l); /* 32px from 768px */
+    line-height: var(--heading-line-height);
   }
 
   .cards.icon.centered.two-columns > ul {
@@ -706,7 +707,7 @@
 
   /* large: the source's 32px light default titles (ship-to-europe "Betrouwbaarheid") */
   .cards.horizontal.large {
-    --cards-title-size: var(--heading-font-size-xl);
+    --cards-title-size: var(--heading-font-size-l); /* 32px from 768px */
   }
 
   .cards.horizontal > ul > li {
@@ -872,4 +873,19 @@ main .default-content-wrapper:has(> .button-wrapper:last-child) + .cards-wrapper
   font-weight: var(--font-weight-medium);
   letter-spacing: normal;
   text-transform: none;
+}
+
+/*
+ * promo + arrows (ship-to-apac / ship-to-europe "Deskundig advies"): the source ends each link
+ * with an orange ">" (decorative)
+ */
+.cards.promo.arrows .cards-card-cta a:any-link::after {
+  content: '\00a0>' / '';
+  width: auto;
+  height: auto;
+  margin-left: 0;
+  border: 0;
+  color: var(--color-orange);
+  vertical-align: baseline;
+  transform: none;
 }

@@ -55,9 +55,22 @@ function markBadges(cell, document) {
   });
 }
 
+// A paragraph set in a large type in a cell (inline font-size >= 18px: the service name above
+// its description, nl-nl send-parcel-to-*) is the cell's heading -> h4.
+function markCellHeadings(cell, document) {
+  cell.querySelectorAll('p[style*="font-size"]').forEach((p) => {
+    const m = (p.getAttribute('style') || '').match(/font-size\s*:\s*(\d+)px/i);
+    if (!m || Number(m[1]) < 18 || !clean(p.textContent)) return;
+    const h = document.createElement('h4');
+    h.append(...p.childNodes);
+    p.replaceWith(h);
+  });
+}
+
 function cellContent(src, document, header) {
   const clone = normalizeSpace(src.cloneNode(true));
   markBadges(clone, document);
+  if (!header) markCellHeadings(clone, document);
   clone.querySelectorAll('span, font').forEach((s) => s.replaceWith(...s.childNodes));
   clone.querySelectorAll('input, script, style').forEach((n) => n.remove());
   [...clone.querySelectorAll('*')].forEach((n) => {
@@ -112,6 +125,9 @@ function buildTable(source, document) {
   const variants = [];
   if (brandHeader(table)) variants.push('brand');
   if (table && table.classList.contains('fxg-table--striped-row')) variants.push('striped');
+  // header labels authored in the lighter FedEx purple (#671CAA, send-parcel-to-*)
+  const th = table && table.querySelector('th');
+  if (th && /#671caa|rgb\(103,\s*28,\s*170\)/i.test(th.getAttribute('style') || '')) variants.push('purple-headers');
   const name = variants.length ? `Table (${variants.join(', ')})` : 'Table';
   return WebImporter.Blocks.createBlock(document, { name, cells });
 }
