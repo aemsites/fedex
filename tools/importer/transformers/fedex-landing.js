@@ -383,6 +383,8 @@ function unwrapCenteredPanels(element, doc) {
       // colour is white; FedEx purple (shipping.html "Bereken uw tarieven") is the dark band
       const bg = rowBg(cc);
       if (bg) styles.push(bg);
+      // a row of the page grid itself spans the page: its grey panel runs edge to edge
+      if (bg === 'light') styles.push('full-width');
       const links = [...grid.querySelectorAll('a[href]')];
       if (links.length && links.every((a) => a.getAttribute('href').startsWith('#'))) {
         styles.push('jump-links');

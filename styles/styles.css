@@ -414,6 +414,25 @@ main > .section.highlight {
   background-color: var(--panel-color);
 }
 
+/*
+ * full-width: modifier for light, the panel runs edge to edge while its content keeps the content
+ * width (nl-nl shipping "Wat u kunt vinden op deze pagina", the "Vracht / E-commerce" band)
+ */
+main > .section.light.full-width,
+main > .section.highlight.full-width {
+  width: auto;
+  margin-inline: 0;
+}
+
+/* directly under the hero the band starts at the hero's bottom edge (jump links) */
+main > .section.hero-container:has(+ .section.light.full-width) {
+  margin-bottom: 0;
+}
+
+main > .section.hero-container + .section.light.full-width {
+  margin-top: 0;
+}
+
 /* a light block inside a light section doesn't need its own panel */
 main > .section.light .block.light,
 main > .section.highlight .block.light {
@@ -517,9 +536,22 @@ main > .section.jump-links .default-content-wrapper > ul {
 
 main > .section.jump-links p > a:only-child:any-link:not(.button),
 main > .section.jump-links li > a:only-child:any-link:not(.button) {
+  display: inline-flex;
+  gap: var(--space-2);
   color: var(--color-blue);
   font-weight: var(--font-weight-medium);
   text-decoration: none;
+}
+
+/* the source's blue down arrow before each in-page link (16px, decorative); wrapped lines hang */
+main > .section.jump-links p > a:only-child:any-link:not(.button)::before,
+main > .section.jump-links li > a:only-child:any-link:not(.button)::before {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  margin-top: 0.2em;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23007ab7' stroke-linejoin='round'%3E%3Cpath d='M13 10 7.5 15.5 2 10M7.5 0v15.5'/%3E%3C/svg%3E") center / contain no-repeat;
+  content: '';
 }
 
 main > .section.jump-links p > a:only-child:not(.button):hover,

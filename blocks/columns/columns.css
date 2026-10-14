@@ -105,6 +105,11 @@
   max-width: 300px;
 }
 
+/* stacked light promos keep the source's 32px between their panels (nl-nl home, en-de home) */
+.columns-wrapper:has(> .columns.promo.light) + .columns-wrapper > .columns.promo.light {
+  margin-top: var(--space-8);
+}
+
 /* light promo: the image fills its column; the button centers on mobile */
 .columns.promo.light .columns-img-col img {
   object-fit: cover;
