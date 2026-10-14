@@ -42,7 +42,7 @@
   color: var(--table-th-color, inherit);
   font-size: var(--table-th-font-size, inherit);
   font-weight: var(--table-th-font-weight, var(--font-weight-bold));
-  letter-spacing: var(--table-th-letter-spacing, normal);
+  letter-spacing: var(--table-th-letter-spacing, inherit);
 }
 
 .table th > :first-child,
