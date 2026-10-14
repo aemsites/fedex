@@ -194,6 +194,8 @@ function tagRun(run, block, kind) {
  *   oplossingen")
  * - columns-layout / divided: 2 columns, each a title above nested icon rows (freight "Hoe
  *   verzendt u uw vracht | Wat kan ik verzenden?")
+ * - columns-layout / icon-lists: 2 columns, each a photo, title and text above nested icon rows
+ *   (en-us sweepstakes "Check out some of our past sweepstakes")
  * - columns-layout / one-third: [col-sm-4 image] | [col-sm-8 heading + text] (freight "Wij maken
  *   vrachtvervoer eenvoudiger dan u denkt")
  */
@@ -227,6 +229,18 @@ function tagShapes(element) {
     if (cols.every((c) => compsOf(c)[0] && compsOf(c)[0].matches('.title_v1') && nested(c).length > 0
       && compsOf(c).slice(1).every((k) => k.matches('.column_control_v1')))) {
       tag(cc, 'columns-layout', 'divided');
+      return;
+    }
+    // photo, title, text, then nested icon rows in each column (en-us sweepstakes "Check out some
+    // of our past sweepstakes": image, name, story, "Their experiences included:" + prize icons)
+    const photoCol = (c) => {
+      const k = compsOf(c);
+      return !!k[0] && k[0].matches('.image_v2') && !svgIcon(k[0].querySelector('img'))
+        && !!k[1] && k[1].matches('.title_v1') && nested(c).length > 0
+        && k.slice(2).every((x) => x.matches('.richtext, .column_control_v1'));
+    };
+    if (cols.every(photoCol)) {
+      tag(cc, 'columns-layout', 'icon-lists');
       return;
     }
     if (colWidth(cols[0]) === 'col-sm-4' && colWidth(cols[1]) === 'col-sm-8' && only(kinds[0], 'image_v2')
@@ -305,6 +319,72 @@ function wrapperGrid(child) {
 
 const isTopicTitle = (el) => el.matches('.title_v1') && !!el.querySelector('h2');
 
+// Jump-link grids (en-us how-to-ship pages "Here’s what you’ll find on this page:",
+// how-to-hub/articles "Learn how to ship:"): a panel of [arrow icon | #link] rows, one stack per
+// column. The outermost column control holding only those rows becomes a list of the links with
+// the `jump-links` style (two columns from 768px, the source's arrows drawn by the style) and
+// `light` for a grey panel; it stays one section with the title panel above it (insertSectionBreaks).
+const JUMP_GRID = 'data-fedex-jump-grid';
+const jumpArrow = (img) => /jumplink_arrow/i.test(img.getAttribute('src') || '');
+
+function convertJumpLinkGrids(element, doc) {
+  element.querySelectorAll('.root .column_control_v1').forEach((cc) => {
+    if (!cc.isConnected || cc.parentElement.closest('.column_control_v1') || cc.closest('.fxg-desktop--hide')) return;
+    // centred panels keep their own jump-links handling (unwrapCenteredPanels)
+    if (centeredPanelGrid(cc, true)) return;
+    const imgs = [...cc.querySelectorAll('img')];
+    const links = [...cc.querySelectorAll('a[href]')].filter((a) => !a.closest('.fxg-desktop--hide') && clean(a.textContent));
+    if (links.length < 2 || !links.every((a) => a.getAttribute('href').startsWith('#'))) return;
+    // the arrows: an icon image per row, or an icon inside each link (how-to-ship-computers:
+    // a.fxg-img-left with an <object> SVG)
+    const iconLinks = links.every((a) => a.matches('.fxg-img-left, .fxg-img-right') || a.querySelector('object, .fxg-image'));
+    if (imgs.length ? !imgs.every(jumpArrow) : !iconLinks) return;
+    const rest = cc.cloneNode(true);
+    rest.querySelectorAll('a, .fxg-desktop--hide, script, noscript').forEach((el) => el.remove());
+    if (clean(rest.textContent)) return;
+    const ul = doc.createElement('ul');
+    links.forEach((a) => {
+      const li = doc.createElement('li');
+      const na = doc.createElement('a');
+      na.setAttribute('href', a.getAttribute('href'));
+      na.textContent = clean(a.textContent);
+      li.append(na);
+      ul.append(li);
+    });
+    const bg = rowBg(cc);
+    const wrap = doc.createElement('div');
+    wrap.className = 'jumplink-grid';
+    wrap.setAttribute(JUMP_GRID, bg);
+    wrap.append(ul, styleMarker(doc, bg ? `${bg}, jump-links` : 'jump-links'));
+    cc.replaceWith(wrap);
+    // inside a wrapper (how-to-hub/articles: the whole body is one container) the content after
+    // the list starts a new section, so it does not take the panel and jump-link styles
+    const page = pageGrid(element);
+    if (wrap.parentElement !== page) {
+      // the break goes at the first level (up to the page grid) where content follows: the list
+      // may close a nested container (how-to-ship-a-bike: [title panel + list] is a container
+      // inside the container that goes on with "Shipping a bike")
+      const sibling = (el, dir) => {
+        let s = el[dir];
+        while (s && !hasContent(s)) s = s[dir];
+        return s;
+      };
+      const breakAt = (el, dir) => {
+        let at = el;
+        while (at.parentElement && at.parentElement !== page && !sibling(at, dir)) at = at.parentElement;
+        const s = sibling(at, dir);
+        if (!s || s.matches('hr')) return;
+        if (dir === 'nextElementSibling') at.after(doc.createElement('hr'));
+        else at.before(doc.createElement('hr'));
+      };
+      breakAt(wrap, 'nextElementSibling');
+      // ... and the list (with the title panel above it, "Learn how to ship:") starts one
+      const prev = sibling(wrap, 'previousElementSibling');
+      breakAt(prev && textPanel(prev) && rowBg(prev) === bg ? prev : wrap, 'previousElementSibling');
+    }
+  });
+}
+
 function insertSectionBreaks(element, doc) {
   const grid = pageGrid(element);
   if (!grid) return;
@@ -315,7 +395,8 @@ function insertSectionBreaks(element, doc) {
     const merged = prev && type === typeOf(prev) && BREAK_TYPES_MERGED.includes(type)
       && !centeredPanelGrid(child, true) && !centeredPanelGrid(prev, true);
     // the jump-links heading row and the links row below it are one panel (freight-services)
-    const panelPair = prev && textPanel(prev) && jumpPanel(child) && rowBg(prev) === rowBg(child);
+    const panelPair = prev && textPanel(prev) && ((jumpPanel(child) && rowBg(prev) === rowBg(child))
+      || (child.hasAttribute(JUMP_GRID) && rowBg(prev) === child.getAttribute(JUMP_GRID)));
     // a heading stays with the content it introduces (temperature-controlled, contact pages)
     if (prev && !merged && !panelPair && !headingsOnly(prev)) child.before(doc.createElement('hr'));
     prev = child;
@@ -337,6 +418,14 @@ function insertSectionBreaks(element, doc) {
 // text below it is centred too). The marker goes right after the title; the style centres the
 // section's leading default content only (later footnotes stay left).
 function markCenteredIntros(element, doc) {
+  // a title-only hero (no image: how-to-hub/articles "Take the wheel with FedEx how-to guides",
+  // centred h1 and centred intro below it) -> its section is center-intro too
+  element.querySelectorAll('.root .hero_landingpage_v1').forEach((hero) => {
+    const h1 = hero.querySelector('h1[data-desktop-align="center"]');
+    if (h1 && !hero.querySelector('img') && clean(hero.textContent) === clean(h1.textContent)) {
+      hero.after(styleMarker(doc, 'center-intro'));
+    }
+  });
   element.querySelectorAll('.root .title_v1').forEach((title) => {
     const h = title.querySelector('h1, h2, h3, h4, h5, h6');
     if (!h || h.tagName === 'H1' || !h.classList.contains('cc-aem-u-align--center@small')) return;
@@ -502,6 +591,24 @@ function convertJumpLinks(element, doc) {
   });
 }
 
+// An accordion without a title (an empty button label) is shown open on fedex.com and works as a
+// plain wrapper (en-us how-to-ship-guitars / tv-monitor step 4 "Or pack and ship without visiting
+// a FedEx Office location": the packing steps). Its items' components replace it, so they are
+// imported like the content around them instead of as an untitled accordion (which is dropped).
+function unwrapUntitledAccordions(element) {
+  element.querySelectorAll('.root div.accordion_selector').forEach((acc) => {
+    if (!acc.isConnected) return;
+    const labels = [...acc.querySelectorAll(':scope > .cc-aem-c-accordion > .cc-aem-c-accordion__button')];
+    if (!labels.length || labels.some((b) => clean(b.textContent))) return;
+    const parts = [...acc.querySelectorAll(':scope > .cc-aem-c-accordion > .cc-aem-c-accordion__item')]
+      .flatMap((item) => {
+        const grid = item.querySelector(':scope > .aem-Grid');
+        return grid ? [...grid.children] : [...item.children];
+      });
+    acc.replaceWith(...parts);
+  });
+}
+
 function stripForms(element) {
   element.querySelectorAll('.root form').forEach((form) => {
     FORM_FIELDS.forEach((sel) => form.querySelectorAll(sel).forEach((el) => {
@@ -516,7 +623,15 @@ function stripForms(element) {
 
 function promoteFirstHeading(element, doc) {
   const root = element.querySelector('.root') || element;
-  if (root.querySelector('h1')) return;
+  const h1s = [...root.querySelectorAll('h1')].filter((h) => !h.closest('.fxg-desktop--hide'));
+  // one h1 per page: later h1s (en-us how-to-ship-guitars "Steps for how to ship a guitar") -> h2
+  h1s.slice(1).forEach((h) => {
+    const h2 = doc.createElement('h2');
+    h2.innerHTML = h.innerHTML;
+    [...h.attributes].forEach((a) => h2.setAttribute(a.name, a.value));
+    h.replaceWith(h2);
+  });
+  if (h1s.length) return;
   const first = [...root.querySelectorAll('h2, h3, h4')].find((h) => !h.closest('.fxg-desktop--hide'));
   if (!first) return;
   const h1 = doc.createElement('h1');
@@ -539,9 +654,11 @@ export default function transform(hookName, element, payload) {
   }
   if (hookName !== 'beforeTransform') return;
   removeHiddenContent(element);
+  unwrapUntitledAccordions(element);
   stripForms(element);
   promoteFirstHeading(element, doc);
   mergeSplitRows(element);
+  convertJumpLinkGrids(element, doc);
   insertSectionBreaks(element, doc);
   // after the panels are unwrapped: a centred title inside a panel opens its section too
   unwrapCenteredPanels(element, doc);

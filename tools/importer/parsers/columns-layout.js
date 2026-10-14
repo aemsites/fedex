@@ -11,6 +11,9 @@
  *   columns, each a title above nested icon rows. `Columns (divided)`, each cell: ### title, then
  *   the rows as a list - numbered-icon rows (Purple_Number_N) become an ordered list (the block
  *   draws the circled numbers), other icon rows a bulleted list whose items keep their icon.
+ * - kind `icon-lists` (en-us sweepstakes "Check out some of our past sweepstakes"): two columns,
+ *   each a photo, title, text and nested icon rows. `Columns (icon-lists)`, each cell: photo,
+ *   ### title, text, then the icon rows as a bulleted list whose items keep their icon.
  * - kind `one-third` (freight-services "Wij maken vrachtvervoer eenvoudiger dan u denkt"):
  *   col-sm-4 image | col-sm-8 text. `Columns (one-third)`: image | heading, text, list.
  * - kind `centered` (shipping.html purple band "Bereken uw tarieven / Open een account / Vraag
@@ -52,6 +55,13 @@ function dividedCell(col, cc, document) {
   const out = [];
   let list = null;
   components(col).forEach((comp) => {
+    // icon-lists: the column's photo opens the cell
+    if (comp.matches('.image_v2')) {
+      list = null;
+      const img = image(comp, cc, document);
+      if (img) out.push(img);
+      return;
+    }
     if (comp.matches('.column_control_v1')) {
       const img = comp.querySelector('img');
       const numbered = !!img && NUMBER_ICON.test(img.getAttribute('src') || '');
@@ -66,7 +76,9 @@ function dividedCell(col, cc, document) {
     list = null;
     const tmp = document.createElement('div');
     tmp.append(comp.cloneNode(true));
-    out.push(...textContent(tmp, cc, document, { heading: 'h3' }));
+    // hidden parts are checked within the copy (a richtext's mobile copy is itself
+    // .fxg-desktop--hide: sweepstakes "Two Grand Prize winners…")
+    out.push(...textContent(tmp, tmp, document, { heading: 'h3' }));
   });
   return out;
 }
@@ -76,8 +88,8 @@ export default function parse(element, { document }) {
   const cols = columns(element);
   let row; // one row, one cell per column
   let name;
-  if (kind === 'divided') {
-    name = 'Columns (divided)';
+  if (kind === 'divided' || kind === 'icon-lists') {
+    name = kind === 'divided' ? 'Columns (divided)' : 'Columns (icon-lists)';
     row = cols.map((col) => dividedCell(col, element, document));
   } else if (kind === 'one-third') {
     name = 'Columns (one-third)';

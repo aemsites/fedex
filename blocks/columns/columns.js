@@ -1,4 +1,5 @@
 import decorateVideo, { setVideoTitle } from '../../scripts/video.js';
+import { anchorTeaser, buildTeaser, teaserLink } from '../../scripts/teasers.js';
 
 /**
  * Groups each h3 and the content after it (up to the next heading) into a feature item.
@@ -25,6 +26,34 @@ function buildFeatures(cell) {
 }
 
 /**
+ * teasers: a row that only links to a page of this site becomes [text | image] from that page:
+ * title, description and the link as CTA, then its image (scripts/teasers.js); a row whose page
+ * cannot be loaded goes.
+ * @param {Element} block The columns block
+ */
+async function expandTeasers(block) {
+  await Promise.all([...block.children].map(async (row) => {
+    const a = teaserLink(row);
+    if (!a) return;
+    const teaser = await buildTeaser(a);
+    if (!teaser) {
+      row.remove();
+      return;
+    }
+    const text = document.createElement('div');
+    text.append(...teaser.body);
+    const cells = [text];
+    if (teaser.picture) {
+      const image = document.createElement('div');
+      image.append(teaser.picture);
+      cells.push(image);
+    }
+    row.replaceChildren(...cells);
+    anchorTeaser(row, teaser.id);
+  }));
+}
+
+/**
  * columns: each row is a row of columns; an image-only cell becomes an image column.
  * A row with a single cell spans the full width.
  * A poster image + Kaltura link cell becomes a click-to-play video column.
@@ -34,8 +63,12 @@ function buildFeatures(cell) {
  * the image from 768px, panel side follows the cell order; CSS only), centered (centered
  * columns with bottom-aligned CTAs), one-third (1/3 image, 2/3 text) and divided (two
  * titled columns with a vertical rule, circled-number steps and icon lists); CSS only.
+ * teasers: rows that only link to a page of this site are filled from that page (see
+ * expandTeasers).
  */
-export default function decorate(block) {
+export default async function decorate(block) {
+  if (block.classList.contains('teasers')) await expandTeasers(block);
+  if (!block.firstElementChild) return;
   const cols = [...block.firstElementChild.children];
   block.classList.add(`columns-${cols.length}-cols`);
   const feature = block.classList.contains('feature');

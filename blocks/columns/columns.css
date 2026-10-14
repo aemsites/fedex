@@ -586,7 +586,10 @@
 /*
  * divided: two titled columns with a vertical rule between them from 768px.
  * An ordered list shows circled numbers (shared with steps); a bulleted list whose
- * items start with an icon shows the icon left of the item's title and text.
+ * items start with an icon shows the icon left of the item's title and text (shared with
+ * icon-lists).
+ * icon-lists: columns of photo, title, text and an icon list (en-us sweepstakes "Check out
+ * some of our past sweepstakes": the prizes, 30px icons 36px left of their one-line text).
  */
 .columns.divided {
   --columns-step-size: var(--space-12);
@@ -600,6 +603,27 @@
   --columns-item-icon-gap: var(--space-6);
 }
 
+.columns.icon-lists {
+  --columns-item-icon-size: 30px;
+  --columns-item-icon-gap: 36px;
+}
+
+.columns.icon-lists > div {
+  align-items: flex-start;
+}
+
+/* the source's light 24px titles below the photo, then the story text */
+.columns.icon-lists h3 {
+  margin: var(--space-6) 0 var(--space-4);
+  font-size: var(--heading-font-size-m);
+  font-weight: var(--font-weight-light);
+}
+
+.columns.icon-lists ul > li:has(> picture:first-child, > p:first-child > picture) {
+  display: flex;
+  align-items: center;
+}
+
 .columns.divided h3 {
   margin-bottom: var(--space-7);
   text-align: center;
@@ -609,23 +633,23 @@
   margin-bottom: 0;
 }
 
-.columns.divided ul:has(> li > picture:first-child, > li > p:first-child > picture) {
+.columns:is(.divided, .icon-lists) ul:has(> li > picture:first-child, > li > p:first-child > picture) {
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.columns.divided ul > li:has(> picture:first-child, > p:first-child > picture) {
+.columns:is(.divided, .icon-lists) ul > li:has(> picture:first-child, > p:first-child > picture) {
   position: relative;
   min-height: var(--columns-item-icon-size);
   padding-left: calc(var(--columns-item-icon-size) + var(--columns-item-icon-gap));
 }
 
-.columns.divided ul > li + li {
+.columns:is(.divided, .icon-lists) ul > li + li {
   margin-top: var(--space-3);
 }
 
-.columns.divided ul > li > :is(picture, p:has(> picture)):first-child {
+.columns:is(.divided, .icon-lists) ul > li > :is(picture, p:has(> picture)):first-child {
   position: absolute;
   top: 0;
   left: 0;
@@ -634,17 +658,17 @@
   line-height: 0;
 }
 
-.columns.divided ul > li > :is(picture, p:has(> picture)):first-child img {
+.columns:is(.divided, .icon-lists) ul > li > :is(picture, p:has(> picture)):first-child img {
   width: var(--columns-item-icon-size);
   height: var(--columns-item-icon-size);
   object-fit: contain;
 }
 
-.columns.divided ul > li > p {
+.columns:is(.divided, .icon-lists) ul > li > p {
   margin: 0 0 var(--space-2);
 }
 
-.columns.divided ul > li > :last-child {
+.columns:is(.divided, .icon-lists) ul > li > :last-child {
   margin-bottom: 0;
 }
 

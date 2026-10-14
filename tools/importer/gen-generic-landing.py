@@ -87,6 +87,13 @@ for src in SOURCES:
 blocks['cards-logos'] = [s.replace('.root div.carousel_v1:has(.image_v2 img)',
                                    '.root div.carousel_v1:has(.image_v2 img):not(:has(.title_v1, .button_v1 a))')
                          for s in blocks.get('cards-logos', [])]
+# image-column steps: the image column holds only the image (international.html "Prep for a smooth
+# trip"); a grid whose columns each open with a photo and go on with a title, text and nested
+# icon rows (en-us sweepstakes "Check out some of our past sweepstakes") is not a steps row
+STEPS_IMAGE_COL = ':has(> .row > .fxg-col:first-child > div > .aem-Grid > .image_v2)'
+blocks['columns-steps'] = [s.replace(STEPS_IMAGE_COL, STEPS_IMAGE_COL
+                                     + ':not(:has(> .row > .fxg-col:first-child > div > .aem-Grid > :is(.title_v1, .richtext)))')
+                           for s in blocks.get('columns-steps', [])]
 for name, sels in {**TAGGED, **EXTRA}.items():
     lst = blocks.setdefault(name, [])
     lst.extend(s for s in sels if s not in lst)

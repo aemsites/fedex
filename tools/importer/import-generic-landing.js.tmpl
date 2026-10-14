@@ -9,6 +9,7 @@ __PARSER_IMPORTS__
 // TRANSFORMER IMPORTS
 import fedexCleanupTransformer from './transformers/fedex-cleanup.js';
 import fedexLandingTransformer from './transformers/fedex-landing.js';
+import fedexTeasersTransformer, { resolveTeaserAnchors } from './transformers/fedex-teasers.js';
 import fedexPreprocess from './fedex-preprocess.js';
 
 // PARSER REGISTRY
@@ -19,9 +20,11 @@ __PARSER_REGISTRY__
 // PAGE TEMPLATE CONFIGURATION - embedded from tools/importer/page-templates.json
 const PAGE_TEMPLATE = __TEMPLATE__;
 
-// TRANSFORMER REGISTRY - cleanup first, then the generic landing rules (section breaks from the
-// page grid, jump links, forms); no template sections, so fedex-sections.js is not used
+// TRANSFORMER REGISTRY - listings / detail pages first (teaser image metadata; teaser blocks read
+// from the detail pages), then cleanup, then the generic landing rules (section breaks from the page grid, jump links,
+// forms); no template sections, so fedex-sections.js is not used
 const transformers = [
+  fedexTeasersTransformer,
   fedexCleanupTransformer,
   fedexLandingTransformer,
 ];
@@ -113,8 +116,12 @@ export default {
   // Awaited by the bulk runner before the transform
   onLoad: async ({ document }) => rejectHomepageTestVariant(document),
 
-  // Runs before helix-importer's own DOM preprocessing (which would drop text next to `u > a`)
-  preprocess: fedexPreprocess,
+  // Runs before helix-importer's own DOM preprocessing (which would drop text next to `u > a`, and
+  // the empty anchors that in-page links to teasers point at)
+  preprocess: (payload) => {
+    fedexPreprocess(payload);
+    resolveTeaserAnchors(payload.document.body, (payload.params && payload.params.originalURL) || payload.url);
+  },
 
   transform: (payload) => {
     const { document, url, params } = payload;

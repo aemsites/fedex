@@ -26,6 +26,7 @@ Edge Delivery Services. Read a block first. Omissions are in the repo or known.
 - Footer languages: `language-switch` block (country's languages, authored links). Links go to the same path in each `{language}-{country}`, else its `/home`, else the authored link.
 - Locales mirror fedex.com, not en-us: most en-us pages don't exist in other countries. Check the source before importing a tree.
 - Mixed landing-page trees: `generic-landing` (`import-generic-landing.js` is generated; edit `gen-generic-landing.py`). Tables/accordions in tabs and accordions become fragments: add the `?fragment=N` URLs the log reports (`IMPORT_FRAGMENTS`).
+- Listings of detail pages (en-us `how-to-hub/articles`, `sweepstakes`): `Cards`/`Columns (…, teasers)` rows only link to the detail page; `scripts/teasers.js` reads its image, title and description at runtime. The importer emits them only for migrated detail pages, on the listings they appear on: `collect-teasers.js` (run in a fedex.com page) → `teasers-collected.json` → `build-teaser-pages.py` → `teaser-pages.js`. Detail pages get their listing teaser image as metadata Image.
 - UI labels: `/{locale}/placeholders.json` via `scripts/placeholders.js` (header reads its control labels there). Keys kebab-case (`skip-to-main-content`; `skipToMainContent` would become `skiptomaincontent`). Uploaded sheet JSON needs `":type": "sheet"` or preview fails.
 - Skills: `/plugin marketplace add adobe/skills`, then `aem-edge-delivery-services` (24 skills, incl. `docs-search`).
 
