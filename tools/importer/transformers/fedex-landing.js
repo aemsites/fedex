@@ -39,6 +39,8 @@
  * per section.
  */
 
+import { wrapInlineRuns } from '../utils/components.js';
+
 const BREAK_TYPES_MERGED = ['column_control_v1', 'accordion_selector'];
 const FORM_FIELDS = [
   '.text', '.checkboxSingle', '.checkbox', '.hiddenField', '.dropdown', '.options', '.textarea',
@@ -502,6 +504,11 @@ function promoteFirstHeading(element, doc) {
 export default function transform(hookName, element, payload) {
   const doc = (payload && payload.document) || element.ownerDocument;
   if (hookName === 'afterTransform') {
+    // block cells and list items mixing inline text with blocks: one paragraph per inline run
+    // (international-priority-express "Aflevering op de volgende werkdag<sup>2</sup>: <ul>")
+    // (only where a footnote mark sits among them: that is what the converter splits apart)
+    element.querySelectorAll('li, td, th, div[class] > div > div')
+      .forEach((el) => { if (el.querySelector(':scope > sup')) wrapInlineRuns(el, doc); });
     createSectionMetadata(element, doc);
     removeEmptySections(element);
     return;

@@ -27,6 +27,8 @@
  *   - as a helper (accordion answers -> fragments): `parse.buildTable(source, document)` returns
  *     the Table block element without touching the source.
  */
+import { wrapInlineRuns } from '../utils/components.js';
+
 function clean(text) {
   return (text || '').replace(/\s+/g, ' ').trim();
 }
@@ -52,6 +54,8 @@ function cellContent(src, document, header) {
   if (header) clone.querySelectorAll('b, strong').forEach((b) => b.replaceWith(...b.childNodes));
   const div = document.createElement('div');
   div.innerHTML = clone.innerHTML.replace(/(&nbsp;|\s)+$/g, '').trim();
+  // link + footnote mark before a paragraph (ship-to-apac tabs) stay one paragraph
+  if (div.querySelector(':scope > sup')) wrapInlineRuns(div, document);
   const nodes = [...div.childNodes];
   return nodes.length && clean(div.textContent + (div.querySelector('img') ? 'x' : '')) ? nodes : '';
 }

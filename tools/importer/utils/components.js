@@ -127,3 +127,38 @@ export function textContent(col, root, document, opts = {}) {
   });
   return out;
 }
+
+const BLOCK_TAGS = /^(P|UL|OL|DIV|H[1-6]|TABLE|BLOCKQUOTE|PRE|HR)$/;
+
+/**
+ * A container that mixes inline content with block elements (a table cell holding
+ * `<a>…</a><sup>1</sup> <p>…</p>`, a list item holding `text<sup>2</sup>: <ul>…</ul>`) gets each
+ * run of inline nodes wrapped in one <p>. Left alone, the converter puts every inline piece in a
+ * paragraph of its own, so a footnote mark ends up on a line by itself (nl-nl ship-to-apac tabs).
+ * Runs holding only whitespace or <br> are dropped.
+ */
+export function wrapInlineRuns(el, document) {
+  const kids = [...el.childNodes];
+  if (!kids.some((n) => n.nodeType === 1 && BLOCK_TAGS.test(n.tagName))) return;
+  let run = [];
+  const flush = (before) => {
+    const content = run.some((n) => (n.nodeType === 3 && n.textContent.trim())
+      || (n.nodeType === 1 && !n.matches('br') && (n.textContent.trim() || n.querySelector('img') || n.matches('img, picture'))));
+    if (content) {
+      const p = document.createElement('p');
+      el.insertBefore(p, before);
+      run.forEach((n) => p.append(n));
+      // trim the run's outer whitespace
+      if (p.firstChild && p.firstChild.nodeType === 3) p.firstChild.textContent = p.firstChild.textContent.replace(/^\s+/, '');
+      if (p.lastChild && p.lastChild.nodeType === 3) p.lastChild.textContent = p.lastChild.textContent.replace(/\s+$/, '');
+    } else {
+      run.forEach((n) => n.remove());
+    }
+    run = [];
+  };
+  kids.forEach((n) => {
+    if (n.nodeType === 1 && BLOCK_TAGS.test(n.tagName)) flush(n);
+    else if (n.nodeType === 1 || n.nodeType === 3) run.push(n);
+  });
+  flush(null);
+}
