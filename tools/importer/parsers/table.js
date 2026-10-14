@@ -88,7 +88,17 @@ function buildTable(source, document) {
     })
     .filter((row) => row.some((c) => c !== ''));
   if (!cells.length) return null;
-  return WebImporter.Blocks.createBlock(document, { name: 'Table', cells });
+  // row/cell structure unchanged (library Table convention: header row, then one row per data
+  // row); only the variant name differs
+  return WebImporter.Blocks.createBlock(document, { name: brandHeader(table) ? 'Table (brand)' : 'Table', cells });
+}
+
+// `brand`: the header row is authored on FedEx purple (nl-nl freight-services "Vind de juiste
+// vrachtservice": <tr style="background-color: #4D148C; color: white">)
+function brandHeader(table) {
+  const tr = table && table.querySelector('tr');
+  const bg = ((tr && tr.getAttribute('style')) || '').replace(/\s+/g, '').toLowerCase();
+  return /background(-color)?:(#4d148c|rgb\(77,20,140\))/.test(bg);
 }
 
 // comparison-landing (open-account.html "Business vs personal"): the leader column_control_v1 is

@@ -13,6 +13,15 @@ TPL = 'tools/importer/page-templates.json'
 SOURCES = ['banner-landing', 'hub-landing', 'service-overview', 'guide-article']
 DROP = set()
 NOT_IN_BLOCK = ':not(.column_control_v1 *, .accordion_selector *, .featured_offer_v2 *, .hero_landingpage_v1 *, .tabs_v1 *, .carousel_v1 *)'
+# Shapes tagged by transformers/fedex-landing.js (tagShapes, mergeSplitRows) and the breadcrumb:
+# their parsers claim first (FIRST below), before the generic column_control selectors read them.
+TAGGED = {
+    'breadcrumb': ['div.breadcrumbs_v1'],
+    'banner': ['.root .column_control_v1[data-fedex-block="banner"]'],
+    'cards-grid': ['.root .column_control_v1[data-fedex-block="cards-grid"]'],
+    'columns-layout': ['.root .column_control_v1[data-fedex-block="columns-layout"]'],
+}
+FIRST = list(TAGGED)
 EXTRA = {
     # dangerous-goods classes: [col-sm-3 icon (image or nested icon row) | col-sm-9 richtext]
     'cards-horizontal': [
@@ -32,6 +41,23 @@ EXTRA = {
         '.root div.table:not(.accordion_selector *, .tabs_v1 *, .fxg-desktop--hide, .fxg-desktop--hide *)',
         '.root table:not(.accordion_selector *, .tabs_v1 *, .fxg-desktop--hide *)',
     ],
+    # EU homepage (nl-nl/home, authored control): the en-us homepage hero + shipping tools tabs
+    # (parsers/hero.js, parsers/tabs-shipping.js, unchanged; same selectors as the home template)
+    'hero': ['div.fxg-hero.fxg-hero_homepage > div.fxg-hero__image'],
+    'tabs-shipping': ['div.fxg-hero__header > ul.fxg-cube-container'],
+    # icon + link carousels (nl-nl/home "Beheer uw zendingen"), parsers/cards-icon-links.js; SVG icons
+    # only - photo carousels (healthcare article teasers) stay default content
+    'cards-icon-links': [
+        '.root div.carousel_v1:has(.image_v2 img[src*=".svg"]):has(.button_v1 a):not(:has(.title_v1, .richtext))',
+    ],
+    # 3-up image cards whose columns are experience fragments (nl-nl/home "Tijdbesparende tips")
+    'cards-promo': [
+        '.root .column_control_v1' + NOT_IN_BLOCK
+        + ':has(> .row > .fxg-col:nth-child(3)):not(:has(> .row > .fxg-col:nth-child(4)))'
+        + ':has(> .row > .fxg-col:first-child > div > .aem-Grid > .experiencefragment .image_v2 img)'
+        + ':has(> .row > .fxg-col:first-child > div > .aem-Grid > .experiencefragment .title_v1)'
+        + ':has(> .row > .fxg-col:nth-child(3) > div > .aem-Grid > .experiencefragment .title_v1)',
+    ],
     # last: plain multi-column rows nobody else claimed (parser leaves non-grids alone)
     'columns': [
         '.root .column_control_v1' + NOT_IN_BLOCK + ':not(:has(> .row > .fxg-col:first-child.fxg-desktop--hide))',
@@ -42,7 +68,9 @@ PARSER_FILES = {
     'cards-icon-links': 'cardsIconLinks', 'cards-horizontal': 'cardsHorizontal',
     'columns-promo': 'columnsPromo', 'columns-steps': 'columnsSteps', 'cards-promo': 'cardsPromo',
     'tabs': 'tabs', 'cards-logos': 'cardsLogos', 'accordion': 'accordion', 'widget': 'widget',
-    'table': 'table', 'columns': 'columns',
+    'table': 'table', 'columns': 'columns', 'hero': 'hero', 'tabs-shipping': 'tabsShipping',
+    'breadcrumb': 'breadcrumb', 'banner': 'banner', 'cards-grid': 'cardsGrid',
+    'columns-layout': 'columnsLayout',
 }
 
 d = json.load(open(TPL))
@@ -59,11 +87,11 @@ for src in SOURCES:
 blocks['cards-logos'] = [s.replace('.root div.carousel_v1:has(.image_v2 img)',
                                    '.root div.carousel_v1:has(.image_v2 img):not(:has(.title_v1, .button_v1 a))')
                          for s in blocks.get('cards-logos', [])]
-for name, sels in EXTRA.items():
+for name, sels in {**TAGGED, **EXTRA}.items():
     lst = blocks.setdefault(name, [])
     lst.extend(s for s in sels if s not in lst)
 # table and columns run last (containers first; columns only sees what is left)
-order = [n for n in blocks if n not in ('table', 'columns')] + ['table', 'columns']
+order = FIRST + [n for n in blocks if n not in FIRST + ['table', 'columns']] + ['table', 'columns']
 
 urls = [l.strip() for l in open('tools/importer/urls-generic-landing.txt') if l.strip()]
 template = {
@@ -72,7 +100,7 @@ template = {
     'coverageGaps': [
         'Forms (AEM forms div.start > form.fxg-forms, adaptive forms): no form block yet, fields dropped, text kept',
         'Standalone Kaltura video (div.video_v1 outside media-text rows): no video block yet',
-        'Section styles (light panels, centred headings) are not derived: generic section breaks only',
+        'Section styles: light / dark panels, jump links and centred intros (center-intro) are derived; other section looks are not',
     ],
     'description': 'Generic FedEx landing page (nl-nl shipping tree): title or photo hero, then container sections of icon cards, media-text rows, card grids, tabs, accordions, data tables and text; sections from the top-level page grid',
     'blocks': [{'name': n, 'instances': blocks[n]} for n in order],

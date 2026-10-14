@@ -43,6 +43,8 @@ function ctaParagraph(src, document) {
   a.href = src.href || src.getAttribute('href');
   a.textContent = clean(src.textContent);
   const cls = BUTTON_CLASSES.filter((c) => src.classList.contains(c));
+  // the orange primary button of the nl-nl heroes -> fxg-button--orange (**CTA**, fedex-cleanup.js)
+  if (src.classList.contains('cc-aem-c-button--primary')) cls.push('fxg-button--orange');
   if (cls.length) a.className = cls.join(' ');
   p.append(a);
   return p;
@@ -136,9 +138,13 @@ export default function parse(element, { document }) {
   if (element.matches('.fedex-hero-extracted')) return;
   const hero = element.querySelector('.fxg-landing-hero') || element;
 
-  // Picture
+  // Picture. The phone rendition (.fxg-landing-hero__mobile-image, nl-nl shipping.html: a
+  // 330x210 crop) is only the fallback: the banner is the background image / data-main-image.
+  const mobile = (i) => !!i.closest('.fxg-landing-hero__mobile-image, .fxg-landing-heroMobileVideo');
+  const banner = hero.querySelector('[data-main-image]');
   const img = hero.querySelector('.fxg-landing-hero__background-image > img:not([src^="data:"])')
-    || [...hero.querySelectorAll('img')].find((i) => !(i.getAttribute('src') || '').startsWith('data:') && !isHidden(i, element));
+    || [...hero.querySelectorAll('img')].find((i) => !(i.getAttribute('src') || '').startsWith('data:') && !isHidden(i, element)
+      && !(mobile(i) && banner && banner.getAttribute('data-main-image')));
   let picture = null;
   if (img) {
     picture = document.createElement('img');
@@ -201,7 +207,9 @@ export default function parse(element, { document }) {
     });
 
   // CTA(s)
-  const ctas = [...hero.querySelectorAll('.button_v1 a[href], a.fxg-button[href]')]
+  // (nl-nl landing heroes: a.cc-aem-c-button, one per breakpoint; the phone and tablet copies
+  // carry .fxg-desktop--hide)
+  const ctas = [...hero.querySelectorAll('.button_v1 a[href], a.fxg-button[href], a.cc-aem-c-button[href]')]
     .filter((a, i, all) => all.indexOf(a) === i && !isHidden(a, element) && !inGrid(a) && clean(a.textContent) && !/^\/?#$/.test(a.getAttribute('href')))
     // .fxg-auth-button-link is the signed-in alternative of the CTA before it; drop it when it
     // points at the same URL (claims: "Log in" / "Start a claim"), keep it otherwise

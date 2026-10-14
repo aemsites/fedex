@@ -1471,6 +1471,7 @@
     {
       "name": "generic-landing",
       "urls": [
+        "https://www.fedex.com/nl-nl/home.html",
         "https://www.fedex.com/nl-nl/shipping.html",
         "https://www.fedex.com/nl-nl/shipping/international.html",
         "https://www.fedex.com/nl-nl/shipping/international/ship-to-us.html",
@@ -1549,10 +1550,34 @@
       "coverageGaps": [
         "Forms (AEM forms div.start > form.fxg-forms, adaptive forms): no form block yet, fields dropped, text kept",
         "Standalone Kaltura video (div.video_v1 outside media-text rows): no video block yet",
-        "Section styles (light panels, centred headings) are not derived: generic section breaks only"
+        "Section styles: light / dark panels, jump links and centred intros (center-intro) are derived; other section looks are not"
       ],
       "description": "Generic FedEx landing page (nl-nl shipping tree): title or photo hero, then container sections of icon cards, media-text rows, card grids, tabs, accordions, data tables and text; sections from the top-level page grid",
       "blocks": [
+        {
+          "name": "breadcrumb",
+          "instances": [
+            "div.breadcrumbs_v1"
+          ]
+        },
+        {
+          "name": "banner",
+          "instances": [
+            ".root .column_control_v1[data-fedex-block=\"banner\"]"
+          ]
+        },
+        {
+          "name": "cards-grid",
+          "instances": [
+            ".root .column_control_v1[data-fedex-block=\"cards-grid\"]"
+          ]
+        },
+        {
+          "name": "columns-layout",
+          "instances": [
+            ".root .column_control_v1[data-fedex-block=\"columns-layout\"]"
+          ]
+        },
         {
           "name": "hero-landing",
           "instances": [
@@ -1579,7 +1604,8 @@
           "name": "cards-icon-links",
           "instances": [
             ".root .column_control_v1:not(.column_control_v1 *, .accordion_selector *, .featured_offer_v2 *, .hero_landingpage_v1 *, .tabs_v1 *, .carousel_v1 *):not(:has(> .row > .fxg-col:first-child.fxg-desktop--hide)):has(> .row > .fxg-col:nth-child(3)):has(> .row > .fxg-col:first-child > div > .aem-Grid > .image_v2 ~ .button_v1):has(> .row > .fxg-col:nth-child(2) > div > .aem-Grid > .image_v2 ~ .button_v1):not(:has(> .row > .fxg-col > div > .aem-Grid > :is(.title_v1, .richtext, .column_control_v1)))",
-            ".root div.advanced_table_v1:not(.accordion_selector *)"
+            ".root div.advanced_table_v1:not(.accordion_selector *)",
+            ".root div.carousel_v1:has(.image_v2 img[src*=\".svg\"]):has(.button_v1 a):not(:has(.title_v1, .richtext))"
           ]
         },
         {
@@ -1625,7 +1651,8 @@
           "instances": [
             ".root .column_control_v1:not(.column_control_v1 *, .accordion_selector *, .featured_offer_v2 *, .hero_landingpage_v1 *, .tabs_v1 *, .carousel_v1 *):not(:has(> .row > .fxg-col:first-child.fxg-desktop--hide)):has(> .row > .fxg-col:first-child > div > .aem-Grid > :is(.image_v2, .video_v1) ~ .title_v1):has(> .row > .fxg-col:nth-child(2)):not(:has(> .row > .fxg-col:nth-child(3)):has(> .row > .fxg-col:first-child > div > .aem-Grid > :is(.image_v2 + .title_v1, .image_v2 + .spacer + .title_v1)):not(:has(> .row > .fxg-col > div > .aem-Grid > :is(.button_v1, .video_v1, .featured_offer_v2, .column_control_v1))))",
             ".root .column_control_v1:not(.column_control_v1 *, .accordion_selector *, .featured_offer_v2 *, .hero_landingpage_v1 *):not(:has(> .row > .fxg-col:first-child.fxg-desktop--hide)):has(> .row > .fxg-col:first-child > div > .aem-Grid > .featured_offer_v2)",
-            ".root .column_control_v1:not(.column_control_v1 *, .accordion_selector *, .featured_offer_v2 *, .hero_landingpage_v1 *):not(:has(> .row > .fxg-col:first-child.fxg-desktop--hide)):has(> .row > .fxg-col:first-child > div > .aem-Grid > :is(.image_v2, .video_v1) ~ .title_v1):has(> .row > .fxg-col:nth-child(2) > div > .aem-Grid > .title_v1)"
+            ".root .column_control_v1:not(.column_control_v1 *, .accordion_selector *, .featured_offer_v2 *, .hero_landingpage_v1 *):not(:has(> .row > .fxg-col:first-child.fxg-desktop--hide)):has(> .row > .fxg-col:first-child > div > .aem-Grid > :is(.image_v2, .video_v1) ~ .title_v1):has(> .row > .fxg-col:nth-child(2) > div > .aem-Grid > .title_v1)",
+            ".root .column_control_v1:not(.column_control_v1 *, .accordion_selector *, .featured_offer_v2 *, .hero_landingpage_v1 *, .tabs_v1 *, .carousel_v1 *):has(> .row > .fxg-col:nth-child(3)):not(:has(> .row > .fxg-col:nth-child(4))):has(> .row > .fxg-col:first-child > div > .aem-Grid > .experiencefragment .image_v2 img):has(> .row > .fxg-col:first-child > div > .aem-Grid > .experiencefragment .title_v1):has(> .row > .fxg-col:nth-child(3) > div > .aem-Grid > .experiencefragment .title_v1)"
           ]
         },
         {
@@ -1652,6 +1679,18 @@
           "name": "widget",
           "instances": [
             "div.genericAppContainer"
+          ]
+        },
+        {
+          "name": "hero",
+          "instances": [
+            "div.fxg-hero.fxg-hero_homepage > div.fxg-hero__image"
+          ]
+        },
+        {
+          "name": "tabs-shipping",
+          "instances": [
+            "div.fxg-hero__header > ul.fxg-cube-container"
           ]
         },
         {

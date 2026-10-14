@@ -75,7 +75,32 @@ function panelLinks(panel) {
     .map((a) => [a.textContent.replace(/\s+/g, ' ').trim(), a.getAttribute('href')]);
 }
 
-export default function parse(element, { document }) {
+// Locale of the imported page (/nl-nl/home.html -> nl-nl); en-us keeps the FALLBACK_LINKS above.
+function pageLocale(document, url, params) {
+  let path = '';
+  try { path = new URL((params && params.originalURL) || url || document.URL).pathname; } catch (e) { /* none */ }
+  const m = path.match(/^\/([a-z]{2})-([a-z]{2})\//i);
+  return m ? { locale: `${m[1]}-${m[2]}`.toLowerCase(), lang: m[1].toLowerCase(), country: m[2].toUpperCase() } : null;
+}
+
+// Tab content cell for other locales (generic-landing, nl-nl/home; each row stays tab label | tab
+// content): the panels are client-side apps with no authored links, and the en-us fallbacks would
+// put English links on the page. Only links verified for the locale are used instead: the rating
+// app page, and the "FedEx locaties" locator URL of the locale's footer, labelled with the panel's
+// own button ("Vind locatie") or the tab label.
+function localeFallback(key, loc, label, panel) {
+  if (key === 'rate') return [[label, `/${loc.locale}/online/rating.html`]];
+  if (key === 'locations') {
+    const button = panel && panel.querySelector('form button, button');
+    const text = (button && button.textContent.replace(/\s+/g, ' ').trim()) || label;
+    return [[text, `https://www.fedex.com/locate/index.html?locale=${loc.lang}_${loc.country}`]];
+  }
+  return [];
+}
+
+export default function parse(element, { document, url, params }) {
+  const loc = pageLocale(document, url, params);
+  const localized = !!(loc && loc.locale !== 'en-us');
   const hero = element.closest('.fxg-hero_homepage, .fxg-hero') || element.parentElement?.parentElement;
   const items = [...element.querySelectorAll(':scope > li')];
   if (!items.length) {
@@ -102,9 +127,13 @@ export default function parse(element, { document }) {
       || (panel && panel.classList.contains('fxg-app--active'));
 
     // Label cell: Title-case the source's uppercase labels (TRACK -> Track)
-    const niceLabel = label === label.toUpperCase()
-      ? label.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase())
-      : label;
+    // (other locales: sentence case - "TARIEVEN & TRANSITTIJDEN" -> "Tarieven & transittijden")
+    let niceLabel = label;
+    if (label === label.toUpperCase()) {
+      niceLabel = localized
+        ? label.charAt(0) + label.slice(1).toLowerCase()
+        : label.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase());
+    }
     const labelCell = document.createElement('p');
     // Icon in the label itself (:rate-ship:, :track:, :locations: -> /icons/*.svg)
     if (TAB_ICONS[key]) labelCell.append(`:${TAB_ICONS[key]}: `);
@@ -120,20 +149,25 @@ export default function parse(element, { document }) {
     const panelCell = [];
     if (key === 'track') {
       const hintEl = panel && panel.querySelector('.fxg-field__hint_text');
-      const hint = document.createElement('p');
-      hint.textContent = (hintEl && hintEl.textContent.trim()) || TRACK_HINT;
-      panelCell.push(hint);
+      // the English hint is an en-us fallback only; other locales keep their own hint, if any
+      const hintText = (hintEl && hintEl.textContent.trim()) || (localized ? '' : TRACK_HINT);
+      if (hintText) {
+        const hint = document.createElement('p');
+        hint.textContent = hintText;
+        panelCell.push(hint);
+      }
       const form = panel && panel.querySelector('form[action*="fedextrack"]');
       const button = panel && panel.querySelector('form button, button');
       const p = document.createElement('p');
       const a = document.createElement('a');
       a.href = form ? absolute(form.getAttribute('action')) : TRACK_URL;
-      a.textContent = (button && button.textContent.replace(/\s+/g, ' ').trim()) || 'Track';
+      a.textContent = (button && button.textContent.replace(/\s+/g, ' ').trim()) || (localized ? niceLabel : 'Track');
       p.append(a);
       panelCell.push(p);
     } else {
       let links = panelLinks(panel);
-      if (!links.length && FALLBACK_LINKS[key]) links = FALLBACK_LINKS[key];
+      if (!links.length && localized) links = localeFallback(key, loc, niceLabel, panel);
+      else if (!links.length && FALLBACK_LINKS[key]) links = FALLBACK_LINKS[key];
       if (links.length) panelCell.push(linkList(document, links));
     }
 
