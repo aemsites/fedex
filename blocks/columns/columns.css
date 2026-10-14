@@ -612,6 +612,13 @@
   align-items: flex-start;
 }
 
+/* the source's light 24px titles below the photo, then the story text */
+.columns.icon-lists h3 {
+  margin: var(--space-6) 0 var(--space-4);
+  font-size: var(--heading-font-size-m);
+  font-weight: var(--font-weight-light);
+}
+
 .columns.icon-lists ul > li:has(> picture:first-child, > p:first-child > picture) {
   display: flex;
   align-items: center;

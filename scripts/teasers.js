@@ -10,6 +10,8 @@
  * dropped.
  */
 
+import decorateButtons from './buttons.js';
+
 const pages = new Map();
 
 /**
@@ -82,7 +84,15 @@ export async function buildTeaser(a) {
 
   const h3 = document.createElement('h3');
   const body = [h3];
-  const cta = a.closest('p') || a;
+  // the CTA keeps its authored formatting (em = secondary, strong = primary button); a block
+  // cell holding a single paragraph comes without the <p>, so the link may need one
+  let cta = a.closest('p');
+  if (!cta) {
+    cta = document.createElement('p');
+    let top = a;
+    while (top.parentElement && /^(EM|STRONG)$/.test(top.parentElement.tagName)) top = top.parentElement;
+    cta.append(top.cloneNode(true));
+  }
   // no label of its own: the link text repeats the title, or is the page's URL or path
   const label = a.textContent.trim();
   const bare = /^(https?:\/\/|\/)\S*$/.test(label);
@@ -99,7 +109,13 @@ export async function buildTeaser(a) {
     p.textContent = data.description;
     body.push(p);
   }
-  if (!h3.querySelector('a')) body.push(cta);
+  if (!h3.querySelector('a')) {
+    // buttons were decorated before the block loaded: decorate the (re)built CTA here
+    const wrap = document.createElement('div');
+    wrap.append(cta);
+    decorateButtons(wrap);
+    body.push(...wrap.children);
+  }
   return { id: url.pathname.split('/').pop(), picture, body };
 }
 

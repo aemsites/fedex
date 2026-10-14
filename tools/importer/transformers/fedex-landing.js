@@ -357,6 +357,21 @@ function convertJumpLinkGrids(element, doc) {
     wrap.setAttribute(JUMP_GRID, bg);
     wrap.append(ul, styleMarker(doc, bg ? `${bg}, jump-links` : 'jump-links'));
     cc.replaceWith(wrap);
+    // inside a wrapper (how-to-hub/articles: the whole body is one container) the content after
+    // the list starts a new section, so it does not take the panel and jump-link styles
+    const page = pageGrid(element);
+    if (wrap.parentElement !== page) {
+      let next = wrap.nextElementSibling;
+      while (next && !hasContent(next)) next = next.nextElementSibling;
+      if (next) wrap.after(doc.createElement('hr'));
+      // ... and the list (with the title panel above it, "Learn how to ship:") starts one
+      let prev = wrap.previousElementSibling;
+      while (prev && !hasContent(prev)) prev = prev.previousElementSibling;
+      const start = prev && textPanel(prev) && rowBg(prev) === bg ? prev : wrap;
+      let before = start.previousElementSibling;
+      while (before && !hasContent(before)) before = before.previousElementSibling;
+      if (before && !before.matches('hr')) start.before(doc.createElement('hr'));
+    }
   });
 }
 
@@ -393,6 +408,14 @@ function insertSectionBreaks(element, doc) {
 // text below it is centred too). The marker goes right after the title; the style centres the
 // section's leading default content only (later footnotes stay left).
 function markCenteredIntros(element, doc) {
+  // a title-only hero (no image: how-to-hub/articles "Take the wheel with FedEx how-to guides",
+  // centred h1 and centred intro below it) -> its section is center-intro too
+  element.querySelectorAll('.root .hero_landingpage_v1').forEach((hero) => {
+    const h1 = hero.querySelector('h1[data-desktop-align="center"]');
+    if (h1 && !hero.querySelector('img') && clean(hero.textContent) === clean(h1.textContent)) {
+      hero.after(styleMarker(doc, 'center-intro'));
+    }
+  });
   element.querySelectorAll('.root .title_v1').forEach((title) => {
     const h = title.querySelector('h1, h2, h3, h4, h5, h6');
     if (!h || h.tagName === 'H1' || !h.classList.contains('cc-aem-u-align--center@small')) return;
