@@ -829,3 +829,24 @@ main > .section.checklist .default-content-wrapper > ul > li ul {
     max-width: none;
   }
 }
+
+/* faq-navigation pages: lists of questions (one link per item) are plain dark links, no bullets */
+main:has(> .section.faq-navigation) > .section:not(.faq-navigation) .default-content-wrapper > ul:not(:has(> li:not(:has(> a:only-child)))) {
+  padding: 0;
+  list-style: none;
+}
+
+main:has(> .section.faq-navigation) > .section:not(.faq-navigation) .default-content-wrapper > ul:not(:has(> li:not(:has(> a:only-child)))) > li {
+  margin: 0 0 var(--space-4);
+}
+
+main:has(> .section.faq-navigation) > .section:not(.faq-navigation) .default-content-wrapper > ul > li > a:only-child:any-link {
+  color: var(--text-color);
+  font-weight: var(--font-weight-light);
+  text-decoration: none;
+}
+
+main:has(> .section.faq-navigation) > .section:not(.faq-navigation) .default-content-wrapper > ul > li > a:only-child:hover {
+  color: var(--color-blue);
+  text-decoration: underline;
+}
