@@ -1,0 +1,52 @@
+/*
+ * breadcrumb: a 30px light-gray bar right under the header. The section holding it drops the
+ * normal section spacing, and the section after it starts directly below the bar.
+ */
+main > .section.breadcrumb-container {
+  margin: 0;
+  background-color: var(--light-color);
+}
+
+main > .section.breadcrumb-container + .section {
+  margin-top: 0;
+}
+
+.breadcrumb {
+  --breadcrumb-height: 30px;
+  --breadcrumb-line-height: 1.3;
+
+  font-size: var(--body-font-size-xs);
+  line-height: var(--breadcrumb-line-height);
+  letter-spacing: normal;
+}
+
+.breadcrumb ol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  min-height: var(--breadcrumb-height);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.breadcrumb li {
+  font-weight: var(--font-weight-regular);
+}
+
+/* decorative separator; screen readers announce the list instead */
+.breadcrumb li + li::before {
+  content: '›' / '';
+  margin-inline: var(--space-1);
+}
+
+.breadcrumb a:any-link {
+  color: var(--text-color);
+  font-weight: var(--font-weight-bold);
+  text-decoration: none;
+}
+
+.breadcrumb a:hover,
+.breadcrumb a:focus-visible {
+  text-decoration: underline;
+}

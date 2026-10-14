@@ -433,6 +433,23 @@ main > .section.dark a:any-link:not(.button) {
   color: inherit;
 }
 
+/* secondary buttons on the brand band are white outline pills (nl-nl shipping "Een prijs opvragen") */
+main > .section.dark a.button.secondary {
+  border-color: var(--color-white);
+  color: var(--color-white);
+}
+
+main > .section.dark a.button.secondary:hover,
+main > .section.dark a.button.secondary:focus-visible {
+  border-color: var(--color-white);
+  background-color: var(--color-white);
+  color: var(--dark-color);
+}
+
+main > .section.dark :focus-visible {
+  outline-color: var(--color-white);
+}
+
 /*
  * blue: full-width brand-blue band with white centered text (white on #007ab7 is 4.7:1).
  * A paragraph holding only a link shows it as a white uppercase text CTA.
@@ -515,6 +532,15 @@ main > .section.jump-links li > a:only-child:not(.button):focus-visible {
 
 /* center: centers the section's default content: headings, text and buttons (e.g. open-account) */
 main > .section.center .default-content-wrapper {
+  text-align: center;
+}
+
+/*
+ * center-intro: centers the default content that opens the section (topic heading, intro text,
+ * sub-heading), e.g. nl-nl shipping "FedEx-verzendservices die uw bedrijf ondersteunen". Default
+ * content after a block (footnotes) stays left.
+ */
+main > .section.center-intro > .default-content-wrapper:first-child {
   text-align: center;
 }
 

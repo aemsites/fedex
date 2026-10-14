@@ -31,7 +31,9 @@ function buildFeatures(cell) {
  * Variants: feature (h3 + text pairs become a feature grid), promo, light (panel background),
  * steps (ordered list with circled numbers beside an image, or centered on its own when
  * authored as one cell; CSS only), overlay (with promo: text on a translucent panel over
- * the image from 768px, panel side follows the cell order; CSS only).
+ * the image from 768px, panel side follows the cell order; CSS only), centered (centered
+ * columns with bottom-aligned CTAs), one-third (1/3 image, 2/3 text) and divided (two
+ * titled columns with a vertical rule, circled-number steps and icon lists); CSS only.
  */
 export default function decorate(block) {
   const cols = [...block.firstElementChild.children];

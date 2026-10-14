@@ -15,3 +15,10 @@ To put a table inside an Accordion answer, author the table in a fragment and pu
 
 ## Variants
 - *(none)*: plain data table
+- `brand`: brand-purple header row (`--dark-color`) with white, centered 14px medium labels; 14px body text, no row lines, cells centered vertically. An icon authored before a cell's text (e.g. `clock-icon SNELHEID` in the first column) is shown inline at 30px, centered on the text. From 768px the cells have 20px / 35px padding and the table is inset 15px (940px wide). Author the labels as they should read (e.g. uppercase). Example: nl-nl `/shipping/freight-services` "Vind de juiste vrachtservice".
+
+| Table (brand) | | |
+|---|---|---|
+| What matters most? | Best choice | Delivery |
+| icon LABEL | **Service** | text |
+|  | **Service** | text |

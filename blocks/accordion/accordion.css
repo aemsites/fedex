@@ -1,6 +1,11 @@
-/* accordion: bordered rows with a chevron, content width */
+/*
+ * accordion: bordered rows with a chevron, content width. Labels follow fedex.com:
+ * 20px light on mobile, 24px light from 768px (line-height 1.15, 64px rows, 32px inset).
+ */
 .accordion {
-  --accordion-chevron-size: var(--space-2);
+  --accordion-chevron-size: 15px; /* with its 2px stroke: a 24 x 12px chevron */
+  --accordion-chevron-inset: var(--space-5);
+  --accordion-inset: var(--space-4);
 
   border-bottom: 1px solid var(--border-color);
 }
@@ -13,9 +18,10 @@
   position: relative;
   min-height: var(--touch-target-size);
   box-sizing: border-box;
-  padding: var(--space-3) var(--space-12) var(--space-3) var(--space-4);
-  font-size: var(--body-font-size-l);
-  line-height: var(--heading-line-height);
+  padding: var(--space-4) var(--space-12) var(--space-4) var(--accordion-inset);
+  font-size: 20px;
+  font-weight: var(--font-weight-light);
+  line-height: 1.15;
   cursor: pointer;
   list-style: none;
 }
@@ -33,16 +39,16 @@
   content: '';
   position: absolute;
   top: 50%;
-  right: var(--space-5);
+  right: var(--accordion-chevron-inset);
   width: var(--accordion-chevron-size);
   height: var(--accordion-chevron-size);
   border: solid currentcolor;
   border-width: 0 2px 2px 0;
-  transform: translateY(-75%) rotate(45deg);
+  transform: translateY(-85%) rotate(45deg); /* -85% / -15%: the visible V is centered on the label */
 }
 
 .accordion .accordion-item[open] > .accordion-item-label::after {
-  transform: translateY(-25%) rotate(-135deg);
+  transform: translateY(-15%) rotate(-135deg);
 }
 
 /* label icon: a small image inline before the label text */
@@ -66,7 +72,7 @@
 }
 
 .accordion .accordion-item-body {
-  padding: 0 var(--space-4) var(--space-6);
+  padding: 0 var(--accordion-inset) var(--space-6);
 }
 
 .accordion .accordion-item-body > :first-child {
@@ -94,7 +100,15 @@
 }
 
 @media (width >= 768px) {
+  .accordion {
+    --accordion-chevron-inset: var(--space-9);
+    --accordion-inset: var(--space-8);
+  }
+
+  /* 18px + 27.6px + 18px + the 1px rule: the source's 64.5px row pitch */
   .accordion .accordion-item-label {
-    padding-block: var(--space-4);
+    padding-block: 18px;
+    padding-inline-end: var(--space-18);
+    font-size: var(--heading-font-size-m);
   }
 }

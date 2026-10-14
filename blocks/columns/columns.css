@@ -114,35 +114,39 @@
   text-align: center;
 }
 
-/* steps: intro, ordered list with circled numbers, small-print footnote beside an image */
+/*
+ * steps: intro, ordered list with circled numbers, small-print footnote beside an image.
+ * The circled numbers are shared with divided (its ordered list); each variant sets
+ * the circle size, offset, number size and step spacing through the custom properties.
+ */
 .columns.steps {
   --columns-step-size: var(--icon-size-m);
   --columns-step-gap: var(--space-4);
   --columns-steps-indent: var(--space-6);
 }
 
-.columns.steps ol {
+.columns:is(.steps, .divided) ol {
   margin: 0 0 var(--space-4);
   padding: 0 0 0 var(--columns-steps-indent);
   list-style: none;
   counter-reset: columns-step;
 }
 
-.columns.steps ol > li {
+.columns:is(.steps, .divided) ol > li {
   position: relative;
-  min-height: var(--columns-step-size);
+  min-height: calc(var(--columns-step-size) + var(--columns-step-top, 0px));
   padding-left: calc(var(--columns-step-size) + var(--columns-step-gap));
   counter-increment: columns-step;
 }
 
-.columns.steps ol > li + li {
-  margin-top: var(--space-4);
+.columns:is(.steps, .divided) ol > li + li {
+  margin-top: var(--columns-step-spacing, var(--space-4));
 }
 
-.columns.steps ol > li::before {
+.columns:is(.steps, .divided) ol > li::before {
   content: counter(columns-step);
   position: absolute;
-  top: 0;
+  top: var(--columns-step-top, 0);
   left: 0;
   box-sizing: border-box;
   display: flex;
@@ -153,7 +157,8 @@
   border: 1px solid var(--color-purple);
   border-radius: 50%;
   color: var(--color-purple);
-  font-size: var(--body-font-size-s);
+  font-size: var(--columns-step-font-size, var(--body-font-size-s));
+  font-weight: var(--columns-step-font-weight, inherit);
   line-height: 1;
 }
 
@@ -511,3 +516,182 @@
     --columns-stack-gap-end: 54px;
   }
 }
+
+/*
+ * The centered, one-third and divided rules below are keyed to their own variant
+ * class, so they never compete with the promo / steps / feature rules above.
+ */
+/* stylelint-disable no-descending-specificity */
+
+/*
+ * centered: short centered columns (h4, text, CTA), e.g. the nl-nl shipping purple band
+ * (section style dark). From 768px the columns sit side by side in a 912px area
+ * (3 x 288px, 24px gaps) and the CTAs are pushed to the bottom so the buttons line up.
+ */
+.columns.centered {
+  text-align: center;
+}
+
+.columns.centered > div > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.columns.centered h4 {
+  margin: 0 0 var(--space-7);
+  font-size: 20px; /* source size, between the 19px and 24px steps of the scale */
+  font-weight: var(--font-weight-regular);
+}
+
+.columns.centered p {
+  margin: 0 0 var(--space-5);
+}
+
+.columns.centered .button-wrapper {
+  margin: auto 0 0;
+}
+
+/* source pill: 50px tall */
+.columns.centered a.button {
+  padding-block: 14px;
+}
+
+/*
+ * one-third: image | text. From 768px the image takes 1/3 and the text 2/3 (12px
+ * inset each, as the source grid), tops aligned; the h2 keeps the section-title spacing.
+ */
+.columns.one-third .columns-img-col img {
+  max-width: 300px;
+  margin-inline: auto;
+}
+
+.columns.one-third h2 {
+  margin-bottom: var(--space-6);
+}
+
+.columns.one-third p {
+  margin-bottom: var(--space-2);
+}
+
+.columns.one-third ul {
+  margin: 0;
+  padding-left: var(--space-8);
+}
+
+/*
+ * divided: two titled columns with a vertical rule between them from 768px.
+ * An ordered list shows circled numbers (shared with steps); a bulleted list whose
+ * items start with an icon shows the icon left of the item's title and text.
+ */
+.columns.divided {
+  --columns-step-size: var(--space-12);
+  --columns-step-gap: 29px;
+  --columns-step-top: var(--space-1);
+  --columns-step-spacing: var(--space-2);
+  --columns-step-font-size: var(--heading-font-size-m);
+  --columns-step-font-weight: var(--font-weight-medium);
+  --columns-steps-indent: 0;
+  --columns-item-icon-size: 53px;
+  --columns-item-icon-gap: var(--space-6);
+}
+
+.columns.divided h3 {
+  margin-bottom: var(--space-7);
+  text-align: center;
+}
+
+.columns.divided ol {
+  margin-bottom: 0;
+}
+
+.columns.divided ul:has(> li > picture:first-child, > li > p:first-child > picture) {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.columns.divided ul > li:has(> picture:first-child, > p:first-child > picture) {
+  position: relative;
+  min-height: var(--columns-item-icon-size);
+  padding-left: calc(var(--columns-item-icon-size) + var(--columns-item-icon-gap));
+}
+
+.columns.divided ul > li + li {
+  margin-top: var(--space-3);
+}
+
+.columns.divided ul > li > :is(picture, p:has(> picture)):first-child {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--columns-item-icon-size);
+  margin: 0;
+  line-height: 0;
+}
+
+.columns.divided ul > li > :is(picture, p:has(> picture)):first-child img {
+  width: var(--columns-item-icon-size);
+  height: var(--columns-item-icon-size);
+  object-fit: contain;
+}
+
+.columns.divided ul > li > p {
+  margin: 0 0 var(--space-2);
+}
+
+.columns.divided ul > li > :last-child {
+  margin-bottom: 0;
+}
+
+@media (width >= 768px) {
+  .columns.centered {
+    max-width: 912px;
+    margin-inline: auto;
+  }
+
+  .columns.centered > div {
+    align-items: stretch;
+  }
+
+  /* on the brand band: the source's 36px above the titles and 44px below the buttons */
+  main > .section.dark .columns.centered {
+    margin-block: calc(var(--space-9) - var(--section-spacing)) calc(44px - var(--section-spacing));
+  }
+
+  .columns.one-third > div {
+    align-items: flex-start;
+    gap: 0;
+  }
+
+  .columns.one-third > div > div {
+    padding-inline: var(--space-3);
+  }
+
+  .columns.one-third > div > .columns-img-col {
+    flex: 0 0 calc(100% / 3);
+    box-sizing: border-box;
+  }
+
+  .columns.one-third .columns-img-col img {
+    max-width: 100%;
+  }
+
+  .columns.one-third h2 {
+    margin-bottom: var(--space-10);
+  }
+
+  .columns.divided > div {
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .columns.divided > div > div {
+    padding: var(--space-9) var(--space-6) var(--space-7);
+  }
+
+  .columns.divided > div > div + div {
+    border-left: 1px solid var(--border-color);
+  }
+}
+
+/* stylelint-enable no-descending-specificity */

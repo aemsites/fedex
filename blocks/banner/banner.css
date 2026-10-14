@@ -1,0 +1,144 @@
+/*
+ * banner: icon | title + text | CTA on a panel. Stacked and centered on mobile; from 768px a
+ * row of 12-column-grid columns (default 2/6/4, dark 3/6/3), vertically centered.
+ */
+.banner {
+  --banner-bg: var(--panel-color);
+  --banner-color: var(--text-color);
+
+  /* source: the light panel is 936px, a little narrower than the 970px content column */
+  --banner-width: 936px;
+  --banner-icon-size: 96px;
+  --banner-title-size: 25px;
+  --banner-column-gap: var(--space-3);
+  --banner-padding-block: var(--space-7);
+  --banner-icon-column: calc(100% * 2 / 12);
+  --banner-cta-column: calc(100% * 4 / 12);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  width: min(100%, var(--banner-width));
+  margin-inline: auto;
+  box-sizing: border-box;
+  padding: var(--space-6);
+  background-color: var(--banner-bg);
+  color: var(--banner-color);
+  text-align: center;
+}
+
+/* space to the blocks around it in the same section (source: ~56px, freight-services) */
+.banner-wrapper:not(:first-child) {
+  margin-top: var(--space-12);
+}
+
+.banner-wrapper:not(:last-child) {
+  margin-bottom: var(--space-12);
+}
+
+.banner .banner-icon {
+  display: flex;
+  justify-content: center;
+}
+
+.banner .banner-icon picture,
+.banner .banner-icon .icon {
+  display: block;
+  width: var(--banner-icon-size);
+  height: var(--banner-icon-size);
+}
+
+.banner .banner-icon img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.banner .banner-text > * {
+  margin: 0;
+}
+
+.banner .banner-text > * + * {
+  margin-top: var(--space-2);
+}
+
+.banner .banner-text > :is(h1, h2, h3, h4, h5, h6) {
+  font-size: var(--banner-title-size);
+  font-weight: var(--font-weight-light);
+  line-height: var(--heading-line-height);
+}
+
+.banner .banner-cta p {
+  margin: 0;
+}
+
+.banner .banner-cta p + p {
+  margin-top: var(--space-2);
+}
+
+/* dark: brand purple panel across the full content width, white text and outline pill */
+.banner.dark {
+  --banner-bg: var(--dark-color);
+  --banner-color: var(--color-white);
+  --banner-width: var(--content-max-width);
+  --banner-title-size: 21px;
+  --banner-padding-block: var(--space-6);
+  --banner-icon-column: calc(100% * 3 / 12);
+  --banner-cta-column: calc(100% * 3 / 12);
+}
+
+.banner.dark a:any-link:not(.button) {
+  color: inherit;
+}
+
+.banner.dark a.button.secondary {
+  /* source pill is 50px tall: a little less padding than the global button */
+  padding-block: 14px;
+  border-color: var(--color-white);
+  color: var(--color-white);
+}
+
+.banner.dark a.button.secondary:hover,
+.banner.dark a.button.secondary:focus-visible {
+  border-color: var(--color-white);
+  background-color: var(--color-white);
+  color: var(--dark-color);
+}
+
+.banner.dark :focus-visible {
+  outline-color: var(--color-white);
+}
+
+@media (width >= 768px) {
+  .banner {
+    flex-direction: row;
+    gap: 0;
+    padding: var(--banner-padding-block) 0;
+    text-align: start;
+  }
+
+  .banner > div {
+    box-sizing: border-box;
+    padding-inline: var(--banner-column-gap);
+  }
+
+  .banner .banner-icon {
+    flex: 0 0 var(--banner-icon-column);
+  }
+
+  .banner .banner-text {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  .banner .banner-cta {
+    flex: 0 0 var(--banner-cta-column);
+  }
+
+  /* without an icon the text keeps the panel's side spacing */
+  .banner > .banner-text:first-child {
+    padding-inline-start: var(--space-6);
+  }
+}
