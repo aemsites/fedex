@@ -367,6 +367,26 @@ main img {
   }
 }
 
+/* down-arrow jump link (schedule-manage-pickups ":arrow-down: Get tools and tips…"): a 16px blue
+   arrow before a medium blue link, on all widths as on the source */
+.default-content-wrapper p > .icon.icon-arrow-down {
+  display: inline-block;
+  height: 16px;
+  width: 16px;
+  margin-inline-end: var(--space-2);
+  vertical-align: -2px;
+}
+
+:where(main .default-content-wrapper p:has(> .icon-arrow-down)) > a:any-link {
+  color: var(--color-blue);
+  font-weight: var(--font-weight-medium);
+  text-decoration: none;
+}
+
+:where(main .default-content-wrapper p:has(> .icon-arrow-down)) > a:any-link:hover {
+  text-decoration: underline;
+}
+
 /*
  * section headings: a default-content H2 gets the FedEx title spacing,
  * 28px above / 24px below on mobile, 48px / 40px from 768px.

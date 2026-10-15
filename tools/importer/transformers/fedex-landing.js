@@ -378,6 +378,41 @@ function flattenIndentRows(element) {
   });
 }
 
+// A [jump arrow | link] row left after the jump-link grids and panels are converted
+// (schedule-manage-pickups "Get tools and tips to make pickups even easier" below the pickup
+// options) -> one paragraph ":arrow-down: link": the arrow is an inline icon before the link, as on
+// the source (icons/arrow-down.svg; styled in styles.css). Runs after convertJumpLinkGrids and
+// unwrapCenteredPanels; rows of a jump-links panel are left alone.
+function inlineArrowLinks(element, doc) {
+  element.querySelectorAll('.root .column_control_v1').forEach((row) => {
+    if (!row.isConnected) return;
+    const cols = visibleCols(row);
+    if (cols.length !== 2) return;
+    const [lead, body] = cols;
+    const arrows = [...lead.querySelectorAll('img')];
+    if (clean(lead.textContent) || !arrows.length || !arrows.every(jumpArrow)) return;
+    const grid = colGrid(body);
+    const comps = grid ? [...grid.children].filter((c) => !c.matches('.fxg-desktop--hide, .spacer')) : [];
+    const links = comps.length === 1 && comps[0].matches('.button_v1')
+      ? [...comps[0].querySelectorAll('a[href]')].filter((a) => !a.closest('.fxg-desktop--hide') && clean(a.textContent)) : [];
+    if (links.length !== 1) return;
+    // a jump-links panel keeps its rows (its section is styled as a list of in-page links)
+    for (let n = row.nextElementSibling; n && !n.matches('hr'); n = n.nextElementSibling) {
+      if ((n.getAttribute(STYLE_MARKER_ATTR) || '').includes('jump-links')) return;
+    }
+    const rt = doc.createElement('div');
+    rt.className = 'richtext';
+    rt.setAttribute('data-fedex-arrow-link', '');
+    const p = doc.createElement('p');
+    const a = doc.createElement('a');
+    a.setAttribute('href', links[0].getAttribute('href'));
+    a.textContent = clean(links[0].textContent);
+    p.append(doc.createTextNode(':arrow-down: '), a);
+    rt.append(p);
+    row.replaceWith(rt);
+  });
+}
+
 // A centred icon row right before a title ([empty col-sm-3 | image col-sm-6 | empty col-sm-3], then
 // the title_v1: schedule-manage-pickups' purple calendar circles above "Easily schedule an on-call
 // pickup online", "Convenience is automatic…"): the icon belongs to the title. It moves into the
@@ -521,19 +556,37 @@ function markCenteredIntros(element, doc) {
     const h = title.querySelector('h1, h2, h3, h4, h5, h6');
     if (!h || h.tagName === 'H1' || !h.classList.contains('cc-aem-u-align--center@small')) return;
     if (title.closest('.column_control_v1, .accordion_selector, .tabs_v1, .featured_offer_v2, .hero_landingpage_v1, .experiencefragment, .fxg-desktop--hide')) return;
-    // only a title that opens its section: no content between the previous break and it
+    // only a title that opens its section: no content between the previous break and it. A notice
+    // box (div.notifications) does not count: it stands on its own (schedule-manage-pickups: the
+    // LTL notice above "Simplify shipping with FedEx pickup options")
+    const content = (el) => {
+      if (!hasContent(el)) return false;
+      if (el.matches('.notifications')) return false;
+      const rest = el.cloneNode(true);
+      rest.querySelectorAll('.notifications').forEach((n) => n.remove());
+      return hasContent(rest);
+    };
     let prev = title.previousElementSibling;
-    while (prev && !prev.matches('hr') && !hasContent(prev)) prev = prev.previousElementSibling;
+    while (prev && !prev.matches('hr') && !content(prev)) prev = prev.previousElementSibling;
     let opens = !prev || prev.matches('hr');
     if (!prev) {
       // first in its wrapper: the wrapper must open the section (an <hr> or nothing before it)
       let wrap = title.parentElement;
       while (wrap && wrap.previousElementSibling === null && !wrap.matches('.root > .aem-Grid')) wrap = wrap.parentElement;
       let before = wrap && wrap.previousElementSibling;
-      while (before && !before.matches('hr') && !hasContent(before)) before = before.previousElementSibling;
+      while (before && !before.matches('hr') && !content(before)) before = before.previousElementSibling;
       opens = !before || before.matches('hr');
     }
-    if (opens) title.after(styleMarker(doc, 'center-intro'));
+    if (!opens) return;
+    // the section's own text is centred too, after its blocks as well (schedule-manage-pickups: "It's
+    // easy to get your shipment moving…" below the pickup options): `center` for the whole section
+    const texts = [];
+    for (let next = title.nextElementSibling; next && !next.matches('hr'); next = next.nextElementSibling) {
+      if (next.matches('.richtext:not([data-fedex-arrow-link])') && clean(next.textContent)) texts.push(next);
+    }
+    const centred = (rt) => !!rt.querySelector('[class*="align--center@small"]');
+    const style = texts.length && texts.every(centred) ? 'center' : 'center-intro';
+    title.after(styleMarker(doc, style));
   });
 }
 
@@ -856,6 +909,7 @@ export default function transform(hookName, element, payload) {
   insertSectionBreaks(element, doc);
   // after the panels are unwrapped: a centred title inside a panel opens its section too
   unwrapCenteredPanels(element, doc);
+  inlineArrowLinks(element, doc);
   markCenteredIntros(element, doc);
   convertJumpLinks(element, doc);
   tagShapes(element);
