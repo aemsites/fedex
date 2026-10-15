@@ -536,8 +536,9 @@
 
 /*
  * icon + centered + photos (en-us tracking "Take control of your deliveries"): the importer sets it
- * when every image is a full-column photo. The photo spans the card at 727:463 (cropped, square
- * corners), the title is regular 20px 20px below it and 14px above the text. As the source column:
+ * when every image is a full-column photo. The photo spans the card at its natural ratio (the icon
+ * image rule: height auto, not cropped; multiweight has square and strip images), square corners;
+ * the title is regular 20px 20px below it and 14px above the text. As the source column:
  * 15px inset and 33px below the text on mobile, 12px and 21px from 768px (3 per row); 20px below.
  */
 .cards.icon.centered.photos {
@@ -555,11 +556,6 @@
 .cards.icon.centered.photos > ul > li {
   gap: var(--space-5);
   padding-bottom: var(--cards-photos-end);
-}
-
-.cards.icon.centered.photos .cards-card-image img {
-  aspect-ratio: 727 / 463;
-  object-fit: cover;
 }
 
 .cards.icon.centered.photos .cards-card-body h3 {
