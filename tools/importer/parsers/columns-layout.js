@@ -37,8 +37,18 @@ function listItem(cc, document, numbered) {
     if (img) li.append(img);
   }
   if (textCol) {
-    const parts = [];
-    components(textCol).forEach((comp) => {
+    // title + link rows (en-to new-customer "Manage Your Shipment": "Ship Online" above the
+    // "About FedEx Ship Manager" link): the title is a bold paragraph, the link its own paragraph
+    const titled = components(textCol).some((k) => k.matches('.title_v1, .button_v1'));
+    const parts = titled ? textContent(textCol, cc, document).map((el) => {
+      if (!/^H[1-6]$/.test(el.tagName)) return el;
+      const p = document.createElement('p');
+      const strong = document.createElement('strong');
+      strong.append(...el.childNodes);
+      p.append(strong);
+      return p;
+    }) : [];
+    if (!titled) components(textCol).forEach((comp) => {
       [...comp.querySelectorAll('p, ul, ol')]
         .filter((p) => !isHidden(p, cc) && p.textContent.trim() && !p.parentElement.closest('p, ul, ol'))
         .forEach((p) => parts.push(copyAs(p, document, p.tagName.toLowerCase())));

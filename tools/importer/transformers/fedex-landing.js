@@ -815,11 +815,38 @@ const FORM_MARKER = 'data-fedex-form';
 // definition's fieldset legends; rich text inside the form stays on the page, before the block.
 // Only forms whose definition is uploaded (/{locale}/forms/{name}.json) are converted: the same
 // wrapper holds other content too (nl-nl packaging/supplies: a product catalogue). Add the name
-// here after uploading its definition.
+// here after uploading its definition; `<locale>:<name>` converts it in that locale only.
 const CLASSIC_FORMS = new Set([
   'charters-request-a-quote', 'dropbox-maintenance-request', 'advanced-quote',
   'shipping-high-value-jewelry-declared-value-form', 'shipping-last-minute-rates',
+  'customer-support-write-to-fedex', 'en-to:packaging-supplies',
 ]);
+// Forms whose definition holds all their content, catalogue and section titles included (en-to
+// packaging-supplies: a photo, title and quantity per product, then "Where shall we deliver the
+// supplies?"): nothing of the form stays on the page
+const SELF_CONTAINED_FORMS = new Set(['packaging-supplies']);
+// Conditional forms (en-to ancillary-clearance-service "Select Country/Territory"): a dropdown whose
+// options load a component-library page each (/content/fedex-com/component-library/ancillary/
+// en_us/au.html: that country's fee table). The options live in a JSON config script, which cleanup
+// drops: markConditionalForms (preprocess) copies it onto the component (data-fedex-options) for
+// parsers/content-select.js.
+export const CONDITIONAL_OPTIONS = 'data-fedex-options';
+export function markConditionalForms(document) {
+  document.querySelectorAll('.root div.conditionalform').forEach((comp) => {
+    const config = comp.querySelector('script[data-config="js-conditional-form-config"]');
+    const form = comp.querySelector('.js-conditional-form');
+    try {
+      const { formJson } = JSON.parse(config.textContent);
+      comp.setAttribute(CONDITIONAL_OPTIONS, JSON.stringify({
+        label: (form && (form.dataset.label || form.dataset.choose)) || '',
+        options: formJson.map((o) => ({ label: o.label, data: o.data || {} })),
+      }));
+    } catch (e) {
+      // no readable config: the component stays as it is
+    }
+  });
+}
+
 function formNameFromUrl(url) {
   try {
     return new URL(url).pathname.replace(/\.html$/, '').split('/').filter(Boolean).slice(-2).join('-').toLowerCase();
@@ -830,13 +857,20 @@ function formNameFromUrl(url) {
 
 export function markAdaptiveForms(document, url) {
   const classicName = formNameFromUrl(url);
+  let locale = '';
+  try {
+    [locale] = new URL(url).pathname.split('/').filter(Boolean);
+  } catch (e) {
+    locale = '';
+  }
   document.querySelectorAll('.root form.fxg-forms').forEach((form, i) => {
-    if (!classicName || !CLASSIC_FORMS.has(classicName)) return;
+    if (!classicName || !(CLASSIC_FORMS.has(classicName) || CLASSIC_FORMS.has(`${locale}:${classicName}`))) return;
     const name = i ? `${classicName}-${i + 1}` : classicName;
     const marker = document.createElement('p');
     marker.setAttribute(FORM_MARKER, name);
     marker.textContent = `form ${name}`;
-    const texts = [...form.querySelectorAll('.richtext')].filter((r) => clean(r.textContent));
+    const texts = SELF_CONTAINED_FORMS.has(classicName) ? []
+      : [...form.querySelectorAll('.richtext')].filter((r) => clean(r.textContent));
     form.replaceWith(...texts, marker);
   });
   document.querySelectorAll('.root div.aemform').forEach((comp) => {
@@ -868,6 +902,9 @@ function createFormBlocks(element, doc, locale) {
 
 function stripForms(element) {
   element.querySelectorAll('.root form').forEach((form) => {
+    // field error messages ("Error:") and script-drawn field icons (data: images: en-to
+    // packaging/supplies) go with the fields
+    form.querySelectorAll('.cc-aem-c-form__message, img[src^="data:"]').forEach((el) => el.remove());
     FORM_FIELDS.forEach((sel) => form.querySelectorAll(sel).forEach((el) => {
       // keep authored content components that happen to sit inside a field wrapper
       if (el.querySelector('.title_v1, .richtext, .image_v2') && !el.matches('input, select, textarea, button, label')) return;
@@ -889,6 +926,9 @@ function promoteFirstHeading(element, doc) {
     h.replaceWith(h2);
   });
   if (h1s.length) return;
+  // a page title outside .root (en-to sitemap "Sitemap", eco-friendly-marketing-ideas: an h1 above
+  // the page grid) is the page's h1 already
+  if ([...element.querySelectorAll('h1')].some((h) => !h.closest('.fxg-desktop--hide'))) return;
   const first = [...root.querySelectorAll('h2, h3, h4')].find((h) => !h.closest('.fxg-desktop--hide'));
   if (!first) return;
   const h1 = doc.createElement('h1');

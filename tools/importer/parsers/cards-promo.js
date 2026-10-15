@@ -268,16 +268,25 @@ export default function parse(element, { document }) {
       np.innerHTML = p.innerHTML.trim();
       body.push(np);
     });
-    if (cta) {
-      const p = document.createElement('p');
-      const a = document.createElement('a');
-      a.href = cta.href || cta.getAttribute('href');
-      a.textContent = cta.textContent.replace(/\s+/g, ' ').trim();
-      const cls = BUTTON_CLASSES.filter((c) => cta.classList.contains(c));
-      if (cls.length) a.className = cls.join(' ');
-      p.append(a);
-      body.push(p);
-    }
+    // every button link (en-to sustainability/reports "2021 ESG Report": the report, its content
+    // index and overview), else the first text link
+    const buttons = [...col.querySelectorAll('.button_v1 a[href]')]
+      .filter((a) => !isHidden(a, col) && !a.classList.contains('hidden') && a.textContent.trim()
+        // signed-in alternates (.fxg-auth-button-link, hidden until login) are not authored CTAs
+        && !a.closest('.fxg-auth-button-link')
+        && !/^\/?#$/.test(a.getAttribute('href') || ''));
+    (buttons.length ? buttons : [cta].filter(Boolean))
+      .filter((l, i, all) => all.findIndex((b) => b.getAttribute('href') === l.getAttribute('href')) === i)
+      .forEach((link) => {
+        const p = document.createElement('p');
+        const a = document.createElement('a');
+        a.href = link.href || link.getAttribute('href');
+        a.textContent = link.textContent.replace(/\s+/g, ' ').trim();
+        const cls = BUTTON_CLASSES.filter((c) => link.classList.contains(c));
+        if (cls.length) a.className = cls.join(' ');
+        p.append(a);
+        body.push(p);
+      });
     cells.push([imageCell, body.length ? body : '']);
   });
 

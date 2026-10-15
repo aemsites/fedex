@@ -672,6 +672,8 @@ export default function transform(hookName, element, payload) {
 
     // 4. Safe element removal
     WebImporter.DOMUtils.remove(element, ['iframe', 'noscript', 'link', 'script', 'style']);
+    // bot-detection beacons drawn into the page (en-to home: scriptseai6686.fedex.com/.../icon.jpg)
+    element.querySelectorAll('img[src*="//scriptseai"]').forEach((img) => (img.closest('picture') || img).remove());
 
     // 5. Remove leftover marker attributes
     element.querySelectorAll(`[${DUPLICATE_MARKER}]`).forEach((el) => el.removeAttribute(DUPLICATE_MARKER));

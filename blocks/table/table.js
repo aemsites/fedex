@@ -30,7 +30,8 @@ function regionLabel(block) {
 }
 
 /**
- * table: the first row is the header (th), every other row is a data row.
+ * table: the first row is the header (th), every other row is a data row
+ * (`no-header`: every row is a data row).
  * Cells keep their authored content (links, lists, images). A cell holding only
  * a check mark (✓, ✔ or a single icon) is centered, and so is its column header.
  * The table scrolls horizontally inside the block when it doesn't fit.
@@ -40,13 +41,14 @@ export default function decorate(block) {
   const thead = document.createElement('thead');
   const tbody = document.createElement('tbody');
   const checkColumns = new Set();
+  const hasHeader = !block.classList.contains('no-header');
 
   [...block.children].forEach((row, i) => {
     const cells = [...row.children];
     if (!cells.some((c) => c.textContent.trim() || c.querySelector('img, .icon'))) return;
     const tr = document.createElement('tr');
     cells.forEach((cell, col) => {
-      const header = i === 0;
+      const header = hasHeader && i === 0;
       const td = document.createElement(header ? 'th' : 'td');
       if (header) td.scope = 'col';
       // a cell authored as a single paragraph is unwrapped
@@ -60,7 +62,7 @@ export default function decorate(block) {
       }
       tr.append(td);
     });
-    (i === 0 ? thead : tbody).append(tr);
+    (hasHeader && i === 0 ? thead : tbody).append(tr);
   });
 
   if (thead.firstElementChild) {

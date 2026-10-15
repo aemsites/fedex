@@ -67,8 +67,28 @@ function markCellHeadings(cell, document) {
   });
 }
 
+// A table inside a cell (component-library ancillary fees: "€ 8.00 per line from the 6th line" in a
+// one-cell table; en_us/mx storage rates by weight) cannot stay a table in a block cell: each of its
+// rows becomes a paragraph, the row's non-empty cells joined by " | "
+function flattenNestedTables(clone, document) {
+  [...clone.querySelectorAll('table')].reverse().forEach((t) => {
+    const lines = [...t.rows].map((tr) => [...tr.cells]
+      .map((c) => c.innerHTML.replace(/<\/?(p|div|br)[^>]*>/gi, ' ').replace(/\s+/g, ' ').trim())
+      .filter((h) => h.replace(/<[^>]+>|&nbsp;/g, '').trim()))
+      .filter((cells) => cells.length);
+    const frag = document.createDocumentFragment();
+    lines.forEach((cells) => {
+      const p = document.createElement('p');
+      p.innerHTML = cells.join(' | ');
+      frag.append(p);
+    });
+    t.replaceWith(frag);
+  });
+}
+
 function cellContent(src, document, header) {
   const clone = normalizeSpace(src.cloneNode(true));
+  flattenNestedTables(clone, document);
   markBadges(clone, document);
   if (!header) markCellHeadings(clone, document);
   clone.querySelectorAll('span, font').forEach((s) => s.replaceWith(...s.childNodes));
@@ -87,12 +107,21 @@ function cellContent(src, document, header) {
   return nodes.length && clean(div.textContent + (div.querySelector('img') ? 'x' : '')) ? nodes : '';
 }
 
+// Service fee tables (component-library ancillary pages, the content of en-to
+// ancillary-clearance-service's country dropdown): fee | amount | description rows without a header
+// row (the fee names are bold row labels); they come with a one-column mobile copy
+// (td.fxg__table-td-mobile), which is dropped
+const isServiceFees = (table) => !!(table && table.querySelector('td.fxg__service-fees-td'));
+const isMobileCopy = (table) => !!(table && table.querySelector('td.fxg__table-td-mobile'))
+  && !table.querySelector('td.fxg__service-fees-td');
+
 function rowsFromTable(table) {
   const rows = [];
   const head = [...table.querySelectorAll(':scope > thead > tr')];
   const body = [...table.querySelectorAll(':scope > tbody > tr, :scope > tr')];
+  const noHeader = isServiceFees(table);
   head.forEach((tr) => rows.push({ tr, header: true }));
-  body.forEach((tr, i) => rows.push({ tr, header: !head.length && i === 0 }));
+  body.forEach((tr, i) => rows.push({ tr, header: !noHeader && !head.length && i === 0 }));
   return rows.map(({ tr, header }) => ({ header, cells: [...tr.querySelectorAll(':scope > th, :scope > td')] }));
 }
 
@@ -123,6 +152,7 @@ function buildTable(source, document) {
   // row); only the variant name differs
   // `striped`: fedex.com striped-row tables without borders (nl-nl ship-to-europe tab tables)
   const variants = [];
+  if (isServiceFees(table)) variants.push('no-header');
   if (brandHeader(table)) variants.push('brand');
   if (table && table.classList.contains('fxg-table--striped-row')) variants.push('striped');
   // header labels authored in the lighter FedEx purple (#671CAA, send-parcel-to-*)
@@ -178,6 +208,11 @@ export default function parse(element, { document }) {
     const { block, consumed } = buildGridRunTable(element, document);
     consumed.forEach((el) => el.remove());
     element.replaceWith(block);
+    return;
+  }
+  const table = element.matches('table') ? element : element.querySelector('table');
+  if (isMobileCopy(table)) {
+    element.remove();
     return;
   }
   const block = buildTable(element, document);
