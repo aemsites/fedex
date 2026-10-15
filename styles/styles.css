@@ -685,6 +685,29 @@ main > .section.center-headings .default-content-wrapper h2 {
   text-align: center;
 }
 
+/*
+ * title-rule: a 1px light rule under the heading that opens the section, across the content width
+ * (fedex.com's divider under a section title: en-to shipping "Shipping Services", customer-support
+ * "Contact Us")
+ */
+main > .section.title-rule > .default-content-wrapper:first-child > :is(h1, h2, h3):first-child {
+  padding-bottom: var(--space-5);
+  border-bottom: 1px solid var(--rule-color, #eee);
+}
+
+/*
+ * divider: a 1px light rule at the top of the section, across the content width (fedex.com's
+ * divider between two content groups: en-to packaging, online-shipping, terms-of-use)
+ */
+main > .section.divider::before {
+  content: "";
+  display: block;
+  box-sizing: border-box;
+  width: min(100% - 2 * var(--content-gutter), var(--content-max-width));
+  margin: 0 auto var(--space-6);
+  border-top: 1px solid var(--rule-color, #eee);
+}
+
 /* a heading directly above a logo grid sits close to it (e.g. returns "Drop off FedEx returns at:") */
 main .default-content-wrapper:has(+ .cards-wrapper > .cards.logos) > h2:last-child {
   margin-bottom: var(--space-4);
