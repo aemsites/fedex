@@ -24,5 +24,6 @@ To put a table inside an Accordion answer, author the table in a fragment and pu
 |  | **Service** | text |
 - `striped`: no row lines; every other data row (from the first) on the light panel colour, cells centered vertically, 14px text. Links in cells are purple; a link alone in its paragraph is a blue uppercase text CTA; a heading in a cell (`#### Service name`) is shown at 20px above its description. Example: `Table (striped)`
 - `purple-headers`: modifier for `striped`: the header labels in the lighter FedEx purple at 18px. Example: `Table (striped, purple-headers)`
+- `no-header`: no header row, every row is a data row (fedex.com's clearance fee tables: fee | amount | description). At most 827px wide, centered and inset 12px, 30px above; 12px black text, 1px black row lines, every other row (from the first) on light grey, 30px / 8px cell padding; the first column 20px regular (also when authored bold), the second centered; columns 25% | 25% | 50%. Example: `Table (no-header)` in the `/fragments/ancillary/…` fragments that Content Select loads (en-to `/ancillary-clearance-service`).
 
 Code text in a cell (`` `8.00 - 11.30 uur` ``) is shown as a small purple badge, in every variant (fedex.com's time labels next to a service name).

@@ -81,9 +81,10 @@ function buildWidgetAutoBlocks(main) {
 function buildAutoBlocks(main) {
   try {
     // auto load `*/fragments/*` references
-    // (accordion answers load their own fragment when the row first opens)
+    // (accordion answers load their own fragment when the row first opens, content-select
+    // options when chosen)
     const fragments = [...main.querySelectorAll('a[href*="/fragments/"]')]
-      .filter((f) => !f.closest('.fragment, .accordion'));
+      .filter((f) => !f.closest('.fragment, .accordion, .content-select'));
     if (fragments.length > 0) {
       // eslint-disable-next-line import/no-cycle
       import('../blocks/fragment/fragment.js').then(({ loadFragment }) => {

@@ -1,6 +1,77 @@
-/* content-select: styled to match fedex.com (see README) */
+/*
+ * content-select: fedex.com's conditional-form dropdown. A 60px light grey field with the
+ * prompt as a small uppercase label floating at its top (always floated, as on the source),
+ * the chosen option below it and a 20px chevron 20px from the right edge. Focus: a purple
+ * bar on the left. The chosen option's content follows 10px below.
+ */
+.content-select {
+  --content-select-height: 60px;
+  --content-select-inset: 10px;
+  --content-select-bar: 3px; /* left bar: transparent, purple on focus */
+  --content-select-chevron-size: 20px;
+  --content-select-chevron-inset: 20px;
+  --content-select-chevron: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 21.3 10.65'%3E%3Cpath fill='%23333' d='M10.73 10.64 0 1.52 1.3 0l9.43 8L20 .11l1.3 1.52z'/%3E%3C/svg%3E");
+}
+
 .content-select .content-select-field {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  position: relative;
+  margin-bottom: 10px; /* source: dropdown margin-bottom */
+}
+
+/* the prompt, floated into the top of the field */
+.content-select .content-select-field label {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  border-inline-start: var(--content-select-bar) solid transparent;
+  padding-inline-start: var(--content-select-inset);
+  color: var(--text-color);
+  font-size: 10px; /* source floating-label size */
+  font-weight: var(--font-weight-bold);
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+.content-select .content-select-field select {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  height: var(--content-select-height);
+  margin: 0;
+  border: 0;
+  border-inline-start: var(--content-select-bar) solid transparent;
+  border-radius: 0;
+
+  /* text clears the chevron on the right */
+  padding: 20px calc(var(--content-select-chevron-size) + 2 * var(--content-select-chevron-inset)) 0
+    var(--content-select-inset);
+  background: var(--color-gray-light) var(--content-select-chevron) no-repeat
+    right var(--content-select-chevron-inset) center / var(--content-select-chevron-size) auto;
+  color: #000; /* source select text colour */
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-m);
+  font-weight: var(--font-weight-light);
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-overflow: ellipsis;
+  appearance: none;
+  cursor: pointer;
+}
+
+.content-select .content-select-field select:focus {
+  border-inline-start-color: var(--dark-color);
+  outline: 0;
+}
+
+/* keyboard focus keeps the site's focus ring as well */
+.content-select .content-select-field select:focus-visible {
+  outline: 2px solid var(--focus-color);
+  outline-offset: 2px;
+}
+
+/* the content's own top margin adds to the 10px (fee tables: 30px more) instead of collapsing */
+.content-select .content-select-panel {
+  display: flow-root;
 }
