@@ -1,0 +1,30 @@
+{
+  "variantName": "banner",
+  "baseBlock": "banner",
+  "version": "1.0.0",
+  "created": "2026-10-15T18:02:52.000Z",
+  "name": "Banner",
+  "description": "A one-row promo panel",
+  "variants": [
+    "dark"
+  ],
+  "usage": {
+    "pagesUsing": [
+      "/en-to/customer-support",
+      "/en-to/shipping",
+      "/en-us/shipping/international/export-to-canada/carm",
+      "/en-us/shipping/international/us-tariffs-impact",
+      "/nl-nl/shipping",
+      "/nl-nl/shipping/freight-services",
+      "/nl-nl/shipping/industry-solutions/aerospace",
+      "/nl-nl/shipping/industry-solutions/luxury-goods",
+      "/nl-nl/shipping/international",
+      "/nl-nl/shipping/international/international-connect-plus",
+      "/nl-nl/shipping/international/ship-to-apac",
+      "/nl-nl/shipping/international/ship-to-europe",
+      "/nl-nl/shipping/packaging/supplies/reusable-packaging"
+    ],
+    "reuseCount": 13,
+    "lastUsed": "2026-10-15T18:02:52.000Z"
+  }
+}

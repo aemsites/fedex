@@ -1,0 +1,34 @@
+{
+  "variantName": "accordion",
+  "baseBlock": "accordion",
+  "version": "1.0.0",
+  "created": "2026-10-15T18:02:52.000Z",
+  "name": "Accordion",
+  "description": "Stacked expandable rows (native details/summary)",
+  "usage": {
+    "pagesUsing": [
+      "/de-de/open-account",
+      "/de-de/shipping/international",
+      "/en-de/open-account",
+      "/en-de/shipping/international",
+      "/en-to/about/sustainability/carbon-footprint-insights",
+      "/en-to/customer-support",
+      "/en-to/eu-vat-changes",
+      "/en-to/service-news",
+      "/en-to/shipping-tools/online-shipping/faq",
+      "/en-us/billing-online",
+      "/en-us/billing-online/parcel-airfreight",
+      "/en-us/create-account/how-to-reset-forgot-password",
+      "/en-us/customer-support/call-us",
+      "/en-us/customer-support/claims",
+      "/en-us/digital/premium-features/sustainability-insights",
+      "/en-us/drafts/amol/start",
+      "/en-us/fragments/customer-support/call-us/packages-envelopes-and-air-freight-other-regions",
+      "/en-us/fragments/service-guide/dangerous-goods/how-to-ship/how-to-ship-dangerous-goods",
+      "/en-us/fragments/service-guide/dangerous-goods/how-to-ship/lithium-batteries",
+      "/en-us/fragments/service-guide/hazardous-materials/how-to-ship/how-to-ship-hazardous-materials"
+    ],
+    "reuseCount": 115,
+    "lastUsed": "2026-10-15T18:02:52.000Z"
+  }
+}

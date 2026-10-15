@@ -1,0 +1,39 @@
+{
+  "variantName": "hero",
+  "baseBlock": "hero",
+  "version": "1.0.0",
+  "created": "2026-10-15T18:02:52.000Z",
+  "name": "Hero",
+  "description": "Full-bleed background image behind a centered heading.",
+  "variants": [
+    "landing, purple",
+    "landing, full-image",
+    "landing"
+  ],
+  "usage": {
+    "pagesUsing": [
+      "/de-ch/drafts/amol/test",
+      "/de-ch/home",
+      "/de-de/drafts/amol/test",
+      "/de-de/home",
+      "/de-de/shipping",
+      "/de-de/shipping/international",
+      "/en-ca/drafts/amol/test",
+      "/en-ca/home",
+      "/en-de/home",
+      "/en-de/shipping",
+      "/en-de/shipping/international",
+      "/en-gb/drafts/amol/test",
+      "/en-gb/home",
+      "/en-in/drafts/amol/test",
+      "/en-in/home",
+      "/en-to/about",
+      "/en-to/about/facts",
+      "/en-to/about/history",
+      "/en-to/about/holiday-schedule",
+      "/en-to/about/resources"
+    ],
+    "reuseCount": 280,
+    "lastUsed": "2026-10-15T18:02:52.000Z"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "variantName": "form",
+  "baseBlock": "form",
+  "version": "1.0.0",
+  "created": "2026-10-15T18:02:52.000Z",
+  "name": "Form",
+  "description": "A form built from a sheet definition (/{locale}/forms/<name>.json)",
+  "usage": {
+    "pagesUsing": [
+      "/en-to/customer-support/write-to-fedex",
+      "/en-to/shipping/packaging/supplies",
+      "/en-us/accessibility",
+      "/en-us/fragments/shipping/last-minute-rates/get-emailed-rates",
+      "/en-us/shipping/high-value-jewelry-declared-value-form",
+      "/en-us/shipping/packaging/testing/advanced/quote"
+    ],
+    "reuseCount": 6,
+    "lastUsed": "2026-10-15T18:02:52.000Z"
+  }
+}

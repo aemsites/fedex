@@ -1,0 +1,34 @@
+{
+  "variantName": "breadcrumb",
+  "baseBlock": "breadcrumb",
+  "version": "1.0.0",
+  "created": "2026-10-15T18:02:52.000Z",
+  "name": "Breadcrumb",
+  "description": "The page trail in a 30px light-gray bar (--light-color, #f2f2f2) right under the header, aligned with the content column.",
+  "usage": {
+    "pagesUsing": [
+      "/en-to/about/sustainability",
+      "/en-to/about/sustainability/carbon-footprint-insights",
+      "/en-to/about/sustainability/get-inspired",
+      "/en-to/about/sustainability/get-inspired/10-eco-friendly-tips",
+      "/en-to/about/sustainability/get-inspired/eco-friendly-marketing-ideas",
+      "/en-to/about/sustainability/liviri-reusable-containers-promote-sustainability",
+      "/en-to/about/sustainability/our-approach",
+      "/en-to/about/sustainability/our-approach/energy-management-systems-sustains-energy",
+      "/en-to/about/sustainability/our-approach/fedex-ground-solar-power-systems-in-maui-models-future-energy",
+      "/en-to/about/sustainability/our-approach/fedex-pilots-program-in-europe-to-improve-sustainable-deliveries",
+      "/en-to/about/sustainability/our-approach/fedex-solar-thermal-air-conditioning-system-saves-energy",
+      "/en-to/about/sustainability/our-approach/fedex-uniform-recycling-program-reduces-environmental-impacts",
+      "/en-to/about/sustainability/our-approach/wing-drones-transport-fedex-deliveries-directly-to-homes",
+      "/en-to/about/sustainability/reports",
+      "/en-to/about/sustainability/taking-action",
+      "/en-to/customer-support",
+      "/en-to/shipping",
+      "/en-to/sitemap",
+      "/en-to/tracking",
+      "/en-us/accessibility"
+    ],
+    "reuseCount": 314,
+    "lastUsed": "2026-10-15T18:02:52.000Z"
+  }
+}

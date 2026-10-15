@@ -1,0 +1,41 @@
+{
+  "variantName": "table",
+  "baseBlock": "table",
+  "version": "1.0.0",
+  "created": "2026-10-15T18:02:52.000Z",
+  "name": "Table",
+  "description": "A data table at full content width.",
+  "variants": [
+    "striped",
+    "no-header",
+    "striped, purple-headers",
+    "brand",
+    "brand, striped"
+  ],
+  "usage": {
+    "pagesUsing": [
+      "/en-to/fragments/about/facts/fedex-asia-pacific",
+      "/en-to/fragments/eu-vat-changes/what-do-i-need-to-do-once-i-have-my-ioss-number",
+      "/en-to/see-whats-new",
+      "/en-to/shipping",
+      "/en-us/customer-support",
+      "/en-us/delivery-manager/registering",
+      "/en-us/fragments/customer-support/call-us/air-ocean-freight-forwarding-fedex-logistics",
+      "/en-us/fragments/customer-support/call-us/asia-pacific",
+      "/en-us/fragments/customer-support/call-us/europe",
+      "/en-us/fragments/customer-support/call-us/latin-america-and-the-caribbean",
+      "/en-us/fragments/customer-support/call-us/middle-east-india-and-africa",
+      "/en-us/fragments/customer-support/call-us/packages-envelopes-and-air-freight-north-america",
+      "/en-us/fragments/service-guide/dangerous-goods/how-to-ship/special-handling-fees",
+      "/en-us/fragments/service-guide/dangerous-goods/how-to-ship/what-resources-does-fedex-offer-for-lithium-battery-shippers",
+      "/en-us/fragments/service-guide/dangerous-goods/resources/job-aids-checklists-and-other-resources",
+      "/en-us/fragments/service-guide/hazardous-materials/how-to-ship/services-and-restrictions",
+      "/en-us/fragments/service-guide/hazardous-materials/resources/tools-to-help-you-ship",
+      "/en-us/fragments/shipping/freight/specialized-freight-services",
+      "/en-us/fragments/shipping/rate-changes/demand-surcharges/updated-july-22-2026-u-s-package-demand-surcharges",
+      "/en-us/healthcare/global-solutions"
+    ],
+    "reuseCount": 462,
+    "lastUsed": "2026-10-15T18:02:52.000Z"
+  }
+}

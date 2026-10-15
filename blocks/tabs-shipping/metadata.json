@@ -1,0 +1,29 @@
+{
+  "variantName": "tabs-shipping",
+  "baseBlock": "tabs-shipping",
+  "version": "1.0.0",
+  "created": "2026-10-15T18:02:52.000Z",
+  "name": "tabs-shipping",
+  "description": "Custom tabs block.",
+  "usage": {
+    "pagesUsing": [
+      "/de-ch/home",
+      "/de-de/home",
+      "/en-ca/home",
+      "/en-de/home",
+      "/en-gb/home",
+      "/en-in/home",
+      "/en-to/home",
+      "/en-us/home",
+      "/es-es/home",
+      "/es-mx/home",
+      "/es-us/home",
+      "/fr-ca/home",
+      "/fr-ch/home",
+      "/fr-fr/home",
+      "/nl-nl/home"
+    ],
+    "reuseCount": 15,
+    "lastUsed": "2026-10-15T18:02:52.000Z"
+  }
+}
