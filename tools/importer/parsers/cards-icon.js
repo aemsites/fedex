@@ -249,11 +249,17 @@ export default function parse(element, { document }) {
   // centered icons are sized as a share of their column on the source (img style "width:13%"):
   // small step numbers (schedule-manage-pickups "Here's how to schedule": 13%, about 40px) ->
   // `small-icons`, large illustrations (its pickup options: 50%, about 112px) -> `big-icons`
-  const iconWidths = nested ? [] : items.flatMap((cc) => cols(cc).map((col) => {
-    const img = [...col.querySelectorAll('.fxg-desktop-image img, .image_v2 img')].find((i) => !isHidden(i, cc));
-    const m = img && /(?:^|;)\s*width:\s*([\d.]+)%/.exec(img.getAttribute('style') || '');
+  // Full-width photos (JPEG/WebP at 90% or more of the column: tracking "Take control of your
+  // deliveries", 727x463 photos shown 299px wide) are photo cards -> `photos`, not icons.
+  const iconImgs = nested ? [] : items.flatMap((cc) => cols(cc).map((col) => [...col.querySelectorAll('.fxg-desktop-image img, .image_v2 img')]
+    .find((i) => !isHidden(i, cc)))).filter(Boolean);
+  const widthOf = (img) => {
+    const m = /(?:^|;)\s*width:\s*([\d.]+)%/.exec(img.getAttribute('style') || '');
     return m ? parseFloat(m[1]) : null;
-  })).filter((w) => w !== null);
+  };
+  const iconWidths = iconImgs.map(widthOf).filter((w) => w !== null);
+  const isPhoto = (img) => /\.(jpe?g|webp)$/i.test((img.getAttribute('src') || '').split('?')[0]);
+  const photos = iconImgs.length > 0 && iconImgs.every((img) => isPhoto(img) && widthOf(img) >= 90);
 
   const cells = [];
   items.forEach((cc) => cells.push(...(nested ? rowsNested(cc, document) : rowsCentered(cc, document))));
@@ -272,7 +278,8 @@ export default function parse(element, { document }) {
   // 3-up nested grid (open-account "Discover the benefits": 3 x col-sm-4, 2 items each)
   if (nested && cols(element).length === 3) variants.push('three-columns');
   if (light) variants.push('light');
-  if (iconWidths.length && iconWidths.every((w) => w <= 20)) variants.push('small-icons');
+  if (photos) variants.push('photos');
+  else if (iconWidths.length && iconWidths.every((w) => w <= 20)) variants.push('small-icons');
   else if (iconWidths.length && iconWidths.every((w) => w >= 45)) variants.push('big-icons');
   const block = WebImporter.Blocks.createBlock(document, { name: `Cards (${variants.join(', ')})`, cells });
   element.replaceWith(block);
