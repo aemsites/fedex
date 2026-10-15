@@ -424,6 +424,83 @@ main > .section.highlight.full-width {
   margin-inline: 0;
 }
 
+/*
+ * faq-navigation: the FAQ sidebar section (customer-support FAQ pages, en-us and nl-nl): back
+ * link, the topic's questions (the current one unlinked, in bold) and related topics, in a bordered
+ * box. It may come last in the document (so on small screens it follows the content); from 768px
+ * the page is two columns: sections with a breadcrumb or hero, and a `faq-title` section (the FAQ
+ * start page's title and intro), span the width, the sidebar takes
+ * the left 298px column (dense placement puts it beside the first content section, its span keeps
+ * the content rows from stretching) and every other section the right column.
+ */
+main > .section.faq-navigation > :where(.default-content-wrapper) {
+  box-sizing: border-box;
+  padding: 0 var(--space-4) var(--space-4);
+  border: 1px solid var(--border-color);
+}
+
+main > .section.faq-navigation :where(.default-content-wrapper > p:first-child) {
+  margin: 0 calc(-1 * var(--space-4)) var(--space-5);
+  padding: var(--space-4);
+  border-bottom: 1px solid var(--border-color);
+}
+
+main > .section.faq-navigation :where(.default-content-wrapper > p:first-child > a:any-link) {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  color: var(--text-color);
+  font-size: var(--body-font-size-m);
+  text-decoration: none;
+}
+
+/* the back chevron (decorative) */
+main > .section.faq-navigation .default-content-wrapper > p:first-child > a:any-link::before {
+  width: 8px;
+  height: 8px;
+  border-bottom: 1.5px solid;
+  border-left: 1.5px solid;
+  transform: rotate(45deg);
+  content: '';
+}
+
+main > .section.faq-navigation :is(h2, h3, h4) {
+  margin: var(--space-5) 0 var(--space-4);
+  font-size: var(--heading-font-size-s);
+  font-weight: var(--font-weight-bold);
+}
+
+main > .section.faq-navigation ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+main > .section.faq-navigation li {
+  margin: 0 0 var(--space-5);
+}
+
+main > .section.faq-navigation li > p {
+  margin: 0;
+}
+
+main > .section.faq-navigation li a:any-link {
+  color: var(--text-color);
+  font-weight: var(--font-weight-light);
+  text-decoration: none;
+}
+
+main > .section.faq-navigation li a:hover,
+main > .section.faq-navigation li a:focus-visible {
+  color: var(--color-blue);
+  text-decoration: underline;
+}
+
+/* the current question is the item without a link */
+main > .section.faq-navigation li:not(:has(a)) {
+  font-weight: var(--font-weight-medium);
+}
+
 /* directly under the hero the band starts at the hero's bottom edge (jump links) */
 main > .section.hero-container:has(+ .section.light.full-width) {
   margin-bottom: 0;
@@ -713,4 +790,63 @@ main > .section.checklist .default-content-wrapper > ul > li ul {
   main .default-content-wrapper:has(+ .cards-wrapper > .cards.logos) > .button-wrapper:last-child {
     margin-bottom: var(--space-16);
   }
+}
+
+
+/* faq-navigation: the two-column FAQ layout (see the faq-navigation section style above) */
+@media (width >= 768px) {
+  main:has(> .section.faq-navigation) {
+    display: grid;
+    grid-template-columns:
+      [full-start] minmax(var(--content-gutter), 1fr)
+      [nav-start] minmax(0, 298px) [nav-end] var(--space-6)
+      [content-start] minmax(0, 624px) [content-end]
+      minmax(var(--content-gutter), 1fr) [full-end];
+    grid-auto-flow: dense;
+    align-items: start;
+  }
+
+  main:has(> .section.faq-navigation) > .section {
+    grid-column: content;
+    margin: 0 0 var(--section-spacing);
+  }
+
+  main:has(> .section.faq-navigation) > .section:is(:has(.breadcrumb, .hero), .faq-title) {
+    grid-column: full;
+  }
+
+  main:has(> .section.faq-navigation) > .section:not(:has(.breadcrumb, .hero), .faq-navigation, .faq-title) > div {
+    max-width: none;
+    padding: 0;
+  }
+
+  main:has(> .section.faq-navigation) > .section.faq-navigation {
+    grid-column: nav;
+    grid-row: span 100;
+  }
+
+  main:has(> .section.faq-navigation) > .section.faq-navigation > div {
+    max-width: none;
+  }
+}
+
+/* faq-navigation pages: lists of questions (one link per item) are plain dark links, no bullets */
+main:has(> .section.faq-navigation) > .section:not(.faq-navigation) .default-content-wrapper > ul:not(:has(> li:not(:has(> a:only-child)))) {
+  padding: 0;
+  list-style: none;
+}
+
+main:has(> .section.faq-navigation) > .section:not(.faq-navigation) .default-content-wrapper > ul:not(:has(> li:not(:has(> a:only-child)))) > li {
+  margin: 0 0 var(--space-4);
+}
+
+main:has(> .section.faq-navigation) > .section:not(.faq-navigation) .default-content-wrapper > ul > li > a:only-child:any-link {
+  color: var(--text-color);
+  font-weight: var(--font-weight-light);
+  text-decoration: none;
+}
+
+main:has(> .section.faq-navigation) > .section:not(.faq-navigation) .default-content-wrapper > ul > li > a:only-child:hover {
+  color: var(--color-blue);
+  text-decoration: underline;
 }

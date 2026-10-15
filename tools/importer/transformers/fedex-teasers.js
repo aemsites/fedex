@@ -61,7 +61,8 @@ function teaserPath(a) {
 
 function setTeaserImage(doc, path) {
   const page = TEASER_PAGES[path];
-  if (!page || !doc.head) return;
+  // no image when no listing has a real teaser for the page (build-teaser-pages.py)
+  if (!page || !page.image || !doc.head) return;
   let meta = doc.head.querySelector('meta[property="og:image"]');
   if (!meta) {
     meta = doc.createElement('meta');
@@ -129,19 +130,36 @@ function blockName(table) {
   const first = table.rows && table.rows[0];
   if (!first || first.cells.length !== 1) return null;
   const m = clean(first.cells[0].textContent).match(/^(Cards|Columns)\s*(?:\(([^)]*)\))?$/i);
-  return m ? { name: m[1].toLowerCase(), variants: (m[2] || '').split(',').map((v) => clean(v).toLowerCase()).filter(Boolean) } : null;
+  // createBlock writes variants as words ("Cards (icon Links)"): compare them as class names
+  return m ? { name: m[1].toLowerCase(), variants: (m[2] || '').split(',').map((v) => clean(v).toLowerCase().replace(/\s+/g, '-')).filter(Boolean) } : null;
 }
 
 const hasImage = (cell) => !!cell.querySelector('img, picture');
 const imageOnly = (cells) => cells.every((c) => !clean(c.textContent)) && cells.some(hasImage);
 
 // one item: its cells -> { path, cta } | 'image' | null (anything else)
+// a teaser shows a photo (or no image); icon grids (how-to-hub "Shipping specific items" icons
+// linking to how-to guides) stay authored, the detail page's photo would replace the icon
+const photoOrNone = (cells) => cells.flatMap((c) => [...c.querySelectorAll('img')])
+  .every((img) => /\.(jpe?g|webp)(\?|$)/i.test(img.getAttribute('src') || '') || /format=(pjpg|jpe?g|webply|webp)/.test(img.getAttribute('src') || ''));
+
 function analyse(cells) {
   if (imageOnly(cells)) return 'image';
+  if (!photoOrNone(cells)) return null;
   const links = cells.flatMap((c) => [...c.querySelectorAll('a[href]')]);
   const paths = [...new Set(links.map(teaserPath))];
   if (paths.length !== 1 || !paths[0]) return null;
   const link = links.find((a) => teaserPath(a));
+  // a teaser is short: the link stands alone (a CTA paragraph or the linked title, not a link in
+  // running text), no lists, at most two text paragraphs. Content that links to a detail page
+  // (tracking/picture-proof-delivery: the benefit lists with "track your package" in the text,
+  // tracking/advanced feature cards) stays authored.
+  const block = link.closest('p, h1, h2, h3, h4, h5, h6, li') || link.parentElement;
+  if (clean(block.textContent) !== clean(link.textContent) || block.matches('li')) return null;
+  if (cells.some((c) => c.querySelector('ul, ol'))) return null;
+  const texts = cells.flatMap((c) => [...c.querySelectorAll('p')])
+    .filter((p) => clean(p.textContent) && !p.querySelector('a[href]'));
+  if (texts.length > 2) return null;
   const heading = cells.some((c) => c.querySelector('h1, h2, h3, h4, h5, h6'));
   return { path: paths[0], link, heading };
 }
@@ -176,6 +194,9 @@ function convertTeaserBlocks(element, doc) {
   element.querySelectorAll('table').forEach((table) => {
     const def = blockName(table);
     if (!def || def.variants.includes('teasers')) return;
+    // link-label grids are navigation, not teaser cards (how-to-hub "Shipping specific items":
+    // photo + "Batteries"; a row of migrated guides would look unlike its neighbours)
+    if (def.variants.some((v) => ['icon-links', 'icon', 'logos'].includes(v))) return;
     const rows = [...table.rows].slice(1).map((r) => [...r.cells]);
     if (!rows.length) return;
     let items;

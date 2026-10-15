@@ -114,6 +114,57 @@ function stepContent(step, document, footnotes) {
   return li;
 }
 
+// A grid of items in the text column: columns that each hold icon | text rows (en-us packaging/
+// testing/distribution "Preconditioning", "Tip test", "Drop", ... in two columns of check-mark
+// rows). Not a step: a bullet list of the item texts, column by column (the source's reading order).
+function itemGrid(cc, document) {
+  const columns = cols(cc);
+  const items = (col) => gridChildren(col, cc).filter((g) => g.matches('.column_control_v1'));
+  if (!columns.length || !columns.every((c) => items(c).length)) return null;
+  const ul = document.createElement('ul');
+  columns.forEach((col) => items(col).forEach((item) => {
+    const parts = cols(item)
+      .flatMap((c) => [...c.querySelectorAll('.richtext p, .title_v1 h1, .title_v1 h2, .title_v1 h3, .title_v1 h4, .title_v1 h5, .title_v1 h6')])
+      .filter((p) => !isHidden(p, item) && clean(p.textContent));
+    if (!parts.length) return;
+    const li = document.createElement('li');
+    li.innerHTML = parts.map((p) => cleanInner(p)).join('<br>');
+    ul.append(li);
+  }));
+  return ul.children.length ? ul : null;
+}
+
+// A nested row of text columns only (no number / icon image): content, not a step (en-us freight
+// packing-guide/boxes: the box sizes as two columns of bullet lists). Its paragraphs and lists go
+// into the text cell in column order.
+function contentRow(cc, document) {
+  const columns = cols(cc);
+  if (!columns.length || columns.some((c) => c.querySelector('.image_v2, .column_control_v1'))) return null;
+  const out = [];
+  columns.forEach((col) => gridChildren(col, cc).forEach((comp) => {
+    if (comp.matches('.title_v1')) {
+      const h = [...comp.querySelectorAll('h1, h2, h3, h4, h5, h6')].find((x) => !isHidden(x, cc));
+      if (h && clean(h.textContent)) out.push(newParagraph(`<strong>${clean(h.textContent)}</strong>`, document));
+    } else if (comp.matches('.richtext')) {
+      [...comp.querySelectorAll('p, ul, ol')].forEach((el) => {
+        if (el.parentElement.closest('p, ul, ol') || isHidden(el, cc) || !clean(el.textContent)) return;
+        if (el.matches('p')) {
+          out.push(newParagraph(cleanInner(el), document));
+          return;
+        }
+        const list = normalizeSpace(el.cloneNode(true));
+        [list, ...list.querySelectorAll('*')].forEach((n) => { n.removeAttribute('class'); n.removeAttribute('style'); });
+        list.querySelectorAll('span').forEach((sp) => sp.replaceWith(...sp.childNodes));
+        out.push(list);
+      });
+    } else if (comp.matches('.button_v1')) {
+      const a = comp.querySelector('a[href]');
+      if (a && clean(a.textContent)) out.push(ctaParagraph(a, document));
+    }
+  }));
+  return out.length ? out : null;
+}
+
 /* ---------- single-cell steps run (banner-landing, claims) ---------- */
 // The match is the FIRST row of a run of sibling column_control_v1 rows (spacers between them):
 //   intro row   (empty col-sm-3 | col-sm-9 richtext: "First, log in to your account. ...")
@@ -333,6 +384,16 @@ export default function parse(element, { document }) {
     let list = null;
     gridChildren(textCol, element).forEach((comp) => {
       if (comp.matches('.column_control_v1')) {
+        const grid = itemGrid(comp, document);
+        if (grid) {
+          text.push(grid);
+          return;
+        }
+        const content = contentRow(comp, document);
+        if (content) {
+          (list ? footnotes : text).push(...content);
+          return;
+        }
         const li = stepContent(comp, document, footnotes);
         if (!li) return;
         if (!list) {

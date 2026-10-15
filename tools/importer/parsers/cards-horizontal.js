@@ -223,9 +223,16 @@ export default function parse(element, { document }) {
     next = next.nextElementSibling;
   }
 
+  // data tables in an item's text (en-us shipsource summer-marketing "Operating hours change
+  // based...") cannot live in a card: they go after the block, where the table parser (run after
+  // this one) makes them a Table block
+  const tables = items.flatMap((item) => [...item.querySelectorAll('div.table')]
+    .filter((t) => !t.closest('.fxg-desktop--hide')));
+  tables.forEach((t) => t.remove());
+
   const cells = items.map((item) => buildRow(item, document)).filter(Boolean);
   if (!cells.length) {
-    element.remove();
+    element.replaceWith(...tables);
     return;
   }
 
@@ -250,5 +257,5 @@ export default function parse(element, { document }) {
   if (large) variants.push('large');
   const name = variants.length > 1 ? `Cards (${variants.join(', ')})` : 'cards (horizontal)';
   const block = WebImporter.Blocks.createBlock(document, { name, cells });
-  element.replaceWith(block);
+  element.replaceWith(block, ...tables);
 }

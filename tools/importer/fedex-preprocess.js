@@ -16,6 +16,18 @@ export function unwrapLinkUnderlines(document) {
   });
 }
 
+/**
+ * A relative <base href="/"> (en-us tracking.html, an Angular app shell) makes URL resolution in
+ * the import fail ("Failed to construct 'URL': Invalid base URL"). Links and images are resolved
+ * against the page URL anyway, so a base whose href is not absolute is dropped.
+ */
+export function dropRelativeBase(document) {
+  document.querySelectorAll('base').forEach((base) => {
+    if (!/^https?:\/\//i.test(base.getAttribute('href') || '')) base.remove();
+  });
+}
+
 export default function preprocess({ document }) {
+  dropRelativeBase(document);
   unwrapLinkUnderlines(document);
 }

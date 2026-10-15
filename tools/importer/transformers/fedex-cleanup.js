@@ -80,8 +80,13 @@ const INTERNAL_LINK_HOST = 'www.fedex.com';
 //  - div.link.fxg-auth-button-link.cc-aem-u-display--none  ("Start a claim", "File batch claims", ... logged-in only)
 //  - a.fxg-featured-button.hidden                          (placeholder "Link" -> /#)
 //  - div.secureContainer_v1 > div.fxg-loginContainer        (empty logged-in app container)
+//    A container marked `notSecure` is the logged-out view, i.e. what visitors see (en-us
+//    duties-and-taxes/fedex-import-tool: the whole page body); it stays.
 // Marked in beforeTransform and removed in afterTransform (same reason as mobile duplicates).
-const LOGIN_ONLY = ['div.fxg-auth-button-link', 'a.fxg-featured-button.hidden', 'div.secureContainer_v1'];
+const LOGIN_ONLY = [
+  'div.fxg-auth-button-link', 'a.fxg-featured-button.hidden',
+  'div.secureContainer_v1:not(:has(> .fxg-loginContainer.notSecure))',
+];
 
 // Body-level widget leftovers (live DOM: direct children of <body>)
 const BODY_FURNITURE = [
@@ -419,8 +424,12 @@ function rewriteInternalLinks(element, payload) {
       return;
     }
     if (!/^https?:$/.test(url.protocol) || url.hostname.toLowerCase() !== INTERNAL_LINK_HOST) return;
-    if (!/\.html$/i.test(url.pathname)) return;
-    a.setAttribute('href', `${url.pathname.replace(/\.html$/i, '')}${url.search}${url.hash}`);
+    // pages: .html, or an extension-less locale path (teaser rows link the bare page path)
+    const page = /\.html$/i.test(url.pathname)
+      || (/^\/[a-z]{2}-[a-z]{2}\//i.test(url.pathname) && !/\.[a-z0-9]+$/i.test(url.pathname));
+    if (!page) return;
+    // EDS page paths are lower case (fedex.com "how-do-I-pack-furniture", "automotive/OEM" would 404)
+    a.setAttribute('href', `${url.pathname.replace(/\.html$/i, '').toLowerCase()}${url.search}${url.hash}`);
   });
 }
 
@@ -621,13 +630,18 @@ export default function transform(hookName, element, payload) {
       });
       // Title-only landing hero (manage-account: .hero_landingpage_v1 h1.fxg-hero-landing-title, no photo)
       // stays default content. Left inside the hero's wrapper divs, html2md glues the next block table
-      // onto the H1 line, so keep just the heading.
+      // onto the H1 line, so keep just the heading and the text paragraphs after it (en-us
+      // customer-support/faqs: "From shipping and delivery to billing…", which was lost).
       element.querySelectorAll('.hero_landingpage_v1:not(.fedex-hero-extracted)').forEach((hero) => {
         const h1 = hero.querySelector('h1');
         if (!h1 || hero.querySelector('img, picture, table')) return;
         h1.removeAttribute('class');
         h1.innerHTML = h1.innerHTML.trim();
-        hero.replaceWith(h1);
+        const texts = [...hero.querySelectorAll('p, ul, ol')]
+          .filter((el) => (h1.compareDocumentPosition(el) & 4) && el.textContent.trim()
+            && !el.parentElement.closest('p, ul, ol') && !el.closest('.fxg-desktop--hide'));
+        texts.forEach((el) => el.removeAttribute('class'));
+        hero.replaceWith(h1, ...texts);
       });
       // Bare default-content links (manage-account: div.button_v1 > div.link > a) -> <p><a>. A bare
       // <a> holding a <sup> (e.g. "FedEx Delivery Manager®") makes html2md drop every block

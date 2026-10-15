@@ -1,31 +1,66 @@
-# Builds tools/importer/teaser-pages.js: the detail pages that a listing teases AND that are part of
-# the migration (listed in a tools/importer/urls-*.txt file), with the listing's teaser image.
+# Builds tools/importer/teaser-pages.js: the detail pages that a listing teases AND that are
+# imported with the generic-landing importer (tools/importer/urls-generic-landing.txt: it is the one
+# that writes the teaser image as metadata Image), with the listing's teaser image. A page teased
+# by several listings with different photos keeps the image it already has in teaser-pages.js (so
+# a rebuild does not change published teasers), else the first teaser's (link alone, the
+# component's only target).
 #  - transformers/fedex-teasers.js uses it twice: a detail page gets that image as its metadata Image
 #    (fedex.com's og:image is the FedEx logo on every page), and a listing's teaser blocks become
 #    link-only `teasers` rows that blocks/cards and blocks/columns fill from the detail page.
 #  - A teaser whose detail page is not migrated stays an authored teaser.
 # Input: tools/importer/teasers-collected.json, the output of collect-teasers.js run in a fedex.com
-# page on the listings (how-to-hub/articles, sweepstakes). Re-run both after adding listings or URLs.
+# page on every migrated en-us page (any page can tease another). Re-run both after adding URLs.
 # Run from the repo root: python3 tools/importer/build-teaser-pages.py
-import glob
 import json
 import re
 
 collected = json.load(open('tools/importer/teasers-collected.json'))
 migrated = set()
-for f in glob.glob('tools/importer/urls-*.txt'):
-    if 'representative' in f:
-        continue
+for f in ['tools/importer/urls-generic-landing.txt']:
     for line in open(f):
         line = line.strip()
         if line.startswith('https://www.fedex.com/') and '?' not in line:
             migrated.add(re.sub(r'\.html$', '', line[len('https://www.fedex.com'):]))
 
+previous = {}
+try:
+    text = open('tools/importer/teaser-pages.js').read()
+    previous = json.loads(text[text.index('{'):text.rindex('}') + 1])
+except (FileNotFoundError, ValueError):
+    pass
+
+
+# a detail page's link back to a listing that teases it (how-to-ship-computers "Have other specialty
+# items to ship? Go to the hub" -> how-to-hub) is a promo with its own copy, not a teaser of the
+# listing (the one of the two that teases more pages)
+def teases(listing, path):
+    return any(t['listing'] == listing and t.get('teaser', True) for t in collected.get(path, []))
+
+
+teased_by = {}
+for path, teasers in collected.items():
+    for t in teasers:
+        if t.get('teaser', True):
+            teased_by.setdefault(t['listing'], set()).add(path)
+
+
+def back_link(path, listing):
+    return teases(path, listing) and len(teased_by.get(path, ())) > len(teased_by.get(listing, ()))
+
+
 pages = {}
 for path, teasers in sorted(collected.items()):
     if path not in migrated:
         continue
-    first = teasers[0]
+    teasers = [t for t in teasers if not back_link(path, t['listing'])]
+    if not teasers:
+        continue
+    # the image comes from a teaser (link alone, the component's only target), not from a photo
+    # beside a link in running text; no teaser, no image (the listings still read the page)
+    first = next((t for t in teasers if t.get('teaser', True)), {'image': '', 'alt': ''})
+    kept = previous.get(path, {}).get('image')
+    if kept:
+        first = next((t for t in teasers if t['image'] == kept), {**first, 'image': kept, 'alt': previous[path].get('alt', '')})
     pages[path] = {
         'image': first['image'],
         'alt': first['alt'],
