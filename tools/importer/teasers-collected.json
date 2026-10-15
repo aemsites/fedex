@@ -161,6 +161,34 @@
    "alt": "",
    "linkText": "Link",
    "teaser": false
+  },
+  {
+   "listing": "/en-to/about/sustainability/taking-action",
+   "image": "https://cdn.bfldr.com/I22OPSFM/at/fwjt27sghwsnxntpq8kvs83w/master-k12184.jpg?auto=webp&fit=bounds&format=jpg&width=727&height=463&max_age=604800",
+   "alt": "FedEx Express van in Europe",
+   "linkText": "Link",
+   "teaser": false
+  },
+  {
+   "listing": "/en-to/about/sustainability/get-inspired",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sustainability/2021/POD-Eco-Marketing1-727x463.jpg",
+   "alt": "Group of products being placed in box for shipment",
+   "linkText": "Link",
+   "teaser": false
+  },
+  {
+   "listing": "/en-to/about/sustainability/carbon-footprint-insights",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sustainability/2023/POD-727x463_fy22_sustainability__Alt_A.jpg",
+   "alt": "",
+   "linkText": "Link",
+   "teaser": false
+  },
+  {
+   "listing": "/en-to/eu-vat-changes",
+   "image": "https://www.fedex.com/content/dam/fedex/eu-europe/images/EU_2021_4_master_jpg_NA_EU-VAT-IOSS-FOC-1_marketing.jpg",
+   "alt": "Hands holding DedEx Airwaybill",
+   "linkText": "VAT Services",
+   "teaser": false
   }
  ],
  "/content/dam/fedex-com/hdn/FedEx_and_WardsAuto_Playbook_FNL_4-8_web.pdf": [
@@ -6885,6 +6913,667 @@
    "alt": "",
    "linkText": "SHIP GLOBAL AIR FREIGHT",
    "teaser": true
+  }
+ ],
+ "/en-to/new-customer": [
+  {
+   "listing": "/en-to/home",
+   "image": "https://cdn.bfldr.com/I22OPSFM/at/fv7nfgrtp8m3brf8sq2ng7/2019_FedEx_India_31.jpg?auto=webp&fit=bounds&format=jpg&crop=727%3A463%2Csmart&width=727&height=463&max_age=604800",
+   "alt": "FedEx New Customer",
+   "linkText": "LET US HELP",
+   "teaser": true
+  }
+ ],
+ "/en-to/dropoff": [
+  {
+   "listing": "/en-to/home",
+   "image": "https://www.fedex.com/content/dam/fedex/apac-asia-pacific/MVP-APAC/images/2019/Q3/APAC_EN_2019_1_Master_image_NA_drop_off_location_homepage_2_marketing_2069717347.jpg",
+   "alt": "Customer Success Stories",
+   "linkText": "FIND A LOCATION",
+   "teaser": true
+  }
+ ],
+ "/en-to/shipping/packaging": [
+  {
+   "listing": "/en-to/shipping",
+   "image": "https://cdn.bfldr.com/I22OPSFM/at/m458m633qz2g5c5k94r3pmr5/20150817-15-006-04-03-05-287-160130.jpg?auto=webp&fit=bounds&format=jpg&width=727&height=463&max_age=604800",
+   "alt": "Shipping Lithium Batteries",
+   "linkText": "PACKAGING TIPS",
+   "teaser": false
+  },
+  {
+   "listing": "/en-to/about/sustainability/get-inspired/efficient-packaging-in-action",
+   "image": "https://cdn.bfldr.com/I22OPSFM/at/mvgzn7bwq9g7kf5t63gx5wr4/20160908_dm_16_005_01_02_02_21_315_160135.jpg?auto=webp&fit=bounds&format=png&crop=727%3A463%2Csmart&width=727&height=463&max_age=604800",
+   "alt": "woman smiling and holding fabric",
+   "linkText": "DISCOVER REUSABLE PACKAGING",
+   "teaser": true
+  }
+ ],
+ "/en-to/customs-tools": [
+  {
+   "listing": "/en-to/shipping",
+   "image": "https://cdn.bfldr.com/I22OPSFM/at/m458m633qz2g5c5k94r3pmr5/20150817-15-006-04-03-05-287-160130.jpg?auto=webp&fit=bounds&format=jpg&width=727&height=463&max_age=604800",
+   "alt": "Shipping Lithium Batteries",
+   "linkText": "LEARN MORE",
+   "teaser": false
+  }
+ ],
+ "/en-to/shipping/packaging/envelope": [
+  {
+   "listing": "/en-to/shipping/packaging",
+   "image": "https://www.fedex.com/content/dam/fedex/apac-asia-pacific/MVP-APAC/images/2020/Q1/KR_EN_2019_8_web_jpg_NA_sm_envelope_marketing_72602050.jpg",
+   "alt": "FedEx Envelope",
+   "linkText": "Envelope",
+   "teaser": true
+  },
+  {
+   "listing": "/en-to/shipping/packaging/supplies",
+   "image": "https://www.fedex.com/content/dam/fedex/apac-asia-pacific/MVP-APAC/images/2020/Q1/KR_EN_2019_8_web_jpg_NA_sm_envelope_marketing_72602050.jpg",
+   "alt": "FedEx Envelope",
+   "linkText": "FedEx Envelope",
+   "teaser": false
+  }
+ ],
+ "/en-to/shipping/packaging/large-pak": [
+  {
+   "listing": "/en-to/shipping/packaging",
+   "image": "https://www.fedex.com/content/dam/fedex/apac-asia-pacific/MVP-APAC/images/2020/Q1/KR_EN_2019_5_web_jpg_NA_large_package_marketing_106845989.jpg",
+   "alt": "FedEx Large Pak",
+   "linkText": "FedEx Large Pak",
+   "teaser": true
+  },
+  {
+   "listing": "/en-to/shipping/packaging/supplies",
+   "image": "https://www.fedex.com/content/dam/fedex/apac-asia-pacific/MVP-APAC/images/2020/Q1/KR_EN_2019_8_web_jpg_NA_sm_envelope_marketing_72602050.jpg",
+   "alt": "FedEx Envelope",
+   "linkText": "FedEx Reusable Large Pak",
+   "teaser": false
+  },
+  {
+   "listing": "/en-to/shipping/packaging/envelope",
+   "image": "https://www.fedex.com/content/dam/fedex/apac-asia-pacific/MVP-APAC/images/2020/Q1/KR_EN_2019_8_web_jpg_NA_sm_envelope_marketing_72602050.jpg",
+   "alt": "FedEx envelope image",
+   "linkText": "FedEx Reusable Large Pak",
+   "teaser": false
+  }
+ ],
+ "/en-to/shipping/packaging/tube": [
+  {
+   "listing": "/en-to/shipping/packaging",
+   "image": "https://www.fedex.com/content/dam/fedex/apac-asia-pacific/MVP-APAC/images/2020/Q1/KR_EN_2019_8_web_jpg_NA_fedex_tube_marketing_461912630.jpg",
+   "alt": "FedEx Tube package",
+   "linkText": "Tube",
+   "teaser": true
+  },
+  {
+   "listing": "/en-to/shipping/packaging/supplies",
+   "image": "https://www.fedex.com/content/dam/fedex/apac-asia-pacific/MVP-APAC/images/2020/Q1/KR_EN_2019_8_web_jpg_NA_fedex_tube_marketing_461912630.jpg",
+   "alt": "FedEx Tube",
+   "linkText": "FedEx Tube",
+   "teaser": false
+  }
+ ],
+ "/en-to/shipping/packaging/small-box": [
+  {
+   "listing": "/en-to/shipping/packaging",
+   "image": "https://www.fedex.com/content/dam/fedex/apac-asia-pacific/MVP-APAC/images/2020/Q1/KR_EN_2019_8_web_jpg_NA_sm_box_marketing_38518354.jpg",
+   "alt": "FedEx small box",
+   "linkText": "Small Box",
+   "teaser": true
+  },
+  {
+   "listing": "/en-to/shipping/packaging/supplies",
+   "image": "https://www.fedex.com/content/dam/fedex/apac-asia-pacific/MVP-APAC/images/2020/Q1/KR_EN_2019_8_web_jpg_NA_fedex_tube_marketing_461912630.jpg",
+   "alt": "FedEx Tube",
+   "linkText": "FedEx Small Box",
+   "teaser": false
+  }
+ ],
+ "/en-to/shipping/packaging/medium-box": [
+  {
+   "listing": "/en-to/shipping/packaging",
+   "image": "https://www.fedex.com/content/dam/fedex/apac-asia-pacific/MVP-APAC/images/2020/Q1/KR_EN_2019_8_web_jpg_NA_md_box_marketing_801049786.jpg",
+   "alt": "FedEx medium box",
+   "linkText": "Medium Box",
+   "teaser": true
+  },
+  {
+   "listing": "/en-to/shipping/packaging/supplies",
+   "image": "https://www.fedex.com/content/dam/fedex/apac-asia-pacific/MVP-APAC/images/2020/Q1/KR_EN_2019_8_web_jpg_NA_md_box_marketing_801049786.jpg",
+   "alt": "FedEx Medium Box",
+   "linkText": "FedEx Medium Box",
+   "teaser": false
+  }
+ ],
+ "/en-to/shipping/packaging/large-box": [
+  {
+   "listing": "/en-to/shipping/packaging",
+   "image": "https://www.fedex.com/content/dam/fedex/apac-asia-pacific/MVP-APAC/images/2020/Q1/KR_EN_2019_8_web_jpg_NA_lg_box_marketing_2062388082.jpg",
+   "alt": "FedEx Large Box",
+   "linkText": "Large Box",
+   "teaser": true
+  },
+  {
+   "listing": "/en-to/shipping/packaging/supplies",
+   "image": "https://www.fedex.com/content/dam/fedex/apac-asia-pacific/MVP-APAC/images/2020/Q1/KR_EN_2019_8_web_jpg_NA_md_box_marketing_801049786.jpg",
+   "alt": "FedEx Medium Box",
+   "linkText": "FedEx Large Box",
+   "teaser": false
+  }
+ ],
+ "/en-to/shipping/packaging/supplies": [
+  {
+   "listing": "/en-to/shipping/packaging/large-pak",
+   "image": "https://www.fedex.com/content/dam/fedex/apac-asia-pacific/MVP-APAC/images/2020/Q1/KR_EN_2019_8_web_jpg_NA_lg_box_marketing_2062388082.jpg",
+   "alt": "FedEx Large Pak image",
+   "linkText": "Order Free FedEx Supplies",
+   "teaser": true
+  },
+  {
+   "listing": "/en-to/shipping/packaging/tube",
+   "image": "https://www.fedex.com/content/dam/fedex/apac-asia-pacific/MVP-APAC/images/2020/Q1/KR_EN_2019_8_web_jpg_NA_fedex_tube_marketing_461912630.jpg",
+   "alt": "FedEx Tube",
+   "linkText": "Order Free FedEx Supplies",
+   "teaser": true
+  },
+  {
+   "listing": "/en-to/shipping/packaging/small-box",
+   "image": "https://www.fedex.com/content/dam/fedex/apac-asia-pacific/MVP-APAC/images/2020/Q1/KR_EN_2019_8_web_jpg_NA_sm_box_marketing_38518354.jpg",
+   "alt": "FedEx Extra Small Box",
+   "linkText": "Order Free FedEx Supplies",
+   "teaser": true
+  },
+  {
+   "listing": "/en-to/shipping/packaging/envelope",
+   "image": "https://www.fedex.com/content/dam/fedex/apac-asia-pacific/MVP-APAC/images/2020/Q1/KR_EN_2019_8_web_jpg_NA_sm_envelope_marketing_72602050.jpg",
+   "alt": "FedEx envelope image",
+   "linkText": "CHECK OTHER FREE SUPPLIES",
+   "teaser": true
+  }
+ ],
+ "/en-pg/shipping/packaging/supplies": [
+  {
+   "listing": "/en-to/shipping/packaging/medium-box",
+   "image": "https://www.fedex.com/content/dam/fedex/apac-asia-pacific/MVP-APAC/images/2020/Q1/KR_EN_2019_8_web_jpg_NA_md_box_marketing_801049786.jpg",
+   "alt": "FedEx Extra Medium Box",
+   "linkText": "Order Free FedEx Supplies",
+   "teaser": true
+  }
+ ],
+ "/to/supplies/": [
+  {
+   "listing": "/en-to/shipping/packaging/large-box",
+   "image": "https://www.fedex.com/content/dam/fedex/apac-asia-pacific/MVP-APAC/images/2020/Q1/KR_EN_2019_8_web_jpg_NA_lg_box_marketing_2062388082.jpg",
+   "alt": "FedEx Large Box image",
+   "linkText": "Order Free FedEx Supplies",
+   "teaser": true
+  },
+  {
+   "listing": "/en-to/shipping/packaging/extra-large-pak",
+   "image": "https://www.fedex.com/content/dam/fedex/apac-asia-pacific/MVP-APAC/images/2020/Q1/KR_EN_2019_8_web_jpg_NA_xl_package_marketing_1844862527.jpg",
+   "alt": "FedEx Extra Large Pak image",
+   "linkText": "Order Free FedEx Supplies",
+   "teaser": true
+  }
+ ],
+ "/en-to/shipping/rates": [
+  {
+   "listing": "/en-to/shipping/packaging/extra-large-pak",
+   "image": "https://www.fedex.com/content/dam/fedex/apac-asia-pacific/MVP-APAC/images/2020/Q1/KR_EN_2019_8_web_jpg_NA_xl_package_marketing_1844862527.jpg",
+   "alt": "FedEx Extra Large Pak image",
+   "linkText": "FedEx International Priority rates",
+   "teaser": false
+  }
+ ],
+ "/en-to/ancillary-clearance-service": [
+  {
+   "listing": "/en-to/customs-tools",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/FedEx-Office/images/2021/q2/Coworkers_discuss_signageSMALL.jpg",
+   "alt": "Custom Critical",
+   "linkText": "Check Fees",
+   "teaser": true
+  }
+ ],
+ "/GTM": [
+  {
+   "listing": "/en-to/customs-tools",
+   "image": "https://cdn.bfldr.com/I22OPSFM/at/q9j84m7t6nkc7p7939qgkw6w/fy21_apac_123.jpg?auto=webp&fit=bounds&format=png&crop=727%3A463%2Csmart&width=727&height=463&max_age=604800",
+   "alt": "Electronic documents for customs clearance",
+   "linkText": "GO TO GLOBAL TRADE MANAGER",
+   "teaser": true
+  }
+ ],
+ "/preferences/": [
+  {
+   "listing": "/en-to/service-news",
+   "image": "https://cdn.bfldr.com/I22OPSFM/at/khjpxxc79km7qrhz39t4s56/20150924-dm-15-008-02-02-04-06-005-160131.jpg?auto=webp&fit=bounds&format=jpg&width=727&height=463&max_age=604800",
+   "alt": "Subscribe",
+   "linkText": "Manage Preferences",
+   "teaser": true
+  }
+ ],
+ "/en-to/about/history": [
+  {
+   "listing": "/en-to/about",
+   "image": "https://cdn.bfldr.com/I22OPSFM/at/f8rh4c9x555v2f9fvmxjnzhv/fy21_apac_326.jpg?auto=webp&fit=bounds&format=png&width=727&height=463&max_age=604800",
+   "alt": "FedEx History in APAC",
+   "linkText": "LEARN MORE",
+   "teaser": true
+  }
+ ],
+ "/en-to/about/facts": [
+  {
+   "listing": "/en-to/about",
+   "image": "https://cdn.bfldr.com/I22OPSFM/at/bwcjxxxmpnn3rjvxvg9xb3kx/jaj-0899_52829576746_o.jpg?auto=webp&fit=bounds&format=png&width=727&height=463&max_age=604800",
+   "alt": "FedEx Facts",
+   "linkText": "Gain Insight",
+   "teaser": true
+  }
+ ],
+ "/content/dam/fedex/us-united-states/sustainability/gcrs/FedEx_2025_CR_Report.pdf": [
+  {
+   "listing": "/en-to/about",
+   "image": "https://www.fedex.com/content/dam/fedex/international/international/images/2019/Q1/citizenship_195655337.jpg",
+   "alt": "Citizenship",
+   "linkText": "Explore the report",
+   "teaser": true
+  },
+  {
+   "listing": "/en-to/about/sustainability/reports",
+   "image": "https://www.fedex.com/content/dam/fedex/apac-asia-pacific/images/about/apac_en_2025_06_master_web_cr_report_mkt.jpg",
+   "alt": "",
+   "linkText": "2025 Corporate Responsibility Report (Full Report)",
+   "teaser": false
+  }
+ ],
+ "/en-to/about/sustainability": [
+  {
+   "listing": "/en-to/about",
+   "image": "https://cdn.bfldr.com/I22OPSFM/at/g7xtfnpf9vswvhchpz8w4w6z/fy22_japan_9.jpg?auto=webp&fit=bounds&format=png&width=727&height=463&max_age=604800",
+   "alt": "Sustainability",
+   "linkText": "SEE HOW WE CONTRIBUTE",
+   "teaser": true
+  }
+ ],
+ "/en-to/about/sustainability/carbon-footprint-insights": [
+  {
+   "listing": "/en-to/about/sustainability",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sustainability/2023/fy22_sustainability_-53.jpg",
+   "alt": "助人类一臂之力",
+   "linkText": "ACCESS YOUR FEDEX EMISSIONS REPORTING",
+   "teaser": true
+  }
+ ],
+ "/en-to/about/sustainability/our-approach": [
+  {
+   "listing": "/en-to/about/sustainability",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sustainability/2021/Graphic_One.jpg",
+   "alt": "Ideas icon",
+   "linkText": "LEARN ABOUT OUR APPROACH",
+   "teaser": true
+  },
+  {
+   "listing": "/en-to/about/sustainability/get-inspired/fedex-plant-trees",
+   "image": "https://cdn.bfldr.com/I22OPSFM/at/77qkk8wjczgqcxhxbqbgrmfz/fy22_sustainability__10.jpg?auto=webp&fit=bounds&format=png&crop=727%3A463%2Csmart&width=727&height=463&max_age=604800",
+   "alt": "EV van",
+   "linkText": "Here are some of the ways we’re going green.",
+   "teaser": true
+  },
+  {
+   "listing": "/en-to/about/sustainability/carbon-footprint-insights",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sustainability/2023/POD-727x463_fy22_sustainability__Alt_A.jpg",
+   "alt": "",
+   "linkText": "SEE OUR APPROACH",
+   "teaser": false
+  }
+ ],
+ "/en-to/about/sustainability/taking-action": [
+  {
+   "listing": "/en-to/about/sustainability",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sustainability/2021/Graphic_Two.jpg",
+   "alt": "Book resource icon",
+   "linkText": "SEE HOW WE’RE TAKING ACTION",
+   "teaser": true
+  }
+ ],
+ "/en-to/about/sustainability/get-inspired": [
+  {
+   "listing": "/en-to/about/sustainability",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sustainability/2021/Graphic_Three.jpg",
+   "alt": "Recycle icon",
+   "linkText": "GATHER INSIGHTS TO GET INSPIRED",
+   "teaser": true
+  }
+ ],
+ "/en-to/about/sustainability/reports": [
+  {
+   "listing": "/en-to/about/sustainability",
+   "image": "https://www.fedex.com/content/dam/fedex/apac-asia-pacific/images/about/apac_en_2025_06_master_web_cr_report_mkt.jpg",
+   "alt": "",
+   "linkText": "GET OUR LATEST REPORTS",
+   "teaser": true
+  }
+ ],
+ "/en-to/about/sustainability/our-approach/fedex-pilots-program-in-europe-to-improve-sustainable-deliveries": [
+  {
+   "listing": "/en-to/about/sustainability/our-approach",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sustainability/2021/pod-vehicles-story.jpg",
+   "alt": "Courier pushing specialized hand cart",
+   "linkText": "See how we're reducing emissions",
+   "teaser": true
+  }
+ ],
+ "/en-to/about/sustainability/our-approach/energy-management-systems-sustains-energy": [
+  {
+   "listing": "/en-to/about/sustainability/our-approach",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sustainability/2021/POD_FXO3-EMS-cropped-copy-v2.jpg",
+   "alt": "Image of thermostats",
+   "linkText": "Learn how they did it",
+   "teaser": true
+  }
+ ],
+ "/en-to/about/sustainability/our-approach/fedex-solar-thermal-air-conditioning-system-saves-energy": [
+  {
+   "listing": "/en-to/about/sustainability/our-approach",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sustainability/2021/POD_4019.jpg",
+   "alt": "Image of solar panel at Florida FedEx Ground facility",
+   "linkText": "read about their methods",
+   "teaser": true
+  }
+ ],
+ "/en-to/about/sustainability/our-approach/fedex-ground-solar-power-systems-in-maui-models-future-energy": [
+  {
+   "listing": "/en-to/about/sustainability/our-approach",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sustainability/2021/POD_Solar_Facility_Solar_Story_0.jpg",
+   "alt": "Image of solar panels at FedEx Ground sit in Maui",
+   "linkText": "Read their solar story",
+   "teaser": true
+  }
+ ],
+ "/en-to/about/sustainability/our-approach/fedex-uniform-recycling-program-reduces-environmental-impacts": [
+  {
+   "listing": "/en-to/about/sustainability/our-approach",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sustainability/2021/POD_Debrand-FXG-1.jpg",
+   "alt": "Pile of old uniforms being repurposed",
+   "linkText": "LEARN HOW THEY’RE UPCYCLING FOR GOOD",
+   "teaser": true
+  }
+ ],
+ "/en-to/about/sustainability/liviri-reusable-containers-promote-sustainability": [
+  {
+   "listing": "/en-to/about/sustainability/our-approach",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sustainability/2021/POD_Materials_Story_2_NEW.jpg",
+   "alt": "Couple in kitchen opening Liviri packaging box",
+   "linkText": "SEE INNOVATION IN ACTION",
+   "teaser": true
+  }
+ ],
+ "/en-to/about/sustainability/get-inspired/fedex-plant-trees": [
+  {
+   "listing": "/en-to/about/sustainability/our-approach",
+   "image": "https://cdn.bfldr.com/I22OPSFM/at/k9xt6p7tvtvrqcq3shgf7hk/22577163295_eded28f5a5_o.jpg?auto=webp&fit=bounds&format=png&width=695&height=463&max_age=604800",
+   "alt": "Couple in kitchen opening Liviri packaging box",
+   "linkText": "Reforesting towards sustainability",
+   "teaser": true
+  },
+  {
+   "listing": "/en-to/about/sustainability/get-inspired",
+   "image": "https://cdn.bfldr.com/I22OPSFM/at/k9xt6p7tvtvrqcq3shgf7hk/22577163295_eded28f5a5_o.jpg?auto=webp&fit=bounds&format=png&crop=727%3A463%2Csmart&width=727&height=463&max_age=604800",
+   "alt": "Hands planting a tree",
+   "linkText": "Reforesting towards sustainability",
+   "teaser": false
+  }
+ ],
+ "/en-to/about/sustainability/get-inspired/optimizing-your-packing": [
+  {
+   "listing": "/en-to/about/sustainability/get-inspired",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sustainability/2021/POD-OptimizePackaing-727x463.jpg",
+   "alt": "Retail employee boxing items for shipment",
+   "linkText": "OPTIMIZE YOUR PACKAGING",
+   "teaser": false
+  }
+ ],
+ "/en-to/about/sustainability/get-inspired/efficient-packaging-in-action": [
+  {
+   "listing": "/en-to/about/sustainability/get-inspired",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sustainability/2021/POD-Phigenics1-727x463.jpg",
+   "alt": "Woman in lab opening package",
+   "linkText": "SEE THEIR PACKAGING EVOLUTION",
+   "teaser": false
+  }
+ ],
+ "/en-to/about/sustainability/get-inspired/10-eco-friendly-tips": [
+  {
+   "listing": "/en-to/about/sustainability/get-inspired",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sustainability/2021/POD-Nurdle-727x463.jpg",
+   "alt": "Kat Crabill, founder of Nurdle in the Rough, standing with her dog in front of pile of materials",
+   "linkText": "GET SUSTAINABILITY TIPS",
+   "teaser": false
+  }
+ ],
+ "/en-to/about/sustainability/get-inspired/eco-friendly-marketing-ideas": [
+  {
+   "listing": "/en-to/about/sustainability/get-inspired",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sustainability/2021/POD-Eco-Marketing1-727x463.jpg",
+   "alt": "Group of products being placed in box for shipment",
+   "linkText": "REINVENT YOUR MARKETING",
+   "teaser": false
+  }
+ ],
+ "/content/dam/fedex/us-united-states/sustainability/gcrs/FedEx_2025_CR_Executive_Summary.pdf": [
+  {
+   "listing": "/en-to/about/sustainability/reports",
+   "image": "https://www.fedex.com/content/dam/fedex/apac-asia-pacific/images/about/apac_en_2025_06_master_web_cr_report_mkt.jpg",
+   "alt": "",
+   "linkText": "2025 Corporate Responsibility Report (Executive Summary)",
+   "teaser": false
+  }
+ ],
+ "/content/dam/fedex/us-united-states/sustainability/gcrs/FedEx_2025_CR_Report_Index.pdf": [
+  {
+   "listing": "/en-to/about/sustainability/reports",
+   "image": "https://www.fedex.com/content/dam/fedex/apac-asia-pacific/images/about/apac_en_2025_06_master_web_cr_report_mkt.jpg",
+   "alt": "",
+   "linkText": "2025 Content Index",
+   "teaser": false
+  }
+ ],
+ "/content/dam/fedex/us-united-states/sustainability/gcrs/FedEx_2020_Global_Citizenship_Materiality.pdf": [
+  {
+   "listing": "/en-to/about/sustainability/reports",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sustainability/2021/POD-2019MaterialityAssessment2-727x463.jpg",
+   "alt": "Our stakeholders graphic",
+   "linkText": "GET THE 2019 ASSESSMENT",
+   "teaser": true
+  }
+ ],
+ "/content/dam/fedex/us-united-states/sustainability/2021/FedEx2021CDPClimateChangeResponse.pdf": [
+  {
+   "listing": "/en-to/about/sustainability/reports",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sustainability/2021/POD-2020CDPResponse-724x463.jpg",
+   "alt": "CDP logo",
+   "linkText": "READ THE 2021 RESPONSE",
+   "teaser": true
+  }
+ ],
+ "/content/dam/fedex/us-united-states/sustainability/gcrs/FedEx_2021_ESG_Report.pdf": [
+  {
+   "listing": "/en-to/about/sustainability/reports",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sustainability/2021/FedEx_2021ESGReport_Cover.jpg",
+   "alt": "2019 Global Citizenship Report",
+   "linkText": "Download the 2021 Report",
+   "teaser": false
+  }
+ ],
+ "/content/dam/fedex/us-united-states/sustainability/gcrs/FedEx_2021_ESG_Report_Index.pdf": [
+  {
+   "listing": "/en-to/about/sustainability/reports",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sustainability/2021/FedEx_2021ESGReport_Cover.jpg",
+   "alt": "2019 Global Citizenship Report",
+   "linkText": "Download the 2021 Content Index",
+   "teaser": false
+  }
+ ],
+ "/content/dam/fedex/us-united-states/sustainability/gcrs/2021_ESG_Report_Fact_Sheet.pdf": [
+  {
+   "listing": "/en-to/about/sustainability/reports",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sustainability/2021/FedEx_2021ESGReport_Cover.jpg",
+   "alt": "2019 Global Citizenship Report",
+   "linkText": "Download the 2021 Report Overview",
+   "teaser": false
+  }
+ ],
+ "/content/dam/fedex/us-united-states/sustainability/gcrs/FedEx_2020_Global_Citizenship_Report.pdf": [
+  {
+   "listing": "/en-to/about/sustainability/reports",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sustainability/2021/POD_FedEx_2020_Global_Citizenship_Report.jpg",
+   "alt": "2019 Global Citizenship Report",
+   "linkText": "Download 2020 Report",
+   "teaser": false
+  }
+ ],
+ "/content/dam/fedex/us-united-states/sustainability/gcrs/FedEx_2020_Global_Citizenship_Report_Index.pdf": [
+  {
+   "listing": "/en-to/about/sustainability/reports",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sustainability/2021/POD_FedEx_2020_Global_Citizenship_Report.jpg",
+   "alt": "2019 Global Citizenship Report",
+   "linkText": "Download 2020 GRI Index",
+   "teaser": false
+  }
+ ],
+ "/content/dam/fedex/us-united-states/sustainability/gcrs/FedEx_GCR_FINAL_4.17.19_144dpi.pdf": [
+  {
+   "listing": "/en-to/about/sustainability/reports",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sustainability/2021/POD-2019GlobalCitizenshipReport-724x463.jpg",
+   "alt": "2019 Global Citizenship Report",
+   "linkText": "Download 2019 Report",
+   "teaser": false
+  }
+ ],
+ "/content/dam/fedex/us-united-states/sustainability/gcrs/FedEx_2019_Global_Citizenship_Report_GRI_Index.pdf": [
+  {
+   "listing": "/en-to/about/sustainability/reports",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sustainability/2021/POD-2019GlobalCitizenshipReport-724x463.jpg",
+   "alt": "2019 Global Citizenship Report",
+   "linkText": "Download 2019 GRI Index",
+   "teaser": false
+  }
+ ],
+ "/content/dam/fedex/us-united-states/sustainability/gcrs/FedEx_2018_Global_Citizenship_Report.pdf": [
+  {
+   "listing": "/en-to/about/sustainability/reports",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sustainability/2021/POD-2018GlobalCitizenshipReport-724x463.jpg",
+   "alt": "2018 Global Citizenship Report",
+   "linkText": "Download 2018 Report",
+   "teaser": false
+  }
+ ],
+ "/content/dam/fedex/us-united-states/sustainability/gcrs/FedEx_2018_Global_Citizenship_Report_Data_Appendix.pdf": [
+  {
+   "listing": "/en-to/about/sustainability/reports",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sustainability/2021/POD-2018GlobalCitizenshipReport-724x463.jpg",
+   "alt": "2018 Global Citizenship Report",
+   "linkText": "Download 2018 Data Appendix",
+   "teaser": false
+  }
+ ],
+ "/content/dam/fedex/us-united-states/sustainability/gcrs/FedEx_2017_Global_Citizenship_Report.pdf": [
+  {
+   "listing": "/en-to/about/sustainability/reports",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sustainability/2021/POD-2017GlobalCitizenshipReport-724x463.jpg",
+   "alt": "2017 Global Citizenship Report",
+   "linkText": "Download 2017 Report",
+   "teaser": true
+  }
+ ],
+ "/content/dam/fedex/us-united-states/sustainability/gcrs/FedEx_2016_Global_Citizenship_Report_Single.pdf": [
+  {
+   "listing": "/en-to/about/sustainability/reports",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sustainability/2021/POD-2016GlobalCitizenshipReport-724x463.jpg",
+   "alt": "2016 Global Citizenship Report",
+   "linkText": "Download 2016 Report",
+   "teaser": false
+  }
+ ],
+ "/content/dam/fedex/us-united-states/sustainability/gcrs/FedEx_2016_Global_Citizenship_Report_GRI.pdf": [
+  {
+   "listing": "/en-to/about/sustainability/reports",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sustainability/2021/POD-2016GlobalCitizenshipReport-724x463.jpg",
+   "alt": "2016 Global Citizenship Report",
+   "linkText": "Download 2016 GRI Index",
+   "teaser": false
+  }
+ ],
+ "/content/dam/fedex/us-united-states/sustainability/gcrs/FedEx_GCR141.pdf": [
+  {
+   "listing": "/en-to/about/sustainability/reports",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sustainability/2021/POD-2014GlobalCitizenshipReport-724x463.jpg",
+   "alt": "2014 global citizenship report",
+   "linkText": "Download 2014 Report",
+   "teaser": true
+  }
+ ],
+ "/content/dam/fedex/us-united-states/sustainability/gcrs/FedEx_GCR131.pdf": [
+  {
+   "listing": "/en-to/about/sustainability/reports",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sustainability/2021/POD-2013GlobalCitizenshipReport-724x463.jpg",
+   "alt": "2013 global citizenship report",
+   "linkText": "Download 2013 Report",
+   "teaser": true
+  }
+ ],
+ "/content/dam/fedex/us-united-states/sustainability/gcrs/FedEx_GCR121.pdf": [
+  {
+   "listing": "/en-to/about/sustainability/reports",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sustainability/2021/POD-2012GlobalCitizenshipReport-724x463.jpg",
+   "alt": "2012 global citizenship report",
+   "linkText": "Download 2012 Report",
+   "teaser": true
+  }
+ ],
+ "/content/dam/fedex/us-united-states/sustainability/gcrs/FedEx_GCR111.pdf": [
+  {
+   "listing": "/en-to/about/sustainability/reports",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sustainability/2021/POD-2011GlobalCitizenshipReport-724x463.jpg",
+   "alt": "2011 global citizenship report",
+   "linkText": "Download 2011 Report",
+   "teaser": true
+  }
+ ],
+ "/content/dam/fedex/us-united-states/sustainability/gcrs/FedEx_GCR101.pdf": [
+  {
+   "listing": "/en-to/about/sustainability/reports",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sustainability/2021/POD-2010GlobalCitizenshipReport-724x463.jpg",
+   "alt": "2010 global citizenship report",
+   "linkText": "Download 2010 Report",
+   "teaser": true
+  }
+ ],
+ "/content/dam/fedex/us-united-states/sustainability/gcrs/FedEx_GCR091.pdf": [
+  {
+   "listing": "/en-to/about/sustainability/reports",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sustainability/2021/POD-2009GlobalCitizenshipReport-724x463.jpg",
+   "alt": "2009 global citizenship report",
+   "linkText": "Download 2009 Report",
+   "teaser": true
+  }
+ ],
+ "/secure-login/en-to/": [
+  {
+   "listing": "/en-to/about/sustainability/carbon-footprint-insights",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sustainability/2023/POD_Laptop_API.jpg",
+   "alt": "alt=“”",
+   "linkText": "logging",
+   "teaser": false
+  }
+ ],
+ "/en-to/shipping-tools/online-shipping": [
+  {
+   "listing": "/en-to/shipping-tools",
+   "image": "https://cdn.bfldr.com/I22OPSFM/at/sgmzgw3rv3zxnfzqwfrgckn/FedEx-1584-1.jpg?auto=webp&fit=bounds&format=png&width=727&height=485&max_age=604800",
+   "alt": "",
+   "linkText": "LEARN MORE",
+   "teaser": false
   }
  ]
 }
