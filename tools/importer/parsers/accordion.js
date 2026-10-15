@@ -299,9 +299,11 @@ export default function parse(element, { document, url, params }) {
   const block = WebImporter.Blocks.createBlock(document, { name: 'Accordion', cells });
   element.replaceWith(block);
 
-  // billing-online: FAQ items grouped in an outer accordion ("General", "Electronic Data
-  // Interchange (EDI)"). The group is not a block: its label becomes an h3 before the inner FAQ
-  // block, and the rest of the group panel (the block, other runs) is unwrapped in place.
+  // FAQ items grouped in an outer accordion (en-to customer-support "Claims", "Shipping", …;
+  // billing-online "General", "Electronic Data Interchange (EDI)"): two levels, as on the source.
+  // Each group becomes a row of one outer Accordion whose answer is a fragment holding the group
+  // panel (the inner FAQ block and any other content); consecutive groups share the outer block.
+  // A group without a label is unwrapped in place.
   const group = block.parentElement && block.parentElement.closest('div.accordion_selector');
   if (group) {
     const acc = group.querySelector(':scope > .fxg-accordion, :scope > .cc-aem-c-accordion') || group;
@@ -309,14 +311,40 @@ export default function parse(element, { document, url, params }) {
       || acc.querySelector(':scope > button');
     const panel = acc.querySelector(':scope > .cc-aem-c-accordion__item') || acc;
     const grid = panel.querySelector(':scope > .aem-Grid') || panel;
-    const nodes = [];
     const label = clean(labelEl && labelEl.textContent);
-    if (label) {
-      const h3 = document.createElement('h3');
-      h3.textContent = label;
-      nodes.push(h3);
+    if (!label) {
+      group.replaceWith(...grid.childNodes);
+      return;
     }
-    nodes.push(...grid.childNodes);
-    group.replaceWith(...nodes);
+    const fragment = document.createElement('div');
+    fragment.append(...grid.childNodes);
+    const path = fragmentPath(label, ctx.url);
+    if (!document.importFragments) document.importFragments = [];
+    document.importFragments.push({ element: fragment, path, title: label });
+    const p = document.createElement('p');
+    const a = document.createElement('a');
+    a.setAttribute('href', path);
+    a.textContent = path;
+    p.append(a);
+    if (!document.fedexFaqGroups) document.fedexFaqGroups = [];
+    let prev = group.previousElementSibling;
+    while (prev && !clean(prev.textContent) && !prev.querySelector('img, table') && !document.fedexFaqGroups.includes(prev)) {
+      prev = prev.previousElementSibling;
+    }
+    if (prev && document.fedexFaqGroups.includes(prev)) {
+      // one more row of the outer block (the block is a <table>: header row, then label | answer)
+      const tr = document.createElement('tr');
+      const labelTd = document.createElement('td');
+      labelTd.textContent = label;
+      const bodyTd = document.createElement('td');
+      bodyTd.append(p);
+      tr.append(labelTd, bodyTd);
+      (prev.querySelector('tbody') || prev).append(tr);
+      group.remove();
+    } else {
+      const outer = WebImporter.Blocks.createBlock(document, { name: 'Accordion', cells: [[label, p]] });
+      document.fedexFaqGroups.push(outer);
+      group.replaceWith(outer);
+    }
   }
 }

@@ -1,0 +1,40 @@
+<div class="tracking-tabs" role="tablist" aria-label="Track your shipment">
+  <button type="button" role="tab" id="tracking-tab-number" aria-controls="tracking-panel-number" aria-selected="true">Tracking number</button>
+  <button type="button" role="tab" id="tracking-tab-reference" aria-controls="tracking-panel-reference" aria-selected="false" tabindex="-1">Track by reference</button>
+  <button type="button" role="tab" id="tracking-tab-tcn" aria-controls="tracking-panel-tcn" aria-selected="false" tabindex="-1">Track by TCN</button>
+  <button type="button" role="tab" id="tracking-tab-pod" aria-controls="tracking-panel-pod" aria-selected="false" tabindex="-1">Obtain proof of delivery</button>
+</div>
+<form class="tracking-panel" role="tabpanel" id="tracking-panel-number" aria-labelledby="tracking-tab-number" data-mode="number">
+  <p>Enter up to 30 of your FedEx tracking, door tag, or FedEx Office order numbers (one per line).</p>
+  <div class="tracking-field">
+    <textarea id="tracking-number" name="numbers" rows="1" required placeholder=" "></textarea>
+    <label for="tracking-number">Tracking number*</label>
+  </div>
+  <p class="tracking-actions"><button type="submit" class="button">Track</button></p>
+</form>
+<form class="tracking-panel" role="tabpanel" id="tracking-panel-reference" aria-labelledby="tracking-tab-reference" data-mode="reference" hidden>
+  <p>Enter your reference number or purchase order numbers.</p>
+  <div class="tracking-field">
+    <input id="tracking-reference" name="reference" type="text" required placeholder=" ">
+    <label for="tracking-reference">Reference number*</label>
+  </div>
+  <p class="tracking-actions"><button type="submit" class="button">Track</button></p>
+</form>
+<form class="tracking-panel" role="tabpanel" id="tracking-panel-tcn" aria-labelledby="tracking-tab-tcn" data-mode="tcn" hidden>
+  <p>Enter your Transportation Control Number (TCN) for government orders.</p>
+  <p>Do not use any spaces or the letters “TCN” preceding the number.</p>
+  <div class="tracking-field">
+    <input id="tracking-tcn" name="tcn" type="text" required placeholder=" ">
+    <label for="tracking-tcn">Enter TCN or tracking number*</label>
+  </div>
+  <p class="tracking-actions"><button type="submit" class="button">Track</button></p>
+</form>
+<form class="tracking-panel" role="tabpanel" id="tracking-panel-pod" aria-labelledby="tracking-tab-pod" data-mode="pod" hidden>
+  <p>View your proof of delivery, including an image of the recipient’s signature for FedEx Express and FedEx Ground shipments.</p>
+  <p>Enter up to 30 of your FedEx tracking numbers</p>
+  <div class="tracking-field">
+    <textarea id="tracking-pod" name="numbers" rows="1" required placeholder=" "></textarea>
+    <label for="tracking-pod">Tracking number*</label>
+  </div>
+  <p class="tracking-actions"><button type="submit" class="button">Track</button></p>
+</form>

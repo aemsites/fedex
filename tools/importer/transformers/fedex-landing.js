@@ -232,6 +232,15 @@ function tagShapes(element) {
       cc.setAttribute('data-fedex-variant', rowBg(cc));
       return;
     }
+    // one card on its own (the other columns empty): an icon above a title, text or a link (en-to
+    // new-customer "Contact Customer Support", tracking "Track Shipment Without Login") is an icon
+    // card, not default content (the icon would render at the full content width)
+    if (cols.length === 1) {
+      const k = compsOf(cols[0]).map(typeOf);
+      if (k[0] === 'image_v2' && svgIcon(cols[0].querySelector('img')) && k.includes('title_v1')
+        && k.slice(1).every((x) => ['title_v1', 'richtext', 'button_v1'].includes(x))) tag(cc, 'cards-grid', 'icons');
+      return;
+    }
     if (cols.length !== 2) return;
     const nested = (c) => compsOf(c).filter((k) => k.matches('.column_control_v1'));
     if (cols.every((c) => compsOf(c)[0] && compsOf(c)[0].matches('.title_v1') && nested(c).length > 0
@@ -279,7 +288,10 @@ function tagShapes(element) {
 }
 
 // a component whose only text is its headings (a loose title_v1, a hero holding just the h1)
+// (a landing hero is never just a heading: its photo is a background in its config, so an
+// image-less hero holding only its h1 still ends its section — en-to customer-support)
 const headingsOnly = (el) => !el.querySelector('img, picture, table')
+  && !el.matches('.hero_landingpage_v1') && !el.querySelector('.hero_landingpage_v1')
   && clean([...el.querySelectorAll('h1, h2, h3, h4, h5, h6')].map((h) => h.textContent).join(' ')) === clean(el.textContent);
 
 // The page grid whose children are the sections. Usually .root > .aem-Grid; when that holds a
@@ -325,7 +337,14 @@ function wrapperGrid(child) {
     || child.querySelector(':scope > .cmp-container');
 }
 
-const isTopicTitle = (el) => el.matches('.title_v1') && !!el.querySelector('h2');
+// (or an experience fragment that opens with such a title: en-to customer-support "Frequently Asked
+// Questions" after the "Open a FedEx account" banner fragment in the same wrapper)
+const isTopicTitle = (el) => (el.matches('.title_v1') && !!el.querySelector('h2'))
+  || (el.matches('.experiencefragment') && (() => {
+    const first = [...el.querySelectorAll('.title_v1, .richtext, .image_v2, .button_v1, .column_control_v1, .accordion_selector')]
+      .find((c) => hasContent(c));
+    return !!first && first.matches('.title_v1') && !!first.querySelector('h2');
+  })());
 
 // Jump-link grids (en-us how-to-ship pages "Here’s what you’ll find on this page:",
 // how-to-hub/articles "Learn how to ship:"): a panel of [arrow icon | #link] rows, one stack per
@@ -551,6 +570,38 @@ function insertSectionBreaks(element, doc) {
 // (cc-aem-u-align--center@small: "FedEx-verzendservices die uw bedrijf ondersteunen", the intro
 // text below it is centred too). The marker goes right after the title; the style centres the
 // section's leading default content only (later footnotes stay left).
+// Rules (div.hr_v1, an empty divider component), which fedex-cleanup would otherwise drop:
+// - directly under a section title (en-to shipping "Shipping Services", customer-support "Contact
+//   Us", new-customer "Before You Ship") -> section style `title-rule` (a rule under the heading)
+// - between two content groups of a grid (en-to packaging, online-shipping, terms-of-use) -> a
+//   section break, the next section styled `divider` (a rule at its top)
+// Rules at the start or end of a grid (next to a section break), inside blocks and next to jump
+// links are left to fedex-cleanup.
+function markRules(element, doc) {
+  const skip = (n) => !!n && (n.matches('.spacer, [' + STYLE_MARKER_ATTR + ']') || (!n.matches('hr') && !hasContent(n)));
+  const neighbour = (el, dir) => {
+    let n = el[dir];
+    while (skip(n)) n = n[dir];
+    return n && !n.matches('hr') ? n : null;
+  };
+  const inPageLinks = (el) => el.querySelectorAll('a[href^="#"]').length >= 2 || el.hasAttribute(JUMP_GRID);
+  const isTitle = (el) => el.matches('.title_v1') || (el.matches('.richtext') && headingsOnly(el)
+    && !!el.querySelector('h1, h2, h3, h4, h5, h6'));
+  element.querySelectorAll('.root div.hr_v1').forEach((rule) => {
+    if (!rule.isConnected || clean(rule.textContent) || rule.querySelector('img, a, table')) return;
+    if (rule.parentElement.closest('.hr_v1, .column_control_v1, .accordion_selector, .tabs_v1, .featured_offer_v2, .fxg-desktop--hide, table')) return;
+    const prev = neighbour(rule, 'previousElementSibling');
+    const next = neighbour(rule, 'nextElementSibling');
+    if (!prev || !next || inPageLinks(prev) || inPageLinks(next)) return;
+    if (isTitle(prev)) {
+      rule.replaceWith(styleMarker(doc, 'title-rule'));
+      return;
+    }
+    rule.before(doc.createElement('hr'));
+    rule.replaceWith(styleMarker(doc, 'divider'));
+  });
+}
+
 function markCenteredIntros(element, doc) {
   // a title-only hero (no image: how-to-hub/articles "Take the wheel with FedEx how-to guides",
   // centred h1 and centred intro below it) -> its section is center-intro too
@@ -571,7 +622,9 @@ function markCenteredIntros(element, doc) {
   };
   element.querySelectorAll('.root .title_v1, .root .richtext').forEach((title) => {
     if (!centredTitle(title)) return;
-    if (title.closest('.column_control_v1, .accordion_selector, .tabs_v1, .featured_offer_v2, .hero_landingpage_v1, .experiencefragment, .fxg-desktop--hide')) return;
+    // (an experience fragment holding the whole topic counts: en-to customer-support "Contact Us",
+    // "Frequently Asked Questions"; whether the title opens its section is checked below)
+    if (title.closest('.column_control_v1, .accordion_selector, .tabs_v1, .featured_offer_v2, .hero_landingpage_v1, .fxg-desktop--hide')) return;
     // only a title that opens its section: no content between the previous break and it. A notice
     // box (div.notifications) does not count: it stands on its own (schedule-manage-pickups: the
     // LTL notice above "Simplify shipping with FedEx pickup options")
@@ -601,7 +654,10 @@ function markCenteredIntros(element, doc) {
       if (next.matches('.richtext:not([data-fedex-arrow-link])') && clean(next.textContent)) texts.push(next);
     }
     const centred = (rt) => !!rt.querySelector('[class*="align--center@small"]');
-    const style = texts.length && texts.every(centred) ? 'center' : 'center-intro';
+    // a centred title above left-aligned text (en-to packaging "FedEx Shipping Supplies" / "Sturdy
+    // packaging is vital…") centres the heading only
+    let style = texts.length && texts.every(centred) ? 'center' : 'center-intro';
+    if (texts.length && !texts.some(centred) && !texts[0].querySelector('[class*="align--center"]')) style = 'center-headings';
     title.after(styleMarker(doc, style));
   });
 }
@@ -915,6 +971,22 @@ function stripForms(element) {
   element.querySelectorAll('.root .end, .root .hiddenField').forEach((el) => el.remove());
 }
 
+// A paragraph that is only a heading-sized span (en-to terms-of-use/line-app-notification: <p><span
+// class="cc-aem-u-font-size--h4"><b>LINE Application Notification</b></span></p>, the page's title
+// on a page without headings) is a heading: --h1/--h2 -> h2, --h3/--h4 -> h3 (the first one then
+// becomes the page h1 in promoteFirstHeading)
+function convertSizedTitles(element, doc) {
+  element.querySelectorAll('.root .richtext p').forEach((p) => {
+    const span = p.querySelector('[class*="cc-aem-u-font-size--h"]');
+    if (!span || clean(span.textContent) !== clean(p.textContent) || !clean(p.textContent)) return;
+    const level = Number((/cc-aem-u-font-size--h([1-6])/.exec(span.className) || [])[1]);
+    if (!level) return;
+    const h = doc.createElement(level <= 2 ? 'h2' : 'h3');
+    h.textContent = clean(p.textContent);
+    p.replaceWith(h);
+  });
+}
+
 function promoteFirstHeading(element, doc) {
   const root = element.querySelector('.root') || element;
   const h1s = [...root.querySelectorAll('h1')].filter((h) => !h.closest('.fxg-desktop--hide'));
@@ -956,6 +1028,7 @@ export default function transform(hookName, element, payload) {
   unwrapUntitledAccordions(element);
   convertFaqLayout(element, doc);
   stripForms(element);
+  convertSizedTitles(element, doc);
   promoteFirstHeading(element, doc);
   mergeSplitRows(element);
   alignColumnGrids(element);
@@ -963,6 +1036,7 @@ export default function transform(hookName, element, payload) {
   attachIconRowsToTitles(element);
   convertJumpLinkGrids(element, doc);
   insertSectionBreaks(element, doc);
+  markRules(element, doc);
   // after the panels are unwrapped: a centred title inside a panel opens its section too
   unwrapCenteredPanels(element, doc);
   inlineArrowLinks(element, doc);

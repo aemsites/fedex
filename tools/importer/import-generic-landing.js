@@ -1087,7 +1087,8 @@ const PAGE_TEMPLATE = {
     {
       "name": "widget",
       "instances": [
-        "div.genericAppContainer"
+        "div.genericAppContainer",
+        ".root div.trackingLandingContainer_v1"
       ]
     },
     {

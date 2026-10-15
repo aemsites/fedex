@@ -45,6 +45,14 @@ function components(col, cc) {
       && (clean(x.textContent) || x.querySelector('img')));
 }
 
+// a nested row of linked images only (en-to tracking "Key Benefits": the App Store / Google Play
+// badges) counts as content: its images become one paragraph of linked images
+function badgeRow(comp) {
+  if (!comp.matches('div.column_control_v1')) return false;
+  const imgs = [...comp.querySelectorAll('img')].filter((i) => !isHidden(i, comp));
+  return imgs.length > 0 && !clean(comp.textContent) && imgs.every((i) => i.closest('a[href]'));
+}
+
 // column widths, e.g. "col-sm-6|col-sm-6"; null when the row is not a plain content grid
 function shape(cc) {
   if (!cc || !cc.matches || !cc.matches('div.column_control_v1')) return null;
@@ -53,7 +61,7 @@ function shape(cc) {
   const parts = cols.map((c) => components(c, cc));
   if (parts.filter((p) => p.length).length < 2) return null;
   const all = parts.flat();
-  if (!all.every((x) => CONTENT.some((c) => x.classList.contains(c)))) return null;
+  if (!all.every((x) => CONTENT.some((c) => x.classList.contains(c)) || badgeRow(x))) return null;
   if (all.every((x) => x.classList.contains('button_v1'))) return null;
   return cols.map((c) => ([...c.classList].find((x) => x.startsWith('col-sm-')) || 'col')).join('|');
 }
@@ -82,18 +90,39 @@ function cell(col, cc, document) {
       const h = comp.querySelector('h1, h2, h3, h4, h5, h6');
       if (h && clean(h.textContent)) {
         const nh = document.createElement(h.tagName.toLowerCase());
-        nh.textContent = clean(h.textContent);
+        // keep the authored line breaks (en-to online-shipping "Existing customer?<br>You're ready
+        // to go!"), the rest as plain text
+        const label = h.cloneNode(true);
+        label.querySelectorAll('br').forEach((br) => br.replaceWith('\u0000'));
+        clean(label.textContent).split('\u0000').map((t) => t.trim()).filter(Boolean).forEach((t, i) => {
+          if (i) nh.append(document.createElement('br'));
+          nh.append(t);
+        });
         out.push(nh);
       }
     } else if (comp.classList.contains('richtext')) {
       const body = comp.querySelector('.cc-aem-c-richtext') || comp;
       [...body.children].forEach((child) => {
         if (child.matches('input') || isHidden(child, cc) || (!clean(child.textContent) && !child.querySelector('img'))) return;
-        out.push(child.cloneNode(true));
+        const copy = child.cloneNode(true);
+        // lists lose their editor classes, so consecutive one-item lists can be merged later
+        if (copy.matches('ul, ol')) [copy, ...copy.querySelectorAll('*')].forEach((n) => { n.removeAttribute('class'); n.removeAttribute('style'); });
+        out.push(copy);
       });
     } else if (comp.classList.contains('image_v2')) {
       const img = image(comp, cc, document);
       if (img) out.push(img);
+    } else if (badgeRow(comp)) {
+      const p = document.createElement('p');
+      [...comp.querySelectorAll('img')].filter((i) => !isHidden(i, comp)).forEach((img, i) => {
+        const a = img.closest('a[href]');
+        const na = document.createElement('a');
+        na.href = a.href || a.getAttribute('href');
+        na.append(image(img.parentElement, cc, document) || '');
+        if (i) p.append(' ');
+        p.append(na);
+      });
+      out.push(p);
     } else if (comp.classList.contains('button_v1')) {
       const a = [...comp.querySelectorAll('a[href]')].find((x) => !isHidden(x, cc) && clean(x.textContent));
       if (a) {
@@ -108,7 +137,14 @@ function cell(col, cc, document) {
       }
     }
   });
-  return out.length ? out : '';
+  // consecutive one-list richtexts (en-to tracking "Key Benefits": one item per richtext) are one list
+  const merged = [];
+  out.forEach((n) => {
+    const prev = merged[merged.length - 1];
+    if (prev && prev.matches && n.matches && prev.matches('ul') && n.matches('ul')) prev.append(...n.children);
+    else merged.push(n);
+  });
+  return merged.length ? merged : '';
 }
 
 export default function parse(element, { document }) {

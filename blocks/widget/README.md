@@ -8,7 +8,7 @@ Embeds a self-contained widget from the `/widgets/` folder, e.g. the rate calcul
 
 The block fetches `<name>.html` into itself, then loads `<name>.css` and runs the default export of `<name>.js`. The widget name replaces `widget` as the block class (and on the section wrapper and container), so each widget styles itself. Query parameters on the link become `data-` attributes on the widget. Widgets in subfolders work too (`/widgets/<folder>/<name>.html`).
 
-Available widgets: `rate-calculator` (static placeholder panel with a CTA to the FedEx rating app).
+Available widgets: `rate-calculator` (static placeholder panel with a CTA to the FedEx rating app), `tracking` (the tracking pages' tracking box: tabs Tracking number / Track by reference / Track by TCN / Obtain proof of delivery; each form opens the FedEx tracking app, https://www.fedex.com/fedextrack/, with the entered numbers as `trknbr` in the page's locale).
 
 ## Variants
 - *(none)*

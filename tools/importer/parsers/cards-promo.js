@@ -210,6 +210,7 @@ export default function parse(element, { document }) {
   let featured = false;
   const cells = []; // one row per card: image | text (library Cards convention, unchanged)
   const titles = [];
+  const cardImages = [];
   cols.forEach((col) => {
     const offer = col.querySelector('.featured_offer_v2');
     if (offer) featured = true;
@@ -241,6 +242,7 @@ export default function parse(element, { document }) {
       if (v.length) imageCell = v;
     } else if (img) {
       imageCell = newImage(img, document);
+      cardImages.push(img);
     }
 
     const body = [];
@@ -281,7 +283,15 @@ export default function parse(element, { document }) {
         const p = document.createElement('p');
         const a = document.createElement('a');
         a.href = link.href || link.getAttribute('href');
-        a.textContent = link.textContent.replace(/\s+/g, ' ').trim();
+        // label with its authored line breaks (en-to customer-support "EMAIL FOR<br>GENERAL ENQUIRIES")
+        const label = link.cloneNode(true);
+        label.querySelectorAll('img, svg, span.lock-hide').forEach((n) => n.remove());
+        label.querySelectorAll('br').forEach((br) => br.replaceWith('\u0000'));
+        label.textContent.replace(/\s+/g, ' ').split('\u0000').map((t) => t.trim()).filter(Boolean)
+          .forEach((t, n) => {
+            if (n) a.append(document.createElement('br'));
+            a.append(t);
+          });
         const cls = BUTTON_CLASSES.filter((c) => link.classList.contains(c));
         if (cls.length) a.className = cls.join(' ');
         p.append(a);
@@ -302,6 +312,20 @@ export default function parse(element, { document }) {
     && titles.every((t) => t && t.classList.contains('cc-aem-u-align--center@small'));
   let name = featured ? 'Cards (promo, light)' : 'cards (promo)';
   if (centered) name = featured ? 'Cards (promo, light, centered)' : 'Cards (promo, centered)';
+  // every card opens with an icon, not a photo (en-to customer-support "Write to Us / Customer
+  // Service": line-icon SVGs; shipping-tools "Transit Times …": *_Icon_Large_v2.png) -> icon cards
+  const isIcon = (img) => {
+    const file = (img.getAttribute('src') || '').split('?')[0].split('/').pop();
+    return /\.svg$/i.test(file) || /icon/i.test(file);
+  };
+  if (!featured && cardImages.length && cardImages.length === cells.length && cardImages.every(isIcon)) {
+    name = 'Cards (icon, centered)';
+    cells.forEach((row) => {
+      const ni = row[0] && row[0].querySelector ? (row[0].matches('img') ? row[0] : row[0].querySelector('img')) : null;
+      // html2md turns a bare *.svg into an :icon: token
+      if (ni && /\.svg$/i.test(ni.src || '') && !(ni.src || '').includes('?')) ni.src = `${ni.src}?width=160`;
+    });
+  }
   const block = WebImporter.Blocks.createBlock(document, { name, cells });
   element.replaceWith(block);
 }
