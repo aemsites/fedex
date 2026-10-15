@@ -75,6 +75,13 @@ function centeredPanelGrid(cc, topLevel) {
 }
 
 const PURPLE = /^(#4d148c|rgb\(77,20,140\))$/;
+// FedEx blue band (schedule-manage-pickups "Effective August 18, 2025, FedEx will begin using a new
+// pricing and rating structure…" under the hero): section style `blue` (white text, styles.css)
+const BLUE = /^(#007ab7|rgb\(0,122,183\))$/;
+const rowColor = (cc) => {
+  const row = cc.querySelector(':scope > .row');
+  return ((row && row.style && row.style.backgroundColor) || '').replace(/\s+/g, '').toLowerCase();
+};
 const rowBg = (cc) => {
   const row = cc.querySelector(':scope > .row');
   if (!row || !row.classList.contains('fxg-row--has-bgcolor')) return '';
@@ -328,6 +335,124 @@ const isTopicTitle = (el) => el.matches('.title_v1') && !!el.querySelector('h2')
 const JUMP_GRID = 'data-fedex-jump-grid';
 const jumpArrow = (img) => /jumplink_arrow/i.test(img.getAttribute('src') || '');
 
+// Grids of stacked "indent rows" (schedule-manage-pickups "Simplify shipping with FedEx pickup
+// options": three columns, each an [empty | icon] row, an [empty | "I don't ship very often."] row
+// and a [jump arrow | "Explore on-call pickups"] row): each row is replaced by its content, so a
+// column reads icon, text, link and the grid is the icon-cards shape (cards-icon, centered). The
+// jump arrows go; the links keep their #targets.
+const CONTENT_COMPS = '.image_v2, .richtext, .title_v1, .button_v1';
+function indentRowContent(row) {
+  const cols = visibleCols(row);
+  if (cols.length !== 2) return null;
+  const [lead, body] = cols;
+  if (clean(lead.textContent) || [...lead.querySelectorAll('img')].some((img) => !jumpArrow(img))) return null;
+  const grid = colGrid(body);
+  const comps = grid ? [...grid.children].filter((c) => !c.matches('.fxg-desktop--hide, .spacer')) : [];
+  return comps.length && comps.every((c) => c.matches(CONTENT_COMPS)) ? comps : null;
+}
+
+function flattenIndentRows(element) {
+  element.querySelectorAll('.root .column_control_v1').forEach((cc) => {
+    if (!cc.isConnected || cc.parentElement.closest('.column_control_v1')) return;
+    const cols = visibleCols(cc);
+    if (cols.length < 2 || cols.length > 4) return;
+    const plan = cols.map((col) => {
+      const grid = colGrid(col);
+      if (!grid) return null;
+      const rows = [...grid.children].filter((c) => !c.matches('.fxg-desktop--hide, .spacer')
+        && !(c.matches('.column_control_v1') && !visibleCols(c).length));
+      if (rows.length < 2 || !rows.every((r) => r.matches('.column_control_v1'))) return null;
+      const contents = rows.map(indentRowContent);
+      // a column of links only is a jump-link grid (express "What is expedited shipping?", …),
+      // left to convertJumpLinkGrids
+      if (!contents.every(Boolean) || !contents.flat().some((c) => c.matches('.image_v2, .richtext, .title_v1'))) return null;
+      return rows.map((r, i) => [r, contents[i]]);
+    });
+    if (!plan.every(Boolean)) return;
+    plan.flat().forEach(([row, comps]) => row.replaceWith(...comps));
+    // rows whose columns are all mobile-only copies (.fxg-desktop--hide) go too: left in, the grid
+    // would still hold a nested row
+    cols.forEach((col) => [...colGrid(col).children]
+      .filter((c) => c.matches('.column_control_v1') && !visibleCols(c).length)
+      .forEach((c) => c.remove()));
+  });
+}
+
+// A [jump arrow | link] row left after the jump-link grids and panels are converted
+// (schedule-manage-pickups "Get tools and tips to make pickups even easier" below the pickup
+// options) -> one paragraph ":arrow-down: link": the arrow is an inline icon before the link, as on
+// the source (icons/arrow-down.svg; styled in styles.css). Runs after convertJumpLinkGrids and
+// unwrapCenteredPanels; rows of a jump-links panel are left alone.
+function inlineArrowLinks(element, doc) {
+  element.querySelectorAll('.root .column_control_v1').forEach((row) => {
+    if (!row.isConnected) return;
+    const cols = visibleCols(row);
+    if (cols.length !== 2) return;
+    const [lead, body] = cols;
+    const arrows = [...lead.querySelectorAll('img')];
+    if (clean(lead.textContent) || !arrows.length || !arrows.every(jumpArrow)) return;
+    const grid = colGrid(body);
+    const comps = grid ? [...grid.children].filter((c) => !c.matches('.fxg-desktop--hide, .spacer')) : [];
+    const links = comps.length === 1 && comps[0].matches('.button_v1')
+      ? [...comps[0].querySelectorAll('a[href]')].filter((a) => !a.closest('.fxg-desktop--hide') && clean(a.textContent)) : [];
+    if (links.length !== 1) return;
+    // a jump-links panel keeps its rows (its section is styled as a list of in-page links)
+    for (let n = row.nextElementSibling; n && !n.matches('hr'); n = n.nextElementSibling) {
+      if ((n.getAttribute(STYLE_MARKER_ATTR) || '').includes('jump-links')) return;
+    }
+    const rt = doc.createElement('div');
+    rt.className = 'richtext';
+    rt.setAttribute('data-fedex-arrow-link', '');
+    const p = doc.createElement('p');
+    const a = doc.createElement('a');
+    a.setAttribute('href', links[0].getAttribute('href'));
+    a.textContent = clean(links[0].textContent);
+    p.append(doc.createTextNode(':arrow-down: '), a);
+    rt.append(p);
+    row.replaceWith(rt);
+  });
+}
+
+// A centred icon row right before a title ([empty col-sm-3 | image col-sm-6 | empty col-sm-3], then
+// the title_v1: schedule-manage-pickups' purple calendar circles above "Easily schedule an on-call
+// pickup online", "Convenience is automatic…"): the icon belongs to the title. It moves into the
+// title component, so the section break before the title takes it along (it was left at the end
+// of the previous section, or read as a one-logo strip).
+function attachIconRowsToTitles(element) {
+  element.querySelectorAll('.root .column_control_v1').forEach((cc) => {
+    if (!cc.isConnected || cc.parentElement.closest('.column_control_v1')) return;
+    const title = cc.nextElementSibling;
+    if (!title || !title.matches('.title_v1')) return;
+    const cols = visibleCols(cc);
+    if (cols.length !== 3 || clean(cc.textContent)) return;
+    if (cols[0].querySelector('img') || cols[2].querySelector('img')) return;
+    const comps = colGrid(cols[1]) ? [...colGrid(cols[1]).children].filter((c) => !c.matches('.fxg-desktop--hide, .spacer')) : [];
+    if (comps.length !== 1 || !comps[0].matches('.image_v2')) return;
+    title.prepend(comps[0]);
+    cc.remove();
+  });
+}
+
+// Columns of one row whose content sits at different depths (schedule-manage-pickups "Here's how to
+// schedule an on-call pickup": column 1 is .fxg-col > div > .aem-Grid > image + text, columns 2 and
+// 3 put a .responsivegrid > .aem-Grid inside that grid): the extra wrapper is unwrapped, so the row
+// matches the block selectors written for the plain shape (cards-icon centered: three number icons
+// above their step text).
+function alignColumnGrids(element) {
+  element.querySelectorAll('.root .column_control_v1').forEach((cc) => {
+    const cols = visibleCols(cc);
+    if (cols.length < 2) return;
+    const wrapped = cols.map((col) => {
+      const grid = colGrid(col);
+      const kids = grid ? [...grid.children].filter((c) => !c.matches('hr, .fxg-desktop--hide')) : [];
+      const only = kids.length === 1 ? kids[0] : null;
+      return only && only.matches('.responsivegrid') && only.querySelector(':scope > .aem-Grid') ? only : null;
+    });
+    if (!wrapped.some(Boolean) || wrapped.every(Boolean)) return;
+    wrapped.forEach((w) => { if (w) w.replaceWith(...w.querySelector(':scope > .aem-Grid').children); });
+  });
+}
+
 function convertJumpLinkGrids(element, doc) {
   element.querySelectorAll('.root .column_control_v1').forEach((cc) => {
     if (!cc.isConnected || cc.parentElement.closest('.column_control_v1') || cc.closest('.fxg-desktop--hide')) return;
@@ -427,23 +552,49 @@ function markCenteredIntros(element, doc) {
       hero.after(styleMarker(doc, 'center-intro'));
     }
   });
-  element.querySelectorAll('.root .title_v1').forEach((title) => {
-    const h = title.querySelector('h1, h2, h3, h4, h5, h6');
-    if (!h || h.tagName === 'H1' || !h.classList.contains('cc-aem-u-align--center@small')) return;
+  // titles: title_v1 components with a centred heading, and richtexts that hold only a heading in
+  // a centred box (schedule-manage-pickups "Simplify shipping with FedEx pickup options")
+  const centredTitle = (comp) => {
+    const h = comp.querySelector('h1, h2, h3, h4, h5, h6');
+    if (!h || h.tagName === 'H1') return false;
+    if (comp.matches('.title_v1')) return h.classList.contains('cc-aem-u-align--center@small');
+    const box = comp.querySelector('.cc-aem-c-richtext');
+    return !!box && box.classList.contains('cc-aem-u-align--center@small') && clean(comp.textContent) === clean(h.textContent);
+  };
+  element.querySelectorAll('.root .title_v1, .root .richtext').forEach((title) => {
+    if (!centredTitle(title)) return;
     if (title.closest('.column_control_v1, .accordion_selector, .tabs_v1, .featured_offer_v2, .hero_landingpage_v1, .experiencefragment, .fxg-desktop--hide')) return;
-    // only a title that opens its section: no content between the previous break and it
+    // only a title that opens its section: no content between the previous break and it. A notice
+    // box (div.notifications) does not count: it stands on its own (schedule-manage-pickups: the
+    // LTL notice above "Simplify shipping with FedEx pickup options")
+    const content = (el) => {
+      if (!hasContent(el)) return false;
+      if (el.matches('.notifications')) return false;
+      const rest = el.cloneNode(true);
+      rest.querySelectorAll('.notifications').forEach((n) => n.remove());
+      return hasContent(rest);
+    };
     let prev = title.previousElementSibling;
-    while (prev && !prev.matches('hr') && !hasContent(prev)) prev = prev.previousElementSibling;
+    while (prev && !prev.matches('hr') && !content(prev)) prev = prev.previousElementSibling;
     let opens = !prev || prev.matches('hr');
     if (!prev) {
       // first in its wrapper: the wrapper must open the section (an <hr> or nothing before it)
       let wrap = title.parentElement;
       while (wrap && wrap.previousElementSibling === null && !wrap.matches('.root > .aem-Grid')) wrap = wrap.parentElement;
       let before = wrap && wrap.previousElementSibling;
-      while (before && !before.matches('hr') && !hasContent(before)) before = before.previousElementSibling;
+      while (before && !before.matches('hr') && !content(before)) before = before.previousElementSibling;
       opens = !before || before.matches('hr');
     }
-    if (opens) title.after(styleMarker(doc, 'center-intro'));
+    if (!opens) return;
+    // the section's own text is centred too, after its blocks as well (schedule-manage-pickups: "It's
+    // easy to get your shipment moving…" below the pickup options): `center` for the whole section
+    const texts = [];
+    for (let next = title.nextElementSibling; next && !next.matches('hr'); next = next.nextElementSibling) {
+      if (next.matches('.richtext:not([data-fedex-arrow-link])') && clean(next.textContent)) texts.push(next);
+    }
+    const centred = (rt) => !!rt.querySelector('[class*="align--center@small"]');
+    const style = texts.length && texts.every(centred) ? 'center' : 'center-intro';
+    title.after(styleMarker(doc, style));
   });
 }
 
@@ -479,9 +630,10 @@ function unwrapCenteredPanels(element, doc) {
       // same rule as parsers/cards-horizontal.js isLight(): a bgcolor row unless its inline
       // colour is white; FedEx purple (shipping.html "Bereken uw tarieven") is the dark band
       const bg = rowBg(cc);
-      if (bg) styles.push(bg);
+      if (bg === 'light' && BLUE.test(rowColor(cc))) styles.push('blue');
+      else if (bg) styles.push(bg);
       // a row of the page grid itself spans the page: its grey panel runs edge to edge
-      if (bg === 'light') styles.push('full-width');
+      if (bg === 'light' && !styles.includes('blue')) styles.push('full-width');
       const links = [...grid.querySelectorAll('a[href]')];
       if (links.length && links.every((a) => a.getAttribute('href').startsWith('#'))) {
         styles.push('jump-links');
@@ -758,10 +910,14 @@ export default function transform(hookName, element, payload) {
   stripForms(element);
   promoteFirstHeading(element, doc);
   mergeSplitRows(element);
+  alignColumnGrids(element);
+  flattenIndentRows(element);
+  attachIconRowsToTitles(element);
   convertJumpLinkGrids(element, doc);
   insertSectionBreaks(element, doc);
   // after the panels are unwrapped: a centred title inside a panel opens its section too
   unwrapCenteredPanels(element, doc);
+  inlineArrowLinks(element, doc);
   markCenteredIntros(element, doc);
   convertJumpLinks(element, doc);
   tagShapes(element);

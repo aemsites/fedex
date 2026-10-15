@@ -33,6 +33,21 @@ EXTRA = {
         + ':not(:has(> .row > .fxg-col:nth-child(2) > div > .aem-Grid > :is(.title_v1, .image_v2, .button_v1, .column_control_v1)))'
         + ':not(:has(> .row > .fxg-col:nth-child(3)))',
     ],
+    # icon options: 3-4 columns, each an icon (PNG/SVG, no photo) + text + link button and nothing
+    # else; icon + link grids without text stay cards-icon-links (packaging, automotive)
+    # (schedule-manage-pickups "Simplify shipping with FedEx pickup options", after
+    # fedex-landing.js flattenIndentRows) -> Cards (icon, centered). The plain centered selector
+    # leaves rows with buttons out; photo cards (cards-promo) carry titles or JPEG/WebP photos.
+    'cards-icon': [
+        '.root .column_control_v1' + NOT_IN_BLOCK
+        + ':not(:has(> .row > .fxg-col:first-child.fxg-desktop--hide))'
+        + ':has(> .row > .fxg-col:nth-child(3)):not(:has(> .row > .fxg-col:nth-child(5)))'
+        + ''.join(f':has(> .row > .fxg-col:nth-child({n}) > div > .aem-Grid > .image_v2 img:is([src*=".png"], [src*=".svg"]))'
+                  f':has(> .row > .fxg-col:nth-child({n}) > div > .aem-Grid > .richtext)'
+                  f':has(> .row > .fxg-col:nth-child({n}) > div > .aem-Grid > .button_v1)' for n in (1, 2, 3))
+        + ':not(:has(> .row > .fxg-col > div > .aem-Grid > :is(.title_v1, .column_control_v1, .featured_offer_v2, .video_v1)))'
+        + ':not(:has(> .row > .fxg-col > div > .aem-Grid > .image_v2 img:is([src*=".jpg"], [src*=".jpeg"], [src*=".webp"])))',
+    ],
     # data tables (country pages, luxury-goods): div.table > table.fxg-table; any other table left in
     # the content (surcharges: table.cc-aem-c-table in div.fuelsurcharg-[dynamic-]datalookup), since a
     # raw table would become a bogus block. Tables in accordion answers / tabs are handled by those

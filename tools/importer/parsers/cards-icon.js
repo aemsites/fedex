@@ -150,7 +150,19 @@ function textCell(textCol, root, document) {
         }
         if (!body.length && isBoldOnly(p)) {
           const h3 = document.createElement('h3');
-          h3.textContent = clean(p.textContent);
+          // keep the authored line break (schedule-manage-pickups "I don't ship<br>very often.")
+          const parts = [];
+          const walk = (n) => n.childNodes.forEach((c) => {
+            if (c.nodeType === 3) parts.push(c.textContent);
+            else if (c.nodeName === 'BR') parts.push('\n');
+            else walk(c);
+          });
+          walk(p);
+          const lines = parts.join('').split('\n').map(clean).filter(Boolean);
+          lines.forEach((line, i) => {
+            if (i) h3.append(document.createElement('br'));
+            h3.append(document.createTextNode(line));
+          });
           body.push(h3);
           hasHeading = true;
           return;
@@ -234,6 +246,15 @@ export default function parse(element, { document }) {
     }
   }
 
+  // centered icons are sized as a share of their column on the source (img style "width:13%"):
+  // small step numbers (schedule-manage-pickups "Here's how to schedule": 13%, about 40px) ->
+  // `small-icons`, large illustrations (its pickup options: 50%, about 112px) -> `big-icons`
+  const iconWidths = nested ? [] : items.flatMap((cc) => cols(cc).map((col) => {
+    const img = [...col.querySelectorAll('.fxg-desktop-image img, .image_v2 img')].find((i) => !isHidden(i, cc));
+    const m = img && /(?:^|;)\s*width:\s*([\d.]+)%/.exec(img.getAttribute('style') || '');
+    return m ? parseFloat(m[1]) : null;
+  })).filter((w) => w !== null);
+
   const cells = [];
   items.forEach((cc) => cells.push(...(nested ? rowsNested(cc, document) : rowsCentered(cc, document))));
   if (!cells.length) {
@@ -251,6 +272,8 @@ export default function parse(element, { document }) {
   // 3-up nested grid (open-account "Discover the benefits": 3 x col-sm-4, 2 items each)
   if (nested && cols(element).length === 3) variants.push('three-columns');
   if (light) variants.push('light');
+  if (iconWidths.length && iconWidths.every((w) => w <= 20)) variants.push('small-icons');
+  else if (iconWidths.length && iconWidths.every((w) => w >= 45)) variants.push('big-icons');
   const block = WebImporter.Blocks.createBlock(document, { name: `Cards (${variants.join(', ')})`, cells });
   element.replaceWith(block);
 }

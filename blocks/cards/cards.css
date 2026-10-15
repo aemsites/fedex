@@ -521,6 +521,48 @@
   letter-spacing: var(--heading-letter-spacing);
 }
 
+/*
+ * icon + centered + small-icons / big-icons (en-us schedule-manage-pickups): the importer sets them
+ * from the source icon width. small-icons: 40px step numbers (the 1-2-3 steps); big-icons: 112px
+ * illustrations (the pickup options). The width is fixed, the height follows the artwork.
+ */
+.cards.icon.centered.small-icons {
+  --cards-icon-size: var(--icon-size-l);
+}
+
+.cards.icon.centered.big-icons {
+  --cards-icon-size: 112px;
+}
+
+/*
+ * icon + centered: a CTA that jumps within the page (pickup options "Explore on-call pickups") is
+ * the source's medium blue 16px text link in sentence case, not the uppercase CTA. Other CTAs keep
+ * the CTA look.
+ */
+.cards.icon.centered .cards-card-body .cards-card-cta:has(> a[href^='#']) {
+  font-size: var(--body-font-size-m);
+  line-height: var(--body-line-height);
+}
+
+.cards.icon.centered .cards-card-cta > a[href^='#']:any-link {
+  font-weight: var(--font-weight-medium);
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+/*
+ * the source's down arrow before the text: 12px (its 16px arrow art at 0.77 scale), 2px from the
+ * text, on the baseline (6px to 18px of the 24px line, as on the source); never underlined
+ */
+.cards.icon.centered .cards-card-cta > a[href^='#']::before {
+  content: '';
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-inline-end: 2px;
+  background: url('../../icons/arrow-down.svg') center / contain no-repeat;
+}
+
 /* the variants above from 768px */
 @media (width >= 768px) {
   .cards.icon.centered.large .cards-card-body h3 {
