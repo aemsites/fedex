@@ -101,9 +101,12 @@ export default async function decorate(block) {
   const icon = block.classList.contains('icon');
   const horizontal = block.classList.contains('horizontal');
   const logos = block.classList.contains('logos');
-  // icons are small (large icon photos are 144px, big-icons 112px, so they get a 2x rendition)
+  // icons are small (large icon photos are 144px, big-icons 112px, so they get a 2x rendition;
+  // photos span the card, so they get the regular photo rendition)
   let imageWidth = iconLinks || icon ? '160' : '750';
   if (icon && ['large', 'big-icons'].some((c) => block.classList.contains(c))) imageWidth = '320';
+  const photos = icon && block.classList.contains('photos');
+  if (photos) imageWidth = '750';
   const ul = document.createElement('ul');
 
   [...block.children].forEach((row) => {
@@ -133,6 +136,14 @@ export default async function decorate(block) {
         if (horizontal) markIcon(cell, img);
         li.append(cell);
       } else {
+        // photos: pictures between the texts span the card too, so they get the card rendition
+        if (photos) {
+          cell.querySelectorAll('picture').forEach((p) => {
+            const img = p.querySelector('img');
+            if (!img) return;
+            p.replaceWith(createOptimizedPicture(img.src, img.alt, false, [{ width: imageWidth }]));
+          });
+        }
         body.append(...cell.childNodes);
       }
     });

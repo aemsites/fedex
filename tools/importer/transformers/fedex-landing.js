@@ -396,6 +396,14 @@ function inlineArrowLinks(element, doc) {
     const links = comps.length === 1 && comps[0].matches('.button_v1')
       ? [...comps[0].querySelectorAll('a[href]')].filter((a) => !a.closest('.fxg-desktop--hide') && clean(a.textContent)) : [];
     if (links.length !== 1) return;
+    // inside a side-by-side panel ([title | links]: multiweight, sustainable-packaging "Here's what
+    // you'll find on this page") the rows stay: as plain paragraphs the panel would read as a
+    // columns row and merge with the media rows after it
+    let outer = row.parentElement && row.parentElement.closest('.column_control_v1');
+    while (outer && outer.parentElement && outer.parentElement.closest('.column_control_v1')) {
+      outer = outer.parentElement.closest('.column_control_v1');
+    }
+    if (outer && visibleCols(outer).filter(hasContent).length >= 2) return;
     // a jump-links panel keeps its rows (its section is styled as a list of in-page links)
     for (let n = row.nextElementSibling; n && !n.matches('hr'); n = n.nextElementSibling) {
       if ((n.getAttribute(STYLE_MARKER_ATTR) || '').includes('jump-links')) return;

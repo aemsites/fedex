@@ -121,12 +121,23 @@ function isBoldOnly(p) {
   return bold === text;
 }
 
-// Text cell of one item: walks the grid components in source order
-function textCell(textCol, root, document) {
+// Text cell of one item: walks the grid components in source order; with `images`, the item's
+// images stay in that order too (image paragraphs)
+function textCell(textCol, root, document, images = false) {
   const body = [];
   let hasHeading = false;
   gridChildren(textCol).forEach((comp) => {
-    if (comp.matches('.title_v1')) {
+    if (images && comp.matches('.image_v2')) {
+      // a mobile-only copy of the image (desktop rendition hidden) precedes the desktop one
+      // (multiweight "Three packages")
+      const desktop = [...comp.querySelectorAll('.fxg-desktop-image img')];
+      if (desktop.length && desktop.every((i) => isHidden(i, root))) return;
+      const img = iconCell(comp, root, document);
+      if (!img) return;
+      const p = document.createElement('p');
+      p.append(img);
+      body.push(p);
+    } else if (comp.matches('.title_v1')) {
       const h = [...comp.querySelectorAll('h1, h2, h3, h4, h5, h6')].find((el) => !isHidden(el, root));
       if (h && clean(h.textContent)) {
         const h3 = document.createElement('h3');
@@ -148,7 +159,9 @@ function textCell(textCol, root, document) {
           body.push(list);
           return;
         }
-        if (!body.length && isBoldOnly(p)) {
+        // in source order (`images`) the bold caption stays a bold paragraph, as on the source
+        // (multiweight: 16px bold captions, not titles)
+        if (!images && !body.length && isBoldOnly(p)) {
           const h3 = document.createElement('h3');
           // keep the authored line break (schedule-manage-pickups "I don't ship<br>very often.")
           const parts = [];
@@ -194,6 +207,16 @@ function textCell(textCol, root, document) {
 // Shape 0: icon + text in the same column
 function rowsCentered(cc, document) {
   return cols(cc).map((col) => {
+    // a title above the image (multiweight "Example: Multiweight vs. standard rates": title, photo,
+    // text, a second photo, text) keeps the source order in a single cell: no leading card image
+    const comps = gridChildren(col);
+    const firstImg = comps.findIndex((c) => c.matches('.image_v2') && c.querySelector('img'));
+    const textFirst = firstImg > 0 && comps.slice(0, firstImg)
+      .some((c) => c.matches('.title_v1, .richtext, .button_v1') && clean(c.textContent));
+    if (textFirst) {
+      const body = textCell(col, cc, document, true);
+      return body.length ? [body] : null;
+    }
     const icon = iconCell(col, cc, document);
     const body = textCell(col, cc, document);
     if (!icon && !body.length) return null;
@@ -249,11 +272,17 @@ export default function parse(element, { document }) {
   // centered icons are sized as a share of their column on the source (img style "width:13%"):
   // small step numbers (schedule-manage-pickups "Here's how to schedule": 13%, about 40px) ->
   // `small-icons`, large illustrations (its pickup options: 50%, about 112px) -> `big-icons`
-  const iconWidths = nested ? [] : items.flatMap((cc) => cols(cc).map((col) => {
-    const img = [...col.querySelectorAll('.fxg-desktop-image img, .image_v2 img')].find((i) => !isHidden(i, cc));
-    const m = img && /(?:^|;)\s*width:\s*([\d.]+)%/.exec(img.getAttribute('style') || '');
+  // Full-width photos (JPEG/WebP at 90% or more of the column: tracking "Take control of your
+  // deliveries", 727x463 photos shown 299px wide) are photo cards -> `photos`, not icons.
+  const iconImgs = nested ? [] : items.flatMap((cc) => cols(cc).map((col) => [...col.querySelectorAll('.fxg-desktop-image img, .image_v2 img')]
+    .find((i) => !isHidden(i, cc)))).filter(Boolean);
+  const widthOf = (img) => {
+    const m = /(?:^|;)\s*width:\s*([\d.]+)%/.exec(img.getAttribute('style') || '');
     return m ? parseFloat(m[1]) : null;
-  })).filter((w) => w !== null);
+  };
+  const iconWidths = iconImgs.map(widthOf).filter((w) => w !== null);
+  const isPhoto = (img) => /\.(jpe?g|webp)$/i.test((img.getAttribute('src') || '').split('?')[0]);
+  const photos = iconImgs.length > 0 && iconImgs.every((img) => isPhoto(img) && widthOf(img) >= 90);
 
   const cells = [];
   items.forEach((cc) => cells.push(...(nested ? rowsNested(cc, document) : rowsCentered(cc, document))));
@@ -272,7 +301,8 @@ export default function parse(element, { document }) {
   // 3-up nested grid (open-account "Discover the benefits": 3 x col-sm-4, 2 items each)
   if (nested && cols(element).length === 3) variants.push('three-columns');
   if (light) variants.push('light');
-  if (iconWidths.length && iconWidths.every((w) => w <= 20)) variants.push('small-icons');
+  if (photos) variants.push('photos');
+  else if (iconWidths.length && iconWidths.every((w) => w <= 20)) variants.push('small-icons');
   else if (iconWidths.length && iconWidths.every((w) => w >= 45)) variants.push('big-icons');
   const block = WebImporter.Blocks.createBlock(document, { name: `Cards (${variants.join(', ')})`, cells });
   element.replaceWith(block);
