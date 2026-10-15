@@ -976,7 +976,11 @@ function stripForms(element) {
 // on a page without headings) is a heading: --h1/--h2 -> h2, --h3/--h4 -> h3 (the first one then
 // becomes the page h1 in promoteFirstHeading)
 function convertSizedTitles(element, doc) {
+  // only on a page without headings, outside blocks (elsewhere a sized line is a card label the
+  // block parsers read as text: nl-nl healthcare "Begin vandaag nog met verzenden")
+  if (element.querySelector('.root :is(h1, h2, h3, h4, h5, h6)')) return;
   element.querySelectorAll('.root .richtext p').forEach((p) => {
+    if (p.closest('.column_control_v1, .accordion_selector, .tabs_v1, .featured_offer_v2')) return;
     const span = p.querySelector('[class*="cc-aem-u-font-size--h"]');
     if (!span || clean(span.textContent) !== clean(p.textContent) || !clean(p.textContent)) return;
     const level = Number((/cc-aem-u-font-size--h([1-6])/.exec(span.className) || [])[1]);
