@@ -898,6 +898,11 @@ export default {
       WebImporter.rules.createMetadata(main, document);
     }
     WebImporter.rules.transformBackgroundImages(main, document);
+    // inline SVG backgrounds (form field chevrons: en-to packaging/supplies) are not images
+    main.querySelectorAll('img[src^="data:"]').forEach((img) => {
+      const p = img.closest('p');
+      (p && p.textContent.trim() === '' && p.querySelectorAll('img').length === 1 ? p : (img.closest('picture') || img)).remove();
+    });
     WebImporter.rules.adjustImageUrls(main, url, params.originalURL);
 
     // 6. Sanitized path
