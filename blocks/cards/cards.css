@@ -535,11 +535,13 @@
 }
 
 /*
- * icon + centered + photos (en-us tracking "Take control of your deliveries"): the importer sets it
- * when every image is a full-column photo. The photo spans the card at its natural ratio (the icon
- * image rule: height auto, not cropped; multiweight has square and strip images), square corners;
- * the title is regular 20px 20px below it and 14px above the text. As the source column:
- * 15px inset and 33px below the text on mobile, 12px and 21px from 768px (3 per row); 20px below.
+ * icon + centered + photos (en-us tracking "Take control of your deliveries", multiweight "Example"):
+ * the importer sets it when every image is a full-column photo. Photos span the card at their natural
+ * ratio (not cropped, square corners), in the image cell (tracking) or between the texts (multiweight).
+ * The title is regular 20px, 20px below an image cell. The source's text rhythm: paragraphs 4px above,
+ * 8px below (not collapsing), images without margins, the title 10px above the next paragraph. As the
+ * source column: 15px inset and 33px below the text on mobile, 12px and 21px from 768px (3 per row);
+ * 20px below.
  */
 .cards.icon.centered.photos {
   --cards-icon-size: 100%;
@@ -559,11 +561,27 @@
 }
 
 .cards.icon.centered.photos .cards-card-body h3 {
-  margin-bottom: 14px;
+  margin-bottom: 10px;
   font-size: 20px;
   font-weight: var(--font-weight-regular);
   line-height: var(--heading-line-height);
   letter-spacing: var(--heading-letter-spacing);
+}
+
+.cards.icon.centered.photos li .cards-card-body p {
+  margin: var(--space-1) 0 var(--space-2);
+}
+
+.cards.icon.centered.photos li .cards-card-body p:has(> picture) {
+  margin: 0;
+}
+
+/* the block carries the global .icon class: reset its 100% icon height on photos in the text */
+.cards.icon.centered.photos .cards-card-body picture,
+.cards.icon.centered.photos .cards-card-body img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .cards.icon.centered.photos .cards-card-body > :last-child {

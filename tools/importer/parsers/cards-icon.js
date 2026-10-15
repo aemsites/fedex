@@ -128,6 +128,10 @@ function textCell(textCol, root, document, images = false) {
   let hasHeading = false;
   gridChildren(textCol).forEach((comp) => {
     if (images && comp.matches('.image_v2')) {
+      // a mobile-only copy of the image (desktop rendition hidden) precedes the desktop one
+      // (multiweight "Three packages")
+      const desktop = [...comp.querySelectorAll('.fxg-desktop-image img')];
+      if (desktop.length && desktop.every((i) => isHidden(i, root))) return;
       const img = iconCell(comp, root, document);
       if (!img) return;
       const p = document.createElement('p');
@@ -155,7 +159,9 @@ function textCell(textCol, root, document, images = false) {
           body.push(list);
           return;
         }
-        if (!body.length && isBoldOnly(p)) {
+        // in source order (`images`) the bold caption stays a bold paragraph, as on the source
+        // (multiweight: 16px bold captions, not titles)
+        if (!images && !body.length && isBoldOnly(p)) {
           const h3 = document.createElement('h3');
           // keep the authored line break (schedule-manage-pickups "I don't ship<br>very often.")
           const parts = [];
