@@ -710,8 +710,10 @@ main .form {
     --form-button-padding: 0 var(--space-6);
 }
 
+/* the section's own side gutter (the vendored card padding above would replace it), so forms keep
+   15px from the screen edge on small screens like every other block */
 main div.form-wrapper {
-    padding: 0;
+    padding: 0 var(--content-gutter);
     border-radius: 0;
     background: none;
     box-shadow: none;
@@ -742,11 +744,6 @@ main .form button[type="submit"] {
  * a square blue checkbox and a centred submit button.
  */
 /* stylelint-disable no-descending-specificity -- the vendored selectors above style other fields */
-
-/* keeps the section's side gutter, which `main div.form-wrapper` above drops on small screens */
-main div.form-wrapper:has(.field-supplies) {
-    padding: 0 var(--content-gutter);
-}
 
 main .form form:has(> .field-supplies) {
     --supplies-col-padding: var(--space-3);
