@@ -18,7 +18,10 @@ export default {
     "image": "https://www.fedex.com/content/dam/fedex/di/demo-assets/track2.jpg",
     "alt": "Tracking slip on desk",
     "listings": [
-      "/en-us/create-account/how-to-reset-forgot-password"
+      "/en-us/create-account/how-to-reset-forgot-password",
+      "/en-us/shipping/freight/air-freight/international",
+      "/en-us/shipping/how-to-ship",
+      "/en-us/shipping/international/how-to-ship"
     ]
   },
   "/en-us/customer-support/call-us": {
@@ -61,6 +64,17 @@ export default {
       "/en-us/shipping/how-to-ship-automotive"
     ]
   },
+  "/en-us/shipping/alcohol": {
+    "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_Alcohol_727x463.jpg",
+    "alt": "",
+    "listings": [
+      "/en-us/how-to-hub",
+      "/en-us/shipping/alcohol/resources",
+      "/en-us/shipping/express",
+      "/en-us/shipping/fedex-authorized-ship-center/shipsource/what-not-to-ship",
+      "/en-us/shipping/packing/supplies/boxes/custom"
+    ]
+  },
   "/en-us/shipping/critical-inventory-logistics/faq": {
     "image": "https://cdn.bfldr.com/I22OPSFM/at/2x537q5w374n5zxx2q49mx/20170322_SW_080703_188936580.jpg?auto=webp&fit=bounds&format=jpg&width=727&height=463&max_age=604800",
     "alt": "A FedEx courier places a package on a warehouse shelf.",
@@ -88,7 +102,50 @@ export default {
     "listings": [
       "/en-us/industry-solutions/perishables",
       "/en-us/industry-solutions/technology-and-electronics",
+      "/en-us/shipping/2-day-shipping",
       "/en-us/shipping/same-day"
+    ]
+  },
+  "/en-us/shipping/freight/air-freight/international": {
+    "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_GAF_727x463.jpg",
+    "alt": "Image",
+    "listings": [
+      "/en-us/industry-solutions"
+    ]
+  },
+  "/en-us/shipping/freight/ltl": {
+    "image": "",
+    "alt": "",
+    "listings": [
+      "/en-us/shipping/international-1-5-day"
+    ]
+  },
+  "/en-us/shipping/freight/resources/packing-guide": {
+    "image": "",
+    "alt": "",
+    "listings": [
+      "/en-us/shipping/freight/air-freight/international"
+    ]
+  },
+  "/en-us/shipping/freight/resources/packing-guide/boxes": {
+    "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD-Gaylord_NonBrand_Box_Angled_Pallet-463x463_retouched%201.jpg",
+    "alt": "",
+    "listings": [
+      "/en-us/shipping/freight/resources/packing-guide"
+    ]
+  },
+  "/en-us/shipping/freight/resources/packing-guide/crates": {
+    "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/master-k10450%201.jpg",
+    "alt": "",
+    "listings": [
+      "/en-us/shipping/freight/resources/packing-guide"
+    ]
+  },
+  "/en-us/shipping/freight/resources/packing-guide/pallets": {
+    "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/pallet_types.jpg",
+    "alt": "",
+    "listings": [
+      "/en-us/shipping/freight/resources/packing-guide"
     ]
   },
   "/en-us/shipping/ground": {
@@ -113,6 +170,7 @@ export default {
     "listings": [
       "/en-us/how-to-hub",
       "/en-us/how-to-hub/articles",
+      "/en-us/shipping/how-to-ship",
       "/en-us/shipping/how-to-ship-a-tv-monitor",
       "/en-us/shipping/how-to-ship-artwork",
       "/en-us/shipping/how-to-ship-batteries",
@@ -149,12 +207,20 @@ export default {
       "/en-us/shipping/fedex-authorized-ship-center"
     ]
   },
+  "/en-us/shipping/how-to-ship": {
+    "image": "",
+    "alt": "",
+    "listings": [
+      "/en-us/shipping/packing/supplies"
+    ]
+  },
   "/en-us/shipping/how-to-ship-a-bike": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx-Bike.jpg",
     "alt": "alt=“”",
     "listings": [
       "/en-us/how-to-hub",
       "/en-us/how-to-hub/articles",
+      "/en-us/shipping/how-to-ship",
       "/en-us/shipping/how-to-ship-a-tv-monitor",
       "/en-us/shipping/how-to-ship-artwork",
       "/en-us/shipping/how-to-ship-batteries",
@@ -170,6 +236,7 @@ export default {
       "/en-us/how-to-hub",
       "/en-us/how-to-hub/articles",
       "/en-us/industry-solutions/technology-and-electronics",
+      "/en-us/shipping/how-to-ship",
       "/en-us/shipping/how-to-ship-artwork",
       "/en-us/shipping/how-to-ship-batteries",
       "/en-us/shipping/how-to-ship-clinical-samples",
@@ -183,6 +250,7 @@ export default {
     "listings": [
       "/en-us/how-to-hub",
       "/en-us/how-to-hub/articles",
+      "/en-us/shipping/how-to-ship",
       "/en-us/shipping/how-to-ship-a-tv-monitor",
       "/en-us/shipping/how-to-ship-batteries",
       "/en-us/shipping/how-to-ship-clinical-samples",
@@ -200,6 +268,8 @@ export default {
       "/en-us/industry-solutions/automotive/aftermarket",
       "/en-us/industry-solutions/automotive/dealerships",
       "/en-us/industry-solutions/automotive/tires",
+      "/en-us/shipping/freight/resources/packing-guide",
+      "/en-us/shipping/how-to-ship",
       "/en-us/shipping/how-to-ship-a-tv-monitor",
       "/en-us/shipping/how-to-ship-artwork",
       "/en-us/shipping/how-to-ship-batteries",
@@ -216,6 +286,7 @@ export default {
       "/en-us/how-to-hub",
       "/en-us/how-to-hub/articles",
       "/en-us/industry-solutions/technology-and-electronics",
+      "/en-us/shipping/how-to-ship",
       "/en-us/shipping/how-to-ship-a-tv-monitor",
       "/en-us/shipping/how-to-ship-artwork",
       "/en-us/shipping/how-to-ship-clinical-samples",
@@ -230,6 +301,7 @@ export default {
     "listings": [
       "/en-us/how-to-hub",
       "/en-us/how-to-hub/articles",
+      "/en-us/shipping/how-to-ship",
       "/en-us/shipping/how-to-ship-a-tv-monitor",
       "/en-us/shipping/how-to-ship-artwork",
       "/en-us/shipping/how-to-ship-batteries",
@@ -244,6 +316,7 @@ export default {
       "/en-us/how-to-hub",
       "/en-us/how-to-hub/articles",
       "/en-us/shipping/express",
+      "/en-us/shipping/how-to-ship",
       "/en-us/shipping/how-to-ship-a-tv-monitor",
       "/en-us/shipping/how-to-ship-artwork",
       "/en-us/shipping/how-to-ship-batteries",
@@ -260,6 +333,7 @@ export default {
       "/en-us/how-to-hub/articles",
       "/en-us/industry-solutions/technology-and-electronics",
       "/en-us/shipping/express",
+      "/en-us/shipping/how-to-ship",
       "/en-us/shipping/how-to-ship-a-tv-monitor",
       "/en-us/shipping/how-to-ship-artwork",
       "/en-us/shipping/how-to-ship-batteries",
@@ -274,6 +348,7 @@ export default {
     "listings": [
       "/en-us/how-to-hub",
       "/en-us/how-to-hub/articles",
+      "/en-us/shipping/how-to-ship",
       "/en-us/shipping/how-to-ship-a-tv-monitor",
       "/en-us/shipping/how-to-ship-artwork",
       "/en-us/shipping/how-to-ship-batteries",
@@ -288,6 +363,7 @@ export default {
       "/en-us/how-to-hub",
       "/en-us/how-to-hub/articles",
       "/en-us/shipping/express",
+      "/en-us/shipping/how-to-ship",
       "/en-us/shipping/how-to-ship-a-tv-monitor",
       "/en-us/shipping/how-to-ship-artwork",
       "/en-us/shipping/how-to-ship-batteries",
@@ -313,6 +389,7 @@ export default {
     "listings": [
       "/en-us/how-to-hub",
       "/en-us/how-to-hub/articles",
+      "/en-us/shipping/how-to-ship",
       "/en-us/shipping/how-to-ship-a-tv-monitor",
       "/en-us/shipping/how-to-ship-artwork",
       "/en-us/shipping/how-to-ship-batteries",
@@ -334,6 +411,7 @@ export default {
     "listings": [
       "/en-us/how-to-hub",
       "/en-us/how-to-hub/articles",
+      "/en-us/shipping/how-to-ship",
       "/en-us/shipping/how-to-ship-a-tv-monitor",
       "/en-us/shipping/how-to-ship-artwork",
       "/en-us/shipping/how-to-ship-batteries",
@@ -349,6 +427,7 @@ export default {
       "/en-us/how-to-hub",
       "/en-us/how-to-hub/articles",
       "/en-us/shipping/express",
+      "/en-us/shipping/how-to-ship",
       "/en-us/shipping/how-to-ship-a-tv-monitor",
       "/en-us/shipping/how-to-ship-artwork",
       "/en-us/shipping/how-to-ship-batteries",
@@ -375,6 +454,98 @@ export default {
       "/en-us/shipping/international-1-5-day"
     ]
   },
+  "/en-us/shipping/international-prohibited-items": {
+    "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/2019_Memphis_Hub_10942-POD.jpg",
+    "alt": "alt=“”",
+    "listings": [
+      "/en-us/shipping/how-to-ship-automotive",
+      "/en-us/shipping/international/understanding-international-shipping-cost"
+    ]
+  },
+  "/en-us/shipping/international/brokerage": {
+    "image": "https://www.fedex.com/content/dam/fedex/us-united-states/International/images/2019/Q4/b_615938_20160330_az_8683_160132_803306271.jpg",
+    "alt": "fedex delivery driver ",
+    "listings": [
+      "/en-us/shipping/international/customs-clearance"
+    ]
+  },
+  "/en-us/shipping/international/create-documents": {
+    "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/727x578-which-customs-docs.jpg",
+    "alt": "",
+    "listings": [
+      "/en-us/shipping/international/how-to-ship-to-uk"
+    ]
+  },
+  "/en-us/shipping/international/customs-clearance": {
+    "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/fy21_apac_402-POD.jpg",
+    "alt": "alt=“”",
+    "listings": [
+      "/en-us/shipping/international/duties-and-taxes/fedex-import-tool",
+      "/en-us/shipping/international/understanding-international-shipping-cost",
+      "/en-us/shipping/international/us-tariffs-impact"
+    ]
+  },
+  "/en-us/shipping/international/duties-and-taxes": {
+    "image": "https://www.fedex.com/content/dam/fedex/us-united-states/International/images/2019/Q4/b_670538895_20160908_dm_16_005_01_02_02_08_026_160135_1928827241.jpg",
+    "alt": "woman on couch by window",
+    "listings": [
+      "/en-us/shipping/international/customs-clearance",
+      "/en-us/shipping/international/duties-and-taxes/fedex-import-tool"
+    ]
+  },
+  "/en-us/shipping/international/duties-and-taxes/fedex-import-tool": {
+    "image": "",
+    "alt": "",
+    "listings": [
+      "/en-us/shipping/international/customs-clearance"
+    ]
+  },
+  "/en-us/shipping/international/ecommerce-connect-plus": {
+    "image": "https://cdn.bfldr.com/I22OPSFM/at/ksq6hqqhs8gsfqnnxm7qhjx/master-cl9912.jpg?format=jpg&crop=4942%2C3148%2Cx287%2Cy792&width=727&height=463&auto=webp&max_age=604800",
+    "alt": "",
+    "listings": [
+      "/en-us/shipping/international-1-5-day"
+    ]
+  },
+  "/en-us/shipping/international/how-to-ship": {
+    "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/20171204_MK_7370_188896084-POD.jpg",
+    "alt": "alt=“”",
+    "listings": [
+      "/en-us/shipping/how-to-ship",
+      "/en-us/shipping/how-to-ship-a-tv-monitor",
+      "/en-us/shipping/how-to-ship-artwork",
+      "/en-us/shipping/how-to-ship-batteries",
+      "/en-us/shipping/how-to-ship-clinical-samples",
+      "/en-us/shipping/how-to-ship-firearms",
+      "/en-us/shipping/how-to-ship-guitars",
+      "/en-us/shipping/international-1-5-day",
+      "/en-us/shipping/international/understanding-international-shipping-cost"
+    ]
+  },
+  "/en-us/shipping/international/urgent-delivery": {
+    "image": "https://cdn.bfldr.com/I22OPSFM/at/wj8pf5wf43x3qz28gsr3trsc/20181010_S6A0014_2598532.jpg?format=jpg&crop=8269%2C5267%2Cx106%2Cy192&width=727&height=463&auto=webp&max_age=604800",
+    "alt": "",
+    "listings": [
+      "/en-us/shipping/international-1-5-day",
+      "/en-us/shipping/same-day"
+    ]
+  },
+  "/en-us/shipping/international/us-tariffs-impact": {
+    "image": "https://www.fedex.com/content/dam/fedex/lac-latin-america/images/PR_EN_2021_12_master_jpg_NA_Intra-Island-Column4_mkt.jpg",
+    "alt": "",
+    "listings": [
+      "/en-us/shipping/international/duties-and-taxes/fedex-import-tool"
+    ]
+  },
+  "/en-us/shipping/international/worldtariff": {
+    "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx_Kuwait_270517_0698-POD.jpg",
+    "alt": "alt=“”",
+    "listings": [
+      "/en-us/industry-solutions/industrial",
+      "/en-us/industry-solutions/perishables",
+      "/en-us/shipping/international/understanding-international-shipping-cost"
+    ]
+  },
   "/en-us/shipping/mobile": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/P04029_FX_WAG_PeakHoliday_LP_QR_Pod_727x463.jpg",
     "alt": "",
@@ -387,6 +558,8 @@ export default {
       "/en-us/shipping/ground",
       "/en-us/shipping/hold-at-location",
       "/en-us/shipping/home-delivery",
+      "/en-us/shipping/how-to-ship",
+      "/en-us/shipping/ship-hold-receive-package-locations",
       "/en-us/tracking",
       "/en-us/tracking/guide-for-tracking-managing-deliveries"
     ]
@@ -395,6 +568,7 @@ export default {
     "image": "",
     "alt": "",
     "listings": [
+      "/en-us/shipping/2-day-shipping",
       "/en-us/shipping/international-ground-canada",
       "/en-us/shipping/overnight"
     ]
@@ -428,6 +602,69 @@ export default {
       "/en-us/shipping/same-day"
     ]
   },
+  "/en-us/shipping/packaging": {
+    "image": "",
+    "alt": "",
+    "listings": [
+      "/en-us/shipping/international/how-to-ship-to-canada"
+    ]
+  },
+  "/en-us/shipping/packaging/common-terms": {
+    "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/2020/Q3/POD_20171204_MK_5960_188896084_291915691.jpg",
+    "alt": "A woman working on a laptop with a brown box, bubble wrap and packaging tape stacked next to her.",
+    "listings": [
+      "/en-us/shipping/packaging"
+    ]
+  },
+  "/en-us/shipping/packaging/search-test-types": {
+    "image": "",
+    "alt": "",
+    "listings": [
+      "/en-us/shipping/packaging/testing/distribution"
+    ]
+  },
+  "/en-us/shipping/packaging/testing": {
+    "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_PackageTest_727x4631.jpg",
+    "alt": "",
+    "listings": [
+      "/en-us/industry-solutions/data-center-logistics",
+      "/en-us/industry-solutions/technology-and-electronics",
+      "/en-us/shipping/freight/resources/packing-guide",
+      "/en-us/shipping/freight/resources/packing-guide/pallets",
+      "/en-us/shipping/how-to-ship-flowers-and-plants",
+      "/en-us/shipping/how-to-ship-furniture",
+      "/en-us/shipping/how-to-ship-perishables",
+      "/en-us/shipping/packaging",
+      "/en-us/shipping/packaging/common-terms",
+      "/en-us/shipping/packaging/what-is-dimensional-weight",
+      "/en-us/shipping/packing/supplies/boxes",
+      "/en-us/shipping/packing/supplies/boxes/custom",
+      "/en-us/shipping/packing/supplies/sustainable-packaging",
+      "/en-us/small-business/articles-insights/tips-from-a-packing-engineer"
+    ]
+  },
+  "/en-us/shipping/packaging/testing/advanced": {
+    "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/2020/Q3/FedEx_1145_ResizePod_1154180025.jpg",
+    "alt": "Two male FedEx employees using a tool to test packaging in the FedEx Packaging Lab.",
+    "listings": [
+      "/en-us/shipping/packaging/testing"
+    ]
+  },
+  "/en-us/shipping/packaging/testing/distribution": {
+    "image": "https://www.fedex.com/content/dam/fedex/us-united-states/Small-Business-Center/images/2020/Q3/V2_201504_15_002_03_02_01_276_dm_160125_1130331803.jpg",
+    "alt": "Packages on a conveyor belt",
+    "listings": [
+      "/en-us/shipping/packaging/testing"
+    ]
+  },
+  "/en-us/shipping/packaging/what-is-dimensional-weight": {
+    "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx_dim.jpg",
+    "alt": "alt=\"\"",
+    "listings": [
+      "/en-us/shipping/how-to-ship-furniture",
+      "/en-us/shipping/packaging"
+    ]
+  },
   "/en-us/shipping/packing/how-to-pack/breakables": {
     "image": "",
     "alt": "",
@@ -439,6 +676,7 @@ export default {
     "image": "",
     "alt": "",
     "listings": [
+      "/en-us/shipping/2-day-shipping",
       "/en-us/shipping/overnight"
     ]
   },
@@ -447,6 +685,7 @@ export default {
     "alt": "",
     "listings": [
       "/en-us/how-to-hub",
+      "/en-us/shipping/how-to-ship",
       "/en-us/shipping/packing/pack-and-ship",
       "/en-us/shipping/packing/supplies",
       "/en-us/shipping/packing/supplies/boxes",
@@ -457,10 +696,12 @@ export default {
     "image": "https://cdn.bfldr.com/I22OPSFM/at/q7cw2mbjbhn385498fqz2nj6/FY22_Memphis_220429_MK-FedEx_Memphis-1865_46.jpg?auto=webp&fit=bounds&format=jpg&max_age=604800&crop=727%3A463%2Csmart&width=727&height=463&",
     "alt": "Image",
     "listings": [
+      "/en-us/shipping/2-day-shipping",
       "/en-us/shipping/how-to-ship-a-bike",
       "/en-us/shipping/how-to-ship-clothes",
       "/en-us/shipping/how-to-ship-furniture",
-      "/en-us/shipping/overnight"
+      "/en-us/shipping/overnight",
+      "/en-us/shipping/packaging"
     ]
   },
   "/en-us/shipping/packing/supplies/boxes": {
@@ -473,6 +714,13 @@ export default {
       "/en-us/shipping/how-to-ship-jewelry",
       "/en-us/shipping/packing/pack-and-ship",
       "/en-us/shipping/packing/supplies/boxes/custom"
+    ]
+  },
+  "/en-us/shipping/packing/supplies/boxes/custom": {
+    "image": "",
+    "alt": "",
+    "listings": [
+      "/en-us/shipping/packaging"
     ]
   },
   "/en-us/shipping/packing/supplies/near-me": {
@@ -510,6 +758,7 @@ export default {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD-727x463_International-returns_.jpg",
     "alt": "",
     "listings": [
+      "/en-us/shipping/international/ecommerce-connect-plus",
       "/en-us/shipping/returns/business"
     ]
   },
@@ -528,8 +777,12 @@ export default {
       "/en-us/shipping/freight/air-freight/freight-1-3-business-day",
       "/en-us/shipping/freight/air-freight/international-premium",
       "/en-us/shipping/freight/air-freight/overnight",
+      "/en-us/shipping/freight/trade-networks",
+      "/en-us/shipping/how-to-ship",
       "/en-us/shipping/international-direct-distribution",
-      "/en-us/shipping/international-ground-canada"
+      "/en-us/shipping/international-ground-canada",
+      "/en-us/shipping/international/airport-to-airport",
+      "/en-us/shipping/international/how-to-ship"
     ]
   },
   "/en-us/shipping/ship-manager": {
@@ -537,6 +790,27 @@ export default {
     "alt": "",
     "listings": [
       "/en-us/industry-solutions/automotive/dealerships"
+    ]
+  },
+  "/en-us/shipping/temperature-control": {
+    "image": "",
+    "alt": "",
+    "listings": [
+      "/en-us/shipping/alcohol/resources"
+    ]
+  },
+  "/en-us/shipping/temperature-control/ambient-room-temperature": {
+    "image": "",
+    "alt": "",
+    "listings": [
+      "/en-us/industry-solutions/technology-and-electronics"
+    ]
+  },
+  "/en-us/shipping/temperature-control/deep-frozen": {
+    "image": "",
+    "alt": "",
+    "listings": [
+      "/en-us/shipping/how-to-ship-perishables"
     ]
   },
   "/en-us/sweepstakes": {
@@ -561,6 +835,7 @@ export default {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/174-874_CustomerBenefit.jpg",
     "alt": "",
     "listings": [
+      "/en-us/shipping/2-day-shipping",
       "/en-us/shipping/drop-off-pick-up-dollar-general",
       "/en-us/shipping/drop-off-pick-up-walgreens",
       "/en-us/shipping/express",
@@ -568,6 +843,7 @@ export default {
       "/en-us/shipping/ground",
       "/en-us/shipping/hold-at-location",
       "/en-us/shipping/home-delivery",
+      "/en-us/shipping/how-to-ship",
       "/en-us/shipping/how-to-ship-jewelry",
       "/en-us/shipping/overnight",
       "/en-us/tracking/picture-proof-delivery"

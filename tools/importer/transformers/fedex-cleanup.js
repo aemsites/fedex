@@ -80,8 +80,13 @@ const INTERNAL_LINK_HOST = 'www.fedex.com';
 //  - div.link.fxg-auth-button-link.cc-aem-u-display--none  ("Start a claim", "File batch claims", ... logged-in only)
 //  - a.fxg-featured-button.hidden                          (placeholder "Link" -> /#)
 //  - div.secureContainer_v1 > div.fxg-loginContainer        (empty logged-in app container)
+//    A container marked `notSecure` is the logged-out view, i.e. what visitors see (en-us
+//    duties-and-taxes/fedex-import-tool: the whole page body); it stays.
 // Marked in beforeTransform and removed in afterTransform (same reason as mobile duplicates).
-const LOGIN_ONLY = ['div.fxg-auth-button-link', 'a.fxg-featured-button.hidden', 'div.secureContainer_v1'];
+const LOGIN_ONLY = [
+  'div.fxg-auth-button-link', 'a.fxg-featured-button.hidden',
+  'div.secureContainer_v1:not(:has(> .fxg-loginContainer.notSecure))',
+];
 
 // Body-level widget leftovers (live DOM: direct children of <body>)
 const BODY_FURNITURE = [
