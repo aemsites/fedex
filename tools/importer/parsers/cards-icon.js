@@ -121,12 +121,19 @@ function isBoldOnly(p) {
   return bold === text;
 }
 
-// Text cell of one item: walks the grid components in source order
-function textCell(textCol, root, document) {
+// Text cell of one item: walks the grid components in source order; with `images`, the item's
+// images stay in that order too (image paragraphs)
+function textCell(textCol, root, document, images = false) {
   const body = [];
   let hasHeading = false;
   gridChildren(textCol).forEach((comp) => {
-    if (comp.matches('.title_v1')) {
+    if (images && comp.matches('.image_v2')) {
+      const img = iconCell(comp, root, document);
+      if (!img) return;
+      const p = document.createElement('p');
+      p.append(img);
+      body.push(p);
+    } else if (comp.matches('.title_v1')) {
       const h = [...comp.querySelectorAll('h1, h2, h3, h4, h5, h6')].find((el) => !isHidden(el, root));
       if (h && clean(h.textContent)) {
         const h3 = document.createElement('h3');
@@ -194,6 +201,16 @@ function textCell(textCol, root, document) {
 // Shape 0: icon + text in the same column
 function rowsCentered(cc, document) {
   return cols(cc).map((col) => {
+    // a title above the image (multiweight "Example: Multiweight vs. standard rates": title, photo,
+    // text, a second photo, text) keeps the source order in a single cell: no leading card image
+    const comps = gridChildren(col);
+    const firstImg = comps.findIndex((c) => c.matches('.image_v2') && c.querySelector('img'));
+    const textFirst = firstImg > 0 && comps.slice(0, firstImg)
+      .some((c) => c.matches('.title_v1, .richtext, .button_v1') && clean(c.textContent));
+    if (textFirst) {
+      const body = textCell(col, cc, document, true);
+      return body.length ? [body] : null;
+    }
     const icon = iconCell(col, cc, document);
     const body = textCell(col, cc, document);
     if (!icon && !body.length) return null;
