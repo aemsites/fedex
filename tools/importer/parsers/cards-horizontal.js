@@ -172,10 +172,15 @@ function buildRow(item, document) {
     np.innerHTML = p.innerHTML.trim();
     body.push(np);
   });
-  // Label rows keep every link (returns "Create a shipping label" + "Find full-service locations")
-  const ctas = labels.length
-    ? inText('.button_v1 a[href]').filter((a) => !isHidden(a, item) && a.textContent.trim())
-    : [cta].filter(Boolean);
+  // every button link (returns label rows: "Create a shipping label" + "Find full-service
+  // locations"; en-to sustainability/reports: the report, its executive summary and content index),
+  // else the first text link
+  const buttons = inText('.button_v1 a[href]').filter((a) => !isHidden(a, item) && a.textContent.trim()
+    // signed-in alternates (.fxg-auth-button-link, hidden until login) are not authored CTAs
+    && !a.closest('.fxg-auth-button-link')
+    && !/^\/?#$/.test(a.getAttribute('href') || ''));
+  const ctas = (buttons.length ? buttons : [cta].filter(Boolean))
+    .filter((a, i, all) => all.findIndex((b) => b.getAttribute('href') === a.getAttribute('href')) === i);
   ctas.forEach((link) => {
     const p = document.createElement('p');
     const a = document.createElement('a');
