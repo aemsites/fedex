@@ -212,10 +212,12 @@ export default function parse(element, { document, template }) {
   const ctas = [...hero.querySelectorAll('.button_v1 a[href], a.fxg-button[href], a.cc-aem-c-button[href]')]
     .filter((a, i, all) => all.indexOf(a) === i && !isHidden(a, element) && !inGrid(a) && clean(a.textContent) && !/^\/?#$/.test(a.getAttribute('href')))
     // .fxg-auth-button-link is the signed-in alternative of the CTA before it; drop it when it
-    // points at the same URL (claims: "Log in" / "Start a claim"), keep it otherwise
-    // (small-business: "Open an account" + "Ship Now").
+    // points at the same URL (claims: "Log in" / "Start a claim") or carries the same label
+    // (schedule-manage-pickups: "SCHEDULE A PICKUP" to the log-in page and to the signed-in app),
+    // keep it otherwise (small-business: "Open an account" + "Ship Now").
     .filter((a, i, all) => !a.closest('.fxg-auth-button-link')
-      || !all.slice(0, i).some((b) => (b.href || b.getAttribute('href')) === (a.href || a.getAttribute('href'))))
+      || !all.slice(0, i).some((b) => (b.href || b.getAttribute('href')) === (a.href || a.getAttribute('href'))
+        || clean(b.textContent).toLowerCase() === clean(a.textContent).toLowerCase()))
     .map((a) => ctaParagraph(a, document));
 
   // Hero block convention kept: one row, one cell (picture, h1, intro, CTAs). A banner without
