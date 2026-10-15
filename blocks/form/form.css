@@ -710,13 +710,18 @@ main .form {
     --form-button-padding: 0 var(--space-6);
 }
 
-/* the section's own side gutter (the vendored card padding above would replace it), so forms keep
-   15px from the screen edge on small screens like every other block */
 main div.form-wrapper {
-    padding: 0 var(--content-gutter);
+    padding: 0;
     border-radius: 0;
     background: none;
     box-shadow: none;
+}
+
+/* a form placed in a section keeps the section's own side gutter (the reset above would drop it),
+   so it stays 15px from the screen edge on small screens like every other block; a form inside a
+   tab panel or fragment already sits inside its container's inset */
+main > .section > div.form-wrapper {
+    padding: 0 var(--content-gutter);
 }
 
 main .form :is(input, select, textarea) {
