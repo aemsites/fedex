@@ -815,12 +815,16 @@ const FORM_MARKER = 'data-fedex-form';
 // definition's fieldset legends; rich text inside the form stays on the page, before the block.
 // Only forms whose definition is uploaded (/{locale}/forms/{name}.json) are converted: the same
 // wrapper holds other content too (nl-nl packaging/supplies: a product catalogue). Add the name
-// here after uploading its definition.
+// here after uploading its definition; `<locale>:<name>` converts it in that locale only.
 const CLASSIC_FORMS = new Set([
   'charters-request-a-quote', 'dropbox-maintenance-request', 'advanced-quote',
   'shipping-high-value-jewelry-declared-value-form', 'shipping-last-minute-rates',
-  'customer-support-write-to-fedex',
+  'customer-support-write-to-fedex', 'en-to:packaging-supplies',
 ]);
+// Forms whose definition holds all their content, catalogue and section titles included (en-to
+// packaging-supplies: a photo, title and quantity per product, then "Where shall we deliver the
+// supplies?"): nothing of the form stays on the page
+const SELF_CONTAINED_FORMS = new Set(['packaging-supplies']);
 // Conditional forms (en-to ancillary-clearance-service "Select Country/Territory"): a dropdown whose
 // options load a component-library page each (/content/fedex-com/component-library/ancillary/
 // en_us/au.html: that country's fee table). The options live in a JSON config script, which cleanup
@@ -853,13 +857,20 @@ function formNameFromUrl(url) {
 
 export function markAdaptiveForms(document, url) {
   const classicName = formNameFromUrl(url);
+  let locale = '';
+  try {
+    [locale] = new URL(url).pathname.split('/').filter(Boolean);
+  } catch (e) {
+    locale = '';
+  }
   document.querySelectorAll('.root form.fxg-forms').forEach((form, i) => {
-    if (!classicName || !CLASSIC_FORMS.has(classicName)) return;
+    if (!classicName || !(CLASSIC_FORMS.has(classicName) || CLASSIC_FORMS.has(`${locale}:${classicName}`))) return;
     const name = i ? `${classicName}-${i + 1}` : classicName;
     const marker = document.createElement('p');
     marker.setAttribute(FORM_MARKER, name);
     marker.textContent = `form ${name}`;
-    const texts = [...form.querySelectorAll('.richtext')].filter((r) => clean(r.textContent));
+    const texts = SELF_CONTAINED_FORMS.has(classicName) ? []
+      : [...form.querySelectorAll('.richtext')].filter((r) => clean(r.textContent));
     form.replaceWith(...texts, marker);
   });
   document.querySelectorAll('.root div.aemform').forEach((comp) => {
