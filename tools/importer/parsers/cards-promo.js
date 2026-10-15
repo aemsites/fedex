@@ -222,7 +222,10 @@ export default function parse(element, { document }) {
     const labels = [...col.querySelectorAll('.richtext h1, .richtext h2, .richtext h3, .richtext h4, .richtext h5, .richtext h6')]
       .filter((h) => h !== title && !isHidden(h, col) && h.textContent.trim()
         && (!title || !!(h.compareDocumentPosition(title) & Node.DOCUMENT_POSITION_FOLLOWING)));
-    const paras = [...col.querySelectorAll('.richtext p')].filter((p) => p.textContent.trim() && !isHidden(p, col));
+    // paragraphs and bullet lists in source order (en-us how-to-ship-cookies "Best baked goods for
+    // shipping": a lead sentence and a list of goods); list-item paragraphs stay in their list
+    const paras = [...col.querySelectorAll('.richtext p, .richtext ul, .richtext ol')]
+      .filter((p) => !p.parentElement.closest('p, ul, ol') && p.textContent.trim() && !isHidden(p, col));
     const cta = [...col.querySelectorAll('.button_v1 a[href], a.fxg-link[href]')]
       .find((a) => !isHidden(a, col) && !a.classList.contains('hidden') && !/^\/?#$/.test(a.getAttribute('href') || ''));
     const player = col.querySelector(VIDEO);
@@ -254,6 +257,13 @@ export default function parse(element, { document }) {
       body.push(h3);
     }
     paras.forEach((p) => {
+      if (p.matches('ul, ol')) {
+        const list = p.cloneNode(true);
+        [list, ...list.querySelectorAll('*')].forEach((n) => { n.removeAttribute('class'); n.removeAttribute('style'); });
+        list.querySelectorAll('span').forEach((sp) => sp.replaceWith(...sp.childNodes));
+        body.push(list);
+        return;
+      }
       const np = document.createElement('p');
       np.innerHTML = p.innerHTML.trim();
       body.push(np);
