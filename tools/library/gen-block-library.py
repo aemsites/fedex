@@ -91,17 +91,43 @@ def readme(b):
     text = open(p).read()
     title = (re.search(r'^# (.+)$', text, re.M) or [None, b.replace('-', ' ').title()])[1].strip()
     intro = INTRO.get(b) or next((l.strip() for l in text.split('\n')[1:] if l.strip() and not l.startswith(('#', '|', '-'))), '')
+    # token -> [(with-token or None, text)]: "- `large` with `horizontal`: …" describes the token
+    # in that combination only
     tokens = {}
-    for m in re.finditer(r'^- `([a-z0-9-]+)`(?: with `[a-z0-9-]+`)?: (.+)$', text, re.M):
-        tokens.setdefault(m.group(1), m.group(2))
+    for m in re.finditer(r'^- `([a-z0-9-]+)`(?: with `([a-z0-9-]+)`)?: (.+)$', text, re.M):
+        tokens.setdefault(m.group(1), []).append((m.group(2), m.group(3)))
     return title, intro, tokens
 
 
+def token_text(entries, combo):
+    """The README text for a token in this combination: its `with` entry if the combination has
+    that token, else an entry whose `modifier for` tokens are all present, else the first."""
+    for w, t in entries:
+        if w and w in combo:
+            return t
+    plain = [t for w, t in entries if not w]
+    for t in plain:
+        m = re.match(r'modifier for `([^`]+)`', t)
+        if m and all(x.strip() in combo for x in m.group(1).split(',')):
+            # "With `promo`, …" inside the text describes that combination
+            sub = re.search(r'With `([a-z0-9-]+)`, ([^.]+)', t)
+            return f'{sub.group(2)}.' if sub and sub.group(1) in combo else t
+    for t in plain:
+        if not re.match(r'modifier for', t):
+            return t
+    return None
+
+
 def first_sentence(t, limit=220):
+    # "modifier for `icon, centered`: 96px icons, …" -> what the modifier does
+    t = re.sub(r'^modifier for `[^`]+`[:.]?\s*', '', t)
     t = re.sub(r'\[([^\]]+)\]\([^)]+\)', r'\1', t)
     t = re.sub(r'`([^`]*)`', r'\1', t)
     t = re.sub(r'\*\*?([^*]+)\*\*?', r'\1', t)
     s = re.split(r'(?<=[.;:])\s', t, maxsplit=1)[0].rstrip(':;')
+    # a sentence cut inside a parenthesis ends before it
+    if s.count('(') > s.count(')'):
+        s = s[:s.rfind('(')].rstrip(' ,')
     return (s[:limit - 1] + '…') if len(s) > limit else s
 
 
@@ -126,6 +152,19 @@ def clean(block_html, b):
     return m.group(1) + ''.join(rows) + m.group(3)
 
 
+# English versions of variants used only on non-English pages (translated originals)
+ENGLISH = {}
+eng = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'english-samples.html')).read()
+eng = re.sub(r'<!--.*?-->', '', eng, flags=re.S)
+for m in re.finditer(r'<div class="([a-z0-9 -]+)">', eng):
+    toks = m.group(1).split()
+    if not any(m.start() >= s and m.start() < e for s, e in ENGLISH.get('_spans', [])):
+        end = find_div(eng, m.start())
+        ENGLISH[' '.join([toks[0]] + sorted(toks[1:]))] = (m.group(1), eng[m.start():end])
+        ENGLISH.setdefault('_spans', []).append((m.start(), end))
+ENGLISH.pop('_spans', None)
+ENGLISH_PAGE = re.compile(r'^/(en-[a-z]{2}|fragments)/')
+
 index = []
 for b in blocks:
     title, intro, tokens = readme(b)
@@ -145,11 +184,21 @@ for b in blocks:
     sections, variants = [], []
     for key in order:
         page, cls, html = combos[key][0]
+        if page and not ENGLISH_PAGE.match(page):
+            if key in ENGLISH:
+                cls, html = ENGLISH[key]
+            else:
+                print(f'  NOT ENGLISH: {cls} (from {page}): add an English version to english-samples.html')
         toks = cls.split()[1:]
         name = f'{title} ({", ".join(toks)})' if toks else title
         if toks:
             variants.append(', '.join(toks))
-            desc = '; '.join(first_sentence(tokens[t]) for t in toks if t in tokens) or f'{title} with {", ".join(toks)}.'
+            texts = [token_text(tokens[t], toks) for t in toks if t in tokens]
+            parts = [first_sentence(t).rstrip('.') for t in texts if t]
+            # README examples ("Hero (landing, purple)") are not descriptions
+            parts = [re.sub(r'^,\s*', '', re.sub(r'^' + re.escape(title) + r' \([^)]*\)', '', x)) for x in parts]
+            parts = [x for x in parts if x]
+            desc = '; '.join(dict.fromkeys(parts)) or f'{title} with {", ".join(toks)}'
         else:
             desc = first_sentence(intro) or f'{title} block.'
         desc = desc.replace('<', '&lt;').replace('>', '&gt;')
@@ -179,6 +228,16 @@ for b in blocks:
     if not pages:
         del meta['usage']
     meta_path = f'{R}/blocks/{b}/metadata.json'
+    # keep the first creation date across regenerations
+    # (and the last-used date while the pages using the block are the same)
+    try:
+        old = json.load(open(meta_path))
+        meta['created'] = old.get('created', NOW)
+        if 'usage' in meta and old.get('usage', {}).get('pagesUsing') == meta['usage']['pagesUsing'] \
+                and old['usage'].get('reuseCount') == meta['usage']['reuseCount']:
+            meta['usage']['lastUsed'] = old['usage'].get('lastUsed', NOW)
+    except (FileNotFoundError, ValueError):
+        pass
     # generated from the content: rewritten on every run
     json.dump(meta, open(meta_path, 'w'), indent=2)
     open(meta_path, 'a').write('\n')
