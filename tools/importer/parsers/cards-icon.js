@@ -150,7 +150,19 @@ function textCell(textCol, root, document) {
         }
         if (!body.length && isBoldOnly(p)) {
           const h3 = document.createElement('h3');
-          h3.textContent = clean(p.textContent);
+          // keep the authored line break (schedule-manage-pickups "I don't ship<br>very often.")
+          const parts = [];
+          const walk = (n) => n.childNodes.forEach((c) => {
+            if (c.nodeType === 3) parts.push(c.textContent);
+            else if (c.nodeName === 'BR') parts.push('\n');
+            else walk(c);
+          });
+          walk(p);
+          const lines = parts.join('').split('\n').map(clean).filter(Boolean);
+          lines.forEach((line, i) => {
+            if (i) h3.append(document.createElement('br'));
+            h3.append(document.createTextNode(line));
+          });
           body.push(h3);
           hasHeading = true;
           return;

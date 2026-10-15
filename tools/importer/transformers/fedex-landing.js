@@ -552,9 +552,17 @@ function markCenteredIntros(element, doc) {
       hero.after(styleMarker(doc, 'center-intro'));
     }
   });
-  element.querySelectorAll('.root .title_v1').forEach((title) => {
-    const h = title.querySelector('h1, h2, h3, h4, h5, h6');
-    if (!h || h.tagName === 'H1' || !h.classList.contains('cc-aem-u-align--center@small')) return;
+  // titles: title_v1 components with a centred heading, and richtexts that hold only a heading in
+  // a centred box (schedule-manage-pickups "Simplify shipping with FedEx pickup options")
+  const centredTitle = (comp) => {
+    const h = comp.querySelector('h1, h2, h3, h4, h5, h6');
+    if (!h || h.tagName === 'H1') return false;
+    if (comp.matches('.title_v1')) return h.classList.contains('cc-aem-u-align--center@small');
+    const box = comp.querySelector('.cc-aem-c-richtext');
+    return !!box && box.classList.contains('cc-aem-u-align--center@small') && clean(comp.textContent) === clean(h.textContent);
+  };
+  element.querySelectorAll('.root .title_v1, .root .richtext').forEach((title) => {
+    if (!centredTitle(title)) return;
     if (title.closest('.column_control_v1, .accordion_selector, .tabs_v1, .featured_offer_v2, .hero_landingpage_v1, .experiencefragment, .fxg-desktop--hide')) return;
     // only a title that opens its section: no content between the previous break and it. A notice
     // box (div.notifications) does not count: it stands on its own (schedule-manage-pickups: the
