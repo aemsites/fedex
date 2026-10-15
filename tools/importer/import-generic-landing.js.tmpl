@@ -121,7 +121,7 @@ export default {
   // adaptive form configs
   preprocess: (payload) => {
     fedexPreprocess(payload);
-    markAdaptiveForms(payload.document);
+    markAdaptiveForms(payload.document, (payload.params && payload.params.originalURL) || payload.url);
     resolveTeaserAnchors(payload.document.body, (payload.params && payload.params.originalURL) || payload.url);
   },
 

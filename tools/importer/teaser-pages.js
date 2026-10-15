@@ -29,7 +29,29 @@ export default {
       "/en-us/shipping/how-to-ship-batteries",
       "/en-us/shipping/how-to-ship-clinical-samples",
       "/en-us/shipping/how-to-ship-firearms",
-      "/en-us/shipping/how-to-ship-perishables"
+      "/en-us/shipping/how-to-ship-perishables",
+      "/en-us/shipping/international-ground-consolidation"
+    ]
+  },
+  "/en-us/customer-support/faqs/receiving/tracking-questions/how-to-track-with-map-view": {
+    "image": "",
+    "alt": "",
+    "listings": [
+      "/en-us/shipping/mobile"
+    ]
+  },
+  "/en-us/faq/delivery-manager": {
+    "image": "https://www.fedex.com/content/dam/fedex/us-united-states/FedEx-Office/images/2020/Q1/FED3782_HALLP_Pod4_SFW_727x463_1862092213.jpg",
+    "alt": "Frequently asked questions on a mobile device",
+    "listings": [
+      "/en-us/shipping/hold-at-location"
+    ]
+  },
+  "/en-us/faq/onsite": {
+    "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/Location3-FED3782_HALLP_Pod5_SFW_727x463_2122497951.jpg",
+    "alt": "Customer picking up a package from a retailer",
+    "listings": [
+      "/en-us/shipping/hold-at-location"
     ]
   },
   "/en-us/industry-solutions/automotive": {
@@ -37,6 +59,27 @@ export default {
     "alt": "",
     "listings": [
       "/en-us/shipping/how-to-ship-automotive"
+    ]
+  },
+  "/en-us/shipping/critical-inventory-logistics/faq": {
+    "image": "https://cdn.bfldr.com/I22OPSFM/at/2x537q5w374n5zxx2q49mx/20170322_SW_080703_188936580.jpg?auto=webp&fit=bounds&format=jpg&width=727&height=463&max_age=604800",
+    "alt": "A FedEx courier places a package on a warehouse shelf.",
+    "listings": [
+      "/en-us/shipping/critical-inventory-logistics"
+    ]
+  },
+  "/en-us/shipping/critical-inventory-logistics/resources": {
+    "image": "",
+    "alt": "",
+    "listings": [
+      "/en-us/shipping/critical-inventory-logistics"
+    ]
+  },
+  "/en-us/shipping/dropbox": {
+    "image": "",
+    "alt": "",
+    "listings": [
+      "/en-us/shipping/express"
     ]
   },
   "/en-us/shipping/express": {
@@ -78,6 +121,14 @@ export default {
       "/en-us/shipping/how-to-ship-guitars"
     ]
   },
+  "/en-us/shipping/hold-at-location": {
+    "image": "",
+    "alt": "",
+    "listings": [
+      "/en-us/holiday/consumer-shipping-delivery-guide",
+      "/en-us/shipping/fedex-authorized-ship-center/shipsource/avoid-three-common-scams"
+    ]
+  },
   "/en-us/shipping/home-delivery": {
     "image": "",
     "alt": "",
@@ -89,6 +140,13 @@ export default {
       "/en-us/shipping/how-to-ship-clothes",
       "/en-us/shipping/how-to-ship-computers",
       "/en-us/shipping/how-to-ship-furniture"
+    ]
+  },
+  "/en-us/shipping/how-to-become-fedex-authorized-ship-center": {
+    "image": "",
+    "alt": "",
+    "listings": [
+      "/en-us/shipping/fedex-authorized-ship-center"
     ]
   },
   "/en-us/shipping/how-to-ship-a-bike": {
@@ -300,6 +358,63 @@ export default {
       "/en-us/shipping/same-day"
     ]
   },
+  "/en-us/shipping/international-1-5-day": {
+    "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_ChooseFast_727x463.jpg",
+    "alt": "",
+    "listings": [
+      "/en-us/industry-solutions/industrial",
+      "/en-us/industry-solutions/perishables",
+      "/en-us/industry-solutions/technology-and-electronics",
+      "/en-us/sweepstakes/slope-to-shore/slopetoshoresweepstakesover"
+    ]
+  },
+  "/en-us/shipping/international-ground-canada": {
+    "image": "https://cdn.bfldr.com/I22OPSFM/at/7hn79kwnv7nthgcfp3k4n5j/master-16492.jpg?format=jpg&crop=4081%2C2594%2Cx0%2Cy0&pad=1%2C0%2C0%2C0&width=727&height=462&auto=webp&max_age=604800",
+    "alt": "",
+    "listings": [
+      "/en-us/shipping/international-1-5-day"
+    ]
+  },
+  "/en-us/shipping/mobile": {
+    "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/P04029_FX_WAG_PeakHoliday_LP_QR_Pod_727x463.jpg",
+    "alt": "",
+    "listings": [
+      "/en-us/holiday/consumer-shipping-delivery-guide",
+      "/en-us/how-to-hub",
+      "/en-us/shipping/drop-off-pick-up-dollar-general",
+      "/en-us/shipping/drop-off-pick-up-walgreens",
+      "/en-us/shipping/express",
+      "/en-us/shipping/ground",
+      "/en-us/shipping/hold-at-location",
+      "/en-us/shipping/home-delivery",
+      "/en-us/tracking",
+      "/en-us/tracking/guide-for-tracking-managing-deliveries"
+    ]
+  },
+  "/en-us/shipping/multiweight": {
+    "image": "",
+    "alt": "",
+    "listings": [
+      "/en-us/shipping/international-ground-canada",
+      "/en-us/shipping/overnight"
+    ]
+  },
+  "/en-us/shipping/office-depot-officemax": {
+    "image": "https://www.fedex.com/content/dam/fedex/us-united-states/FedEx-Office/images/2021/q1/logo_OfficeDepotOfficeMax.jpg",
+    "alt": "Office Depot Office Max Logo",
+    "listings": [
+      "/en-us/holiday/consumer-shipping-delivery-guide"
+    ]
+  },
+  "/en-us/shipping/one-rate": {
+    "image": "",
+    "alt": "",
+    "listings": [
+      "/en-us/shipping/express",
+      "/en-us/shipping/how-to-ship-clothes",
+      "/en-us/shipping/packing/supplies/boxes"
+    ]
+  },
   "/en-us/shipping/overnight": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/2022/FedEx-sip_auto-parts-B.jpg",
     "alt": "",
@@ -313,6 +428,13 @@ export default {
       "/en-us/shipping/same-day"
     ]
   },
+  "/en-us/shipping/packing/how-to-pack/breakables": {
+    "image": "",
+    "alt": "",
+    "listings": [
+      "/en-us/shipping/packing/supplies/boxes/custom"
+    ]
+  },
   "/en-us/shipping/packing/pack-and-ship": {
     "image": "",
     "alt": "",
@@ -320,11 +442,101 @@ export default {
       "/en-us/shipping/overnight"
     ]
   },
+  "/en-us/shipping/packing/pledge": {
+    "image": "",
+    "alt": "",
+    "listings": [
+      "/en-us/how-to-hub",
+      "/en-us/shipping/packing/pack-and-ship",
+      "/en-us/shipping/packing/supplies",
+      "/en-us/shipping/packing/supplies/boxes",
+      "/en-us/shipping/packing/supplies/boxes/custom"
+    ]
+  },
+  "/en-us/shipping/packing/supplies": {
+    "image": "https://cdn.bfldr.com/I22OPSFM/at/q7cw2mbjbhn385498fqz2nj6/FY22_Memphis_220429_MK-FedEx_Memphis-1865_46.jpg?auto=webp&fit=bounds&format=jpg&max_age=604800&crop=727%3A463%2Csmart&width=727&height=463&",
+    "alt": "Image",
+    "listings": [
+      "/en-us/shipping/how-to-ship-a-bike",
+      "/en-us/shipping/how-to-ship-clothes",
+      "/en-us/shipping/how-to-ship-furniture",
+      "/en-us/shipping/overnight"
+    ]
+  },
+  "/en-us/shipping/packing/supplies/boxes": {
+    "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx-Office-small-box-web.jpg",
+    "alt": "",
+    "listings": [
+      "/en-us/shipping/how-to-ship-clothes",
+      "/en-us/shipping/how-to-ship-computers",
+      "/en-us/shipping/how-to-ship-flowers-and-plants",
+      "/en-us/shipping/how-to-ship-jewelry",
+      "/en-us/shipping/packing/pack-and-ship",
+      "/en-us/shipping/packing/supplies/boxes/custom"
+    ]
+  },
+  "/en-us/shipping/packing/supplies/near-me": {
+    "image": "",
+    "alt": "",
+    "listings": [
+      "/en-us/shipping/packing/pack-and-ship"
+    ]
+  },
+  "/en-us/shipping/packing/supplies/sustainable-packaging": {
+    "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD-727x463_fy22_sustainability_.jpg",
+    "alt": "",
+    "listings": [
+      "/en-us/industry-solutions/technology-and-electronics",
+      "/en-us/shipping/fedex-authorized-ship-center/shipsource/view-shipping-emissions",
+      "/en-us/shipping/returns/business",
+      "/en-us/shipping/returns/global"
+    ]
+  },
+  "/en-us/shipping/returns/business": {
+    "image": "",
+    "alt": "",
+    "listings": [
+      "/en-us/shipping/fedex-authorized-ship-center/shipsource/avoid-three-common-scams"
+    ]
+  },
+  "/en-us/shipping/returns/business/using-returns-to-boost-online-sales": {
+    "image": "",
+    "alt": "",
+    "listings": [
+      "/en-us/shipping/returns/business"
+    ]
+  },
+  "/en-us/shipping/returns/global": {
+    "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD-727x463_International-returns_.jpg",
+    "alt": "",
+    "listings": [
+      "/en-us/shipping/returns/business"
+    ]
+  },
   "/en-us/shipping/same-day": {
     "image": "",
     "alt": "",
     "listings": [
       "/en-us/shipping/how-to-ship-clothes"
+    ]
+  },
+  "/en-us/shipping/services": {
+    "image": "https://www.fedex.com/content/dam/fedex/us-united-states/International/images/2020/Q1/IG%20US-Package-shipping%20(1).jpg",
+    "alt": "man with box",
+    "listings": [
+      "/en-us/shipping/freight/air-freight/charters",
+      "/en-us/shipping/freight/air-freight/freight-1-3-business-day",
+      "/en-us/shipping/freight/air-freight/international-premium",
+      "/en-us/shipping/freight/air-freight/overnight",
+      "/en-us/shipping/international-direct-distribution",
+      "/en-us/shipping/international-ground-canada"
+    ]
+  },
+  "/en-us/shipping/ship-manager": {
+    "image": "",
+    "alt": "",
+    "listings": [
+      "/en-us/industry-solutions/automotive/dealerships"
     ]
   },
   "/en-us/sweepstakes": {
@@ -349,8 +561,12 @@ export default {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/174-874_CustomerBenefit.jpg",
     "alt": "",
     "listings": [
+      "/en-us/shipping/drop-off-pick-up-dollar-general",
+      "/en-us/shipping/drop-off-pick-up-walgreens",
       "/en-us/shipping/express",
+      "/en-us/shipping/fedex-authorized-ship-center/shipsource/avoid-three-common-scams",
       "/en-us/shipping/ground",
+      "/en-us/shipping/hold-at-location",
       "/en-us/shipping/home-delivery",
       "/en-us/shipping/how-to-ship-jewelry",
       "/en-us/shipping/overnight",
@@ -364,6 +580,7 @@ export default {
       "/en-us/shipping/ground",
       "/en-us/shipping/home-delivery",
       "/en-us/shipping/overnight",
+      "/en-us/shipping/returns/global",
       "/en-us/tracking/picture-proof-delivery"
     ]
   },
@@ -381,6 +598,7 @@ export default {
     "listings": [
       "/en-us/holiday/consumer-shipping-delivery-guide",
       "/en-us/shipping/express",
+      "/en-us/shipping/mobile",
       "/en-us/tracking/advanced",
       "/en-us/tracking/guide-for-tracking-managing-deliveries"
     ]

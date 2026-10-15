@@ -24,9 +24,10 @@
  *     #links in a section of its own with style `jump-links`. fedex-cleanup rewrites the #ids to
  *     the EDS heading ids.
  *  3. Forms (AEM forms: div.start > form.fxg-forms ... div.end, posting to api.emea.fedex.com;
- *     adaptive forms: form > .guide* fields). There is no form block yet (see
- *     migration-work/nl-shipping/REPORT.md): the fields are removed, the authored text, headings
- *     and images inside the form stay default content (supplies: the product catalogue).
+ *     adaptive forms: form > .guide* fields). Adaptive forms and the classic forms listed in
+ *     CLASSIC_FORMS become Form blocks (markAdaptiveForms). Elsewhere the fields are removed and
+ *     the authored text, headings and images inside the form stay default content (nl-nl
+ *     supplies: the product catalogue).
  *  4. Pages without an h1 (contact pages whose hero title is an h2) get their first heading
  *     promoted to h1.
  *  5. Split rows (desktop card grids authored one row per component type) are merged per column
@@ -648,7 +649,33 @@ function convertFaqLayout(element, doc) {
 // parsers would be read as a data table).
 const FORM_MARKER = 'data-fedex-form';
 
-export function markAdaptiveForms(document) {
+// Classic AEM forms (form.fxg-forms in div.start, server-rendered: en-us charters
+// "request-a-quote", dropbox "maintenance-request") have no form name: the definition is named after
+// the page's last two path segments (charters-request-a-quote). Its section titles become the
+// definition's fieldset legends; rich text inside the form stays on the page, before the block.
+// Only forms whose definition is uploaded (/{locale}/forms/{name}.json) are converted: the same
+// wrapper holds other content too (nl-nl packaging/supplies: a product catalogue). Add the name
+// here after uploading its definition.
+const CLASSIC_FORMS = new Set(['charters-request-a-quote', 'dropbox-maintenance-request']);
+function formNameFromUrl(url) {
+  try {
+    return new URL(url).pathname.replace(/\.html$/, '').split('/').filter(Boolean).slice(-2).join('-').toLowerCase();
+  } catch (e) {
+    return null;
+  }
+}
+
+export function markAdaptiveForms(document, url) {
+  const classicName = formNameFromUrl(url);
+  document.querySelectorAll('.root form.fxg-forms').forEach((form, i) => {
+    if (!classicName || !CLASSIC_FORMS.has(classicName)) return;
+    const name = i ? `${classicName}-${i + 1}` : classicName;
+    const marker = document.createElement('p');
+    marker.setAttribute(FORM_MARKER, name);
+    marker.textContent = `form ${name}`;
+    const texts = [...form.querySelectorAll('.richtext')].filter((r) => clean(r.textContent));
+    form.replaceWith(...texts, marker);
+  });
   document.querySelectorAll('.root div.aemform').forEach((comp) => {
     let name = null;
     const config = comp.querySelector('script[data-config="js-adaptiveform-config"]');

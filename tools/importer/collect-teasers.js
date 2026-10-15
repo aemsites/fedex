@@ -25,7 +25,12 @@ async (listingUrls) => {
     root.querySelectorAll('a[href]').forEach((link) => {
       const href = link.getAttribute('href');
       if (!href || /^(#|javascript:|mailto:|tel:)/.test(href) || link.closest('.fxg-desktop--hide')) return;
-      const target = new URL(href, listing);
+      let target;
+      try {
+        target = new URL(href, listing);
+      } catch (e) {
+        return; // malformed href in the source
+      }
       if (target.origin !== 'https://www.fedex.com') return;
       const path = target.pathname.replace(/\.html$/, '');
       if (path === self || (seen.has(path) && seen.get(path).teaser)) return;
