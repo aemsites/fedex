@@ -61,7 +61,8 @@ function teaserPath(a) {
 
 function setTeaserImage(doc, path) {
   const page = TEASER_PAGES[path];
-  if (!page || !doc.head) return;
+  // no image when no listing has a real teaser for the page (build-teaser-pages.py)
+  if (!page || !page.image || !doc.head) return;
   let meta = doc.head.querySelector('meta[property="og:image"]');
   if (!meta) {
     meta = doc.createElement('meta');

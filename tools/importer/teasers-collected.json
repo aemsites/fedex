@@ -1,338 +1,11 @@
 {
- "/en-us/shipping/how-to-ship-jewelry": [
-  {
-   "listing": "/en-us/how-to-hub/articles",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx-Jewelry%201.jpg",
-   "alt": "",
-   "linkText": "LEARN HOW TO SHIP JEWELRY"
-  },
-  {
-   "listing": "/en-us/how-to-hub",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_Jewelry_727x463.jpg",
-   "alt": "",
-   "linkText": "Jewelry"
-  }
- ],
- "/en-us/shipping/how-to-ship-a-bike": [
-  {
-   "listing": "/en-us/how-to-hub/articles",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx-Bike.jpg",
-   "alt": "alt=“”",
-   "linkText": "How to ship a bike"
-  },
-  {
-   "listing": "/en-us/how-to-hub",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_Bikes_727x463.jpg",
-   "alt": "",
-   "linkText": "Bikes"
-  }
- ],
- "/en-us/shipping/how-to-ship-furniture": [
-  {
-   "listing": "/en-us/how-to-hub/articles",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx-Furniture.jpg",
-   "alt": "alt=“”",
-   "linkText": "How to ship furniture"
-  },
-  {
-   "listing": "/en-us/how-to-hub",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_Furniture_727x463.jpg",
-   "alt": "",
-   "linkText": "Furniture"
-  }
- ],
- "/en-us/shipping/how-to-ship-flowers-and-plants": [
-  {
-   "listing": "/en-us/how-to-hub/articles",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx-Flowers.jpg",
-   "alt": "alt=“”",
-   "linkText": "How to ship flowers and plants"
-  },
-  {
-   "listing": "/en-us/how-to-hub",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_PlantsFlowers_727x463.jpg",
-   "alt": "",
-   "linkText": "Flowers & Plants"
-  }
- ],
- "/en-us/shipping/how-to-ship-perishables": [
-  {
-   "listing": "/en-us/how-to-hub/articles",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx-Perishables.jpg",
-   "alt": "alt=“”",
-   "linkText": "LEARN HOW TO PACK PERISHABLES"
-  },
-  {
-   "listing": "/en-us/how-to-hub",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_Choco-Perish_727x463.jpg",
-   "alt": "",
-   "linkText": "Perishables"
-  }
- ],
- "/en-us/shipping/how-to-ship-automotive": [
-  {
-   "listing": "/en-us/how-to-hub/articles",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx-Muffler.jpg",
-   "alt": "alt=“”",
-   "linkText": "How to ship automotive parts"
-  },
-  {
-   "listing": "/en-us/how-to-hub",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_Auto_727x463.jpg",
-   "alt": "",
-   "linkText": "Automotive"
-  }
- ],
- "/en-us/shipping/how-to-ship-artwork": [
-  {
-   "listing": "/en-us/how-to-hub/articles",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx-Artwork.jpg",
-   "alt": "alt=“”",
-   "linkText": "How to ship artwork"
-  },
-  {
-   "listing": "/en-us/how-to-hub",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_Artwork_727x463.jpg",
-   "alt": "",
-   "linkText": "Artwork"
-  }
- ],
- "/en-us/shipping/how-to-ship-computers": [
-  {
-   "listing": "/en-us/how-to-hub/articles",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx-Laptop.jpg",
-   "alt": "alt=“”",
-   "linkText": "How to ship a computer"
-  },
-  {
-   "listing": "/en-us/how-to-hub",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_Computers_727x463.jpg",
-   "alt": "",
-   "linkText": "Computers"
-  }
- ],
- "/en-us/shipping/how-to-ship-clothes": [
-  {
-   "listing": "/en-us/how-to-hub/articles",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx_Wedding_Gown_N.jpg",
-   "alt": "alt=“”",
-   "linkText": "Learn how to ship clothes"
-  },
-  {
-   "listing": "/en-us/how-to-hub",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_Clothes_727x463.jpg",
-   "alt": "",
-   "linkText": "Clothes"
-  }
- ],
- "/en-us/shipping/how-to-ship-luggage": [
-  {
-   "listing": "/en-us/how-to-hub/articles",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx_Luggage.jpg",
-   "alt": "alt=“”",
-   "linkText": "How to ship luggage"
-  },
-  {
-   "listing": "/en-us/how-to-hub",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_Luggage_727x463.jpg",
-   "alt": "",
-   "linkText": "Luggage"
-  }
- ],
- "/en-us/shipping/how-to-ship-clinical-samples": [
-  {
-   "listing": "/en-us/how-to-hub/articles",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx-Clinical-Trials.jpg",
-   "alt": "alt=“”",
-   "linkText": "How to ship clinical samples"
-  },
-  {
-   "listing": "/en-us/how-to-hub",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_Clinical_727x463.jpg",
-   "alt": "",
-   "linkText": "Clinical Samples"
-  }
- ],
- "/en-us/shipping/how-to-ship-batteries": [
-  {
-   "listing": "/en-us/how-to-hub/articles",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx-Batteries01.jpg",
-   "alt": "alt=“”",
-   "linkText": "How to ship batteries"
-  },
-  {
-   "listing": "/en-us/how-to-hub",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_Batteries_727x463.jpg",
-   "alt": "",
-   "linkText": "Batteries"
-  }
- ],
- "/en-us/shipping/how-to-ship-a-tv-monitor": [
-  {
-   "listing": "/en-us/how-to-hub/articles",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FexEx-Monitor.jpg",
-   "alt": "alt=“”",
-   "linkText": "How to ship a TV or monitor"
-  },
-  {
-   "listing": "/en-us/how-to-hub",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_TVs_727x463.jpg",
-   "alt": "",
-   "linkText": "TVs & Monitors"
-  }
- ],
- "/en-us/shipping/how-to-ship-firearms": [
-  {
-   "listing": "/en-us/how-to-hub/articles",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx-Firearms.jpg",
-   "alt": "alt=“”",
-   "linkText": "How to ship firearms"
-  },
-  {
-   "listing": "/en-us/how-to-hub",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_Firearms_727x463_2.jpg",
-   "alt": "",
-   "linkText": "Firearms"
-  }
- ],
- "/en-us/shipping/how-to-ship-guitars": [
-  {
-   "listing": "/en-us/how-to-hub/articles",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx-Guitar.jpg",
-   "alt": "alt=“”",
-   "linkText": "How to ship a guitar"
-  },
-  {
-   "listing": "/en-us/how-to-hub",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_Guitars_727x463_.jpg",
-   "alt": "",
-   "linkText": "Guitars"
-  }
- ],
- "/en-us/shipping/guidelines-for-shipping-tobacco": [
-  {
-   "listing": "/en-us/how-to-hub/articles",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx-Tobacco.jpg",
-   "alt": "alt=“”",
-   "linkText": "Wondering how to ship tobacco?"
-  },
-  {
-   "listing": "/en-us/how-to-hub",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_Tobacco_727x463.jpg",
-   "alt": "",
-   "linkText": "Tobacco"
-  }
- ],
- "/en-us/sweepstakes/nfl-superbowl": [
-  {
-   "listing": "/en-us/sweepstakes",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sweepstakes/AEM_Mobile_320_210_2guys.jpg",
-   "alt": "",
-   "linkText": "Register now"
-  }
- ],
- "/en-us/rewards": [
-  {
-   "listing": "/en-us/sweepstakes",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedERewards_gray_box_222x164.jpg",
-   "alt": "",
-   "linkText": "START EARNING REWARDS"
-  },
-  {
-   "listing": "/en-us/billing-online/parcel-airfreight",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_03_SeeHowRewarding_727x469_1.jpg",
-   "alt": "",
-   "linkText": "Start earning"
-  }
- ],
- "/en-us/shipping/mobile": [
-  {
-   "listing": "/en-us/tracking",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_MobileApp_727x4631.jpg",
-   "alt": "",
-   "linkText": "FedEx® Mobile app"
-  },
-  {
-   "listing": "/en-us/tracking/guide-for-tracking-managing-deliveries",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/174-846_FDM.jpg",
-   "alt": "",
-   "linkText": "FedEx® Mobile app"
-  },
-  {
-   "listing": "/en-us/how-to-hub",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/ChooseWhenWhere_463x463.jpg",
-   "alt": "",
-   "linkText": "DOWNLOAD THE APP"
-  }
- ],
- "/en-us/delivery-manager": [
-  {
-   "listing": "/en-us/tracking",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_FedExDeliveryManager_727x463.jpg",
-   "alt": "",
-   "linkText": "FedEx Delivery Manage"
-  },
-  {
-   "listing": "/en-us/tracking/guide-for-tracking-managing-deliveries",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/174-846_FDM.jpg",
-   "alt": "",
-   "linkText": "FedEx Delivery Manager"
-  },
-  {
-   "listing": "/en-us/tracking/picture-proof-delivery",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/2022/FedEx-picture-proof-delivery_7KM_.jpg",
-   "alt": "",
-   "linkText": "SIGN UP FOR FREE AND TAKE MORE CONTROL"
-  },
-  {
-   "listing": "/en-us/how-to-hub",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/ChooseWhenWhere_463x463.jpg",
-   "alt": "",
-   "linkText": "enroll NOW"
-  }
- ],
- "/en-us/tracking/guide-for-tracking-managing-deliveries": [
-  {
-   "listing": "/en-us/tracking",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_Resources_727x463.jpg",
-   "alt": "",
-   "linkText": "manage your deliveries"
-  }
- ],
- "/en-us/tracking/picture-proof-delivery": [
-  {
-   "listing": "/en-us/tracking/advanced",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD-727x463_Tool_Zoom_4.jpg",
-   "alt": "",
-   "linkText": "Get picture proof of delivery or delivery attempt"
-  },
-  {
-   "listing": "/en-us/tracking/guide-for-tracking-managing-deliveries",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/FedEx-Office/images/2022/POD-PPOD_FY23_1.jpg",
-   "alt": "",
-   "linkText": "ENROLL FOR FREE"
-  }
- ],
- "/en-us/shipping/how-to-ship-dry-ice": [
-  {
-   "listing": "/en-us/tracking/priority-alert/industry-benefits",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_DryIceShipping_727x463.jpg",
-   "alt": "",
-   "linkText": "Ship with dry ice"
-  },
-  {
-   "listing": "/en-us/how-to-hub",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_DryIce_727x463.jpg",
-   "alt": "",
-   "linkText": "Dry ice (items with)"
-  }
- ],
  "/content/dam/fedex/us-united-states/services/PriorityAlert_CountriesTerritoriesServed.pdf": [
   {
    "listing": "/en-us/tracking/priority-alert",
    "image": "https://cdn.bfldr.com/I22OPSFM/at/chwzxbcxt4rpp33pbvjc9hvp/20171113_MK_05877_187916514.jpg?auto=webp&fit=bounds&format=jpg&width=727&height=463&max_age=604800",
    "alt": "A FedEx courier scans a priority boarding package",
-   "linkText": "View the list"
+   "linkText": "View the list",
+   "teaser": false
   }
  ],
  "/content/dam/fedex/us-united-states/services/FedEx_Priority_Alert_Grifols_case_study.pdf": [
@@ -340,143 +13,17 @@
    "listing": "/en-us/tracking/priority-alert",
    "image": "https://cdn.bfldr.com/I22OPSFM/at/qc5j2n45jbxv7g286bncnk/master-dm-13-007-01-04-01-087-160-110-4.jpg?auto=webp&fit=bounds&format=jpg&width=727&height=463&max_age=604800",
    "alt": "Lab technicians using microscopes to examine ",
-   "linkText": "Read the Grifols case study"
-  }
- ],
- "/en-us/shipping/returns": [
-  {
-   "listing": "/en-us/tracking/guide-for-tracking-managing-deliveries",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/V4_20171207_SW_1156_188950484.jpg",
-   "alt": "",
-   "linkText": "LEARN MORE ABOUT RETURNS"
-  }
- ],
- "/en-us/tracking": [
-  {
-   "listing": "/en-us/tracking/picture-proof-delivery",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/174-874_CustomerBenefit.jpg",
-   "alt": "",
-   "linkText": "track their package"
-  }
- ],
- "/en-us/tracking/advanced": [
-  {
-   "listing": "/en-us/tracking/picture-proof-delivery",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/174-874_BusinessrBenefit.jpg",
-   "alt": "",
-   "linkText": "advanced tracking dashboard"
-  }
- ],
- "/en-us/delivery-manager/business-toolkit": [
-  {
-   "listing": "/en-us/tracking/picture-proof-delivery",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/2022/FedEx-picture-proof-delivery-6N-KM_.jpg",
-   "alt": "",
-   "linkText": "DOWNLOAD THE FEDEX DELIVERY MANAGER TOOLKIT"
-  }
- ],
- "/en-us/customer-support/phone-menu": [
-  {
-   "listing": "/en-us/customer-support/call-us",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_CustomerService_632x320%20(1).jpg",
-   "alt": "",
-   "linkText": "PHONE MENU SHORTCUTS"
-  }
- ],
- "/en-us/shipping/alcohol": [
-  {
-   "listing": "/en-us/how-to-hub",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_Alcohol_727x463.jpg",
-   "alt": "",
-   "linkText": "Alcohol"
-  }
- ],
- "/en-us/shipping/how-to-ship-cookies": [
-  {
-   "listing": "/en-us/how-to-hub",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_BakedGoods_727x463.jpg",
-   "alt": "",
-   "linkText": "Baked goods"
-  }
- ],
- "/en-us/service-guide/dangerous-goods/how-to-ship": [
-  {
-   "listing": "/en-us/how-to-hub",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_DangerousGoods_727x463.jpg",
-   "alt": "",
-   "linkText": "Dangerous goods"
-  }
- ],
- "/en-us/shipping/how-to-ship-golf-clubs": [
-  {
-   "listing": "/en-us/how-to-hub",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_Golf_727x463.jpg",
-   "alt": "",
-   "linkText": "Golf Clubs"
-  }
- ],
- "/en-us/service-guide/hazardous-materials/how-to-ship": [
-  {
-   "listing": "/en-us/how-to-hub",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_HazMats_727x463.jpg",
-   "alt": "",
-   "linkText": "Hazardous materials"
-  }
- ],
- "/en-us/shipping/how-to-ship-liquids": [
-  {
-   "listing": "/en-us/how-to-hub",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_Liquids_727x463.jpg",
-   "alt": "",
-   "linkText": "Liquids"
-  }
- ],
- "/en-us/shipping/how-to-ship-oversized-items": [
-  {
-   "listing": "/en-us/how-to-hub",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_Oversized_727x463.jpg",
-   "alt": "",
-   "linkText": "Oversized items"
-  }
- ],
- "/en-us/shipping/packing/pledge": [
-  {
-   "listing": "/en-us/how-to-hub",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/GetExpertPacking_960x611.jpg",
-   "alt": "",
-   "linkText": "FedEx Office® Packing Pledge"
-  }
- ],
- "/en-us/customer-support": [
-  {
-   "listing": "/en-us/create-account/how-to-reset-forgot-password",
-   "image": "https://www.fedex.com/content/dam/fedex/di/demo-assets/track2.jpg",
-   "alt": "Tracking slip on desk",
-   "linkText": "Visit Customer Support"
-  }
- ],
- "/en-us/delivery-manager/manage-your-deliveries": [
-  {
-   "listing": "/en-us/delivery-manager/registering",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/FedEx-Office/images/2022/q1/POD_727x463_fy21_shutterstock_4.jpg",
-   "alt": "alt=\"\"",
-   "linkText": "FedEx Delivery Manager"
-  }
- ],
- "/en-us/delivery-manager/privacy": [
-  {
-   "listing": "/en-us/delivery-manager/registering",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/FedEx-Office/images/2022/q1/POD_727x463_20150924-dm-15-008-01-02-04-05-030-160131.jpg",
-   "alt": "alt=\"\"",
-   "linkText": "FedEx Delivery Manager Privacy Notice"
+   "linkText": "Read the Grifols case study",
+   "teaser": false
   }
  ],
  "/online/billing": [
   {
    "listing": "/en-us/billing-online/parcel-airfreight",
-   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_ManagingFBO_PAF_01_GetStarted01_727x351.jpg",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_ManagingFBO_PAF_14_HowToUpdatePaymentInfo_727x384.jpg",
    "alt": "",
-   "linkText": "Log in"
+   "linkText": "Log in.",
+   "teaser": false
   }
  ],
  "/register/contact": [
@@ -484,15 +31,166 @@
    "listing": "/en-us/billing-online/parcel-airfreight",
    "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_ManagingFBO_PAF_01_GetStarted01_727x351.jpg",
    "alt": "",
-   "linkText": "create a user ID"
+   "linkText": "create a user ID",
+   "teaser": false
   }
  ],
  "/": [
   {
+   "listing": "/en-us/TopicList",
+   "image": "https://www.fedex.com/content/dam/fedex-com/offers/delivery-offer.jpg",
+   "alt": "",
+   "linkText": "Link",
+   "teaser": false
+  },
+  {
    "listing": "/en-us/billing-online/parcel-airfreight",
    "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_03_SeeHowRewarding_727x469_1.jpg",
    "alt": "",
-   "linkText": "Link"
+   "linkText": "Link",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/holiday/consumer-shipping-delivery-guide",
+   "image": "https://cdn.bfldr.com/I22OPSFM/at/f6cw386qmhmpfv9zbgggr678/fy21_shutterstock_71.jpg?auto=webp&fit=bounds&format=png&crop=727%3A463%2Csmart&width=727&height=463&max_age=604800",
+   "alt": "",
+   "linkText": "Link",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/industry-solutions/automotive",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_Rewards_727x463_2025.jpg",
+   "alt": "",
+   "linkText": "Link",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/industry-solutions/industrial",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_NavigateTrade_727x463.jpg",
+   "alt": "",
+   "linkText": "Link",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/industry-solutions/perishables",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_CoolShipping_727x463.jpg",
+   "alt": "",
+   "linkText": "Link",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/industry-solutions/technology-and-electronics",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_InsideScoop_727x463.jpg",
+   "alt": "",
+   "linkText": "Link",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-flowers-and-plants",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD-727x463_Flower_Shipment.jpg",
+   "alt": "",
+   "linkText": "Link",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-furniture",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx_Office.jpg",
+   "alt": "",
+   "linkText": "Link",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/international/duties-and-taxes",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/man-with-laptop.jpg",
+   "alt": "",
+   "linkText": "Link",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/overnight",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD-727x463_MultipleShipment_grey.jpg",
+   "alt": "",
+   "linkText": "Link",
+   "teaser": false
+  }
+ ],
+ "/en-us/rewards": [
+  {
+   "listing": "/en-us/billing-online/parcel-airfreight",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_03_SeeHowRewarding_727x469_1.jpg",
+   "alt": "",
+   "linkText": "Start earning",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/industry-solutions/automotive",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_Rewards_727x463_2025.jpg",
+   "alt": "",
+   "linkText": "Join FedEx Rewards",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/industry-solutions/automotive/OEM",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_Rewards_727x463_2025.jpg",
+   "alt": "",
+   "linkText": "Join FedEx Rewards",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/industry-solutions/automotive/aftermarket",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_Rewards_727x463_2025.jpg",
+   "alt": "",
+   "linkText": "Join FedEx Rewards",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/industry-solutions/automotive/dealerships",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_Rewards_727x463_2025.jpg",
+   "alt": "",
+   "linkText": "Join FedEx Rewards",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/industry-solutions/automotive/tires",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_Rewards_727x463_2025.jpg",
+   "alt": "",
+   "linkText": "Join FedEx Rewards",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/sweepstakes",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedERewards_gray_box_222x164.jpg",
+   "alt": "",
+   "linkText": "START EARNING REWARDS",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/sweepstakes/fedexcup-sweepstakes/fedexcup-sweepstakes-over",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sweepstakes/POD_SignUp_727x463.jpg",
+   "alt": "",
+   "linkText": "Enroll for free",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/sweepstakes/nfl-gameface",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sweepstakes/POD_SignUp_727x463.jpg",
+   "alt": "",
+   "linkText": "Enroll for free",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/sweepstakes/vacay-your-way",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sweepstakes/POD_SignUp_727x463.jpg",
+   "alt": "",
+   "linkText": "Enroll for free",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/sweepstakes/vacay-your-way/vacay-your-way-sweepstakes-over",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sweepstakes/POD_SignUp_727x463.jpg",
+   "alt": "",
+   "linkText": "Enroll for free",
+   "teaser": true
   }
  ],
  "/en-us/billing-online/ltl-freight": [
@@ -500,7 +198,8 @@
    "listing": "/en-us/billing-online/parcel-airfreight",
    "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_04_AccessOtherSolutions_727x469_1.jpg",
    "alt": "",
-   "linkText": "LTL (less-than-truckload) freight"
+   "linkText": "LTL (less-than-truckload) freight",
+   "teaser": false
   }
  ],
  "/en-us/billing-online": [
@@ -508,7 +207,3309 @@
    "listing": "/en-us/billing-online/parcel-airfreight",
    "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_04_AccessOtherSolutions_727x469_1.jpg",
    "alt": "",
-   "linkText": "discover more billing resources"
+   "linkText": "discover more billing resources",
+   "teaser": false
+  }
+ ],
+ "/en-us/customer-support": [
+  {
+   "listing": "/en-us/create-account/how-to-reset-forgot-password",
+   "image": "https://www.fedex.com/content/dam/fedex/di/demo-assets/track2.jpg",
+   "alt": "Tracking slip on desk",
+   "linkText": "Visit Customer Support",
+   "teaser": false
+  }
+ ],
+ "/en-us/customer-support/phone-menu": [
+  {
+   "listing": "/en-us/customer-support/call-us",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_CustomerService_632x320%20(1).jpg",
+   "alt": "",
+   "linkText": "PHONE MENU SHORTCUTS",
+   "teaser": true
+  }
+ ],
+ "/en-us/delivery-manager/manage-your-deliveries": [
+  {
+   "listing": "/en-us/delivery-manager/registering",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/FedEx-Office/images/2022/q1/POD_727x463_fy21_shutterstock_4.jpg",
+   "alt": "alt=\"\"",
+   "linkText": "FedEx Delivery Manager",
+   "teaser": false
+  }
+ ],
+ "/en-us/delivery-manager/privacy": [
+  {
+   "listing": "/en-us/delivery-manager/registering",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/FedEx-Office/images/2022/q1/POD_727x463_20150924-dm-15-008-01-02-04-05-030-160131.jpg",
+   "alt": "alt=\"\"",
+   "linkText": "FedEx Delivery Manager Privacy Notice",
+   "teaser": false
+  }
+ ],
+ "/en-us/digital/learn-more": [
+  {
+   "listing": "/en-us/digital/premium-features/sustainability-insights",
+   "image": "https://www.fedex.com/content/dam/fedex-com/fdx/blog/value-proposition.jpg",
+   "alt": "Image",
+   "linkText": "Inquire now",
+   "teaser": true
+  }
+ ],
+ "/en-us/sustainability": [
+  {
+   "listing": "/en-us/digital/premium-features/sustainability-insights",
+   "image": "https://cdn.bfldr.com/I22OPSFM/at/m34kf5wc4fmhtsjfh9m5t/fy22_shutterstock_176.jpg?auto=webp&fit=bounds&format=png&width=727&height=463&max_age=604800",
+   "alt": "Image",
+   "linkText": "Learn more",
+   "teaser": true
+  }
+ ],
+ "/en-us/digital/premium-features": [
+  {
+   "listing": "/en-us/digital/premium-features/sustainability-insights",
+   "image": "https://www.fedex.com/content/dam/fedex-com/fdx/blog/dashboard.jpg",
+   "alt": "Image",
+   "linkText": "Learn more",
+   "teaser": true
+  }
+ ],
+ "/en-us/tracking/picture-proof-delivery": [
+  {
+   "listing": "/en-us/holiday/consumer-shipping-delivery-guide",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_PictureProofHasArrived_727x463.jpg",
+   "alt": "",
+   "linkText": "Take a look",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/shipping/express",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/2022/POD-picture-proof-delivery.jpg",
+   "alt": "",
+   "linkText": "GET PICTURE PROOF OF DELIVERY DETAILS",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/tracking/advanced",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD-727x463_Tool_Zoom_4.jpg",
+   "alt": "",
+   "linkText": "",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/tracking/guide-for-tracking-managing-deliveries",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/FedEx-Office/images/2022/POD-PPOD_FY23_1.jpg",
+   "alt": "",
+   "linkText": "ENROLL FOR FREE",
+   "teaser": true
+  }
+ ],
+ "/en-us/shipping/mobile": [
+  {
+   "listing": "/en-us/holiday/consumer-shipping-delivery-guide",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/2022/POD_fy22-leavenworth_220208-pn-fedex-12654.jpg",
+   "alt": "",
+   "linkText": "FedEx® Mobile app",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/how-to-hub",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/ChooseWhenWhere_463x463.jpg",
+   "alt": "",
+   "linkText": "DOWNLOAD THE APP",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/express",
+   "image": "https://cdn.bfldr.com/I22OPSFM/at/p859784zfv5596k7sbf69btr/fy20_dollargeneral_e1a2444_fdi-One_FedEx.jpg?auto=webp&fit=bounds&format=jpg&width=727&height=463&max_age=604800",
+   "alt": "",
+   "linkText": "FedEx® Mobile app",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/ground",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/20180722_MK_29079_190760893-(1).jpg",
+   "alt": "fedex courier handing off package to employee at store",
+   "linkText": "FedEx® Mobile app",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/home-delivery",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/20180722_MK_04158_1907608931.jpg",
+   "alt": "",
+   "linkText": "FedEx® Mobile app",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/tracking",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_MobileApp_727x4631.jpg",
+   "alt": "",
+   "linkText": "FedEx® Mobile app",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/tracking/guide-for-tracking-managing-deliveries",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD-Phone.jpg",
+   "alt": "",
+   "linkText": "FedEx Mobile app",
+   "teaser": false
+  }
+ ],
+ "/en-us/delivery-manager": [
+  {
+   "listing": "/en-us/holiday/consumer-shipping-delivery-guide",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/2022/POD_fy22-leavenworth_220208-pn-fedex-12654.jpg",
+   "alt": "",
+   "linkText": "Manage your deliveries",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/how-to-hub",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/ChooseWhenWhere_463x463.jpg",
+   "alt": "",
+   "linkText": "enroll NOW",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/express",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/2022/POD-delivery-manager_2.jpg",
+   "alt": "",
+   "linkText": "DISCOVER FEDEX DELIVERY MANAGER",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/shipping/home-delivery",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/20180722_MK_04158_1907608931.jpg",
+   "alt": "",
+   "linkText": "FedEx Delivery Manager",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/overnight",
+   "image": "https://cdn.bfldr.com/I22OPSFM/at/mtgw596c7b326pzjx2jtnx3/20171204_mk_5087_188896084.jpg?auto=webp&fit=bounds&format=png&width=727&height=463&max_age=604800",
+   "alt": "",
+   "linkText": "FedEx Delivery Manager",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/tracking",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_FedExDeliveryManager_727x463.jpg",
+   "alt": "",
+   "linkText": "r",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/tracking/guide-for-tracking-managing-deliveries",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD-20170424_sw_0727_10748293_.jpg",
+   "alt": "",
+   "linkText": "LEARN MORE ABOUT MANAGING YOUR DELIVERY",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/tracking/picture-proof-delivery",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/2022/FedEx-picture-proof-delivery_7KM_.jpg",
+   "alt": "",
+   "linkText": "SIGN UP FOR FREE AND TAKE MORE CONTROL",
+   "teaser": true
+  }
+ ],
+ "/en-us/shipping/hold-at-location": [
+  {
+   "listing": "/en-us/holiday/consumer-shipping-delivery-guide",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/2022/b_20151018_jcp_hal_0173_203253-(1).jpg",
+   "alt": "",
+   "linkText": "HOLD YOUR PACKAGES",
+   "teaser": false
+  }
+ ],
+ "/en-us/office": [
+  {
+   "listing": "/en-us/holiday/consumer-shipping-delivery-guide",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/FedEx-Office/images/2020/Q2/FedEx_Logo_1099832291.jpg",
+   "alt": "FedEx Office Logo",
+   "linkText": "",
+   "teaser": true
+  }
+ ],
+ "/en-us/shipping/onsite/dollar-general-pick-up-drop-off-package": [
+  {
+   "listing": "/en-us/holiday/consumer-shipping-delivery-guide",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/FedEx-Office/images/2020/Q1/DallarGeneral_618_350210276.jpg",
+   "alt": " Dollar General Logo",
+   "linkText": "",
+   "teaser": true
+  }
+ ],
+ "/en-us/office/walmart": [
+  {
+   "listing": "/en-us/holiday/consumer-shipping-delivery-guide",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/FedEx-Office/images/2021/q1/logo_Walmart.jpg",
+   "alt": "Walmart Logo",
+   "linkText": "",
+   "teaser": true
+  }
+ ],
+ "/en-us/shipping/onsite/walgreens-package-pickup": [
+  {
+   "listing": "/en-us/holiday/consumer-shipping-delivery-guide",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/FedEx-Office/images/2021/q1/logo_Walgreens.jpg",
+   "alt": "Walgreens Logo",
+   "linkText": "",
+   "teaser": true
+  }
+ ],
+ "/en-us/shipping/office-depot-officemax": [
+  {
+   "listing": "/en-us/holiday/consumer-shipping-delivery-guide",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/FedEx-Office/images/2021/q1/logo_OfficeDepotOfficeMax.jpg",
+   "alt": "Office Depot Office Max Logo",
+   "linkText": "",
+   "teaser": true
+  }
+ ],
+ "/en-us/shipping/shipping-gifts-packing-and-delivery-guide": [
+  {
+   "listing": "/en-us/holiday/consumer-shipping-delivery-guide",
+   "image": "https://cdn.bfldr.com/I22OPSFM/at/f6cw386qmhmpfv9zbgggr678/fy21_shutterstock_71.jpg?auto=webp&fit=bounds&format=png&crop=727%3A463%2Csmart&width=727&height=463&max_age=604800",
+   "alt": "",
+   "linkText": "Get Delivery Guide",
+   "teaser": false
+  }
+ ],
+ "/en-us/delivery-manager/how-to-prevent-stolen-missing-packages": [
+  {
+   "listing": "/en-us/holiday/consumer-shipping-delivery-guide",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/2022/855734074_Porch_Retouched.jpg",
+   "alt": "alt=\"\"",
+   "linkText": "",
+   "teaser": true
+  }
+ ],
+ "/en-us/delivery-manager/vacation-hold": [
+  {
+   "listing": "/en-us/holiday/consumer-shipping-delivery-guide",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/2022/master-dm-13-003-02-02-04-096-160-110-1.jpg",
+   "alt": "alt=\"\"",
+   "linkText": "",
+   "teaser": true
+  }
+ ],
+ "/en-us/shipping/ground": [
+  {
+   "listing": "/en-us/holiday/consumer-shipping-delivery-guide",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/master_bm_house_785_160-1021.jpg",
+   "alt": "alt=\"\"",
+   "linkText": "",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/industry-solutions/industrial",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_QuickDelivery_727x463.jpg",
+   "alt": "",
+   "linkText": "Ship to businesses",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/industry-solutions/perishables",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_AffordableShipping_727x463.jpg",
+   "alt": "",
+   "linkText": "Ship to businesses",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/industry-solutions/technology-and-electronics",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_NoRush_727x463.jpg",
+   "alt": "",
+   "linkText": "ship to businesses",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/shipping/home-delivery",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/Graphic-ShipTo-v4.jpg",
+   "alt": "Home icon connected to Retail services icon image",
+   "linkText": "FedEx Ground",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-a-bike",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx_Delivery.jpg",
+   "alt": "",
+   "linkText": "FedEx Ground",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-automotive",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/2022/FedEx-ship-auto-parts-C.jpg",
+   "alt": "",
+   "linkText": "FedEx Ground®",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-clothes",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx_ground_.jpg",
+   "alt": "",
+   "linkText": "FedEx Ground®",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-computers",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx_ground_.jpg",
+   "alt": "",
+   "linkText": "FedEx Ground",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-furniture",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx_Light-furnitureCropped.jpg",
+   "alt": "alt=\"\"",
+   "linkText": "FedEx Ground®",
+   "teaser": false
+  }
+ ],
+ "/en-us/shipping/home-delivery": [
+  {
+   "listing": "/en-us/holiday/consumer-shipping-delivery-guide",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/master_bm_house_785_160-1021.jpg",
+   "alt": "alt=\"\"",
+   "linkText": "Ship a package",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/ground",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/220525-PN-FedEx-Canada-4661-updated-2.jpg",
+   "alt": "",
+   "linkText": "FedEx Home Delivery®",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-a-bike",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx_Delivery.jpg",
+   "alt": "",
+   "linkText": "FedEx Home Delivery",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-automotive",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/2022/FedEx-ship-auto-parts-C.jpg",
+   "alt": "",
+   "linkText": "FedEx Home Delivery®",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-clothes",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx_ground_.jpg",
+   "alt": "",
+   "linkText": "FedEx Home Delivery",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-computers",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx_ground_.jpg",
+   "alt": "",
+   "linkText": "FedEx Home Delivery",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-furniture",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx_Light-furnitureCropped.jpg",
+   "alt": "alt=\"\"",
+   "linkText": "FedEx Home Delivery®",
+   "teaser": false
+  }
+ ],
+ "/en-us/tracking/guide-for-tracking-managing-deliveries": [
+  {
+   "listing": "/en-us/holiday/consumer-shipping-delivery-guide",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/Location7_20171204_MK_8810_188896084_727x423.jpg",
+   "alt": "alt=\"\"",
+   "linkText": "",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/tracking",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_Resources_727x463.jpg",
+   "alt": "",
+   "linkText": "manage your deliveries",
+   "teaser": false
+  }
+ ],
+ "/en-us/shipping/alcohol": [
+  {
+   "listing": "/en-us/how-to-hub",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_Alcohol_727x463.jpg",
+   "alt": "",
+   "linkText": "Alcohol",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/shipping/express",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/2022/FedEx_freight-alcohol.jpg",
+   "alt": "",
+   "linkText": "ALCOHOL",
+   "teaser": true
+  }
+ ],
+ "/en-us/shipping/how-to-ship-artwork": [
+  {
+   "listing": "/en-us/how-to-hub",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_Artwork_727x463.jpg",
+   "alt": "",
+   "linkText": "Artwork",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/how-to-hub/articles",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx-Artwork.jpg",
+   "alt": "alt=“”",
+   "linkText": "How to ship artwork",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-a-tv-monitor",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20flat%20panel%20box.jpg",
+   "alt": "",
+   "linkText": "Artwork",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-batteries",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/wet%20battery.jpg",
+   "alt": "wet battery packing",
+   "linkText": "Artwork",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-clinical-samples",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/watertight%20receptacles.jpg",
+   "alt": "watertight receptacles",
+   "linkText": "Artwork",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-firearms",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD-727x463_FedEx_Box.jpg",
+   "alt": "fedex retail box",
+   "linkText": "Artwork",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-guitars",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20guitar%20box.jpg",
+   "alt": "",
+   "linkText": "Artwork",
+   "teaser": false
+  }
+ ],
+ "/en-us/shipping/how-to-ship-automotive": [
+  {
+   "listing": "/en-us/how-to-hub",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_Auto_727x463.jpg",
+   "alt": "",
+   "linkText": "Automotive",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/how-to-hub/articles",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx-Muffler.jpg",
+   "alt": "alt=“”",
+   "linkText": "How to ship automotive parts",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/industry-solutions/automotive",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_PackAuto_727x463.jpg",
+   "alt": "",
+   "linkText": "See auto shipping best practices.",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/industry-solutions/automotive/OEM",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_PackAuto_727x463.jpg",
+   "alt": "",
+   "linkText": "See auto shipping best practices.",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/industry-solutions/automotive/aftermarket",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_PackAuto_727x463.jpg",
+   "alt": "",
+   "linkText": "See auto shipping best practices.",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/industry-solutions/automotive/dealerships",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_PackAuto_727x463.jpg",
+   "alt": "",
+   "linkText": "See auto shipping best practices.",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/industry-solutions/automotive/tires",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_PackAuto_727x463.jpg",
+   "alt": "",
+   "linkText": "See auto shipping best practices.",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-a-tv-monitor",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20flat%20panel%20box.jpg",
+   "alt": "",
+   "linkText": "Automotive",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-artwork",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20artwork%20box.jpg",
+   "alt": "fedex artwork box",
+   "linkText": "Automotive",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-batteries",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/wet%20battery.jpg",
+   "alt": "wet battery packing",
+   "linkText": "Automotive",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-clinical-samples",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/watertight%20receptacles.jpg",
+   "alt": "watertight receptacles",
+   "linkText": "Automotive",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-firearms",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD-727x463_FedEx_Box.jpg",
+   "alt": "fedex retail box",
+   "linkText": "Automotive",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-guitars",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20guitar%20box.jpg",
+   "alt": "",
+   "linkText": "Automotive",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/same-day",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/2023/SameDay_Auto_r.jpg",
+   "alt": "",
+   "linkText": "AUTOMOTIVE INDUSTRY",
+   "teaser": true
+  }
+ ],
+ "/en-us/shipping/how-to-ship-cookies": [
+  {
+   "listing": "/en-us/how-to-hub",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_BakedGoods_727x463.jpg",
+   "alt": "",
+   "linkText": "Baked goods",
+   "teaser": true
+  }
+ ],
+ "/en-us/shipping/how-to-ship-batteries": [
+  {
+   "listing": "/en-us/how-to-hub",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_Batteries_727x463.jpg",
+   "alt": "",
+   "linkText": "Batteries",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/how-to-hub/articles",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx-Batteries01.jpg",
+   "alt": "alt=“”",
+   "linkText": "How to ship batteries",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/industry-solutions/technology-and-electronics",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/shutterstock_612775763%201.jpg",
+   "alt": "",
+   "linkText": "BATTERIES",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-a-tv-monitor",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20flat%20panel%20box.jpg",
+   "alt": "",
+   "linkText": "Batteries",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-artwork",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20artwork%20box.jpg",
+   "alt": "fedex artwork box",
+   "linkText": "Batteries",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-clinical-samples",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/watertight%20receptacles.jpg",
+   "alt": "watertight receptacles",
+   "linkText": "Batteries",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-computers",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx-express_.jpg",
+   "alt": "",
+   "linkText": "lithium battery guidelines",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-firearms",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD-727x463_FedEx_Box.jpg",
+   "alt": "fedex retail box",
+   "linkText": "Batteries",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-guitars",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20guitar%20box.jpg",
+   "alt": "",
+   "linkText": "Batteries",
+   "teaser": false
+  }
+ ],
+ "/en-us/shipping/how-to-ship-a-bike": [
+  {
+   "listing": "/en-us/how-to-hub",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_Bikes_727x463.jpg",
+   "alt": "",
+   "linkText": "Bikes",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/how-to-hub/articles",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx-Bike.jpg",
+   "alt": "alt=“”",
+   "linkText": "How to ship a bike",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-a-tv-monitor",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20flat%20panel%20box.jpg",
+   "alt": "",
+   "linkText": "Bikes",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-artwork",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20artwork%20box.jpg",
+   "alt": "fedex artwork box",
+   "linkText": "Bikes",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-batteries",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/wet%20battery.jpg",
+   "alt": "wet battery packing",
+   "linkText": "Bikes",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-clinical-samples",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/watertight%20receptacles.jpg",
+   "alt": "watertight receptacles",
+   "linkText": "Bikes",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-firearms",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD-727x463_FedEx_Box.jpg",
+   "alt": "fedex retail box",
+   "linkText": "Bikes",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-guitars",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20guitar%20box.jpg",
+   "alt": "",
+   "linkText": "Bikes",
+   "teaser": false
+  }
+ ],
+ "/en-us/shipping/how-to-ship-clinical-samples": [
+  {
+   "listing": "/en-us/how-to-hub",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_Clinical_727x463.jpg",
+   "alt": "",
+   "linkText": "Clinical Samples",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/how-to-hub/articles",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx-Clinical-Trials.jpg",
+   "alt": "alt=“”",
+   "linkText": "How to ship clinical samples",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-a-tv-monitor",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20flat%20panel%20box.jpg",
+   "alt": "",
+   "linkText": "Clinical Samples",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-artwork",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20artwork%20box.jpg",
+   "alt": "fedex artwork box",
+   "linkText": "Clinical Samples",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-batteries",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/wet%20battery.jpg",
+   "alt": "wet battery packing",
+   "linkText": "Clinical Samples",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-firearms",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD-727x463_FedEx_Box.jpg",
+   "alt": "fedex retail box",
+   "linkText": "Clinical Samples",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-guitars",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20guitar%20box.jpg",
+   "alt": "",
+   "linkText": "Clinical Samples",
+   "teaser": false
+  }
+ ],
+ "/en-us/shipping/how-to-ship-clothes": [
+  {
+   "listing": "/en-us/how-to-hub",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_Clothes_727x463.jpg",
+   "alt": "",
+   "linkText": "Clothes",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/how-to-hub/articles",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx_Wedding_Gown_N.jpg",
+   "alt": "alt=“”",
+   "linkText": "Learn how to ship clothes",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/shipping/express",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/2022/POD-727x463_clothing.jpg",
+   "alt": "",
+   "linkText": "CLOTHING",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-a-tv-monitor",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20flat%20panel%20box.jpg",
+   "alt": "",
+   "linkText": "Clothes",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-artwork",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20artwork%20box.jpg",
+   "alt": "fedex artwork box",
+   "linkText": "Clothes",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-batteries",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/wet%20battery.jpg",
+   "alt": "wet battery packing",
+   "linkText": "Clothes",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-clinical-samples",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/watertight%20receptacles.jpg",
+   "alt": "watertight receptacles",
+   "linkText": "Clothes",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-firearms",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD-727x463_FedEx_Box.jpg",
+   "alt": "fedex retail box",
+   "linkText": "Clothes",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-guitars",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20guitar%20box.jpg",
+   "alt": "",
+   "linkText": "Clothes",
+   "teaser": false
+  }
+ ],
+ "/en-us/shipping/how-to-ship-computers": [
+  {
+   "listing": "/en-us/how-to-hub",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_Computers_727x463.jpg",
+   "alt": "",
+   "linkText": "Computers",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/how-to-hub/articles",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx-Laptop.jpg",
+   "alt": "alt=“”",
+   "linkText": "How to ship a computer",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/industry-solutions/technology-and-electronics",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/shutterstock_200234081%201.jpg",
+   "alt": "",
+   "linkText": "computers",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/shipping/express",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/2022/FedEx-computer-shipping.jpg",
+   "alt": "",
+   "linkText": "ELECTRONICS",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-a-tv-monitor",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20flat%20panel%20box.jpg",
+   "alt": "",
+   "linkText": "Computers",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-artwork",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20artwork%20box.jpg",
+   "alt": "fedex artwork box",
+   "linkText": "Computers",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-batteries",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/wet%20battery.jpg",
+   "alt": "wet battery packing",
+   "linkText": "Computers",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-clinical-samples",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/watertight%20receptacles.jpg",
+   "alt": "watertight receptacles",
+   "linkText": "Computers",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-firearms",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD-727x463_FedEx_Box.jpg",
+   "alt": "fedex retail box",
+   "linkText": "Computers",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-guitars",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20guitar%20box.jpg",
+   "alt": "",
+   "linkText": "Computers",
+   "teaser": false
+  }
+ ],
+ "/en-us/service-guide/dangerous-goods/how-to-ship": [
+  {
+   "listing": "/en-us/how-to-hub",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_DangerousGoods_727x463.jpg",
+   "alt": "",
+   "linkText": "Dangerous goods",
+   "teaser": true
+  }
+ ],
+ "/en-us/shipping/how-to-ship-dry-ice": [
+  {
+   "listing": "/en-us/how-to-hub",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_DryIce_727x463.jpg",
+   "alt": "",
+   "linkText": "Dry ice (items with)",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/industry-solutions/perishables",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_DryIceShipping_727x463.jpg",
+   "alt": "",
+   "linkText": "Ship with dry ice",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-perishables",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/Dry_ice.jpg",
+   "alt": "alt=\"\"",
+   "linkText": "dry ice requirements and restrictions",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/tracking/priority-alert/industry-benefits",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_DryIceShipping_727x463.jpg",
+   "alt": "",
+   "linkText": "Ship with dry ice",
+   "teaser": false
+  }
+ ],
+ "/en-us/shipping/how-to-ship-firearms": [
+  {
+   "listing": "/en-us/how-to-hub",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_Firearms_727x463_2.jpg",
+   "alt": "",
+   "linkText": "Firearms",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/how-to-hub/articles",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx-Firearms.jpg",
+   "alt": "alt=“”",
+   "linkText": "How to ship firearms",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-a-tv-monitor",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20flat%20panel%20box.jpg",
+   "alt": "",
+   "linkText": "Firearms",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-artwork",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20artwork%20box.jpg",
+   "alt": "fedex artwork box",
+   "linkText": "Firearms",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-batteries",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/wet%20battery.jpg",
+   "alt": "wet battery packing",
+   "linkText": "Firearms",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-clinical-samples",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/watertight%20receptacles.jpg",
+   "alt": "watertight receptacles",
+   "linkText": "Firearms",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-guitars",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20guitar%20box.jpg",
+   "alt": "",
+   "linkText": "Firearms",
+   "teaser": false
+  }
+ ],
+ "/en-us/shipping/how-to-ship-flowers-and-plants": [
+  {
+   "listing": "/en-us/how-to-hub",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_PlantsFlowers_727x463.jpg",
+   "alt": "",
+   "linkText": "Flowers & Plants",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/how-to-hub/articles",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx-Flowers.jpg",
+   "alt": "alt=“”",
+   "linkText": "How to ship flowers and plants",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/shipping/express",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/2022/POD-ship-flowers.jpg",
+   "alt": "",
+   "linkText": "FLOWERS AND PLANTS",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-a-tv-monitor",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20flat%20panel%20box.jpg",
+   "alt": "",
+   "linkText": "Flowers & Plants",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-artwork",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20artwork%20box.jpg",
+   "alt": "fedex artwork box",
+   "linkText": "Flowers & Plants",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-batteries",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/wet%20battery.jpg",
+   "alt": "wet battery packing",
+   "linkText": "Flowers & Plants",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-clinical-samples",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/watertight%20receptacles.jpg",
+   "alt": "watertight receptacles",
+   "linkText": "Flowers & Plants",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-firearms",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD-727x463_FedEx_Box.jpg",
+   "alt": "fedex retail box",
+   "linkText": "Flowers & Plants",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-guitars",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20guitar%20box.jpg",
+   "alt": "",
+   "linkText": "Flowers & Plants",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-perishables",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/Florist.jpg",
+   "alt": "alt=\"\"",
+   "linkText": "ARRANGE THE PERFECT SHIPMENT",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/shipping/same-day",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/2023/SameDay_Party_r.jpg",
+   "alt": "",
+   "linkText": "Flowers",
+   "teaser": false
+  }
+ ],
+ "/en-us/shipping/how-to-ship-furniture": [
+  {
+   "listing": "/en-us/how-to-hub",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_Furniture_727x463.jpg",
+   "alt": "",
+   "linkText": "Furniture",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/how-to-hub/articles",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx-Furniture.jpg",
+   "alt": "alt=“”",
+   "linkText": "How to ship furniture",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/shipping/express",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/2022/FedEx_freight-packing-supplies.jpg",
+   "alt": "",
+   "linkText": "FURNITURE",
+   "teaser": true
+  }
+ ],
+ "/en-us/shipping/how-to-ship-golf-clubs": [
+  {
+   "listing": "/en-us/how-to-hub",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_Golf_727x463.jpg",
+   "alt": "",
+   "linkText": "Golf Clubs",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-a-tv-monitor",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20flat%20panel%20box.jpg",
+   "alt": "",
+   "linkText": "Golf clubs",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-artwork",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20artwork%20box.jpg",
+   "alt": "fedex artwork box",
+   "linkText": "Golf clubs",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-batteries",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/wet%20battery.jpg",
+   "alt": "wet battery packing",
+   "linkText": "Golf clubs",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-clinical-samples",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/watertight%20receptacles.jpg",
+   "alt": "watertight receptacles",
+   "linkText": "Golf clubs",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-firearms",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD-727x463_FedEx_Box.jpg",
+   "alt": "fedex retail box",
+   "linkText": "Golf clubs",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-guitars",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20guitar%20box.jpg",
+   "alt": "",
+   "linkText": "Golf clubs",
+   "teaser": false
+  }
+ ],
+ "/en-us/shipping/how-to-ship-guitars": [
+  {
+   "listing": "/en-us/how-to-hub",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_Guitars_727x463_.jpg",
+   "alt": "",
+   "linkText": "Guitars",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/how-to-hub/articles",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx-Guitar.jpg",
+   "alt": "alt=“”",
+   "linkText": "How to ship a guitar",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-a-tv-monitor",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20flat%20panel%20box.jpg",
+   "alt": "",
+   "linkText": "Guitars",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-artwork",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20artwork%20box.jpg",
+   "alt": "fedex artwork box",
+   "linkText": "Guitars",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-batteries",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/wet%20battery.jpg",
+   "alt": "wet battery packing",
+   "linkText": "Guitars",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-clinical-samples",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/watertight%20receptacles.jpg",
+   "alt": "watertight receptacles",
+   "linkText": "Guitars",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-firearms",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD-727x463_FedEx_Box.jpg",
+   "alt": "fedex retail box",
+   "linkText": "Guitars",
+   "teaser": false
+  }
+ ],
+ "/en-us/service-guide/hazardous-materials/how-to-ship": [
+  {
+   "listing": "/en-us/how-to-hub",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_HazMats_727x463.jpg",
+   "alt": "",
+   "linkText": "Hazardous materials",
+   "teaser": true
+  }
+ ],
+ "/en-us/shipping/how-to-ship-jewelry": [
+  {
+   "listing": "/en-us/how-to-hub",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_Jewelry_727x463.jpg",
+   "alt": "",
+   "linkText": "Jewelry",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/how-to-hub/articles",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx-Jewelry%201.jpg",
+   "alt": "",
+   "linkText": "LEARN HOW TO SHIP JEWELRY",
+   "teaser": true
+  }
+ ],
+ "/en-us/shipping/how-to-ship-liquids": [
+  {
+   "listing": "/en-us/how-to-hub",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_Liquids_727x463.jpg",
+   "alt": "",
+   "linkText": "Liquids",
+   "teaser": true
+  }
+ ],
+ "/en-us/shipping/how-to-ship-luggage": [
+  {
+   "listing": "/en-us/how-to-hub",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_Luggage_727x463.jpg",
+   "alt": "",
+   "linkText": "Luggage",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/how-to-hub/articles",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx_Luggage.jpg",
+   "alt": "alt=“”",
+   "linkText": "How to ship luggage",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-a-tv-monitor",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20flat%20panel%20box.jpg",
+   "alt": "",
+   "linkText": "Luggage",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-artwork",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20artwork%20box.jpg",
+   "alt": "fedex artwork box",
+   "linkText": "Luggage",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-batteries",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/wet%20battery.jpg",
+   "alt": "wet battery packing",
+   "linkText": "Luggage",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-clinical-samples",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/watertight%20receptacles.jpg",
+   "alt": "watertight receptacles",
+   "linkText": "Luggage",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-firearms",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD-727x463_FedEx_Box.jpg",
+   "alt": "fedex retail box",
+   "linkText": "Luggage",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-guitars",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20guitar%20box.jpg",
+   "alt": "",
+   "linkText": "Luggage",
+   "teaser": false
+  }
+ ],
+ "/en-us/shipping/how-to-ship-oversized-items": [
+  {
+   "listing": "/en-us/how-to-hub",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_Oversized_727x463.jpg",
+   "alt": "",
+   "linkText": "Oversized items",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/industry-solutions/technology-and-electronics",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/shutterstock_89379541.jpg",
+   "alt": "",
+   "linkText": "OVERSIZED TECH",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-a-tv-monitor",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20flat%20panel%20box.jpg",
+   "alt": "",
+   "linkText": "Oversized items",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-artwork",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20artwork%20box.jpg",
+   "alt": "fedex artwork box",
+   "linkText": "Oversized items",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-batteries",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/wet%20battery.jpg",
+   "alt": "wet battery packing",
+   "linkText": "Oversized items",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-clinical-samples",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/watertight%20receptacles.jpg",
+   "alt": "watertight receptacles",
+   "linkText": "Oversized items",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-firearms",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD-727x463_FedEx_Box.jpg",
+   "alt": "fedex retail box",
+   "linkText": "Oversized items",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-guitars",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20guitar%20box.jpg",
+   "alt": "",
+   "linkText": "Oversized items",
+   "teaser": false
+  }
+ ],
+ "/en-us/shipping/how-to-ship-perishables": [
+  {
+   "listing": "/en-us/how-to-hub",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_Choco-Perish_727x463.jpg",
+   "alt": "",
+   "linkText": "Perishables",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/how-to-hub/articles",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx-Perishables.jpg",
+   "alt": "alt=“”",
+   "linkText": "LEARN HOW TO PACK PERISHABLES",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/shipping/express",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/2022/FedEx-perishables.jpg",
+   "alt": "",
+   "linkText": "PERISHABLES",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-a-tv-monitor",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20flat%20panel%20box.jpg",
+   "alt": "",
+   "linkText": "Perishables",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-artwork",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20artwork%20box.jpg",
+   "alt": "fedex artwork box",
+   "linkText": "Perishables",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-batteries",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/wet%20battery.jpg",
+   "alt": "wet battery packing",
+   "linkText": "Perishables",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-clinical-samples",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/watertight%20receptacles.jpg",
+   "alt": "watertight receptacles",
+   "linkText": "Perishables",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-firearms",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD-727x463_FedEx_Box.jpg",
+   "alt": "fedex retail box",
+   "linkText": "Perishables",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-guitars",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20guitar%20box.jpg",
+   "alt": "",
+   "linkText": "Perishables",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/same-day",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/2023/SameDay_Party_r.jpg",
+   "alt": "",
+   "linkText": "Perishables",
+   "teaser": false
+  }
+ ],
+ "/en-us/shipping/how-to-ship-a-tv-monitor": [
+  {
+   "listing": "/en-us/how-to-hub",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_TVs_727x463.jpg",
+   "alt": "",
+   "linkText": "TVs & Monitors",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/how-to-hub/articles",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FexEx-Monitor.jpg",
+   "alt": "alt=“”",
+   "linkText": "How to ship a TV or monitor",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/industry-solutions/technology-and-electronics",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/shutterstock_357968483%201.jpg",
+   "alt": "",
+   "linkText": "tvs and monitors",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-artwork",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20artwork%20box.jpg",
+   "alt": "fedex artwork box",
+   "linkText": "TVs & Monitors",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-batteries",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/wet%20battery.jpg",
+   "alt": "wet battery packing",
+   "linkText": "TVs & Monitors",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-clinical-samples",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/watertight%20receptacles.jpg",
+   "alt": "watertight receptacles",
+   "linkText": "TVs & Monitors",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-firearms",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD-727x463_FedEx_Box.jpg",
+   "alt": "fedex retail box",
+   "linkText": "TVs & Monitors",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-guitars",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20guitar%20box.jpg",
+   "alt": "",
+   "linkText": "TVs & Monitors",
+   "teaser": false
+  }
+ ],
+ "/en-us/shipping/guidelines-for-shipping-tobacco": [
+  {
+   "listing": "/en-us/how-to-hub",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_Tobacco_727x463.jpg",
+   "alt": "",
+   "linkText": "Tobacco",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/how-to-hub/articles",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx-Tobacco.jpg",
+   "alt": "alt=“”",
+   "linkText": "Wondering how to ship tobacco?",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-a-tv-monitor",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20flat%20panel%20box.jpg",
+   "alt": "",
+   "linkText": "Tobacco",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-artwork",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20artwork%20box.jpg",
+   "alt": "fedex artwork box",
+   "linkText": "Tobacco",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-batteries",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/wet%20battery.jpg",
+   "alt": "wet battery packing",
+   "linkText": "Tobacco",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-clinical-samples",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/watertight%20receptacles.jpg",
+   "alt": "watertight receptacles",
+   "linkText": "Tobacco",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-firearms",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD-727x463_FedEx_Box.jpg",
+   "alt": "fedex retail box",
+   "linkText": "Tobacco",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-guitars",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20guitar%20box.jpg",
+   "alt": "",
+   "linkText": "Tobacco",
+   "teaser": false
+  }
+ ],
+ "/en-us/shipping/packing/pledge": [
+  {
+   "listing": "/en-us/how-to-hub",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/GetExpertPacking_960x611.jpg",
+   "alt": "",
+   "linkText": "FedEx Office® Packing Pledge",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/packing/pack-and-ship",
+   "image": "https://www.fedex.com/content/dam/fedex-com/common/image-placeholder.jpg",
+   "alt": "Ship icon",
+   "linkText": "FedEx Office® Packing Pledge",
+   "teaser": false
+  }
+ ],
+ "/en-us/shipping/freight/air-freight/international": [
+  {
+   "listing": "/en-us/industry-solutions",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_GAF_727x463.jpg",
+   "alt": "Image",
+   "linkText": "EXPLORE AIR FREIGHT",
+   "teaser": true
+  }
+ ],
+ "/content/dam/fedex-com/hdn/FedEx_and_WardsAuto_Playbook_FNL_4-8_web.pdf": [
+  {
+   "listing": "/en-us/industry-solutions/automotive",
+   "image": "https://cdn.bfldr.com/I22OPSFM/at/3m6fqjmmbqskcqjzqbp454q8/STL250513-MK-FEDEX-47388.jpg?auto=webp&fit=bounds&format=jpg&width=727&height=463&max_age=604800",
+   "alt": "",
+   "linkText": "Read the playbook",
+   "teaser": true
+  }
+ ],
+ "/en-us/carbon-footprint-insights": [
+  {
+   "listing": "/en-us/industry-solutions/automotive/OEM",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_CarbonEmissions_727x463.jpg",
+   "alt": "",
+   "linkText": "FedEx® Sustainability Insights",
+   "teaser": false
+  }
+ ],
+ "/en-us/shipping/ship-manager": [
+  {
+   "listing": "/en-us/industry-solutions/automotive/dealerships",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_ShipManager_727x463.jpg",
+   "alt": "",
+   "linkText": "FedEx Ship Manager®",
+   "teaser": false
+  }
+ ],
+ "/en-us/small-business/ecommerce": [
+  {
+   "listing": "/en-us/industry-solutions/automotive/tires",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_EcommerceGuidnace_727x463.jpg",
+   "alt": "",
+   "linkText": "find e-commerce tools and tips",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/same-day",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/2023/FedEx-ecommerce_r.jpg",
+   "alt": "",
+   "linkText": "ECOMMERCE",
+   "teaser": true
+  }
+ ],
+ "/en-us/shipping/packaging/testing": [
+  {
+   "listing": "/en-us/industry-solutions/data-center-logistics",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_PackageTest_727x4631.jpg",
+   "alt": "",
+   "linkText": "GET EXPERT ADVICE",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/industry-solutions/technology-and-electronics",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_TakeSteps_727x463.jpg",
+   "alt": "",
+   "linkText": "test your packaging",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-flowers-and-plants",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD-727x463_Flower_Shipment.jpg",
+   "alt": "",
+   "linkText": "LET THE LAB TAKE A LOOK",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-furniture",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx_packing-lab.jpg",
+   "alt": "alt=\"\"",
+   "linkText": "LEARN ABOUT THE LAB",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-perishables",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/Box_insulated_render.jpg",
+   "alt": "alt=\"\"",
+   "linkText": "LEARN ABOUT THE LAB",
+   "teaser": true
+  }
+ ],
+ "/en-us/industry-solutions/articles/data-center-logistics": [
+  {
+   "listing": "/en-us/industry-solutions/data-center-logistics",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_ResourcesArticle_727x463.jpg",
+   "alt": "",
+   "linkText": "Read the article",
+   "teaser": true
+  }
+ ],
+ "/en-us/shipping/international-1-5-day": [
+  {
+   "listing": "/en-us/industry-solutions/industrial",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_ChooseFast_727x463.jpg",
+   "alt": "",
+   "linkText": "Ship internationally",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/industry-solutions/perishables",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_GrowGlobally_727x463.jpg",
+   "alt": "",
+   "linkText": "Ship internationally",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/industry-solutions/technology-and-electronics",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_AroundWorld_727x463.jpg",
+   "alt": "",
+   "linkText": "Ship globally",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/sweepstakes/slope-to-shore/slopetoshoresweepstakesover",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/IntlShipping.jpg",
+   "alt": "",
+   "linkText": "COMPARE INTERNATIONAL SERVICES",
+   "teaser": true
+  }
+ ],
+ "/en-us/logistics": [
+  {
+   "listing": "/en-us/industry-solutions/industrial",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_TailorShipping_727x463.jpg",
+   "alt": "",
+   "linkText": "Forward your freight",
+   "teaser": true
+  }
+ ],
+ "/en-us/logistics/supply-chain": [
+  {
+   "listing": "/en-us/industry-solutions/industrial",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_KeepSupplyChain_727x463.jpg",
+   "alt": "",
+   "linkText": "See supply chain services",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/industry-solutions/perishables",
+   "image": "https://cdn.bfldr.com/I22OPSFM/at/53tp2gv55f4tjqxz8zhzpf/0J5A5074.jpg?format=jpg&crop=6554%2C4174%2Cx1085%2Cy953&width=727&height=463&auto=webp&max_age=604800",
+   "alt": "",
+   "linkText": "See supply chain services",
+   "teaser": false
+  }
+ ],
+ "/en-us/service-guide/dangerous-goods-hazardous-materials": [
+  {
+   "listing": "/en-us/industry-solutions/industrial",
+   "image": "https://cdn.bfldr.com/I22OPSFM/at/svv57vct4cgvr9b8jsmh394z/2019_Memphis_Hub_10931.jpg?auto=webp&fit=bounds&format=jpg&crop=727%3A463%2Csmart&width=727&height=463&max_age=604800",
+   "alt": "",
+   "linkText": "Ship dangerous goods",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/express",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/2022/FedEx_freight-hazzardous.jpg",
+   "alt": "",
+   "linkText": "DANGEROUS GOODS",
+   "teaser": true
+  }
+ ],
+ "/en-us/shipping/international/worldtariff": [
+  {
+   "listing": "/en-us/industry-solutions/industrial",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_NavigateTrade_727x463.jpg",
+   "alt": "",
+   "linkText": "Get global guidance",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/industry-solutions/perishables",
+   "image": "https://cdn.bfldr.com/I22OPSFM/at/j7wz79tkhgb633vmr7bg/fy22_shutterstock_230.jpg?auto=webp&fit=bounds&format=jpg&crop=727%3A463%2Csmart&width=727&height=463&max_age=604800",
+   "alt": "",
+   "linkText": "Navigate global trade",
+   "teaser": false
+  }
+ ],
+ "/en-us/shipping/express": [
+  {
+   "listing": "/en-us/industry-solutions/perishables",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_MoveSpoilage_727x463.jpg",
+   "alt": "",
+   "linkText": "Ship perishables fast",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/industry-solutions/technology-and-electronics",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_SendShipments_727x463.jpg",
+   "alt": "",
+   "linkText": "ship quickly",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/shipping/same-day",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/2023/FedEx-Express.jpg",
+   "alt": "",
+   "linkText": "FEDEX expedited SHIPPING",
+   "teaser": true
+  }
+ ],
+ "/content/dam/fedex/us-united-states/services/Perishables_fxcom.pdf": [
+  {
+   "listing": "/en-us/industry-solutions/perishables",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_CoolShipping_727x463.jpg",
+   "alt": "",
+   "linkText": "Check out the guide",
+   "teaser": false
+  }
+ ],
+ "/en-us/small-business/sales-support": [
+  {
+   "listing": "/en-us/industry-solutions/technology-and-electronics",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/DataCenter_desktop.jpg",
+   "alt": "",
+   "linkText": "SCHEDULE A CALL",
+   "teaser": true
+  }
+ ],
+ "/en-us/shipping/cell-phones": [
+  {
+   "listing": "/en-us/industry-solutions/technology-and-electronics",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/shutterstock_1236630952%201.jpg",
+   "alt": "",
+   "linkText": "smartphones",
+   "teaser": true
+  }
+ ],
+ "/en-us/shipping/freight/packing-guide": [
+  {
+   "listing": "/en-us/industry-solutions/technology-and-electronics",
+   "image": "https://cdn.bfldr.com/I22OPSFM/at/whm3nw93ghtkrr9hsq7h6vv/b_master_k10469.jpg?auto=webp&fit=bounds&format=jpg&crop=727%3A463%2Csmart&width=727&height=463&max_age=604800",
+   "alt": "",
+   "linkText": "FREIGHT",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-automotive",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/2022/FedEx-ship-auto-crate.jpg",
+   "alt": "",
+   "linkText": "special packaging requirements",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-clothes",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx_freight_.jpg",
+   "alt": "",
+   "linkText": "packaging requirements",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-computers",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx_freight_.jpg",
+   "alt": "",
+   "linkText": "packaging requirements",
+   "teaser": false
+  }
+ ],
+ "/en-us/shipping/packing/supplies/sustainable-packaging": [
+  {
+   "listing": "/en-us/industry-solutions/technology-and-electronics",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_TakeSteps_727x463.jpg",
+   "alt": "",
+   "linkText": "sustainable options",
+   "teaser": false
+  }
+ ],
+ "/en-us/shipping/temperature-control/ambient-room-temperature": [
+  {
+   "listing": "/en-us/industry-solutions/technology-and-electronics",
+   "image": "https://cdn.bfldr.com/I22OPSFM/at/khtm9zw9rgj3sxfkbmkzgz/2019_Memphis_Hub_20221.jpg?auto=webp&fit=bounds&format=jpg&crop=727%3A463%2Csmart&width=727&height=463&max_age=604800",
+   "alt": "",
+   "linkText": "ship at room temp",
+   "teaser": false
+  }
+ ],
+ "/en-us/senseaware": [
+  {
+   "listing": "/en-us/industry-solutions/technology-and-electronics",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_InsideScoop_727x463.jpg",
+   "alt": "",
+   "linkText": "Gain shipment insights",
+   "teaser": false
+  }
+ ],
+ "/en-us/why-fedex-for-business": [
+  {
+   "listing": "/en-us/shipping/express",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_WeekdayDelivery_727x463.jpg",
+   "alt": "",
+   "linkText": "CHOOSE CONSISTENCY",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/shipping/home-delivery",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_WeekdayDelivery_727x463.jpg",
+   "alt": "",
+   "linkText": "CHOOSE CONSISTENCY",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/shipping/services",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_WeekdayDelivery_727x463.jpg",
+   "alt": "",
+   "linkText": "CHOOSE CONSISTENCY",
+   "teaser": true
+  }
+ ],
+ "/en-us/open-account/ag13398602": [
+  {
+   "listing": "/en-us/shipping/express",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/2022/POD-727x463-sustainability.jpg",
+   "alt": "",
+   "linkText": "open a FedEx account",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/overnight/how-to-overnight-a-package-or-letter",
+   "image": "https://cdn.bfldr.com/I22OPSFM/at/cjcm64p2pjm6rgt7phk5mj/FedEx-2257-1.jpg?auto=webp&fit=bounds&format=jpg&width=727&height=463&max_age=604800",
+   "alt": "",
+   "linkText": "Open a business account",
+   "teaser": false
+  }
+ ],
+ "/en-us/shipping/packing": [
+  {
+   "listing": "/en-us/shipping/express",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/2022/POD-727x463-sustainability.jpg",
+   "alt": "",
+   "linkText": "complimentary FedEx® packaging",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-batteries",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/wet%20battery.jpg",
+   "alt": "wet battery packing",
+   "linkText": "How to Pack guidelines",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-clinical-samples",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/watertight%20receptacles.jpg",
+   "alt": "watertight receptacles",
+   "linkText": "fedex.com/packaging",
+   "teaser": false
+  }
+ ],
+ "/en-us/shipping/one-rate": [
+  {
+   "listing": "/en-us/shipping/express",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/2022/POD-727x463-sustainability.jpg",
+   "alt": "",
+   "linkText": "FedEx One Rate®",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-clothes",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/2022/FedEx-Large-Pak.jpg",
+   "alt": "",
+   "linkText": "FedEx One Rate",
+   "teaser": false
+  }
+ ],
+ "/en-us/shipping/freight-services/international-air-freight-quote": [
+  {
+   "listing": "/en-us/shipping/express",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/2022/POD-727x463-sustainability.jpg",
+   "alt": "",
+   "linkText": "MyQuote",
+   "teaser": false
+  }
+ ],
+ "/en-us/healthcare": [
+  {
+   "listing": "/en-us/shipping/express",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/2022/POD-pharmacy.jpg",
+   "alt": "",
+   "linkText": "HEALTHCARE PRODUCTS",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/shipping/same-day",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/2023/SameDay_Healthcare_r.jpg",
+   "alt": "",
+   "linkText": "HEALTHCARE AND PHARMACEUTICALS",
+   "teaser": true
+  }
+ ],
+ "/content/dam/fedex/us-united-states/shipping/images/2020/Q1/FedEx_Ground_Automated_Pickup_Leave_Behind_630181033.pdf": [
+  {
+   "listing": "/en-us/shipping/express",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/2022/POD-FedEx-ship.jpg",
+   "alt": "",
+   "linkText": "automated pickup option",
+   "teaser": false
+  }
+ ],
+ "/en-us/shipping/schedule-manage-pickups": [
+  {
+   "listing": "/en-us/shipping/express",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/2022/POD-FedEx-ship.jpg",
+   "alt": "",
+   "linkText": "EXPLORE PICKUP OPTIONS",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/home-delivery",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/20161213_SW_1456_2032731B-POD.jpg",
+   "alt": "",
+   "linkText": "See pickup options",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-a-tv-monitor",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20flat%20panel%20box.jpg",
+   "alt": "",
+   "linkText": "Schedule Pickup",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-batteries",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/wet%20battery.jpg",
+   "alt": "wet battery packing",
+   "linkText": "Schedule Pickup",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-clinical-samples",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/watertight%20receptacles.jpg",
+   "alt": "watertight receptacles",
+   "linkText": "Schedule Pickup",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-firearms",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD-727x463_FedEx_Box.jpg",
+   "alt": "fedex retail box",
+   "linkText": "Schedule Pickup",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-guitars",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20guitar%20box.jpg",
+   "alt": "",
+   "linkText": "Schedule Pickup",
+   "teaser": false
+  }
+ ],
+ "/en-us/shipping/dropbox": [
+  {
+   "listing": "/en-us/shipping/express",
+   "image": "https://cdn.bfldr.com/I22OPSFM/at/p859784zfv5596k7sbf69btr/fy20_dollargeneral_e1a2444_fdi-One_FedEx.jpg?auto=webp&fit=bounds&format=jpg&width=727&height=463&max_age=604800",
+   "alt": "",
+   "linkText": "FedEx® Drop Box",
+   "teaser": false
+  }
+ ],
+ "/en-us/shipping/drop-off-package": [
+  {
+   "listing": "/en-us/shipping/express",
+   "image": "https://cdn.bfldr.com/I22OPSFM/at/p859784zfv5596k7sbf69btr/fy20_dollargeneral_e1a2444_fdi-One_FedEx.jpg?auto=webp&fit=bounds&format=jpg&width=727&height=463&max_age=604800",
+   "alt": "",
+   "linkText": "SEE DROP OFF OPTIONS",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/home-delivery",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/P00325_WGLP_EGPod2_727x463_802714681.jpg",
+   "alt": "",
+   "linkText": "drop off",
+   "teaser": false
+  }
+ ],
+ "/en-us/tracking": [
+  {
+   "listing": "/en-us/shipping/express",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/2022/FedEx-delivery-manager.jpg",
+   "alt": "",
+   "linkText": "START TRACKING SHIPMENTS",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/shipping/ground",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/20180722_MK_29079_190760893-(1).jpg",
+   "alt": "fedex courier handing off package to employee at store",
+   "linkText": "track your package",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/home-delivery",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/20180722_MK_04158_1907608931.jpg",
+   "alt": "",
+   "linkText": "track your package",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-jewelry",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx-Office-choose-service-web.jpg",
+   "alt": "",
+   "linkText": "FedEx tracking",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/overnight",
+   "image": "https://cdn.bfldr.com/I22OPSFM/at/mtgw596c7b326pzjx2jtnx3/20171204_mk_5087_188896084.jpg?auto=webp&fit=bounds&format=png&width=727&height=463&max_age=604800",
+   "alt": "",
+   "linkText": "track your package",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/tracking/picture-proof-delivery",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/2022/FedEx-Picture-proof-delivery_5_.jpg",
+   "alt": "",
+   "linkText": "FedEx tracking",
+   "teaser": false
+  }
+ ],
+ "/en-us/shipping/saturday-and-sunday-delivery": [
+  {
+   "listing": "/en-us/shipping/ground",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/220525-PN-FedEx-Canada-4661-updated-2.jpg",
+   "alt": "",
+   "linkText": "every day of the week",
+   "teaser": false
+  }
+ ],
+ "/en-us/tracking/advanced": [
+  {
+   "listing": "/en-us/shipping/ground",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/20180722_MK_29079_190760893-(1).jpg",
+   "alt": "fedex courier handing off package to employee at store",
+   "linkText": "FedEx® Advanced Tracking",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/home-delivery",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/20180722_MK_04158_1907608931.jpg",
+   "alt": "",
+   "linkText": "FedEx® Advanced Tracking",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/overnight",
+   "image": "https://cdn.bfldr.com/I22OPSFM/at/mtgw596c7b326pzjx2jtnx3/20171204_mk_5087_188896084.jpg?auto=webp&fit=bounds&format=png&width=727&height=463&max_age=604800",
+   "alt": "",
+   "linkText": "FedEx® Advanced Tracking",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/tracking/picture-proof-delivery",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/174-874_BusinessrBenefit.jpg",
+   "alt": "",
+   "linkText": "advanced tracking dashboard",
+   "teaser": false
+  }
+ ],
+ "/en-us/open-account": [
+  {
+   "listing": "/en-us/shipping/home-delivery",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/20161213_SW_1456_2032731B-POD.jpg",
+   "alt": "",
+   "linkText": "Sign up for a fedex account",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/overnight/how-to-overnight-a-package-or-letter",
+   "image": "https://cdn.bfldr.com/I22OPSFM/at/cjcm64p2pjm6rgt7phk5mj/FedEx-2257-1.jpg?auto=webp&fit=bounds&format=jpg&width=727&height=463&max_age=604800",
+   "alt": "",
+   "linkText": "Open a personal account",
+   "teaser": false
+  }
+ ],
+ "/en-us/shipping/packing/supplies": [
+  {
+   "listing": "/en-us/shipping/how-to-ship-a-bike",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD-727x463_FedEx_Box.jpg",
+   "alt": "",
+   "linkText": "browse our other packaging options",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-clothes",
+   "image": "https://cdn.bfldr.com/I22OPSFM/at/q7cw2mbjbhn385498fqz2nj6/FY22_Memphis_220429_MK-FedEx_Memphis-1865_46.jpg?auto=webp&fit=bounds&format=jpg&max_age=604800&crop=727%3A463%2Csmart&width=727&height=463&",
+   "alt": "Image",
+   "linkText": "Get your supplies",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-furniture",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx_Office.jpg",
+   "alt": "",
+   "linkText": "SEE SUPPLIES",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/overnight",
+   "image": "https://cdn.bfldr.com/I22OPSFM/at/vg8q48x9vvg2wchmcqqrkh/F1R_group_WhiteEnv.jpg?format=jpg&crop=5456%2C3483%2Cx16%2Cy91&pad=0%2C2%2C0%2C0&width=725&height=463&auto=webp&max_age=604800",
+   "alt": "",
+   "linkText": "envelopes, paks, tubes, and boxes",
+   "teaser": false
+  }
+ ],
+ "/en-us/shipping/overnight": [
+  {
+   "listing": "/en-us/shipping/how-to-ship-a-bike",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx_Delivery.jpg",
+   "alt": "",
+   "linkText": "overnight shipping option",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-automotive",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/2022/FedEx-sip_auto-parts-B.jpg",
+   "alt": "",
+   "linkText": "Explore Overnight Options",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-clothes",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx-express_.jpg",
+   "alt": "",
+   "linkText": "overnight shipping option",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-computers",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx-express_.jpg",
+   "alt": "",
+   "linkText": "overnight shipping option",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-flowers-and-plants",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/Purple_flowers.jpg",
+   "alt": "",
+   "linkText": "FedEx Express® overnight services",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-furniture",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx_Light-furnitureCropped.jpg",
+   "alt": "alt=\"\"",
+   "linkText": "Explore Overnight Options",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/same-day",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/2023/FedEx-overnight.jpg",
+   "alt": "",
+   "linkText": "FEDEX® OVERNIGHT SHIPPING",
+   "teaser": true
+  }
+ ],
+ "/en-us/shipping/international": [
+  {
+   "listing": "/en-us/shipping/how-to-ship-a-bike",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx_Delivery.jpg",
+   "alt": "",
+   "linkText": "international shipping",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-automotive",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/2022/FedEx-ship-auto-parts-C.jpg",
+   "alt": "",
+   "linkText": "international services",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-clothes",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx-international_.jpg",
+   "alt": "",
+   "linkText": "international shipping",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-computers",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx-international_.jpg",
+   "alt": "",
+   "linkText": "international shipping",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-furniture",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx_Light-furnitureCropped.jpg",
+   "alt": "alt=\"\"",
+   "linkText": "international services",
+   "teaser": false
+  }
+ ],
+ "/lite/lite-ship": [
+  {
+   "listing": "/en-us/shipping/how-to-ship-a-tv-monitor",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20flat%20panel%20box.jpg",
+   "alt": "",
+   "linkText": "Ship As A Guest",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-batteries",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/wet%20battery.jpg",
+   "alt": "wet battery packing",
+   "linkText": "Ship As A Guest",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-clinical-samples",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/watertight%20receptacles.jpg",
+   "alt": "watertight receptacles",
+   "linkText": "Ship As A Guest",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-guitars",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20guitar%20box.jpg",
+   "alt": "",
+   "linkText": "Ship As A Guest",
+   "teaser": false
+  }
+ ],
+ "/en-us/shipping/how-to-address-a-package": [
+  {
+   "listing": "/en-us/shipping/how-to-ship-a-tv-monitor",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20flat%20panel%20box.jpg",
+   "alt": "",
+   "linkText": "Address a package",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-artwork",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20artwork%20box.jpg",
+   "alt": "fedex artwork box",
+   "linkText": "Address a package",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-batteries",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/wet%20battery.jpg",
+   "alt": "wet battery packing",
+   "linkText": "Address a package",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-clinical-samples",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/watertight%20receptacles.jpg",
+   "alt": "watertight receptacles",
+   "linkText": "Address a package",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-firearms",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD-727x463_FedEx_Box.jpg",
+   "alt": "fedex retail box",
+   "linkText": "Address a package",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-guitars",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20guitar%20box.jpg",
+   "alt": "",
+   "linkText": "Address a package",
+   "teaser": false
+  }
+ ],
+ "/en-us/small-business/articles-insights/managing-backorders": [
+  {
+   "listing": "/en-us/shipping/how-to-ship-a-tv-monitor",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20flat%20panel%20box.jpg",
+   "alt": "",
+   "linkText": "Back orders",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-artwork",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20artwork%20box.jpg",
+   "alt": "fedex artwork box",
+   "linkText": "Back orders",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-batteries",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/wet%20battery.jpg",
+   "alt": "wet battery packing",
+   "linkText": "Back orders",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-clinical-samples",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/watertight%20receptacles.jpg",
+   "alt": "watertight receptacles",
+   "linkText": "Back orders",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-firearms",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD-727x463_FedEx_Box.jpg",
+   "alt": "fedex retail box",
+   "linkText": "Back orders",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-guitars",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20guitar%20box.jpg",
+   "alt": "",
+   "linkText": "Back orders",
+   "teaser": false
+  }
+ ],
+ "/en-us/shipping/how-to-ship": [
+  {
+   "listing": "/en-us/shipping/how-to-ship-a-tv-monitor",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20flat%20panel%20box.jpg",
+   "alt": "",
+   "linkText": "Domestic Shipping",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-artwork",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20artwork%20box.jpg",
+   "alt": "fedex artwork box",
+   "linkText": "Domestic Shipping",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-batteries",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/wet%20battery.jpg",
+   "alt": "wet battery packing",
+   "linkText": "Domestic Shipping",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-clinical-samples",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/watertight%20receptacles.jpg",
+   "alt": "watertight receptacles",
+   "linkText": "Domestic Shipping",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-firearms",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD-727x463_FedEx_Box.jpg",
+   "alt": "fedex retail box",
+   "linkText": "Domestic Shipping",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-guitars",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20guitar%20box.jpg",
+   "alt": "",
+   "linkText": "Domestic Shipping",
+   "teaser": false
+  }
+ ],
+ "/en-us/small-business/articles-insights/ecommerce-shipping-how-to-ship-products-to-customers": [
+  {
+   "listing": "/en-us/shipping/how-to-ship-a-tv-monitor",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20flat%20panel%20box.jpg",
+   "alt": "",
+   "linkText": "How e-Commerce Shipping works",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-artwork",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20artwork%20box.jpg",
+   "alt": "fedex artwork box",
+   "linkText": "How e-Commerce Shipping works",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-batteries",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/wet%20battery.jpg",
+   "alt": "wet battery packing",
+   "linkText": "How e-Commerce Shipping works",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-clinical-samples",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/watertight%20receptacles.jpg",
+   "alt": "watertight receptacles",
+   "linkText": "How e-Commerce Shipping works",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-firearms",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD-727x463_FedEx_Box.jpg",
+   "alt": "fedex retail box",
+   "linkText": "How e-Commerce Shipping works",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-guitars",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20guitar%20box.jpg",
+   "alt": "",
+   "linkText": "How e-Commerce Shipping works",
+   "teaser": false
+  }
+ ],
+ "/en-us/small-business/articles-insights/how-to-ship-products-from-home": [
+  {
+   "listing": "/en-us/shipping/how-to-ship-a-tv-monitor",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20flat%20panel%20box.jpg",
+   "alt": "",
+   "linkText": "How to ship from home",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-artwork",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20artwork%20box.jpg",
+   "alt": "fedex artwork box",
+   "linkText": "How to ship from home",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-batteries",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/wet%20battery.jpg",
+   "alt": "wet battery packing",
+   "linkText": "How to ship from home",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-clinical-samples",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/watertight%20receptacles.jpg",
+   "alt": "watertight receptacles",
+   "linkText": "How to ship from home",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-firearms",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD-727x463_FedEx_Box.jpg",
+   "alt": "fedex retail box",
+   "linkText": "How to ship from home",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-guitars",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20guitar%20box.jpg",
+   "alt": "",
+   "linkText": "How to ship from home",
+   "teaser": false
+  }
+ ],
+ "/en-us/shipping/international/how-to-ship": [
+  {
+   "listing": "/en-us/shipping/how-to-ship-a-tv-monitor",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20flat%20panel%20box.jpg",
+   "alt": "",
+   "linkText": "International Shipping",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-artwork",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20artwork%20box.jpg",
+   "alt": "fedex artwork box",
+   "linkText": "International Shipping",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-batteries",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/wet%20battery.jpg",
+   "alt": "wet battery packing",
+   "linkText": "International Shipping",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-clinical-samples",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/watertight%20receptacles.jpg",
+   "alt": "watertight receptacles",
+   "linkText": "International Shipping",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-firearms",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD-727x463_FedEx_Box.jpg",
+   "alt": "fedex retail box",
+   "linkText": "International Shipping",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-guitars",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20guitar%20box.jpg",
+   "alt": "",
+   "linkText": "International Shipping",
+   "teaser": false
+  }
+ ],
+ "/en-us/small-business/articles-insights/how-to-reduce-shipping-costs-for-small-business": [
+  {
+   "listing": "/en-us/shipping/how-to-ship-a-tv-monitor",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20flat%20panel%20box.jpg",
+   "alt": "",
+   "linkText": "REDUCED COSTS",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-artwork",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20artwork%20box.jpg",
+   "alt": "fedex artwork box",
+   "linkText": "REDUCED COSTS",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-batteries",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/wet%20battery.jpg",
+   "alt": "wet battery packing",
+   "linkText": "REDUCED COSTS",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-clinical-samples",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/watertight%20receptacles.jpg",
+   "alt": "watertight receptacles",
+   "linkText": "REDUCED COSTS",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-firearms",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD-727x463_FedEx_Box.jpg",
+   "alt": "fedex retail box",
+   "linkText": "REDUCED COSTS",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-guitars",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20guitar%20box.jpg",
+   "alt": "",
+   "linkText": "REDUCED COSTS",
+   "teaser": false
+  }
+ ],
+ "/en-us/customer-support/how-to/register-delivery-manager": [
+  {
+   "listing": "/en-us/shipping/how-to-ship-a-tv-monitor",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20flat%20panel%20box.jpg",
+   "alt": "",
+   "linkText": "Register for delivery manager",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-artwork",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20artwork%20box.jpg",
+   "alt": "fedex artwork box",
+   "linkText": "Register for delivery manager",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-batteries",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/wet%20battery.jpg",
+   "alt": "wet battery packing",
+   "linkText": "Register for delivery manager",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-clinical-samples",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/watertight%20receptacles.jpg",
+   "alt": "watertight receptacles",
+   "linkText": "Register for delivery manager",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-firearms",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD-727x463_FedEx_Box.jpg",
+   "alt": "fedex retail box",
+   "linkText": "Register for delivery manager",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-guitars",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20guitar%20box.jpg",
+   "alt": "",
+   "linkText": "Register for delivery manager",
+   "teaser": false
+  }
+ ],
+ "/en-us/create-account/how-to-reset-forgot-password": [
+  {
+   "listing": "/en-us/shipping/how-to-ship-a-tv-monitor",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20flat%20panel%20box.jpg",
+   "alt": "",
+   "linkText": "Reset forgotten password",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-artwork",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20artwork%20box.jpg",
+   "alt": "fedex artwork box",
+   "linkText": "Reset forgotten password",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-batteries",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/wet%20battery.jpg",
+   "alt": "wet battery packing",
+   "linkText": "Reset forgotten password",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-clinical-samples",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/watertight%20receptacles.jpg",
+   "alt": "watertight receptacles",
+   "linkText": "Reset forgotten password",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-firearms",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD-727x463_FedEx_Box.jpg",
+   "alt": "fedex retail box",
+   "linkText": "Reset forgotten password",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-guitars",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20guitar%20box.jpg",
+   "alt": "",
+   "linkText": "Reset forgotten password",
+   "teaser": false
+  }
+ ],
+ "/en-us/shipping/schedule-manage-pickups/how-to": [
+  {
+   "listing": "/en-us/shipping/how-to-ship-a-tv-monitor",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20flat%20panel%20box.jpg",
+   "alt": "",
+   "linkText": "Schedule a pickup",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-artwork",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20artwork%20box.jpg",
+   "alt": "fedex artwork box",
+   "linkText": "Schedule a pickup",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-batteries",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/wet%20battery.jpg",
+   "alt": "wet battery packing",
+   "linkText": "Schedule a pickup",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-clinical-samples",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/watertight%20receptacles.jpg",
+   "alt": "watertight receptacles",
+   "linkText": "Schedule a pickup",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-firearms",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD-727x463_FedEx_Box.jpg",
+   "alt": "fedex retail box",
+   "linkText": "Schedule a pickup",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-guitars",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20guitar%20box.jpg",
+   "alt": "",
+   "linkText": "Schedule a pickup",
+   "teaser": false
+  }
+ ],
+ "/en-us/small-business/articles-insights/how-to-create-a-shipping-policy": [
+  {
+   "listing": "/en-us/shipping/how-to-ship-a-tv-monitor",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20flat%20panel%20box.jpg",
+   "alt": "",
+   "linkText": "Shipping policy",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-artwork",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20artwork%20box.jpg",
+   "alt": "fedex artwork box",
+   "linkText": "Shipping policy",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-batteries",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/wet%20battery.jpg",
+   "alt": "wet battery packing",
+   "linkText": "Shipping policy",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-clinical-samples",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/watertight%20receptacles.jpg",
+   "alt": "watertight receptacles",
+   "linkText": "Shipping policy",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-firearms",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD-727x463_FedEx_Box.jpg",
+   "alt": "fedex retail box",
+   "linkText": "Shipping policy",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-guitars",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20guitar%20box.jpg",
+   "alt": "",
+   "linkText": "Shipping policy",
+   "teaser": false
+  }
+ ],
+ "/en-us/billing-online/account-summary-how-to": [
+  {
+   "listing": "/en-us/shipping/how-to-ship-a-tv-monitor",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20flat%20panel%20box.jpg",
+   "alt": "",
+   "linkText": "View account summary",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-artwork",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20artwork%20box.jpg",
+   "alt": "fedex artwork box",
+   "linkText": "View account summary",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-batteries",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/wet%20battery.jpg",
+   "alt": "wet battery packing",
+   "linkText": "View account summary",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-clinical-samples",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/watertight%20receptacles.jpg",
+   "alt": "watertight receptacles",
+   "linkText": "View account summary",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-firearms",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD-727x463_FedEx_Box.jpg",
+   "alt": "fedex retail box",
+   "linkText": "View account summary",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-guitars",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20guitar%20box.jpg",
+   "alt": "",
+   "linkText": "View account summary",
+   "teaser": false
+  }
+ ],
+ "/en-us/billing-online/how-to-manage-or-update-ground-express-billing-online-account": [
+  {
+   "listing": "/en-us/shipping/how-to-ship-a-tv-monitor",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20flat%20panel%20box.jpg",
+   "alt": "",
+   "linkText": "Manage parcel and air freight billing online",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-artwork",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20artwork%20box.jpg",
+   "alt": "fedex artwork box",
+   "linkText": "Manage parcel and air freight billing online",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-batteries",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/wet%20battery.jpg",
+   "alt": "wet battery packing",
+   "linkText": "Manage parcel and air freight billing online",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-clinical-samples",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/watertight%20receptacles.jpg",
+   "alt": "watertight receptacles",
+   "linkText": "Manage parcel and air freight billing online",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-firearms",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD-727x463_FedEx_Box.jpg",
+   "alt": "fedex retail box",
+   "linkText": "Manage parcel and air freight billing online",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-guitars",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/FedEx%20custom%20guitar%20box.jpg",
+   "alt": "",
+   "linkText": "Manage parcel and air freight billing online",
+   "teaser": false
+  }
+ ],
+ "/en-us/industry-solutions/automotive": [
+  {
+   "listing": "/en-us/shipping/how-to-ship-automotive",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_HowTo_EveryPart_727x463.jpg",
+   "alt": "",
+   "linkText": "Move parts or tires",
+   "teaser": true
+  }
+ ],
+ "/en-us/customer-support/call-us": [
+  {
+   "listing": "/en-us/shipping/how-to-ship-automotive",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/2022/FedEx-hazardous-cargo.jpg",
+   "alt": "",
+   "linkText": "Please call customer support",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-batteries",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/wet%20battery.jpg",
+   "alt": "wet battery packing",
+   "linkText": "please call customer support",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-clinical-samples",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/watertight%20receptacles.jpg",
+   "alt": "watertight receptacles",
+   "linkText": "please call customer support",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-firearms",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD-727x463_FedEx_Box.jpg",
+   "alt": "fedex retail box",
+   "linkText": "please call customer support",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-perishables",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/icons---png/Deep_Frozen.jpg",
+   "alt": "alt=\"\"",
+   "linkText": "please call customer support",
+   "teaser": false
+  }
+ ],
+ "/en-us/service-guide": [
+  {
+   "listing": "/en-us/shipping/how-to-ship-automotive",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/2022/FedEx-hazardous-cargo.jpg",
+   "alt": "",
+   "linkText": "FedEx Service Guide",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-computers",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx-hard-drive_.jpg",
+   "alt": "",
+   "linkText": "FedEx Service Guide",
+   "teaser": false
+  }
+ ],
+ "/en-us/shipping/international-prohibited-items": [
+  {
+   "listing": "/en-us/shipping/how-to-ship-automotive",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/2022/FedEx-ship-auto-parts-C.jpg",
+   "alt": "",
+   "linkText": "international shipping restrictions",
+   "teaser": false
+  }
+ ],
+ "/en-us/shipping/freight": [
+  {
+   "listing": "/en-us/shipping/how-to-ship-automotive",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/2022/FedEx-ship-auto-crate.jpg",
+   "alt": "",
+   "linkText": "SEE FREIGHT SHIPPING OPTIONS",
+   "teaser": false
+  }
+ ],
+ "/content/dam/fedex/us-united-states/logistics/Lithium-Battery-Shipping-Tool.pdf": [
+  {
+   "listing": "/en-us/shipping/how-to-ship-batteries",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/Seal%20and%20Label.jpg",
+   "alt": "Seal and label package instructions",
+   "linkText": "FedEx Logistics lithium battery shipping guide",
+   "teaser": false
+  }
+ ],
+ "/en-us/service-guide/dangerous-goods/resources": [
+  {
+   "listing": "/en-us/shipping/how-to-ship-batteries",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/wet%20battery.jpg",
+   "alt": "wet battery packing",
+   "linkText": "FedEx Dangerous Goods training seminars and job aid",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-clinical-samples",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/watertight%20receptacles.jpg",
+   "alt": "watertight receptacles",
+   "linkText": "seminars and job aid",
+   "teaser": false
+  }
+ ],
+ "/content/dam/fedex/us-united-states/services/LithiumBattery_Overview.pdf": [
+  {
+   "listing": "/en-us/shipping/how-to-ship-batteries",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/wet%20battery.jpg",
+   "alt": "wet battery packing",
+   "linkText": "FedEx Express lithium battery flow chart",
+   "teaser": false
+  }
+ ],
+ "/en-us/healthcare/temperature-control": [
+  {
+   "listing": "/en-us/shipping/how-to-ship-clinical-samples",
+   "image": "https://www.fedex.com/content/dam/fedex-com/testfolder/watertight%20receptacles.jpg",
+   "alt": "watertight receptacles",
+   "linkText": "temperature-controlled solutions",
+   "teaser": false
+  }
+ ],
+ "/en-us/shipping/same-day": [
+  {
+   "listing": "/en-us/shipping/how-to-ship-clothes",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/Bride-bride-maids_.jpg",
+   "alt": "",
+   "linkText": "FedEx SameDay® service options",
+   "teaser": false
+  }
+ ],
+ "/en-us/shipping/packing/supplies/boxes": [
+  {
+   "listing": "/en-us/shipping/how-to-ship-clothes",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/2022/FedEx_Packaging.jpg",
+   "alt": "",
+   "linkText": "packing supplies and packaging",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-computers",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/Laptop_Box_1-01.jpg",
+   "alt": "",
+   "linkText": "ready-made boxes online",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-flowers-and-plants",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD-727x463_Telescoping_box.jpg",
+   "alt": "",
+   "linkText": "telescoping box",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-jewelry",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx-Office-small-box-web.jpg",
+   "alt": "",
+   "linkText": "See approved box sizes and weight limits",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/shipping/packing/pack-and-ship",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/FedEx-Office/images/2020/Q3/Boxing_Options_727x463_715088287.jpg",
+   "alt": "Image of a FedEx employee creating a custom box solution.",
+   "linkText": "box options",
+   "teaser": false
+  }
+ ],
+ "/en-us/shipping/freight/services": [
+  {
+   "listing": "/en-us/shipping/how-to-ship-clothes",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx_freight_.jpg",
+   "alt": "",
+   "linkText": "freight shipping options",
+   "teaser": false
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-computers",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx_freight_.jpg",
+   "alt": "",
+   "linkText": "freight shipping options",
+   "teaser": false
+  }
+ ],
+ "/en-us/how-to-hub": [
+  {
+   "listing": "/en-us/shipping/how-to-ship-clothes",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/How-to-hub-bike_.jpg",
+   "alt": "",
+   "linkText": "LEARN HOW NOW",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/shipping/how-to-ship-computers",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/How-to-hub_.jpg",
+   "alt": "",
+   "linkText": "Go to the hub",
+   "teaser": true
+  }
+ ],
+ "/en-us/shipping/same-day/across-the-united-states": [
+  {
+   "listing": "/en-us/shipping/how-to-ship-computers",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/Computer-delivery_.jpg",
+   "alt": "",
+   "linkText": "FedEx SameDay® service option",
+   "teaser": false
+  }
+ ],
+ "/content/dam/fedex/us-united-states/services/SG_TermsCond_US_2022.pdf": [
+  {
+   "listing": "/en-us/shipping/how-to-ship-flowers-and-plants",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/Purple_flowers.jpg",
+   "alt": "",
+   "linkText": "terms and conditions",
+   "teaser": false
+  }
+ ],
+ "/en-us/shipping/freight-services/freight-1-3-business-day": [
+  {
+   "listing": "/en-us/shipping/how-to-ship-flowers-and-plants",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/Purple_flowers.jpg",
+   "alt": "",
+   "linkText": "FedEx 1Day Freight",
+   "teaser": false
+  }
+ ],
+ "/en-us/small-business/ecommerce/shipping-solutions": [
+  {
+   "listing": "/en-us/shipping/how-to-ship-furniture",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/Ship_Furniture.jpg",
+   "alt": "alt=\"\"",
+   "linkText": "SEE E-COMMERCE SHIPPING OPTIONS",
+   "teaser": true
+  }
+ ],
+ "/content/dam/fedex/us-united-states/shipping/images/2020/Q4/Package_Test_Application_Rev_062120.pdf": [
+  {
+   "listing": "/en-us/shipping/how-to-ship-furniture",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx_packing-lab.jpg",
+   "alt": "alt=\"\"",
+   "linkText": "APPLY FOR PACKAGE TESTING",
+   "teaser": false
+  }
+ ],
+ "/en-us/shipping/packaging/what-is-dimensional-weight": [
+  {
+   "listing": "/en-us/shipping/how-to-ship-furniture",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx_dim.jpg",
+   "alt": "alt=\"\"",
+   "linkText": "LEARN MORE ABOUT DIM WEIGHT AND HOW TO CALCULATE IT",
+   "teaser": true
+  }
+ ],
+ "/en-us/shipping/temperature-control/deep-frozen": [
+  {
+   "listing": "/en-us/shipping/how-to-ship-perishables",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/icons---png/Deep_Frozen.jpg",
+   "alt": "alt=\"\"",
+   "linkText": "EXPLORE DEEP FROZEN SOLUTIONS",
+   "teaser": false
+  }
+ ],
+ "/shippingplus/en-us/tradeplanner": [
+  {
+   "listing": "/en-us/shipping/international/duties-and-taxes",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/International/images/2019/Q4/b_071983_20150924_dm_15_008_03_02_02_01_021_160131_1217039408.jpg",
+   "alt": "coworkers smiling",
+   "linkText": "Try FedEx Trade Planner",
+   "teaser": false
+  }
+ ],
+ "/en-us/shipping/international/duties-and-taxes/fedex-import-tool": [
+  {
+   "listing": "/en-us/shipping/international/duties-and-taxes",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/man-with-laptop.jpg",
+   "alt": "",
+   "linkText": "Learn about the tool",
+   "teaser": false
+  }
+ ],
+ "/en-us/about/new-power-move": [
+  {
+   "listing": "/en-us/shipping/overnight",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/PowerMove_2019_FedEx_777_S6A0910_web-2_727x463.jpg",
+   "alt": "",
+   "linkText": "Unlock potential",
+   "teaser": true
+  }
+ ],
+ "/en-us/shipping/multiweight": [
+  {
+   "listing": "/en-us/shipping/overnight",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD-727x463_MultipleShipment_grey.jpg",
+   "alt": "",
+   "linkText": "LEARN ABOUT MULTIWEIGHT PRICING",
+   "teaser": false
+  }
+ ],
+ "/en-us/shipping/packing/pack-and-ship": [
+  {
+   "listing": "/en-us/shipping/overnight",
+   "image": "https://cdn.bfldr.com/I22OPSFM/at/vg8q48x9vvg2wchmcqqrkh/F1R_group_WhiteEnv.jpg?format=jpg&crop=5456%2C3483%2Cx16%2Cy91&pad=0%2C2%2C0%2C0&width=725&height=463&auto=webp&max_age=604800",
+   "alt": "",
+   "linkText": "pack your box",
+   "teaser": false
+  }
+ ],
+ "/en-us/healthcare/pharmaceutical-supply-chain-and-shipping-services": [
+  {
+   "listing": "/en-us/shipping/overnight",
+   "image": "https://cdn.bfldr.com/I22OPSFM/at/pccjm5cjvt3j3x3skwkj36s7/20171113_mk_05709_187916514.jpg?format=jpg&crop=4844%2C3085%2Cx128%2Cy481&width=727&height=463&auto=webp&max_age=604800",
+   "alt": "",
+   "linkText": "SEND PHARMACEUTICALS OVERNIGHT",
+   "teaser": true
+  }
+ ],
+ "/en-us/shipping/packing/supplies/near-me": [
+  {
+   "listing": "/en-us/shipping/packing/pack-and-ship",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/FedEx-Office/images/2020/Q3/Packing_Services_727x463_2106513979.jpg",
+   "alt": "Image of a FedEx employee packing an item wrapped in bubblewrap into a brown FedEx box with packing supplies in the background.",
+   "linkText": "packing materials",
+   "teaser": false
+  }
+ ],
+ "/en-us/shipping/store/express": [
+  {
+   "listing": "/en-us/shipping/packing/pack-and-ship",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/FedEx-Office/images/2020/Q3/Shipping_Services_727x463_1206888861.jpg",
+   "alt": "Image of a customer handing over ski's to a FedEx team member to be packed and shipped.",
+   "linkText": "FedEx expedited",
+   "teaser": false
+  }
+ ],
+ "/en-us/shipping/store/ground": [
+  {
+   "listing": "/en-us/shipping/packing/pack-and-ship",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/FedEx-Office/images/2020/Q3/Shipping_Services_727x463_1206888861.jpg",
+   "alt": "Image of a customer handing over ski's to a FedEx team member to be packed and shipped.",
+   "linkText": "standard",
+   "teaser": false
+  }
+ ],
+ "/en-us/shipping/store/international-shipping": [
+  {
+   "listing": "/en-us/shipping/packing/pack-and-ship",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/FedEx-Office/images/2020/Q3/Shipping_Services_727x463_1206888861.jpg",
+   "alt": "Image of a customer handing over ski's to a FedEx team member to be packed and shipped.",
+   "linkText": "international shipping services",
+   "teaser": false
+  }
+ ],
+ "/en-us/shipping/international/urgent-delivery": [
+  {
+   "listing": "/en-us/shipping/same-day",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/2023/FedEx-International.jpg",
+   "alt": "",
+   "linkText": "FEDEX® INTERNATIONAL NEXT FLIGHT",
+   "teaser": true
+  }
+ ],
+ "/en-us/fdx": [
+  {
+   "listing": "/en-us/surround",
+   "image": "https://cdn.bfldr.com/I22OPSFM/at/kpv8gmk4fcvhpb3bq9v3bpkm/20160908_dm_16_005_01_04_02_08_159_160135.jpg?auto=webp&fit=bounds&format=jpg&crop=727%3A463%2Csmart&width=727&height=463&max_age=604800",
+   "alt": "",
+   "linkText": "EXPLORE DIGITAL CAPABILITIES",
+   "teaser": true
+  }
+ ],
+ "/en-us/sweepstakes/nfl-superbowl": [
+  {
+   "listing": "/en-us/sweepstakes",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sweepstakes/AEM_Mobile_320_210_2guys.jpg",
+   "alt": "",
+   "linkText": "Register now",
+   "teaser": false
+  }
+ ],
+ "/en-us/sweepstakes": [
+  {
+   "listing": "/en-us/sweepstakes/fedexcup-sweepstakes/fedexcup-sweepstakes-over",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sweepstakes/POD_ExploreMore_727x463.jpg",
+   "alt": "",
+   "linkText": "See what’s coming",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/sweepstakes/nfl-champion-shipper",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sweepstakes/POD_ExploreMore_727x463.jpg",
+   "alt": "",
+   "linkText": "See what’s coming",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/sweepstakes/nfl-gameface",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sweepstakes/POD_ExploreMore_727x463.jpg",
+   "alt": "",
+   "linkText": "See what’s coming",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/sweepstakes/vacay-your-way",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sweepstakes/POD_ExploreMore_727x463.jpg",
+   "alt": "",
+   "linkText": "See what’s coming",
+   "teaser": true
+  },
+  {
+   "listing": "/en-us/sweepstakes/vacay-your-way/vacay-your-way-sweepstakes-over",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sweepstakes/POD_ExploreMore_727x463.jpg",
+   "alt": "",
+   "linkText": "See what’s coming",
+   "teaser": true
+  }
+ ],
+ "/en-us/shipping/freight/international/air-freight": [
+  {
+   "listing": "/en-us/sweepstakes/slope-to-shore/slopetoshoresweepstakesover",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/AirFreight.jpg",
+   "alt": "",
+   "linkText": "SHIP GLOBAL AIR FREIGHT",
+   "teaser": true
+  }
+ ],
+ "/en-us/shipping/returns": [
+  {
+   "listing": "/en-us/tracking/guide-for-tracking-managing-deliveries",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/V4_20171207_SW_1156_188950484.jpg",
+   "alt": "",
+   "linkText": "LEARN MORE ABOUT RETURNS",
+   "teaser": false
+  }
+ ],
+ "/en-us/delivery-manager/business-toolkit": [
+  {
+   "listing": "/en-us/tracking/picture-proof-delivery",
+   "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/2022/FedEx-picture-proof-delivery-6N-KM_.jpg",
+   "alt": "",
+   "linkText": "DOWNLOAD THE FEDEX DELIVERY MANAGER TOOLKIT",
+   "teaser": true
   }
  ]
 }

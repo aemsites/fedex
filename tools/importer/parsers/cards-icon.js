@@ -73,7 +73,11 @@ function isFiller(el) {
 }
 
 function iconCell(scope, root, document) {
-  const img = scope.querySelector('.fxg-desktop-image img')
+  // the visible desktop rendition first (pack-and-ship: a hidden pod_image_v1 placeholder comes
+  // before the icon), else the first desktop rendition (ground: mobile-position columns only
+  // carry hidden ones)
+  const desktop = [...scope.querySelectorAll('.fxg-desktop-image img')];
+  const img = desktop.find((i) => !isHidden(i, root)) || desktop[0]
     || [...scope.querySelectorAll('.image_v2 img, img')].find((i) => !isHidden(i, root) && !(i.getAttribute('src') || '').startsWith('data:'));
   if (!img) return '';
   const ni = document.createElement('img');
@@ -195,7 +199,10 @@ function rowsNested(cc, document) {
       const item = list[i];
       if (!item) return;
       const itemCols = cols(item);
-      const iconCol = itemCols.find((c) => c.querySelector('.image_v2') && !c.querySelector('.richtext, .button_v1, .title_v1'));
+      // an empty title (<p><br></p>) beside the icon does not make it a text column (en-us
+      // pack-and-ship "At 2,000+ FedEx Office locations")
+      const iconCol = itemCols.find((c) => c.querySelector('.image_v2')
+        && ![...c.querySelectorAll('.richtext, .button_v1, .title_v1')].some((t) => clean(t.textContent)));
       const textCol = itemCols.find((c) => c !== iconCol) || item;
       const icon = iconCol ? iconCell(iconCol, item, document) : '';
       const body = textCell(textCol, item, document);

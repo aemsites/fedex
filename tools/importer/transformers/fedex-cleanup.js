@@ -419,8 +419,12 @@ function rewriteInternalLinks(element, payload) {
       return;
     }
     if (!/^https?:$/.test(url.protocol) || url.hostname.toLowerCase() !== INTERNAL_LINK_HOST) return;
-    if (!/\.html$/i.test(url.pathname)) return;
-    a.setAttribute('href', `${url.pathname.replace(/\.html$/i, '')}${url.search}${url.hash}`);
+    // pages: .html, or an extension-less locale path (teaser rows link the bare page path)
+    const page = /\.html$/i.test(url.pathname)
+      || (/^\/[a-z]{2}-[a-z]{2}\//i.test(url.pathname) && !/\.[a-z0-9]+$/i.test(url.pathname));
+    if (!page) return;
+    // EDS page paths are lower case (fedex.com "how-do-I-pack-furniture", "automotive/OEM" would 404)
+    a.setAttribute('href', `${url.pathname.replace(/\.html$/i, '').toLowerCase()}${url.search}${url.hash}`);
   });
 }
 
