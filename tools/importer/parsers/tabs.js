@@ -27,6 +27,18 @@ import accordionParser from './accordion.js';
 
 const BUTTON_CLASSES = ['fxg-button--orange', 'fxg-button--transparent', 'fxg-link--rounded_button'];
 const HIDDEN = '.fxg-desktop--hide';
+// form markers left by transformers/fedex-landing.js markAdaptiveForms (classic AEM form in a tab,
+// en-us last-minute-rates "Request a quote" tab): a Form block can only live in a fragment
+const FORM_MARKER = '[data-fedex-form]';
+let locale = 'en-us';
+
+function formBlock(marker, document) {
+  const href = `/${locale}/forms/${marker.getAttribute('data-fedex-form')}.json`;
+  const a = document.createElement('a');
+  a.setAttribute('href', href);
+  a.textContent = href;
+  return WebImporter.Blocks.createBlock(document, { name: 'Form', cells: [[a]] });
+}
 
 function clean(text) {
   return (text || '').replace(/\s+/g, ' ').trim();
@@ -118,7 +130,10 @@ function walkGrid(grid, root, document, out) {
           const g = col.querySelector(':scope > div > .aem-Grid') || col.querySelector('.aem-Grid');
           if (g) walkGrid(g, root, document, out);
         });
-    } else if (comp.matches('.aem-Grid, .responsivegrid, .container, .cmp-container')) {
+    } else if (comp.matches(FORM_MARKER)) {
+      out.push(formBlock(comp, document));
+    } else if (comp.matches('.aem-Grid, .responsivegrid, .container, .cmp-container')
+      || (comp.querySelector(FORM_MARKER) && comp.matches('.experiencefragment, .xf-content-height, .start'))) {
       walkGrid(comp, root, document, out);
     }
   });
@@ -158,7 +173,7 @@ function panelComponents(grid, root) {
 }
 
 function panelFragment(grid, root, label, document, ctx) {
-  if (!hasVisible(grid, 'table, .accordion_selector', root)) return null;
+  if (!hasVisible(grid, `table, .accordion_selector, ${FORM_MARKER}`, root)) return null;
   const fragment = document.createElement('div');
   panelComponents(grid, root).forEach((comp) => {
     if (comp.matches('.accordion_selector')) {
@@ -204,6 +219,10 @@ function panelFragment(grid, root, label, document, ctx) {
 
 export default function parse(element, { document, url, params }) {
   const ctx = { url: (params && params.originalURL) || url || document.URL };
+  try {
+    const first = new URL(ctx.url).pathname.split('/').filter(Boolean)[0] || '';
+    locale = /^[a-z]{2}-[a-z]{2}$/.test(first) ? first : 'en-us';
+  } catch (e) { locale = 'en-us'; }
   const tabs = element.querySelector('.fxg-tab') || element;
   const list = tabs.querySelector('ul.cc-aem-c-tabs__list') || tabs.querySelector('ul');
   // <br> in a label ("Pakketten<br>tot 68 kg", nl-nl ship-to-us) is a space, not nothing

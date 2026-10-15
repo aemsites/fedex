@@ -656,7 +656,10 @@ const FORM_MARKER = 'data-fedex-form';
 // Only forms whose definition is uploaded (/{locale}/forms/{name}.json) are converted: the same
 // wrapper holds other content too (nl-nl packaging/supplies: a product catalogue). Add the name
 // here after uploading its definition.
-const CLASSIC_FORMS = new Set(['charters-request-a-quote', 'dropbox-maintenance-request', 'advanced-quote']);
+const CLASSIC_FORMS = new Set([
+  'charters-request-a-quote', 'dropbox-maintenance-request', 'advanced-quote',
+  'shipping-high-value-jewelry-declared-value-form', 'shipping-last-minute-rates',
+]);
 function formNameFromUrl(url) {
   try {
     return new URL(url).pathname.replace(/\.html$/, '').split('/').filter(Boolean).slice(-2).join('-').toLowerCase();
