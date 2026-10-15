@@ -101,9 +101,11 @@ export default async function decorate(block) {
   const icon = block.classList.contains('icon');
   const horizontal = block.classList.contains('horizontal');
   const logos = block.classList.contains('logos');
-  // icons are small (large icon photos are 144px, big-icons 112px, so they get a 2x rendition)
+  // icons are small (large icon photos are 144px, big-icons 112px, so they get a 2x rendition;
+  // photos span the card, so they get the regular photo rendition)
   let imageWidth = iconLinks || icon ? '160' : '750';
   if (icon && ['large', 'big-icons'].some((c) => block.classList.contains(c))) imageWidth = '320';
+  if (icon && block.classList.contains('photos')) imageWidth = '750';
   const ul = document.createElement('ul');
 
   [...block.children].forEach((row) => {
