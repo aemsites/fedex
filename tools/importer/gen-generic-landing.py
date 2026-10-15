@@ -73,6 +73,10 @@ EXTRA = {
         + ':has(> .row > .fxg-col:first-child > div > .aem-Grid > .experiencefragment .title_v1)'
         + ':has(> .row > .fxg-col:nth-child(3) > div > .aem-Grid > .experiencefragment .title_v1)',
     ],
+    # conditional forms (en-to ancillary-clearance-service country dropdown), marked in preprocess by
+    # transformers/fedex-landing.js markConditionalForms; the comparison-landing choice panels
+    # (open-account "How often do you ship?") are cards-promo's, inside a column_control_v1
+    'content-select': ['.root div.conditionalform[data-fedex-options]:not(.column_control_v1 *)'],
     # last: plain multi-column rows nobody else claimed (parser leaves non-grids alone)
     'columns': [
         '.root .column_control_v1' + NOT_IN_BLOCK + ':not(:has(> .row > .fxg-col:first-child.fxg-desktop--hide))',
@@ -85,7 +89,7 @@ PARSER_FILES = {
     'tabs': 'tabs', 'cards-logos': 'cardsLogos', 'accordion': 'accordion', 'widget': 'widget',
     'table': 'table', 'columns': 'columns', 'hero': 'hero', 'tabs-shipping': 'tabsShipping',
     'breadcrumb': 'breadcrumb', 'banner': 'banner', 'cards-grid': 'cardsGrid',
-    'columns-layout': 'columnsLayout',
+    'columns-layout': 'columnsLayout', 'content-select': 'contentSelect',
 }
 
 d = json.load(open(TPL))

@@ -8,7 +8,8 @@ __PARSER_IMPORTS__
 
 // TRANSFORMER IMPORTS
 import fedexCleanupTransformer from './transformers/fedex-cleanup.js';
-import fedexLandingTransformer, { markAdaptiveForms } from './transformers/fedex-landing.js';
+import fedexLandingTransformer, { markAdaptiveForms, markConditionalForms } from './transformers/fedex-landing.js';
+import { componentLibraryPath } from './parsers/content-select.js';
 import fedexTeasersTransformer, { resolveTeaserAnchors } from './transformers/fedex-teasers.js';
 import fedexPreprocess from './fedex-preprocess.js';
 
@@ -122,6 +123,7 @@ export default {
   preprocess: (payload) => {
     fedexPreprocess(payload);
     markAdaptiveForms(payload.document, (payload.params && payload.params.originalURL) || payload.url);
+    markConditionalForms(payload.document);
     resolveTeaserAnchors(payload.document.body, (payload.params && payload.params.originalURL) || payload.url);
   },
 
@@ -155,9 +157,24 @@ export default {
     executeTransformers('afterTransform', main, payload);
 
     // 5. WebImporter built-in rules
-    const hr = document.createElement('hr');
-    main.appendChild(hr);
-    WebImporter.rules.createMetadata(main, document);
+    // component-library pages (the content a Content Select option shows) are fragments: no metadata
+    const libraryPath = componentLibraryPath(new URL(params.originalURL).pathname);
+    if (libraryPath) {
+      // their notes come twice (desktop and mobile copy: ancillary/en_us/bd "Fees are listed in US
+      // Dollar…"); a paragraph repeating an earlier one is dropped
+      const seen = new Set();
+      // (text containers: paragraphs, or divs holding only inline content)
+      [...main.querySelectorAll('p, div')].filter((el) => !el.querySelector('p, div, table, ul, ol')).forEach((p) => {
+        const text = p.textContent.replace(/\s+/g, ' ').trim();
+        if (!text || p.closest('table, .table')) return;
+        if (seen.has(text)) p.remove();
+        else seen.add(text);
+      });
+    } else {
+      const hr = document.createElement('hr');
+      main.appendChild(hr);
+      WebImporter.rules.createMetadata(main, document);
+    }
     WebImporter.rules.transformBackgroundImages(main, document);
     WebImporter.rules.adjustImageUrls(main, url, params.originalURL);
 
@@ -165,7 +182,7 @@ export default {
     const rawPath = new URL(params.originalURL).pathname
       .replace(/\/$/, '')
       .replace(/\.html?$/, '');
-    const path = WebImporter.FileUtils.sanitizePath(rawPath === '' ? '/index' : rawPath);
+    const path = WebImporter.FileUtils.sanitizePath(libraryPath || (rawPath === '' ? '/index' : rawPath));
 
     // Accordion answers holding a table become fragments (parsers/accordion.js). The bulk runner
     // saves one document per URL, so each fragment is imported as <page>.html?fragment=<index>.

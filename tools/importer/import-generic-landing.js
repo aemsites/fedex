@@ -22,12 +22,14 @@ import accordionParser from './parsers/accordion.js';
 import widgetParser from './parsers/widget.js';
 import heroParser from './parsers/hero.js';
 import tabsShippingParser from './parsers/tabs-shipping.js';
+import contentSelectParser from './parsers/content-select.js';
 import tableParser from './parsers/table.js';
 import columnsParser from './parsers/columns.js';
 
 // TRANSFORMER IMPORTS
 import fedexCleanupTransformer from './transformers/fedex-cleanup.js';
-import fedexLandingTransformer, { markAdaptiveForms } from './transformers/fedex-landing.js';
+import fedexLandingTransformer, { markAdaptiveForms, markConditionalForms } from './transformers/fedex-landing.js';
+import { componentLibraryPath } from './parsers/content-select.js';
 import fedexTeasersTransformer, { resolveTeaserAnchors } from './transformers/fedex-teasers.js';
 import fedexPreprocess from './fedex-preprocess.js';
 
@@ -51,6 +53,7 @@ const parsers = {
   'widget': widgetParser,
   'hero': heroParser,
   'tabs-shipping': tabsShippingParser,
+  'content-select': contentSelectParser,
   'table': tableParser,
   'columns': columnsParser,
 };
@@ -516,7 +519,59 @@ const PAGE_TEMPLATE = {
     "https://www.fedex.com/en-us/healthcare/freezable-protection.html",
     "https://www.fedex.com/en-us/healthcare/pharmacy-delivery.html",
     "https://www.fedex.com/en-us/healthcare/global-solutions.html",
-    "https://www.fedex.com/en-us/healthcare/vaccine-shipping.html"
+    "https://www.fedex.com/en-us/healthcare/vaccine-shipping.html",
+    "https://www.fedex.com/en-to/home.html",
+    "https://www.fedex.com/en-to/shipping.html",
+    "https://www.fedex.com/en-to/shipping/packaging.html",
+    "https://www.fedex.com/en-to/shipping/packaging/large-pak.html",
+    "https://www.fedex.com/en-to/shipping/packaging/tube.html",
+    "https://www.fedex.com/en-to/shipping/packaging/small-box.html",
+    "https://www.fedex.com/en-to/shipping/packaging/medium-box.html",
+    "https://www.fedex.com/en-to/shipping/packaging/large-box.html",
+    "https://www.fedex.com/en-to/shipping/packaging/extra-large-pak.html",
+    "https://www.fedex.com/en-to/shipping/packaging/supplies.html",
+    "https://www.fedex.com/en-to/shipping/packaging/envelope.html",
+    "https://www.fedex.com/en-to/tracking.html",
+    "https://www.fedex.com/en-to/customs-tools.html",
+    "https://www.fedex.com/en-to/customer-support.html",
+    "https://www.fedex.com/en-to/customer-support/write-to-fedex.html",
+    "https://www.fedex.com/en-to/terms-of-use.html",
+    "https://www.fedex.com/en-to/terms-of-use/line-app-notification.html",
+    "https://www.fedex.com/en-to/service-news.html",
+    "https://www.fedex.com/en-to/about.html",
+    "https://www.fedex.com/en-to/about/resources.html",
+    "https://www.fedex.com/en-to/about/holiday-schedule.html",
+    "https://www.fedex.com/en-to/about/facts.html",
+    "https://www.fedex.com/en-to/about/history.html",
+    "https://www.fedex.com/en-to/about/sustainability.html",
+    "https://www.fedex.com/en-to/about/sustainability/our-approach.html",
+    "https://www.fedex.com/en-to/about/sustainability/our-approach/wing-drones-transport-fedex-deliveries-directly-to-homes.html",
+    "https://www.fedex.com/en-to/about/sustainability/our-approach/fedex-pilots-program-in-europe-to-improve-sustainable-deliveries.html",
+    "https://www.fedex.com/en-to/about/sustainability/our-approach/energy-management-systems-sustains-energy.html",
+    "https://www.fedex.com/en-to/about/sustainability/our-approach/fedex-solar-thermal-air-conditioning-system-saves-energy.html",
+    "https://www.fedex.com/en-to/about/sustainability/our-approach/fedex-ground-solar-power-systems-in-maui-models-future-energy.html",
+    "https://www.fedex.com/en-to/about/sustainability/our-approach/fedex-uniform-recycling-program-reduces-environmental-impacts.html",
+    "https://www.fedex.com/en-to/about/sustainability/taking-action.html",
+    "https://www.fedex.com/en-to/about/sustainability/get-inspired.html",
+    "https://www.fedex.com/en-to/about/sustainability/get-inspired/optimizing-your-packing.html",
+    "https://www.fedex.com/en-to/about/sustainability/get-inspired/efficient-packaging-in-action.html",
+    "https://www.fedex.com/en-to/about/sustainability/get-inspired/10-eco-friendly-tips.html",
+    "https://www.fedex.com/en-to/about/sustainability/get-inspired/eco-friendly-marketing-ideas.html",
+    "https://www.fedex.com/en-to/about/sustainability/get-inspired/fedex-plant-trees.html",
+    "https://www.fedex.com/en-to/about/sustainability/reports.html",
+    "https://www.fedex.com/en-to/about/sustainability/liviri-reusable-containers-promote-sustainability.html",
+    "https://www.fedex.com/en-to/about/sustainability/carbon-footprint-insights.html",
+    "https://www.fedex.com/en-to/open-account.html",
+    "https://www.fedex.com/en-to/see-whats-new.html",
+    "https://www.fedex.com/en-to/ancillary-clearance-service.html",
+    "https://www.fedex.com/en-to/shipping-tools.html",
+    "https://www.fedex.com/en-to/shipping-tools/online-shipping.html",
+    "https://www.fedex.com/en-to/shipping-tools/online-shipping/faq.html",
+    "https://www.fedex.com/en-to/shipping-tools/direct-integrations.html",
+    "https://www.fedex.com/en-to/new-customer.html",
+    "https://www.fedex.com/en-to/sitemap.html",
+    "https://www.fedex.com/en-to/eu-vat-changes.html",
+    "https://www.fedex.com/en-to/dropoff.html"
   ],
   "coverageGaps": [
     "Forms (AEM forms div.start > form.fxg-forms, adaptive forms): no form block yet, fields dropped, text kept",
@@ -666,6 +721,12 @@ const PAGE_TEMPLATE = {
       ]
     },
     {
+      "name": "content-select",
+      "instances": [
+        ".root div.conditionalform[data-fedex-options]:not(.column_control_v1 *)"
+      ]
+    },
+    {
       "name": "table",
       "instances": [
         ".root div.table:not(.accordion_selector *, .tabs_v1 *, .fxg-desktop--hide, .fxg-desktop--hide *)",
@@ -784,6 +845,7 @@ export default {
   preprocess: (payload) => {
     fedexPreprocess(payload);
     markAdaptiveForms(payload.document, (payload.params && payload.params.originalURL) || payload.url);
+    markConditionalForms(payload.document);
     resolveTeaserAnchors(payload.document.body, (payload.params && payload.params.originalURL) || payload.url);
   },
 
@@ -817,9 +879,24 @@ export default {
     executeTransformers('afterTransform', main, payload);
 
     // 5. WebImporter built-in rules
-    const hr = document.createElement('hr');
-    main.appendChild(hr);
-    WebImporter.rules.createMetadata(main, document);
+    // component-library pages (the content a Content Select option shows) are fragments: no metadata
+    const libraryPath = componentLibraryPath(new URL(params.originalURL).pathname);
+    if (libraryPath) {
+      // their notes come twice (desktop and mobile copy: ancillary/en_us/bd "Fees are listed in US
+      // Dollar…"); a paragraph repeating an earlier one is dropped
+      const seen = new Set();
+      // (text containers: paragraphs, or divs holding only inline content)
+      [...main.querySelectorAll('p, div')].filter((el) => !el.querySelector('p, div, table, ul, ol')).forEach((p) => {
+        const text = p.textContent.replace(/\s+/g, ' ').trim();
+        if (!text || p.closest('table, .table')) return;
+        if (seen.has(text)) p.remove();
+        else seen.add(text);
+      });
+    } else {
+      const hr = document.createElement('hr');
+      main.appendChild(hr);
+      WebImporter.rules.createMetadata(main, document);
+    }
     WebImporter.rules.transformBackgroundImages(main, document);
     WebImporter.rules.adjustImageUrls(main, url, params.originalURL);
 
@@ -827,7 +904,7 @@ export default {
     const rawPath = new URL(params.originalURL).pathname
       .replace(/\/$/, '')
       .replace(/\.html?$/, '');
-    const path = WebImporter.FileUtils.sanitizePath(rawPath === '' ? '/index' : rawPath);
+    const path = WebImporter.FileUtils.sanitizePath(libraryPath || (rawPath === '' ? '/index' : rawPath));
 
     // Accordion answers holding a table become fragments (parsers/accordion.js). The bulk runner
     // saves one document per URL, so each fragment is imported as <page>.html?fragment=<index>.

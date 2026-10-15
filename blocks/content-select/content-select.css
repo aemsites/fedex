@@ -1,0 +1,6 @@
+/* content-select: styled to match fedex.com (see README) */
+.content-select .content-select-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
