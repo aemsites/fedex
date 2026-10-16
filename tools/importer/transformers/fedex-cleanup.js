@@ -405,7 +405,9 @@ function rewriteJumpLinks(element) {
   element.querySelectorAll(HEADINGS).forEach((h) => {
     const text = cleanText(h);
     if (!text) return;
-    const slug = slugger(text);
+    // the slugger drops Unicode spaces other than the no-break space (en-to terms-of-use
+    // "FedEx® Import Tool" -> #section-27-fedeximport-tool), cleanText made them spaces
+    const slug = slugger(h.textContent.replace(/[\u2000-\u200b\u202f\u205f\u3000]/g, '').replace(/\s+/g, ' ').trim());
     const id = h.getAttribute(ANCHOR_MARKER) || h.id;
     if (id && !byId[id]) byId[id] = slug;
     if (!byText[text]) byText[text] = slug;
