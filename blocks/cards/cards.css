@@ -1282,3 +1282,13 @@ main .default-content-wrapper:has(> .button-wrapper:last-child) + .cards-wrapper
     column-gap: 0;
   }
 }
+
+/*
+ * featured: a teaser that is fedex.com's featured offer on its listing (the importer sets it from
+ * teaser-pages.js; en-to shipping-tools "FedEx Ship Manager", get-inspired "FedEx Supporting
+ * International Forests"): the component's own 16px margin below it (get-inspired: 16px to the next
+ * teaser). Text after it gets more room (styles.css).
+ */
+.cards.featured {
+  margin-bottom: var(--space-4);
+}

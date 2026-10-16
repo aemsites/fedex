@@ -432,6 +432,21 @@ main > .section > :where(div:not(.default-content-wrapper)) + .default-content-w
   margin-top: var(--space-8);
 }
 
+/*
+ * text after a featured offer (Cards (…, featured)): fedex.com's component margin plus the spacers
+ * it puts before the text (en-to shipping-tools "Take control of your shipments…": 46px on mobile,
+ * 70px from 768px)
+ */
+main > .section > :where(.cards-wrapper:has(> .cards.featured)) + .default-content-wrapper {
+  margin-top: 46px;
+}
+
+@media (width >= 768px) {
+  main > .section > :where(.cards-wrapper:has(> .cards.featured)) + .default-content-wrapper {
+    margin-top: 70px;
+  }
+}
+
 /* section metadata */
 
 /* light: one content-width panel shared by everything in the section */

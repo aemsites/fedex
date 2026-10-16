@@ -249,6 +249,11 @@ function convertTeaserBlocks(element, doc) {
     } else {
       name = 'Cards (promo, teasers)';
     }
+    // `featured`: the teaser is fedex.com's featured offer on this listing (its own copy and the
+    // component's spacing: en-to shipping-tools "FedEx Ship Manager")
+    if (teasers.every((item) => ((TEASER_PAGES[item.path] || {}).featured || []).includes(currentPage))) {
+      name = name.replace(/\)$/, ', featured)');
+    }
     const block = WebImporter.Blocks.createBlock(doc, {
       name,
       cells: teasers.map((item) => [teaserRow(doc, item)]),
