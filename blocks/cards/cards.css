@@ -347,6 +347,11 @@
   width: var(--cards-icon-size);
 }
 
+/* the text spans the card (as the source column), it does not shrink to its longest line */
+.cards.icon.centered .cards-card-body {
+  align-self: stretch;
+}
+
 /* centered (with promo): centered text and CTA/button (e.g. open-account choice panels) */
 .cards.promo.centered .cards-card-body {
   text-align: center;
@@ -446,26 +451,39 @@
 
 /*
  * promo + centered without light (nl-nl shipping "Internationaal verzenden", home "Tijdbesparende
- * tips"): large light titles 36px below the image and 24px above the text, the CTA/button follows
- * the text (not pinned to the bottom) and buttons are 300px wide (long labels wrap, as in the source).
+ * tips", en-to shipping "Additional Resources"): images at their natural ratio (not cropped), large
+ * light titles 24px below the image and 20px above the text on mobile (the title's 16px plus the
+ * text's own 4px), 36px and 28px from 768px; the CTA/button follows the text (not pinned to the bottom). Primary (orange) buttons are
+ * 300px wide (long labels wrap, as in the source); outlined buttons fit their label (min. 160px).
  * Promo, light, centered (open-account choice panels) is unaffected.
  */
 .cards.promo.centered:not(.light) {
-  --cards-title-spacing: var(--space-9);
+  --cards-title-spacing: var(--space-6);
+  --cards-centered-title-end: var(--space-4);
 
   /* nl-nl home: space above the "Laatste nieuws" promo that follows in the same section */
   margin-bottom: var(--space-6);
 }
 
+/* at most the card width, smaller artwork at its own size, centred (en-us supplies' 112px icons) */
+.cards.promo.centered:not(.light) .cards-card-image img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  margin-inline: auto;
+  aspect-ratio: auto;
+}
+
 .cards.promo.centered:not(.light) .cards-card-body h3 {
-  margin-bottom: var(--space-6);
+  margin-bottom: var(--cards-centered-title-end);
   font-size: var(--heading-font-size-l);
   font-weight: var(--font-weight-light);
   line-height: var(--heading-line-height);
 }
 
 .cards.promo.centered:not(.light) .cards-card-body h3 + p {
-  margin-top: 0;
+  margin-top: var(--space-1);
 }
 
 .cards.promo.centered:not(.light) .cards-card-body .cards-card-cta,
@@ -474,7 +492,7 @@
   padding-top: var(--space-3);
 }
 
-.cards.promo.centered:not(.light) .button-wrapper .button {
+.cards.promo.centered:not(.light) .button-wrapper .button.primary {
   width: 300px;
   max-width: 100%;
 }
@@ -1008,4 +1026,60 @@ main .default-content-wrapper:has(> .button-wrapper:last-child) + .cards-wrapper
   color: var(--color-orange);
   vertical-align: baseline;
   transform: none;
+}
+
+/*
+ * photos captioned by a single link (en-to packaging "Envelope", "Small Box"): the source's caption,
+ * a 16px light underlined link in the text colour and authored case, 13px below the photo (35px
+ * from 768px) and lined up across the row (at the foot of the card), 8px below it on mobile (cards
+ * follow each other closely); the photo is 90% of the card, centred. Photo cards
+ * with a title or text are unaffected.
+ */
+.cards.icon.centered.photos > ul > li:has(> .cards-card-body > .cards-card-cta:only-child) {
+  --cards-photos-end: var(--space-2);
+  --cards-caption-gap: 13px;
+
+  justify-content: space-between;
+  gap: var(--cards-caption-gap);
+}
+
+.cards.icon.centered.photos > ul > li:has(> .cards-card-body > .cards-card-cta:only-child) .cards-card-image {
+  width: 90%;
+}
+
+.cards.icon.centered.photos .cards-card-body > .cards-card-cta:only-child {
+  font-size: var(--body-font-size-m);
+  line-height: var(--body-line-height);
+}
+
+.cards.icon.centered.photos .cards-card-body > .cards-card-cta:only-child a:any-link {
+  color: var(--text-color);
+  font-weight: var(--font-weight-light);
+  letter-spacing: var(--body-letter-spacing);
+  text-decoration: underline;
+  text-transform: none;
+}
+
+@media (width >= 768px) {
+  /*
+   * centered with 1 or 2 cards: centred in the row as on the source (en-to new-customer "Contact
+   * Customer Support": the middle third; customer-support "Write to Us / Customer Service": halves)
+   */
+  .cards.icon.centered.cards-1-items > ul > li {
+    grid-column: 2;
+  }
+
+  .cards.icon.centered.cards-2-items > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cards.promo.centered:not(.light) {
+    --cards-title-spacing: var(--space-9);
+    --cards-centered-title-end: var(--space-6);
+  }
+
+  .cards.icon.centered.photos > ul > li:has(> .cards-card-body > .cards-card-cta:only-child) {
+    --cards-photos-end: 21px;
+    --cards-caption-gap: 35px;
+  }
 }
