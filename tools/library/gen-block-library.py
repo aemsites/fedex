@@ -5,13 +5,17 @@
 #  - content/docs/library/blocks/<name>.plain.html: one section per variant, its first English
 #    instance (en-us first, then en-to and the other English locales; rows trimmed, images swapped
 #    for the library placeholders) + library-metadata
-#  - content/docs/library/blocks.json (the Library panel index)
+#  - content/docs/library/blocks.json: the Library panel index (first sheet) and the `options` sheet
+#    the DA editor autocompletes key/value blocks from: Section Metadata `style` lists every section
+#    style the code defines (`.section.<style>` in the CSS, or a class in the CSS that pages use as a
+#    style), Metadata lists the page keys (Title, Description, Image)
 # Update from changes: after changing a block, its README or the variants the importer emits, pass
 # the changed blocks (the index is always rebuilt):
 #   python3 tools/library/gen-block-library.py cards table
 #   bash tools/library/upload-block-library.sh cards table
-# Without arguments every block is regenerated. REPO overrides the repository root (default: the
-# checkout holding this script).
+# Without arguments every block is regenerated; --index-only rebuilds only blocks.json (index and
+# options). REPO overrides the repository root for the code (READMEs, CSS; default: the checkout
+# holding this script), CONTENT_ROOT the one holding content/ and migration-work/ (default: REPO).
 import collections
 import glob
 import json
@@ -20,16 +24,18 @@ import re
 import sys
 
 R = os.environ.get('REPO') or os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+C = os.environ.get('CONTENT_ROOT') or R
 ORG, SITE = 'aemsites', 'fedex'
 # the site's library folder (the DA config's Blocks entry is docs/library/blocks.json)
-LIB = f'{R}/content/docs/library'
+LIB = f'{C}/content/docs/library'
 # local imports, newest first: a page found in an earlier source wins (the en-to critique
-# re-imports, final5 > final4 > final3, before the older ones)
-SOURCES = [f'{R}/migration-work/en-to/final5/content', f'{R}/migration-work/en-to/final4/content',
-           f'{R}/migration-work/en-to/final3/content', f'{R}/content',
-           f'{R}/migration-work/en-to/final2/content',
-           f'{R}/migration-work/en-us-150/wsb/content', f'{R}/migration-work/en-us-100c/wsc/content',
-           f'{R}/migration-work/en-us-100d/wsc/content']
+# re-imports, migration-work/en-to/final<N>, highest N first, before the older ones)
+FINALS = sorted(glob.glob(f'{C}/migration-work/en-to/final[0-9]*/content'),
+                key=lambda d: -int(re.search(r'final(\d+)', d).group(1)))
+SOURCES = [d for d in FINALS if not d.endswith('final2/content')] + [
+    f'{C}/content', f'{C}/migration-work/en-to/final2/content',
+    f'{C}/migration-work/en-us-150/wsb/content', f'{C}/migration-work/en-us-100c/wsc/content',
+    f'{C}/migration-work/en-us-100d/wsc/content']
 SOURCES = [s for s in SOURCES if os.path.isdir(s)]
 # not authored as blocks in pages: the header/footer are fragments, language-switch lives in the
 # footer, fragment is inserted by link
@@ -38,11 +44,33 @@ WIDE = {'hero', 'banner'}
 MAX_ROWS = {'accordion': 3, 'table': 4, 'content-select': 5, 'cards': 3, 'tabs': 3, 'breadcrumb': 1}
 
 blocks = sorted(b for b in os.listdir(f'{R}/blocks') if os.path.isdir(f'{R}/blocks/{b}') and b not in EXCLUDE)
-# the blocks to regenerate (arguments), else all
-selected = sys.argv[1:] or blocks
+# the blocks to regenerate (arguments), else all; --index-only: none
+args = sys.argv[1:]
+selected = [] if args == ['--index-only'] else (args or blocks)
 unknown = [b for b in selected if b not in blocks]
 if unknown:
     sys.exit(f'unknown block(s): {", ".join(unknown)}')
+
+
+def css_text():
+    """The site's CSS: styles/*.css and every block's CSS."""
+    files = glob.glob(f'{R}/styles/*.css') + glob.glob(f'{R}/blocks/*/*.css')
+    return '\n'.join(open(f, errors='ignore').read() for f in files)
+
+
+def section_style_names():
+    """Section styles the code supports: `.section.<style>` in a selector, or a style the pages use
+    that the CSS has as a class (faq-title, classic-form). Block wrappers (-container) and the
+    importer's per-page spacing steps (space-below-N) are left out."""
+    css = re.sub(r'/\*.*?\*/', '', css_text(), flags=re.S)
+    names = set()
+    for m in re.finditer(r'\.section((?:\.[a-z][a-z0-9-]*)+)', css):
+        names.update(m.group(1).strip('.').split('.'))
+    classes = set(re.findall(r'\.([a-z][a-z0-9-]*)', css))
+    names.update(st for st in section_styles if st in classes)
+    return sorted(n for n in names if not n.endswith('-container') and not n.startswith('space-below'))
+
+
 
 
 def find_div(html, start):
@@ -82,9 +110,14 @@ for src in SOURCES:
     for f in glob.glob(f'{src}/**/*.plain.html', recursive=True):
         if '/library/' not in f:
             pages.setdefault(page_path(f), f)
+section_styles = collections.Counter()
 for path in sorted(pages):
     f = pages[path]
     html = open(f, errors='ignore').read()
+    for m in re.finditer(r'<div class="section-metadata">\s*<div>\s*<div>\s*style\s*</div>\s*<div>([^<]*)</div>', html, re.I):
+        for st in m.group(1).split(','):
+            if st.strip():
+                section_styles[st.strip().lower()] += 1
     for m in re.finditer(r'<div class="([a-z0-9 -]+)">', html):
         toks = m.group(1).split()
         if toks[0] not in blocks:
@@ -251,6 +284,16 @@ for b in blocks:
         print(f'  README variants without a sample (not used in the pages): {", ".join(unused)}')
 
 index.sort(key=lambda e: e['name'])
-json.dump({'total': len(index), 'offset': 0, 'limit': len(index), 'data': index, ':type': 'sheet'},
+# the options sheet (da-live keyAutocomplete: key | blocks | values, values pipe-separated, empty =
+# free text); page metadata keys are the ones the pages carry
+OPTIONS = [
+    {'key': 'style', 'blocks': 'section-metadata', 'values': ' | '.join(section_style_names())},
+    {'key': 'Title', 'blocks': 'metadata', 'values': ''},
+    {'key': 'Description', 'blocks': 'metadata', 'values': ''},
+    {'key': 'Image', 'blocks': 'metadata', 'values': ''},
+]
+sheet = lambda rows: {'total': len(rows), 'offset': 0, 'limit': len(rows), 'data': rows}
+json.dump({':names': ['data', 'options'], ':version': 3, ':type': 'multi-sheet',
+           'data': sheet(index), 'options': sheet(OPTIONS)},
           open(f'{LIB}/blocks.json', 'w'), indent=2)
-print(len(index), 'blocks in blocks.json')
+print(len(index), 'blocks in blocks.json;', len(OPTIONS), 'options; section styles:', OPTIONS[0]['values'])
