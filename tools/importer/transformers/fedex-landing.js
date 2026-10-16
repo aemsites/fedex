@@ -881,6 +881,7 @@ const CLASSIC_FORMS = new Set([
 // packaging-supplies: a photo, title and quantity per product, then "Where shall we deliver the
 // supplies?"): nothing of the form stays on the page
 const SELF_CONTAINED_FORMS = new Set(['packaging-supplies']);
+const CLASSIC_FORM_ATTR = 'data-fedex-classic-form';
 // Conditional forms (en-to ancillary-clearance-service "Select Country/Territory"): a dropdown whose
 // options load a component-library page each (/content/fedex-com/component-library/ancillary/
 // en_us/au.html: that country's fee table). The options live in a JSON config script, which cleanup
@@ -925,6 +926,8 @@ export function markAdaptiveForms(document, url) {
     const marker = document.createElement('p');
     marker.setAttribute(FORM_MARKER, name);
     marker.textContent = `form ${name}`;
+    // flat classic forms get fedex.com's classic field look (section style classic-form, form.css)
+    if (!SELF_CONTAINED_FORMS.has(classicName)) marker.setAttribute(CLASSIC_FORM_ATTR, '');
     const texts = SELF_CONTAINED_FORMS.has(classicName) ? []
       : [...form.querySelectorAll('.richtext')].filter((r) => clean(r.textContent));
     form.replaceWith(...texts, marker);
@@ -944,6 +947,12 @@ export function markAdaptiveForms(document, url) {
     marker.textContent = `form ${name}`;
     comp.replaceWith(marker);
   });
+}
+
+// a flat classic form's section gets the style classic-form (blocks/form/form.css: fedex.com's
+// labels above 970px fields, dark asterisks, FedEx chevron, centred Submit)
+function markClassicForms(element, doc) {
+  element.querySelectorAll(`[${CLASSIC_FORM_ATTR}]`).forEach((marker) => marker.after(styleMarker(doc, 'classic-form')));
 }
 
 function createFormBlocks(element, doc, locale) {
@@ -1041,6 +1050,7 @@ export default function transform(hookName, element, payload) {
   convertJumpLinkGrids(element, doc);
   insertSectionBreaks(element, doc);
   markRules(element, doc);
+  markClassicForms(element, doc);
   // after the panels are unwrapped: a centred title inside a panel opens its section too
   unwrapCenteredPanels(element, doc);
   inlineArrowLinks(element, doc);
