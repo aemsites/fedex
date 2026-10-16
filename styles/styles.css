@@ -441,9 +441,22 @@ main > .section > :where(.cards-wrapper:has(> .cards.featured)) + .default-conte
   margin-top: 46px;
 }
 
+/*
+ * a featured offer under the section's title or text: fedex.com adds its component margin and a
+ * spacer to the heading's own margin (shipping-tools "Easy, speedy online shipping tools": 45px on
+ * mobile, 66px from 768px). Padding, so it adds to the heading margin instead of collapsing into it.
+ */
+main > .section > .default-content-wrapper + :where(.cards-wrapper:has(> .cards.featured)) {
+  padding-top: 21px;
+}
+
 @media (width >= 768px) {
   main > .section > :where(.cards-wrapper:has(> .cards.featured)) + .default-content-wrapper {
     margin-top: 70px;
+  }
+
+  main > .section > .default-content-wrapper + :where(.cards-wrapper:has(> .cards.featured)) {
+    padding-top: 26px;
   }
 }
 
