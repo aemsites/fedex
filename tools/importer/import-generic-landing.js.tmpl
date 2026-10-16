@@ -8,7 +8,7 @@ __PARSER_IMPORTS__
 
 // TRANSFORMER IMPORTS
 import fedexCleanupTransformer from './transformers/fedex-cleanup.js';
-import fedexLandingTransformer, { markAdaptiveForms, markConditionalForms, measureHeroSpacing } from './transformers/fedex-landing.js';
+import fedexLandingTransformer, { markAdaptiveForms, markConditionalForms } from './transformers/fedex-landing.js';
 import { componentLibraryPath } from './parsers/content-select.js';
 import fedexTeasersTransformer, { resolveTeaserAnchors } from './transformers/fedex-teasers.js';
 import fedexPreprocess from './fedex-preprocess.js';
@@ -122,8 +122,6 @@ export default {
   // adaptive form configs
   preprocess: (payload) => {
     fedexPreprocess(payload);
-    // before the forms are replaced: the space under the hero is measured to the form's own title
-    measureHeroSpacing(payload.document);
     markAdaptiveForms(payload.document, (payload.params && payload.params.originalURL) || payload.url);
     markConditionalForms(payload.document);
     resolveTeaserAnchors(payload.document.body, (payload.params && payload.params.originalURL) || payload.url);
