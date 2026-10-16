@@ -93,6 +93,85 @@
   font-size: var(--heading-font-size-s);
 }
 
+/*
+ * two-level FAQ (en-to customer-support): a category item whose fragment answer holds
+ * another accordion. The open category is a light grey panel; its questions start a
+ * quarter of the way in (fedex.com's 2-of-8 column offset) and run to the right edge,
+ * as white rows with "+" / "-" icons. Single-level accordions are unchanged.
+ */
+.accordion .accordion {
+  --accordion-inset: var(--space-12);
+  --accordion-chevron-inset: var(--space-12);
+  --accordion-rule: 1px solid #8e8e8e; /* source row rule */
+
+  border-bottom: 0;
+}
+
+.accordion .accordion .accordion-item {
+  border-top: var(--accordion-rule);
+  background-color: var(--background-color);
+}
+
+/* 16 + 26 + 16 + the 1px rule; text stops 8px before the 24px icon */
+.accordion .accordion .accordion-item-label {
+  min-height: calc(var(--space-16) - 1px);
+  padding: var(--space-4) calc(var(--accordion-chevron-inset) + var(--space-6) + var(--space-2)) var(--space-4) var(--accordion-inset);
+  font-size: 20px;
+  line-height: 26px;
+}
+
+.accordion .accordion .accordion-item[open] > .accordion-item-label {
+  font-weight: var(--font-weight-regular);
+}
+
+/* "+" when closed, "-" when open: 24px, 1.5px strokes */
+.accordion .accordion .accordion-item > .accordion-item-label::after {
+  width: var(--space-6);
+  height: var(--space-6);
+  border: 0;
+  background:
+    linear-gradient(currentcolor, currentcolor) center / 100% 1.5px no-repeat,
+    linear-gradient(currentcolor, currentcolor) center / 1.5px 100% no-repeat;
+  transform: translateY(-50%);
+}
+
+.accordion .accordion .accordion-item[open] > .accordion-item-label::after {
+  background-size: 100% 1.5px, 0 0;
+  transform: translateY(-50%);
+}
+
+.accordion .accordion .accordion-item-body {
+  padding: 0 var(--accordion-inset) var(--space-4);
+}
+
+.accordion .accordion .accordion-item-body > p {
+  margin: var(--space-1) 0 var(--space-2);
+}
+
+.accordion .accordion .accordion-item-body > :is(ul, ol) {
+  margin: 0 0 var(--space-4);
+  padding-left: var(--space-8);
+}
+
+.accordion .accordion .accordion-item-body a {
+  letter-spacing: normal;
+}
+
+/* the open category: grey label and panel, the questions indented */
+.accordion .accordion-item:has(> .accordion-item-body .accordion)[open] > .accordion-item-label {
+  background-color: var(--panel-color);
+  font-weight: var(--font-weight-regular);
+}
+
+.accordion .accordion-item-body:has(.accordion) {
+  padding: 0 0 var(--space-4);
+  background-color: var(--panel-color);
+}
+
+.accordion .accordion-item-body .accordion-wrapper {
+  margin-left: calc((100% - 2 * var(--space-8)) / 4);
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .accordion .accordion-item-label::after {
     transition: transform 0.2s;

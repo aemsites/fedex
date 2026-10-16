@@ -2,14 +2,33 @@
   --tabs-shipping-tile-width: 158px;
   --tabs-shipping-tile-height: 102px;
   --tabs-shipping-tile-raise: var(--space-1);
+  --tabs-shipping-tile-raise-top: var(--tabs-shipping-tile-raise);
+  --tabs-shipping-tile-raise-bottom: var(--tabs-shipping-tile-raise);
+  --tabs-shipping-panel-gap: var(--space-12);
   --tabs-shipping-icon-size: var(--icon-size-m);
   --tabs-shipping-input-border-color: color-mix(in srgb, var(--text-color) 55%, var(--color-white));
   --tabs-shipping-form-max-width: 587px;
+  --tabs-shipping-arrow-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linejoin='round'%3E%3Cpath d='M14 3l9 9-9 9M23 12H0'/%3E%3C/svg%3E");
 
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-12);
+  gap: var(--tabs-shipping-panel-gap);
+}
+
+/*
+ * fedex.com "cube" widget (en-to, nl-nl homes): the Track panel holds only the form
+ * (en-us has an intro text before it). Its tiles sit lower under the heading, the selected
+ * tile rises 15px above and 5px below the row, the form sits 58px below the tiles and the
+ * hero ends 40px below it; the input is a black 20px field and TRACK has an arrow.
+ */
+.tabs-shipping:has(.tabs-shipping-panel > .tabs-shipping-track:first-child) {
+  --tabs-shipping-tile-raise-top: 7px;
+  --tabs-shipping-tile-raise-bottom: 3px;
+  --tabs-shipping-panel-gap: 56px;
+
+  margin-bottom: -22px; /* the hero section's 32px bottom padding: 10px below the form */
+  padding-top: 7px;
 }
 
 /* tiles */
@@ -43,10 +62,11 @@
   cursor: pointer;
 }
 
-/* the selected tile is taller and overlaps the row above and below */
+/* the selected tile is taller and overlaps the row above and below; its icon and label stay in line */
 .tabs-shipping .tabs-shipping-tab[aria-selected="true"] {
-  min-height: calc(var(--tabs-shipping-tile-height) + 2 * var(--tabs-shipping-tile-raise));
-  margin-block: calc(-1 * var(--tabs-shipping-tile-raise));
+  min-height: calc(var(--tabs-shipping-tile-height) + var(--tabs-shipping-tile-raise-top) + var(--tabs-shipping-tile-raise-bottom));
+  margin-block: calc(-1 * var(--tabs-shipping-tile-raise-top)) calc(-1 * var(--tabs-shipping-tile-raise-bottom));
+  padding-top: calc(var(--tabs-shipping-tile-raise-top) - var(--tabs-shipping-tile-raise-bottom));
   background-color: var(--dark-color);
   color: var(--color-white);
 }
@@ -152,6 +172,31 @@
   padding-block: 0;
 }
 
+/* cube widget form: black 20px input text, 16px placeholder, 10px text inset; TRACK + arrow */
+.tabs-shipping:has(.tabs-shipping-panel > .tabs-shipping-track:first-child) .tabs-shipping-track input {
+  padding-left: 10px;
+  color: #000;
+  font-size: 20px;
+}
+
+.tabs-shipping:has(.tabs-shipping-panel > .tabs-shipping-track:first-child) .tabs-shipping-track input::placeholder {
+  font-size: var(--body-font-size-m);
+}
+
+.tabs-shipping:has(.tabs-shipping-panel > .tabs-shipping-track:first-child) .tabs-shipping-track .button {
+  min-width: 0;
+}
+
+.tabs-shipping:has(.tabs-shipping-panel > .tabs-shipping-track:first-child) .tabs-shipping-track .button::after {
+  content: '';
+  flex: none;
+  width: 15px;
+  height: var(--space-6);
+  margin-left: 18px; /* the source's 8px gap + 10px icon margin */
+  background-color: currentcolor;
+  mask: var(--tabs-shipping-arrow-icon) center / contain no-repeat;
+}
+
 @media (width >= 768px) {
   .tabs-shipping {
     --tabs-shipping-tile-height: 120px;
@@ -161,5 +206,18 @@
 
   .tabs-shipping .tabs-shipping-track {
     gap: var(--space-2);
+  }
+
+  .tabs-shipping:has(.tabs-shipping-panel > .tabs-shipping-track:first-child) {
+    --tabs-shipping-tile-raise-top: 15px;
+    --tabs-shipping-tile-raise-bottom: 5px;
+    --tabs-shipping-panel-gap: 58px;
+
+    margin-bottom: -24px; /* the hero section's 64px bottom padding: 40px below the form */
+    padding-top: 10px;
+  }
+
+  .tabs-shipping:has(.tabs-shipping-panel > .tabs-shipping-track:first-child) .tabs-shipping-track {
+    gap: 10px;
   }
 }
