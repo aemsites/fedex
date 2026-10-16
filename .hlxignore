@@ -10,4 +10,3 @@ tools/importer/*
 # vendored form block: Universal Editor models, not used with Document Authoring
 blocks/form/**/_*.json
 tools/library/*
-blocks/*/metadata.json

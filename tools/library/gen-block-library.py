@@ -1,23 +1,33 @@
-# Builds the DA block library from the migrated content (excat block-library-creator, DA path):
-#  - blocks/<name>/metadata.json (block-variant-manager shape: variants = the class combinations the
-#    migrated pages use, usage = the pages using the block, description from the block README)
-#  - content/library/blocks/<name>.plain.html: one section per variant, its first real instance
-#    (rows trimmed, images swapped for the library placeholders) + library-metadata
-#  - content/library/blocks.json (the Library panel index)
-# Sources: content/**/*.plain.html (earlier locale imports) and the en-to upload set.
-# Run from anywhere: python3 tools/library/gen-block-library.py, then bash tools/library/upload-block-library.sh
+# Builds the DA block library from the block READMEs and the migrated content, nothing stored in
+# between: names, descriptions and variant texts come from blocks/<name>/README.md, the variants
+# and their samples from the class combinations the current migrated pages use (looked up on every
+# run, never saved).
+#  - content/docs/library/blocks/<name>.plain.html: one section per variant, its first English
+#    instance (en-us first, then en-to and the other English locales; rows trimmed, images swapped
+#    for the library placeholders) + library-metadata
+#  - content/docs/library/blocks.json (the Library panel index)
+# Update from changes: after changing a block, its README or the variants the importer emits, pass
+# the changed blocks (the index is always rebuilt):
+#   python3 tools/library/gen-block-library.py cards table
+#   bash tools/library/upload-block-library.sh cards table
+# Without arguments every block is regenerated. REPO overrides the repository root (default: the
+# checkout holding this script).
 import collections
-import datetime
 import glob
 import json
 import os
 import re
+import sys
 
-R = '/backups/aemsites/fedex/repo'
+R = os.environ.get('REPO') or os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 ORG, SITE = 'aemsites', 'fedex'
 # the site's library folder (the DA config's Blocks entry is docs/library/blocks.json)
 LIB = f'{R}/content/docs/library'
-SOURCES = [f'{R}/content', f'{R}/migration-work/en-to/final2/content',
+# local imports, newest first: a page found in an earlier source wins (the en-to critique
+# re-imports, final5 > final4 > final3, before the older ones)
+SOURCES = [f'{R}/migration-work/en-to/final5/content', f'{R}/migration-work/en-to/final4/content',
+           f'{R}/migration-work/en-to/final3/content', f'{R}/content',
+           f'{R}/migration-work/en-to/final2/content',
            f'{R}/migration-work/en-us-150/wsb/content', f'{R}/migration-work/en-us-100c/wsc/content',
            f'{R}/migration-work/en-us-100d/wsc/content']
 SOURCES = [s for s in SOURCES if os.path.isdir(s)]
@@ -26,9 +36,13 @@ SOURCES = [s for s in SOURCES if os.path.isdir(s)]
 EXCLUDE = {'header', 'footer', 'language-switch'}
 WIDE = {'hero', 'banner'}
 MAX_ROWS = {'accordion': 3, 'table': 4, 'content-select': 5, 'cards': 3, 'tabs': 3, 'breadcrumb': 1}
-NOW = datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%S.000Z')
 
 blocks = sorted(b for b in os.listdir(f'{R}/blocks') if os.path.isdir(f'{R}/blocks/{b}') and b not in EXCLUDE)
+# the blocks to regenerate (arguments), else all
+selected = sys.argv[1:] or blocks
+unknown = [b for b in selected if b not in blocks]
+if unknown:
+    sys.exit(f'unknown block(s): {", ".join(unknown)}')
 
 
 def find_div(html, start):
@@ -61,12 +75,15 @@ def page_path(f):
     return f
 
 
-# instances: block -> combo -> [(page, html)]
+# instances: block -> combo -> [(page, class, html)], looked up in the current content on every run
 instances = collections.defaultdict(lambda: collections.defaultdict(list))
-pages_using = collections.defaultdict(set)
-files = [f for src in SOURCES for f in glob.glob(f'{src}/**/*.plain.html', recursive=True)
-         if '/library/' not in f]
-for f in sorted(files):
+pages = {}
+for src in SOURCES:
+    for f in glob.glob(f'{src}/**/*.plain.html', recursive=True):
+        if '/library/' not in f:
+            pages.setdefault(page_path(f), f)
+for path in sorted(pages):
+    f = pages[path]
     html = open(f, errors='ignore').read()
     for m in re.finditer(r'<div class="([a-z0-9 -]+)">', html):
         toks = m.group(1).split()
@@ -74,14 +91,17 @@ for f in sorted(files):
             continue
         combo = ' '.join([toks[0]] + [t for t in toks[1:]])
         key = ' '.join([toks[0]] + sorted(toks[1:]))
-        instances[toks[0]][key].append((page_path(f), m.group(1), html[m.start():find_div(html, m.start())]))
-        pages_using[toks[0]].add(page_path(f))
+        instances[toks[0]][key].append((path, m.group(1), html[m.start():find_div(html, m.start())]))
 
 
 # README intros that don't describe the block for authors
 INTRO = {
     'form': 'A form built from a sheet definition (/{locale}/forms/<name>.json): fields, fieldsets, validation and Submit.',
+    'fragment': 'Inserts a shared fragment (a page under /fragments/ or /{locale}/fragments/) by its link.',
+    'tabs-shipping': 'The homepage Rate & Ship, Track and Locations tiles, one row per tab with an icon and label, then its links or the tracking form.',
 }
+# README titles that are the block's folder name: the block name authors type
+TITLE = {'tabs-shipping': 'Tabs Shipping'}
 
 
 def readme(b):
@@ -89,7 +109,7 @@ def readme(b):
     if not os.path.exists(p):
         return b.replace('-', ' ').title(), '', {}
     text = open(p).read()
-    title = (re.search(r'^# (.+)$', text, re.M) or [None, b.replace('-', ' ').title()])[1].strip()
+    title = TITLE.get(b) or (re.search(r'^# (.+)$', text, re.M) or [None, b.replace('-', ' ').title()])[1].strip()
     intro = INTRO.get(b) or next((l.strip() for l in text.split('\n')[1:] if l.strip() and not l.startswith(('#', '|', '-'))), '')
     # token -> [(with-token or None, text)]: "- `large` with `horizontal`: …" describes the token
     # in that combination only
@@ -120,11 +140,18 @@ def token_text(entries, combo):
 
 def first_sentence(t, limit=220):
     # "modifier for `icon, centered`: 96px icons, …" -> what the modifier does
-    t = re.sub(r'^modifier for `[^`]+`[:.]?\s*', '', t)
+    t = re.sub(r'^modifier for `[^`]+`(\s*\([^)]*\))?[:.]?\s*', '', t)
     t = re.sub(r'\[([^\]]+)\]\([^)]+\)', r'\1', t)
     t = re.sub(r'`([^`]*)`', r'\1', t)
     t = re.sub(r'\*\*?([^*]+)\*\*?', r'\1', t)
-    s = re.split(r'(?<=[.;:])\s', t, maxsplit=1)[0].rstrip(':;')
+    # the first sentence; "e.g." and "i.e." don't end it (Tabs "Generic tabbed content, e.g. the
+    # billing-online panels.")
+    s = t
+    for m in re.finditer(r'(?<=[.;:])\s', t):
+        if not re.search(r'\b(e\.g|i\.e|etc|approx|incl)\.$', t[:m.start()], re.I):
+            s = t[:m.start()]
+            break
+    s = s.rstrip(':;')
     # a sentence cut inside a parenthesis ends before it
     if s.count('(') > s.count(')'):
         s = s[:s.rfind('(')].rstrip(' ,')
@@ -168,6 +195,13 @@ ENGLISH_PAGE = re.compile(r'^/(en-[a-z]{2}|fragments)/')
 index = []
 for b in blocks:
     title, intro, tokens = readme(b)
+    out = f'{LIB}/blocks/{b}.plain.html'
+    entry = {'name': title, 'path': f'https://content.da.live/{ORG}/{SITE}/docs/library/blocks/{b}'}
+    if b not in selected:
+        # not regenerated: stays in the index when its library page exists
+        if os.path.exists(out):
+            index.append(entry)
+        continue
     combos = instances.get(b, {})
     if not combos:
         # fragment: inserted by link, no instance in the pages
@@ -181,7 +215,7 @@ for b in blocks:
     # English samples first: en-us, then en-to and the other English locales, then the rest
     lang = lambda inst: (0 if inst[0].startswith('/en-us/') else 1 if inst[0].startswith('/en-') else 2 if inst[0].startswith('/fragments/') or not inst[0] else 3)
     combos = {k: sorted(v, key=lang) for k, v in combos.items()}
-    sections, variants = [], []
+    sections = []
     for key in order:
         page, cls, html = combos[key][0]
         if page and not ENGLISH_PAGE.match(page):
@@ -192,57 +226,29 @@ for b in blocks:
         toks = cls.split()[1:]
         name = f'{title} ({", ".join(toks)})' if toks else title
         if toks:
-            variants.append(', '.join(toks))
             texts = [token_text(tokens[t], toks) for t in toks if t in tokens]
-            parts = [first_sentence(t).rstrip('.') for t in texts if t]
+            # source examples ("(e.g. the 1200x350 customer-support banners)") are not for authors
+            parts = [re.sub(r'\s*\((e\.g\.|i\.e\.)[^)]*\)', '', first_sentence(t)).rstrip('.;: ') for t in texts if t]
             # README examples ("Hero (landing, purple)") are not descriptions
             parts = [re.sub(r'^,\s*', '', re.sub(r'^' + re.escape(title) + r' \([^)]*\)', '', x)) for x in parts]
             parts = [x for x in parts if x]
             desc = '; '.join(dict.fromkeys(parts)) or f'{title} with {", ".join(toks)}'
         else:
             desc = first_sentence(intro) or f'{title} block.'
-        desc = desc.replace('<', '&lt;').replace('>', '&gt;')
+        desc = desc.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
         sections.append(
             '<div>\n' + clean(html, b) + '\n'
             f'<div class="library-metadata"><div><div>name</div><div>{name}</div></div>'
             f'<div><div>description</div><div>{desc}</div></div></div>\n</div>')
-    out = f'{LIB}/blocks/{b}.plain.html'
     os.makedirs(os.path.dirname(out), exist_ok=True)
     open(out, 'w').write('\n'.join(sections) + '\n')
-    legacy = f'{LIB}/blocks/{b}.html'
-    if os.path.exists(legacy):
-        os.remove(legacy)
-    pages = sorted(p for p in pages_using.get(b, []) if p)
-    meta = {
-        'variantName': b,
-        'baseBlock': b,
-        'version': '1.0.0',
-        'created': NOW,
-        'name': title,
-        'description': first_sentence(intro, 400) if intro else f'{title} block.',
-        'variants': variants,
-        'usage': {'pagesUsing': pages[:20], 'reuseCount': len(pages), 'lastUsed': NOW},
-    }
-    if not variants:
-        del meta['variants']
-    if not pages:
-        del meta['usage']
-    meta_path = f'{R}/blocks/{b}/metadata.json'
-    # keep the first creation date across regenerations
-    # (and the last-used date while the pages using the block are the same)
-    try:
-        old = json.load(open(meta_path))
-        meta['created'] = old.get('created', NOW)
-        if 'usage' in meta and old.get('usage', {}).get('pagesUsing') == meta['usage']['pagesUsing'] \
-                and old['usage'].get('reuseCount') == meta['usage']['reuseCount']:
-            meta['usage']['lastUsed'] = old['usage'].get('lastUsed', NOW)
-    except (FileNotFoundError, ValueError):
-        pass
-    # generated from the content: rewritten on every run
-    json.dump(meta, open(meta_path, 'w'), indent=2)
-    open(meta_path, 'a').write('\n')
-    index.append({'name': title, 'path': f'https://content.da.live/{ORG}/{SITE}/docs/library/blocks/{b}'})
+    index.append(entry)
     print(f'{b}: {len(sections)} sections ({", ".join(order)[:150]})')
+    # README variants no migrated page uses yet have no sample: listed so they are not missed
+    used = {t for k in combos for t in k.split()[1:]}
+    unused = sorted(t for t in tokens if t not in used)
+    if unused:
+        print(f'  README variants without a sample (not used in the pages): {", ".join(unused)}')
 
 index.sort(key=lambda e: e['name'])
 json.dump({'total': len(index), 'offset': 0, 'limit': len(index), 'data': index, ':type': 'sheet'},
