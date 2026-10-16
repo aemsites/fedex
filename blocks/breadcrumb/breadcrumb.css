@@ -1,6 +1,7 @@
 /*
  * breadcrumb: a 30px light-gray bar right under the header. The section holding it drops the
- * normal section spacing, and the section after it starts directly below the bar.
+ * normal section spacing, and the section after it starts directly below the bar. Hidden up to
+ * 992px, as on fedex.com (every locale).
  */
 main > .section.breadcrumb-container {
   margin: 0;
@@ -49,4 +50,13 @@ main > .section.breadcrumb-container + .section {
 .breadcrumb a:hover,
 .breadcrumb a:focus-visible {
   text-decoration: underline;
+}
+
+/* fedex.com: .fxg-breadcrumbs { display: none } at max-width 992px; the section goes too when it
+   holds nothing else */
+@media (width <= 992px) {
+  main > .section.breadcrumb-container > .breadcrumb-wrapper,
+  main > .section.breadcrumb-container:not(:has(> :not(.breadcrumb-wrapper))) {
+    display: none;
+  }
 }

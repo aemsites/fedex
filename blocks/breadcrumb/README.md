@@ -1,6 +1,6 @@
 # Breadcrumb
 
-The page trail in a 30px light-gray bar (`--light-color`, #f2f2f2) right under the header, aligned with the content column. Links are bold, the current page is regular, and "›" separators are drawn by CSS. It renders as `<nav aria-label="Breadcrumb">` with an ordered list, and the last item gets `aria-current="page"`.
+The page trail in a 30px light-gray bar (`--light-color`, #f2f2f2) right under the header, aligned with the content column, from 993px wide; up to 992px it is hidden (with its section, when the section holds nothing else), as on fedex.com in every locale. Links are bold, the current page is regular, and "›" separators are drawn by CSS. It renders as `<nav aria-label="Breadcrumb">` with an ordered list, and the last item gets `aria-current="page"`.
 
 | Breadcrumb |
 |---|

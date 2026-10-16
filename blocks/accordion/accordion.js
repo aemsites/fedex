@@ -38,6 +38,9 @@ function lazyLoadFragment(details, body, path) {
           : [...fragment.childNodes];
         body.replaceChildren(...content);
         body.classList.add('accordion-item-fragment');
+        // a fragment holding an accordion makes this a two-level FAQ (pages imported before
+        // the importer set the "groups" variant)
+        if (body.querySelector('.accordion')) details.parentElement?.classList.add('groups');
       }
     }).finally(() => body.removeAttribute('aria-busy'));
   };
@@ -87,6 +90,7 @@ function decorateLabelIcon(summary) {
  * Extra cells are merged into the body. A label may start with a small icon image.
  * A body holding only a link to a fragment (e.g. /en-us/fragments/…) loads that
  * fragment the first time the item opens, so blocks like Table can sit in an answer.
+ * The label text is wrapped in .accordion-item-label-text.
  */
 export default function decorate(block) {
   const items = [...block.children].map((row) => {
@@ -100,6 +104,13 @@ export default function decorate(block) {
     summary.append(...(only?.tagName === 'P' ? only.childNodes : label.childNodes));
     decorateLabelIcon(summary);
     if (!summary.textContent.trim()) return null;
+    if (!summary.classList.contains('accordion-item-label-has-icon')) {
+      // the label text in its own box, as fedex.com's button text (lets "groups" centre it)
+      const text = document.createElement('span');
+      text.className = 'accordion-item-label-text';
+      text.append(...summary.childNodes);
+      summary.append(text);
+    }
 
     const body = document.createElement('div');
     body.className = 'accordion-item-body';
