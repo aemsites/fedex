@@ -117,6 +117,11 @@ export default function parse(element, { document, url, params }) {
     return;
   }
 
-  const block = WebImporter.Blocks.createBlock(document, { name: 'cards (icon-links)', cells });
+  // plain fxg-link `default` links (en-to new-customer "OPEN AN ACCOUNT") are 16px medium text on
+  // fedex.com, not the bold uppercase fxg-link--blue style (en-us service-guide quick links)
+  const links = isGrid ? units.map((u) => u.querySelector('.button_v1 a[href]')).filter(Boolean) : [];
+  const textLinks = links.length && links.every((a) => a.classList.contains('default') && !a.matches('[class*="fxg-link--blue"]'));
+  const name = textLinks ? 'cards (icon-links, text-links)' : 'cards (icon-links)';
+  const block = WebImporter.Blocks.createBlock(document, { name, cells });
   element.replaceWith(block);
 }

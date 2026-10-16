@@ -42,7 +42,7 @@ async (listingUrls) => {
       // and is the component's only link target, as transformers/fedex-teasers.js converts them.
       // Only teasers give the detail page its image (build-teaser-pages.py): a photo beside "please
       // call customer support" in a how-to-ship guide is not the support page's picture.
-      const block = link.closest('p, h1, h2, h3, h4, h5, h6, li') || link.parentElement;
+      const block = link.closest('p, h1, h2, h3, h4, h5, h6, li') || link; // a link in no paragraph is a CTA (featured offer)
       const targets = new Set([...cell.querySelectorAll('a[href]')]
         .map((a) => { try { return new URL(a.getAttribute('href'), listing).pathname.replace(/\.html$/, ''); } catch (e) { return ''; } })
         .filter((p) => p && p !== self));

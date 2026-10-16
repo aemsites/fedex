@@ -166,7 +166,7 @@ export default {
     ]
   },
   "/en-to/shipping-tools/online-shipping": {
-    "image": "",
+    "image": "https://cdn.bfldr.com/I22OPSFM/at/sgmzgw3rv3zxnfzqwfrgckn/FedEx-1584-1.jpg?auto=webp&fit=bounds&format=png&width=727&height=485&max_age=604800",
     "alt": "",
     "listings": [
       "/en-to/shipping-tools"
