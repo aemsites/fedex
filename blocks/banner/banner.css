@@ -111,6 +111,43 @@
   outline-color: var(--color-white);
 }
 
+/*
+ * dark with an h2 title (fedex.com APAC "Open a FedEx account and enjoy more benefits.", en-to
+ * shipping and customer-support): the source's column row, not its featured banner. Columns
+ * 2/6/4 from 768px, top-aligned with the source spacers (45px above the icon and the CTA, 60px
+ * below the text), a 90px icon, a 25px regular title 40px / 20px apart, and a borderless
+ * orange button (300px wide on mobile).
+ */
+.banner.dark:has(> .banner-text > h2) {
+  --banner-icon-size: 90px;
+  --banner-icon-column: calc(100% * 2 / 12);
+  --banner-cta-column: calc(100% * 4 / 12);
+
+  gap: 0;
+  padding: 50px var(--space-3) 60px; /* source mobile spacers, 12px column inset */
+}
+
+.banner.dark .banner-text > h2 {
+  /* source: 20px, plus the text's 4px top margin (no margin collapsing there) */
+  margin: var(--space-10) 0 var(--space-6);
+  font-size: 25px; /* source size */
+  font-weight: var(--font-weight-regular);
+}
+
+.banner.dark .banner-text > h2 ~ p {
+  margin: var(--space-1) 0 var(--space-2);
+}
+
+.banner.dark:has(> .banner-text > h2) .banner-cta {
+  align-self: stretch;
+  margin-top: 26px; /* source: 34px from the text to the button on mobile */
+}
+
+.banner.dark:has(> .banner-text > h2) a.button {
+  width: min(100%, 300px);
+  border-width: 0;
+}
+
 @media (width >= 768px) {
   .banner {
     flex-direction: row;
@@ -140,6 +177,26 @@
   /* without an icon the text keeps the panel's side spacing */
   .banner > .banner-text:first-child {
     padding-inline-start: var(--space-6);
+  }
+
+  .banner.dark:has(> .banner-text > h2) {
+    align-items: flex-start;
+    padding: 0;
+  }
+
+  .banner.dark:has(> .banner-text > h2) .banner-icon,
+  .banner.dark:has(> .banner-text > h2) .banner-cta {
+    margin-top: 0;
+    padding-top: 45px; /* source spacer */
+    text-align: center;
+  }
+
+  .banner.dark:has(> .banner-text > h2) .banner-text {
+    padding-bottom: 60px; /* source spacer */
+  }
+
+  .banner.dark:has(> .banner-text > h2) a.button {
+    width: auto;
   }
 }
 

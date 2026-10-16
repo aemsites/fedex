@@ -156,7 +156,12 @@ function buildTable(source, document) {
   // row); only the variant name differs
   // `striped`: fedex.com striped-row tables without borders (nl-nl ship-to-europe tab tables)
   const variants = [];
-  if (isServiceFees(table) || (table && !table.querySelector(':scope > thead') && rows.length === 1)) variants.push('no-header');
+  if (isServiceFees(table) || (table && !table.querySelector(':scope > thead') && rows.length === 1)) {
+    variants.push('no-header');
+    // `bordered`: the one-row table's grid lines are authored inline (en-to shipping:
+    // style="border: 1px solid #8e8e8e"), unlike the service fee tables' row lines
+    if (!isServiceFees(table) && /border(-width)?\s*:\s*[1-9]/i.test(table.getAttribute('style') || '')) variants.push('bordered');
+  }
   if (brandHeader(table)) variants.push('brand');
   if (table && table.classList.contains('fxg-table--striped-row')) variants.push('striped');
   // header labels authored in the lighter FedEx purple (#671CAA, send-parcel-to-*)
