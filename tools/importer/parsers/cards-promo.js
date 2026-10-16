@@ -319,7 +319,13 @@ export default function parse(element, { document }) {
     return /\.svg$/i.test(file) || /icon/i.test(file);
   };
   if (!featured && cardImages.length && cardImages.length === cells.length && cardImages.every(isIcon)) {
-    name = 'Cards (icon, centered)';
+    // `spaced`: every title is the 20px regular heading with the default heading margins
+    // (shipping-tools "Transit Times": <h2 class="fxg-title--custom" style="font-size:20px
+    // !important; font-weight:normal !important">), not the 32px light (customer-support) or bold one
+    const spaced = titles.length > 0 && titles.every((t) => t && t.classList.contains('fxg-title--custom')
+      && /font-size\s*:\s*20px/i.test(t.getAttribute('style') || '')
+      && /font-weight\s*:\s*(normal|400)/i.test(t.getAttribute('style') || ''));
+    name = spaced ? 'Cards (icon, centered, spaced)' : 'Cards (icon, centered)';
     cells.forEach((row) => {
       const ni = row[0] && row[0].querySelector ? (row[0].matches('img') ? row[0] : row[0].querySelector('img')) : null;
       // html2md turns a bare *.svg into an :icon: token

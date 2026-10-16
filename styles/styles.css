@@ -423,6 +423,15 @@ main > .section > div {
   padding: 0 var(--content-gutter);
 }
 
+/*
+ * text after a block in the same section keeps at least 32px from it, as fedex.com's spacer
+ * components (32-70px: one-rate footnotes under the table 32px, shipping-tools intro under the
+ * featured offer 70px). A margin, so larger ones already there (a heading's 48px) win.
+ */
+main > .section > :where(div:not(.default-content-wrapper)) + .default-content-wrapper {
+  margin-top: var(--space-8);
+}
+
 /* section metadata */
 
 /* light: one content-width panel shared by everything in the section */

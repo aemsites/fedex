@@ -1234,3 +1234,51 @@ main .default-content-wrapper:has(> .button-wrapper:last-child) + .cards-wrapper
     --cards-icon-item-padding: 0 var(--space-3);
   }
 }
+
+/*
+ * icon + centered + spaced (en-to shipping-tools "Transit Times"): the importer sets it when every
+ * title is fedex.com's 20px regular heading. As the source: 96px icons, the title with the heading
+ * spacing (28px above, 24px below; 48px and 40px from 768px), paragraphs 4px above and 8px below,
+ * the link 21px under the text, each card in a 12px-inset column.
+ */
+.cards.icon.centered.spaced {
+  --cards-icon-size: 96px;
+  --cards-spaced-title-spacing: 28px 0 var(--space-6);
+}
+
+.cards.icon.centered.spaced > ul > li {
+  gap: 0;
+  padding-inline: var(--space-3);
+}
+
+.cards.icon.centered.spaced .cards-card-body h3 {
+  margin: var(--cards-spaced-title-spacing);
+  font-size: 20px;
+  font-weight: var(--font-weight-regular);
+  line-height: 26px;
+  letter-spacing: var(--heading-letter-spacing);
+}
+
+.cards.icon.centered.spaced .cards-card-body p {
+  margin: var(--space-1) 0 var(--space-2);
+}
+
+/* 21px from the text to the button, which has 8px of its own spacing above */
+.cards.icon.centered.spaced .cards-card-body p:has(> a:only-child) {
+  margin-top: 13px;
+}
+
+.cards.icon.centered.spaced .cards-card-body > :last-child {
+  margin-bottom: 0;
+}
+
+@media (width >= 768px) {
+  /* spaced: the source's equal thirds (the 12px inset is the gutter), heading spacing 48px / 40px */
+  .cards.icon.centered.spaced {
+    --cards-spaced-title-spacing: var(--space-12) 0 var(--space-10);
+  }
+
+  .cards.icon.centered.spaced > ul {
+    column-gap: 0;
+  }
+}
