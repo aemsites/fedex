@@ -1083,3 +1083,154 @@ main .default-content-wrapper:has(> .button-wrapper:last-child) + .cards-wrapper
     --cards-caption-gap: 35px;
   }
 }
+
+/*
+ * The notes, outlined-button teaser and text-links rules below are keyed to their own content
+ * shape or variant class, so they never compete with the promo / photos / logos rules above.
+ */
+/* stylelint-disable no-descending-specificity */
+
+/*
+ * horizontal + light notes: an icon card whose body is a single paragraph and has no heading (en-to
+ * online-shipping "Start shipping in three easy steps", en-us claims "Make getting paid"):
+ * fedex.com's grey column-control row. 72px icon centred above the text on mobile (38px down to
+ * the text), in a 1/6 column from 768px with the text vertically centred on it; 20px above each
+ * icon, 20px below the last, 20px space after the panel (50px from 768px). Consecutive note blocks
+ * join into one continuous panel (no gaps), with the source's 30px extra above the first and below
+ * the last icon from 768px.
+ */
+.cards.horizontal.light:not(.compact):has(> ul > li > .cards-card-icon + .cards-card-body > p:only-child) {
+  --cards-row-gap: 0;
+
+  margin-block: 0 var(--cards-notes-after, var(--space-5));
+  padding: 0 0 var(--space-5);
+}
+
+.cards.horizontal.light > ul > li:has(> .cards-card-icon + .cards-card-body > p:only-child) {
+  padding: var(--space-5) var(--content-gutter) 0;
+}
+
+.cards.horizontal.light > ul > li:has(> .cards-card-icon + .cards-card-body > p:only-child) .cards-card-image img {
+  display: block;
+  width: 72px;
+  height: auto;
+  margin-inline: auto;
+  aspect-ratio: auto;
+  object-fit: contain;
+}
+
+.cards.horizontal.light > ul > li:has(> .cards-card-icon + .cards-card-body > p:only-child) .cards-card-body {
+  padding: 38px 0 0;
+}
+
+/* a run of note blocks: the first keeps no padding below, the last none above */
+.cards-wrapper:has(> .cards.horizontal.light > ul > li > .cards-card-icon + .cards-card-body > p:only-child):has(+ .cards-wrapper > .cards.horizontal.light > ul > li > .cards-card-icon + .cards-card-body > p:only-child) > .cards {
+  margin-bottom: 0;
+  padding-block: var(--cards-notes-run-end, 0) 0;
+}
+
+.cards-wrapper:has(> .cards.horizontal.light > ul > li > .cards-card-icon + .cards-card-body > p:only-child) + .cards-wrapper:has(> .cards.horizontal.light > ul > li > .cards-card-icon + .cards-card-body > p:only-child) > .cards {
+  padding-block: 0 calc(var(--space-5) + var(--cards-notes-run-end, 0px));
+}
+
+.cards-wrapper:has(> .cards.horizontal.light > ul > li > .cards-card-icon + .cards-card-body > p:only-child) + .cards-wrapper:has(> .cards.horizontal.light > ul > li > .cards-card-icon + .cards-card-body > p:only-child):has(+ .cards-wrapper > .cards.horizontal.light > ul > li > .cards-card-icon + .cards-card-body > p:only-child) > .cards {
+  padding-block: 0;
+}
+
+/*
+ * teasers with an outlined button (en-to shipping-tools "FedEx Ship Manager", en-us
+ * fedex-authorized-ship-center, perishables "Ship with dry ice"): fedex.com's featured offer, a
+ * grey panel with the 727:463 image bleeding to its edges, stacked above the text on mobile (text
+ * inset 25px 15px, button centred); from 768px the image takes 44% on the left, top-aligned, and
+ * the text 35px 60px 34px. Title 20px above the text, text 24px above the button. Teasers with a text
+ * CTA (fedex.com column-control rows) are unaffected.
+ */
+.cards.horizontal.teasers > ul > li:has(.button-wrapper > a.button.secondary) {
+  padding-inline: 0;
+  background-color: var(--panel-color);
+}
+
+.cards.horizontal.teasers > ul > li:has(.button-wrapper > a.button.secondary) .cards-card-body {
+  padding: 25px var(--content-gutter);
+}
+
+.cards.horizontal.teasers > ul > li:has(.button-wrapper > a.button.secondary) .cards-card-body h3 {
+  margin-bottom: var(--space-5);
+}
+
+.cards.horizontal.teasers > ul > li:has(.button-wrapper > a.button.secondary) .cards-card-body p {
+  margin: var(--space-1) 0 var(--space-6);
+}
+
+.cards.horizontal.teasers > ul > li:has(.button-wrapper > a.button.secondary) .cards-card-body .button-wrapper {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+/*
+ * icon-links + text-links (en-to new-customer "Before You Ship"): fedex.com's column-control icon
+ * links. The icon spans the item on mobile (the source scales it to the column), 60px from 768px,
+ * directly above a medium blue 16px text link in the authored case (not the uppercase CTA); 3
+ * columns from 768px with the source's 12px column inset, no space between items.
+ */
+.cards.icon-links.text-links {
+  --cards-icon-size: 100%;
+  --cards-icon-gap: 0;
+  --cards-icon-item-padding: 0 var(--content-gutter);
+  --cards-icon-list-gap: 0;
+  --cards-icon-list-inset: 0;
+}
+
+.cards.icon-links.text-links .cards-card-cta {
+  font-size: var(--body-font-size-m);
+  line-height: var(--body-line-height);
+}
+
+.cards.icon-links.text-links .cards-card-cta a:any-link {
+  font-weight: var(--font-weight-medium);
+  letter-spacing: -0.18px;
+  text-transform: none;
+}
+
+@media (width >= 768px) {
+  .cards.horizontal.light:not(.compact):has(> ul > li > .cards-card-icon + .cards-card-body > p:only-child) {
+    --cards-notes-run-end: 30px;
+    --cards-notes-after: 50px;
+  }
+
+  .cards.horizontal.light > ul > li:has(> .cards-card-icon + .cards-card-body > p:only-child) {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 5fr);
+    align-items: center;
+    padding: var(--space-5) 0 0;
+  }
+
+  .cards.horizontal.light > ul > li:has(> .cards-card-icon + .cards-card-body > p:only-child) .cards-card-image {
+    padding-inline: var(--space-3);
+  }
+
+  .cards.horizontal.light > ul > li:has(> .cards-card-icon + .cards-card-body > p:only-child) .cards-card-body {
+    padding: 0 var(--space-3);
+  }
+
+  .cards.horizontal.teasers > ul > li:has(.button-wrapper > a.button.secondary) {
+    grid-template-columns: minmax(0, 427fr) minmax(0, 543fr);
+  }
+
+  .cards.horizontal.teasers > ul > li:has(.button-wrapper > a.button.secondary) .cards-card-image {
+    padding: 0;
+  }
+
+  .cards.horizontal.teasers > ul > li:has(.button-wrapper > a.button.secondary) .cards-card-body {
+    padding: 35px 60px 34px;
+  }
+
+  .cards.horizontal.teasers > ul > li:has(.button-wrapper > a.button.secondary) .cards-card-body .button-wrapper {
+    text-align: start;
+  }
+
+  .cards.icon-links.text-links {
+    --cards-icon-size: 60px;
+    --cards-icon-item-padding: 0 var(--space-3);
+  }
+}
