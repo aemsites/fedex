@@ -319,10 +319,11 @@ export default function parse(element, { document }) {
     return /\.svg$/i.test(file) || /icon/i.test(file);
   };
   if (!featured && cardImages.length && cardImages.length === cells.length && cardImages.every(isIcon)) {
-    // `spaced`: every title is the 20px regular heading with the default heading margins
-    // (shipping-tools "Transit Times": <h2 class="fxg-title--custom" style="font-size:20px
-    // !important; font-weight:normal !important">), not the 32px light (customer-support) or bold one
-    const spaced = titles.length > 0 && titles.every((t) => t && t.classList.contains('fxg-title--custom')
+    // `spaced`: every title is a 20px regular h2 with the h2 heading margins (shipping-tools
+    // "Transit Times": <h2 class="fxg-title--custom" style="font-size:20px !important;
+    // font-weight:normal !important">), not the 32px light (customer-support) or bold one; the
+    // 20px h4 titles of how-to-ship-to-canada have their own, tighter margins
+    const spaced = titles.length > 0 && titles.every((t) => t && t.tagName === 'H2' && t.classList.contains('fxg-title--custom')
       && /font-size\s*:\s*20px/i.test(t.getAttribute('style') || '')
       && /font-weight\s*:\s*(normal|400)/i.test(t.getAttribute('style') || ''));
     name = spaced ? 'Cards (icon, centered, spaced)' : 'Cards (icon, centered)';
