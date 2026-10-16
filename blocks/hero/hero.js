@@ -6,7 +6,7 @@
  * Variants: landing (text left on a light band, photo right with a diagonal edge;
  * layout is CSS-only, the DOM is the same as the default hero), purple (with landing:
  * the picture is a baked gradient banner shown full-bleed behind white text from 768px,
- * hidden on mobile; CSS-only).
+ * hidden on mobile; CSS-only). A second picture is the phone picture (.hero-phone-picture).
  */
 export default function decorate(block) {
   const bg = document.createElement('div');
@@ -16,15 +16,20 @@ export default function decorate(block) {
 
   [...block.querySelectorAll(':scope > div > div')].forEach((cell) => content.append(...cell.childNodes));
 
-  const picture = content.querySelector('picture');
-  if (picture) {
-    bg.append(picture);
-    const img = picture.querySelector('img');
-    if (img) {
+  // first picture: the banner; an optional second one: the phone picture, shown instead of the
+  // banner below 768px (CSS). Only the one on screen loads eagerly.
+  const [picture, phonePicture] = content.querySelectorAll('picture');
+  const phone = !!phonePicture && window.matchMedia('(max-width: 767px)').matches;
+  [picture, phonePicture].forEach((pic, i) => {
+    if (!pic) return;
+    bg.append(pic);
+    if (i === 1) pic.classList.add('hero-phone-picture');
+    const img = pic.querySelector('img');
+    if (img && (i === 1) === phone) {
       img.loading = 'eager';
       img.fetchPriority = 'high';
     }
-  }
+  });
 
   const videoLink = [...content.querySelectorAll('a[href]')]
     .find((a) => new URL(a.href, window.location).pathname.toLowerCase().endsWith('.mp4'));

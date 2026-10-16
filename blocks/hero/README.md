@@ -4,14 +4,20 @@ Full-bleed background image behind a centered heading. The background covers the
 
 | Hero (variant) |
 |---|
-| image, # Heading, optional text/CTA, optional link to an .mp4 |
+| image, optional phone image, # Heading, optional text/CTA, optional link to an .mp4 |
 
 Project decision: authored as one row, one cell. The standard two-row layout (image row, then heading row) is also supported. All cells are merged. An `.mp4` link becomes a muted, looping background video (skipped when the user prefers reduced motion).
+
+A second image is the phone image (fedex.com's separate mobile image, authored per page): below 768px it replaces the first image, full width at its own aspect ratio above the text, in every variant (`purple` too). Leave it out to keep each variant's own phone layout.
 
 ## Variants
 - *(none)*: full-bleed background image, centered white heading (homepage)
 - `landing`: landing-page intro. Text (H1, text, **CTA**) sits left on a light band, and the photo fills the right half with a diagonal edge. On mobile the photo is stacked above the text. Example: `Hero (landing)`.
-- `purple`: modifier for `landing`, for banner images that already contain the purple-to-orange gradient, the diagonal and the photo (e.g. the 1200x350 customer-support banners). From 768px the picture fills the whole block (anchored right, at least 350px tall) behind white, left-aligned text, with no light band and no diagonal clip; the fallback background is brand purple. Below 768px the picture is hidden and the text is centered, dark on white, with a full-width button. A **bold** link stays the orange primary button; a plain link is white and underlined. Example: `Hero (landing, purple)`.
+- `purple`: modifier for `landing`, for banner images that already contain the purple-to-orange gradient, the diagonal and the photo (e.g. the 1200x350 customer-support banners). From 768px the picture fills the whole block (anchored right, at least 350px tall) behind white, left-aligned text, with no light band and no diagonal clip; the fallback background is brand purple. Below 768px the picture is hidden (unless there is a phone image) and the text is centered, dark on white, with a full-width button. A **bold** link stays the orange primary button; a plain link is white and underlined. Example: `Hero (landing, purple)`.
 - `full-image`: modifier for `landing`, for light banner images that already contain the white fade, the diagonal and the photo (nl-nl landing pages, 1200x350 / 2400x700). From 768px the picture fills the whole block (at least 350px tall, anchored right and top) behind dark, left-aligned text; no light band and no diagonal clip. On mobile the photo end of the banner is stacked above the text, as in `landing`. The CTA is 56px tall. Example: `Hero (landing, full-image)`.
+- `mobile-left`: modifier for `purple`: below 768px the heading and text are left-aligned (the button stays centered). Example: `Hero (landing, purple, mobile-left)`.
+- `mobile-center`: modifier for `landing` and `full-image`: below 768px the text is centered. Example: `Hero (landing, full-image, mobile-center)`.
 
-`purple` and `full-image` follow the fedex.com landing hero from 768px: the text is centred vertically in the banner (50px top padding, 30px under the text; taller text makes the banner grow), with a 44px heading (57.2px line height, 20px below). The text column is 450px (`purple`) or 470px (`full-image`) wide; fedex.com sets it per page (350–600px), so some headings wrap differently.
+fedex.com sets the phone alignment and the phone image per page (in every locale); the importer (`tools/importer/parsers/hero-landing.js`) adds `mobile-left` / `mobile-center` where the page differs from the variant's default, and the phone image where the page has one.
+
+`purple` and `full-image` follow the fedex.com landing hero from 768px: the text is centred vertically in the banner (50px top padding, 30px under the text; taller text makes the banner grow), with a 44px heading (57.2px line height, 20px below). A heading without text keeps fedex.com's empty 24px text line under it. The text column is 450px (`purple`) or 470px (`full-image`) wide; fedex.com sets it per page (350–600px), so some headings wrap differently.

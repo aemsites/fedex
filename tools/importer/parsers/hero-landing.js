@@ -172,9 +172,25 @@ export default function parse(element, { document, template }) {
     }
   }
 
+  // Phone picture: fedex.com shows its authored mobile image (.fxg-landing-hero__mobile-image,
+  // per page: en-to about yes, en-to customer-support no) above the text below 768px instead of
+  // the banner, at its own aspect ratio. A second picture in the cell (blocks/hero/README.md); kept
+  // when it is the banner file itself (en-us faq/onsite, nl-nl rates: the whole banner on phones).
+  let phonePicture = null;
+  const phoneImg = [...hero.querySelectorAll('.fxg-landing-hero__mobile-image img')]
+    .find((i) => /^https?:|^\//.test(i.getAttribute('src') || ''));
+  if (picture && phoneImg) {
+    phonePicture = newImage(phoneImg, document);
+    phonePicture.src = new URL(phoneImg.getAttribute('src'), 'https://www.fedex.com').href;
+  }
+
   // Heading
   const srcH1 = [...hero.querySelectorAll('h1')].find((h) => !isHidden(h, element))
     || hero.querySelector('h1, h2');
+  // Phone alignment of the copy: the heading's data-mobile-align (text-align: center | left | empty,
+  // which renders left). The CTA stays centred either way.
+  const mobileAlign = srcH1 && /text-align:\s*center/i.test(srcH1.getAttribute('data-mobile-align') || '')
+    ? 'center' : 'left';
   let h1 = null;
   if (srcH1) {
     const clone = srcH1.cloneNode(true);
@@ -247,6 +263,7 @@ export default function parse(element, { document, template }) {
   // One row, one cell (project decision)
   const content = [];
   if (picture) content.push(picture);
+  if (phonePicture) content.push(phonePicture);
   if (h1) content.push(h1);
   content.push(...paras, ...ctas);
   const cells = [[content]];
@@ -266,6 +283,10 @@ export default function parse(element, { document, template }) {
   // diagonal and photo in one 1200x350 / 2400x700 image) -> `full-image`, shown whole
   let name = isPurple(element, hero) ? 'Hero (landing, purple)' : 'Hero (landing)';
   if (template === 'generic-landing' && name === 'Hero (landing)' && picture) name = 'Hero (landing, full-image)';
+  // phone alignment where it differs from the variant's default (purple: centred; others: left)
+  const purple = name.includes('purple');
+  if (purple && mobileAlign === 'left') name = name.replace(/\)$/, ', mobile-left)');
+  if (!purple && mobileAlign === 'center') name = name.replace(/\)$/, ', mobile-center)');
   const block = WebImporter.Blocks.createBlock(document, { name, cells });
   element.replaceWith(block);
   if (after.length) block.after(...after);

@@ -147,9 +147,17 @@
   font-size: 40px;
 }
 
-/* a heading without subtext: fedex.com keeps the empty subtext line (24px) under it */
+/*
+ * a heading without subtext: fedex.com keeps its 20px margin and the empty subtext line (24px)
+ * under it, which also keeps the heading's place in the vertically centred banner
+ */
 .hero:is(.purple, .full-image) .hero-content > h1:last-child {
-  margin-bottom: calc(var(--space-5) + var(--space-6));
+  margin-bottom: var(--space-5);
+}
+
+.hero:is(.purple, .full-image) .hero-content:has(> h1:last-child)::after {
+  content: '';
+  block-size: var(--space-6);
 }
 
 .hero:is(.purple, .full-image) p {
@@ -238,11 +246,60 @@
   margin: 22px 0 0;
 }
 
+/*
+ * phone picture (a second picture: fedex.com's authored mobile image, per page): below 768px it
+ * replaces the banner, full width at its own aspect ratio above the text (also in purple, whose
+ * banner is hidden on phones); purple's text then sits 15px under it
+ */
+@media (width < 768px) {
+  .hero-container .hero-bg:has(> .hero-phone-picture) > picture:first-child {
+    display: none;
+  }
+
+  .hero-container:has(.hero.landing) .hero-bg:has(> .hero-phone-picture) {
+    display: block;
+    aspect-ratio: auto;
+  }
+
+  .hero-container:has(.hero.landing) .hero-bg > .hero-phone-picture img {
+    height: auto;
+  }
+
+  .hero-container:has(.hero.purple .hero-phone-picture) {
+    padding-top: 0;
+  }
+
+  .hero.purple:has(.hero-phone-picture) .hero-content {
+    padding-top: 15px;
+  }
+
+  /*
+   * phone alignment where fedex.com's differs from the variant's default (the heading's
+   * mobile alignment, per page): mobile-left for purple, mobile-center for landing / full-image.
+   * The purple CTA stays centred.
+   */
+  .hero.purple.mobile-left {
+    text-align: start;
+  }
+
+  .hero.purple.mobile-left .button-wrapper {
+    text-align: center;
+  }
+
+  .hero.landing.mobile-center {
+    text-align: center;
+  }
+}
+
 @media (width >= 768px) {
   .hero-container {
     --hero-heading-line-height: var(--body-line-height);
 
     padding: var(--space-18) 0 var(--space-16);
+  }
+
+  .hero-container .hero-bg > .hero-phone-picture {
+    display: none;
   }
 
   .hero-container .hero-wrapper + div {
