@@ -188,7 +188,8 @@
    "image": "https://www.fedex.com/content/dam/fedex/eu-europe/images/EU_2021_4_master_jpg_NA_EU-VAT-IOSS-FOC-1_marketing.jpg",
    "alt": "Hands holding DedEx Airwaybill",
    "linkText": "VAT Services",
-   "teaser": true
+   "teaser": true,
+   "description": "FedEx and KPMG have joined forces to offer an exclusive, discounted Import One-Stop Shop (IOSS) compliance service that makes VAT compliance easier for your business. Benefits include: Find out more about how we can help simplify your cross-border trading by streamlining your VAT processes."
   }
  ],
  "/content/dam/fedex-com/hdn/FedEx_and_WardsAuto_Playbook_FNL_4-8_web.pdf": [
@@ -7321,7 +7322,8 @@
    "image": "https://cdn.bfldr.com/I22OPSFM/at/k9xt6p7tvtvrqcq3shgf7hk/22577163295_eded28f5a5_o.jpg?auto=webp&fit=bounds&format=png&crop=727%3A463%2Csmart&width=727&height=463&max_age=604800",
    "alt": "Hands planting a tree",
    "linkText": "Reforesting towards sustainability",
-   "teaser": true
+   "teaser": true,
+   "description": "Climate change is impacting everyone worldwide. Together with our customers, we want to act now for a greener tomorrow."
   }
  ],
  "/en-to/about/sustainability/get-inspired/optimizing-your-packing": [
@@ -7573,7 +7575,8 @@
    "image": "https://cdn.bfldr.com/I22OPSFM/at/sgmzgw3rv3zxnfzqwfrgckn/FedEx-1584-1.jpg?auto=webp&fit=bounds&format=png&width=727&height=485&max_age=604800",
    "alt": "",
    "linkText": "LEARN MORE",
-   "teaser": true
+   "teaser": true,
+   "description": "FedEx Ship Manager is your go-to tool when it comes to inbound, outbound and return shipments. Whether you send documents, parcels or freight, our free online tool supports you every step of your journey — including through customs."
   }
  ]
 }

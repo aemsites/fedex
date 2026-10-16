@@ -66,6 +66,11 @@ for path, teasers in sorted(collected.items()):
         'alt': first['alt'],
         'listings': sorted({t['listing'] for t in teasers}),
     }
+    # a featured offer's own copy (collect-teasers.js) becomes the detail page's Description, so
+    # the listing's teaser shows the text fedex.com shows there
+    description = next((t['description'] for t in teasers if t.get('teaser', True) and t.get('description')), '')
+    if description:
+        pages[path]['description'] = description
 
 body = json.dumps(pages, indent=2, ensure_ascii=False)
 open('tools/importer/teaser-pages.js', 'w').write(

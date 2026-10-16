@@ -55,6 +55,13 @@ async (listingUrls) => {
         linkText: clean(link.textContent),
         teaser,
       };
+      // a featured offer has its own copy for the page (en-to shipping-tools "FedEx Ship Manager is
+      // your go-to tool…", not online-shipping's description): the detail page's Description
+      if (teaser && cell.matches('.featured_offer_v2')) {
+        const text = [...cell.querySelectorAll('p')].filter((p) => !p.closest('.fxg-desktop--hide'))
+          .map((p) => clean(p.textContent)).filter(Boolean).join(' ');
+        if (text) entry.description = text;
+      }
       const list = (out[path] = out[path] || []);
       if (seen.has(path)) list[list.indexOf(seen.get(path))] = entry;
       else list.push(entry);
