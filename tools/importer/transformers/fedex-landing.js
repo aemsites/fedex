@@ -658,6 +658,11 @@ function markCenteredIntros(element, doc) {
     // packaging is vital…") centres the heading only
     let style = texts.length && texts.every(centred) ? 'center' : 'center-intro';
     if (texts.length && !texts.some(centred) && !texts[0].querySelector('[class*="align--center"]')) style = 'center-headings';
+    // left-aligned at fedex.com's smallest breakpoint (en-to customer-support "Contact Us"; most
+    // titles are centred there too): the centring starts at 768px
+    const heading = title.querySelector('h1, h2, h3, h4, h5, h6');
+    const box = title.querySelector('.cc-aem-c-richtext');
+    if ([heading, box].some((el) => el && el.classList.contains('cc-aem-u-align--left@x-small-only'))) style += ', mobile-left';
     title.after(styleMarker(doc, style));
   });
 }

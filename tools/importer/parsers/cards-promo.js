@@ -339,6 +339,12 @@ export default function parse(element, { document }) {
       if (ni && /\.svg$/i.test(ni.src || '') && !(ni.src || '').includes('?')) ni.src = `${ni.src}?width=160`;
     });
   }
+  // `mobile-left`: centred cards whose titles are left-aligned at fedex.com's smallest breakpoint
+  // (cc-aem-u-align--left@x-small-only: en-to about, customer-support, shipping, open-account);
+  // centred ones there (nl-nl shipping "Internationaal verzenden": center@x-small-only) stay centred
+  if (centered && titles.every((t) => t.classList.contains('cc-aem-u-align--left@x-small-only'))) {
+    name = name.replace(/\)$/, ', mobile-left)');
+  }
   const block = WebImporter.Blocks.createBlock(document, { name, cells });
   element.replaceWith(block);
 }

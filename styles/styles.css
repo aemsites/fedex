@@ -703,16 +703,13 @@ main > .section.center .default-content-wrapper {
 
 /*
  * center-intro: centers the default content that opens the section (topic heading, intro text,
- * sub-heading), e.g. nl-nl shipping "FedEx-verzendservices die uw bedrijf ondersteunen", from
- * 768px; below it stays left, as fedex.com's section titles (align--left@x-small-only,
- * align--center@small). Default content after a block (footnotes) stays left. Also for a fragment
- * loaded into a tab panel (ship-to-apac "Flexibele afleveropties…").
+ * sub-heading), e.g. nl-nl shipping "FedEx-verzendservices die uw bedrijf ondersteunen". Default
+ * content after a block (footnotes) stays left. Also for a fragment loaded into a tab panel
+ * (ship-to-apac "Flexibele afleveropties…").
  */
-@media (width >= 768px) {
-  main > .section.center-intro > .default-content-wrapper:first-child,
-  main .tabs-panel > .section.center-intro > .default-content-wrapper:first-child {
-    text-align: center;
-  }
+main > .section.center-intro > .default-content-wrapper:first-child,
+main .tabs-panel > .section.center-intro > .default-content-wrapper:first-child {
+  text-align: center;
 }
 
 /* center-buttons: centers only the buttons, text stays left (combine, e.g. "light, center-buttons") */
@@ -720,13 +717,21 @@ main > .section.center-buttons .default-content-wrapper .button-wrapper {
   text-align: center;
 }
 
+/* center-headings: centers only the section's H2 topic headings, answers stay left (e.g. returns) */
+main > .section.center-headings .default-content-wrapper h2 {
+  text-align: center;
+}
+
 /*
- * center-headings: centers only the section's H2 topic headings, answers stay left (e.g. returns),
- * from 768px (left below, as fedex.com's section titles)
+ * mobile-left: modifier for center, center-intro and center-headings: below 768px the section's
+ * text stays left (fedex.com titles left-aligned at the smallest breakpoint: en-to customer-support
+ * "Contact Us", "Frequently Asked Questions"); most fedex.com titles are centred on mobile too
  */
-@media (width >= 768px) {
-  main > .section.center-headings .default-content-wrapper h2 {
-    text-align: center;
+@media (width < 768px) {
+  main > .section.mobile-left > .default-content-wrapper:is(:first-child, *),
+  main .tabs-panel > .section.mobile-left > .default-content-wrapper:is(:first-child, *),
+  main > .section.mobile-left .default-content-wrapper h2 {
+    text-align: start;
   }
 }
 

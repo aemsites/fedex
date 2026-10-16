@@ -1292,3 +1292,92 @@ main .default-content-wrapper:has(> .button-wrapper:last-child) + .cards-wrapper
 .cards.featured {
   margin-bottom: var(--space-4);
 }
+
+/*
+ * icon + centered + large-titles (en-to customer-support "Write to Us / Customer Service"): the
+ * importer sets it when every title is fedex.com's default h3. As the source: light titles 24px
+ * (32px from 768px) with the h3 heading margins (24px above, 16px below; 36px and 24px from 768px),
+ * the icon a quarter of the card wide, 30px from the icon to the title and from the text to the
+ * button (the source's spacers), paragraphs 4px above and 8px below, each card in a 12px-inset column.
+ */
+.cards.icon.centered.large-titles {
+  --cards-icon-size: 25%;
+  --cards-large-title-spacing: var(--space-6) 0 var(--space-4);
+}
+
+/* the 12px column inset is the gutter between the cards */
+.cards.icon.centered.large-titles > ul {
+  gap: 40px 0;
+}
+
+.cards.icon.centered.large-titles > ul > li {
+  gap: 30px;
+  padding-inline: var(--space-3);
+}
+
+.cards.icon.centered.large-titles .cards-card-body h3 {
+  margin: var(--cards-large-title-spacing);
+  font-size: var(--heading-font-size-l); /* 24px, 32px from 768px */
+  font-weight: var(--font-weight-light);
+  line-height: var(--heading-line-height);
+  letter-spacing: var(--heading-letter-spacing);
+}
+
+.cards.icon.centered.large-titles .cards-card-body p {
+  margin: var(--space-1) 0 var(--space-2);
+}
+
+.cards.icon.centered.large-titles .cards-card-body :is(.button-wrapper, .cards-card-cta) {
+  margin: 30px 0 0;
+}
+
+/*
+ * mobile-left: modifier for centered (promo or icon): below 768px the title and text are
+ * left-aligned, the image/icon and the CTA/button stay centred (en-to about, customer-support:
+ * fedex.com's cc-aem-u-align--left@x-small-only titles; the importer sets it). Centred from 768px.
+ */
+.cards.centered.mobile-left .cards-card-body {
+  text-align: start;
+}
+
+.cards.centered.mobile-left .cards-card-body :is(.button-wrapper, .cards-card-cta) {
+  text-align: center;
+}
+
+@media (width >= 768px) {
+  .cards.icon.centered.large-titles {
+    --cards-large-title-spacing: var(--space-9) 0 var(--space-6);
+  }
+
+  .cards.centered.mobile-left .cards-card-body {
+    text-align: center;
+  }
+
+  /*
+   * promo + centered without light (en-to about): the cards of a row line up their rows, as
+   * fedex.com's equal-height columns: images, titles, texts and the CTA/button (the last row) start
+   * at the same height in every card. Each card spans 8 rows of the list (image, title, up to 5
+   * paragraphs, CTA); the space between rows of cards is the card's bottom padding.
+   */
+  .cards.promo.centered:not(.light) > ul {
+    row-gap: 0;
+    margin-bottom: calc(-1 * var(--cards-row-gap));
+  }
+
+  .cards.promo.centered:not(.light) > ul > li {
+    display: grid;
+    grid-row: span 8;
+    grid-template-rows: subgrid;
+    padding-bottom: var(--cards-row-gap);
+  }
+
+  .cards.promo.centered:not(.light) .cards-card-body {
+    display: grid;
+    grid-row: 2 / -1;
+    grid-template-rows: subgrid;
+  }
+
+  .cards.promo.centered:not(.light) .cards-card-body > :is(.button-wrapper, .cards-card-cta):last-child {
+    grid-row: -2;
+  }
+}
