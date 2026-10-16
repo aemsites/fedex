@@ -107,8 +107,6 @@
  * Below 1024px the text sits 30px from the edge (15px gutter + 15px inset).
  */
 .hero-container:has(.hero.purple) {
-  --hero-banner-min-height: 350px;
-
   padding: 15px 0;
   background-color: var(--background-color);
   color: var(--text-color);
@@ -122,21 +120,39 @@
   text-align: center;
 }
 
-.hero.purple .hero-content {
+/*
+ * purple and full-image share the fedex.com landing-hero copy: a 40px heading (10px above,
+ * 20px below), 4px / 8px around the subtext, 30px from the screen edge below 1024px.
+ * Flex column so the margins add up instead of collapsing (the source keeps them in
+ * separate wrappers); the :has() branch covers content where the picture paragraph
+ * swallowed the heading and text.
+ */
+.hero:is(.purple, .full-image) .hero-content {
+  display: flex;
+  flex-direction: column;
   padding: 0 var(--content-gutter);
 }
 
-.hero.purple h1 {
+.hero:is(.purple, .full-image) h1 {
   margin: 0 0 var(--space-5);
+  line-height: var(--heading-line-height);
+}
+
+.hero.purple h1 {
   color: var(--text-color);
 }
 
-.hero.purple .hero-content h1 {
+.hero:is(.purple, .full-image) .hero-content h1 {
   margin-top: 10px;
   font-size: 40px;
 }
 
-.hero.purple p {
+/* a heading without subtext: fedex.com keeps the empty subtext line (24px) under it */
+.hero:is(.purple, .full-image) .hero-content > h1:last-child {
+  margin-bottom: calc(var(--space-5) + var(--space-6));
+}
+
+.hero:is(.purple, .full-image) p {
   margin: var(--space-1) 0 var(--space-2);
   line-height: 20px;
 }
@@ -151,20 +167,22 @@
   line-height: var(--body-line-height);
 }
 
+.hero:is(.purple, .full-image) .hero-content > p:has(> h1) {
+  display: flex;
+  flex-direction: column;
+}
+
+.hero:is(.purple, .full-image) .hero-content > p:last-child:not(.button-wrapper) {
+  margin-bottom: var(--space-2);
+}
+
+.hero.purple .hero-content > .button-wrapper + p:last-child {
+  margin-bottom: 0;
+}
+
 .hero.purple a:any-link:not(.button) {
   color: var(--color-blue);
   font-weight: var(--font-weight-medium);
-}
-
-/*
- * flex column so the heading, subtext and CTA margins add up instead of collapsing
- * (the source keeps them in separate wrappers). The :has() branch covers content
- * where the picture paragraph swallowed the heading and text.
- */
-.hero.purple .hero-content,
-.hero.purple .hero-content > p:has(> h1) {
-  display: flex;
-  flex-direction: column;
 }
 
 /* the source caps the CTA at 300 x 82px (longer labels wrap to two lines) */
@@ -176,9 +194,16 @@
   border: 0;
 }
 
+/* full-image: fedex.com's separate CTA component, 56px tall, without a border */
+.hero.full-image .button-wrapper a.button {
+  min-height: var(--space-14);
+  border: 0;
+  padding: 0 var(--space-6);
+}
+
 /*
  * drop-off: the only purple hero with a text link after the CTA. Its source uses
- * a roomier CTA, a 400px text column and a tighter banner (50px top / 30px bottom).
+ * a roomier CTA and a 400px text column.
  */
 .hero.purple:has(.button-wrapper + p) .button-wrapper a.button {
   padding: 19px 30px;
@@ -199,6 +224,18 @@
 
 .hero-container:has(.hero.landing.full-image) .hero-bg img {
   object-position: right center;
+}
+
+.hero.full-image .hero-content {
+  padding-top: 15px;
+}
+
+/*
+ * the CTA 30px under the subtext text: its 8px margin, the 6px line gap under the source's
+ * inline-block subtext and the CTA's own 16px
+ */
+.hero.full-image .button-wrapper {
+  margin: 22px 0 0;
 }
 
 @media (width >= 768px) {
@@ -235,11 +272,42 @@
     line-height: var(--hero-heading-line-height);
   }
 
+  /*
+   * purple and full-image: fedex.com centres the copy vertically in the banner (at least
+   * 350px tall, 50px top padding, 30px under the copy), so the block is a flex column
+   */
+  .hero-container:has(.hero:is(.purple, .full-image)) {
+    padding: 50px 0 0;
+  }
+
+  .hero:is(.purple, .full-image) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+    min-height: 300px; /* the 350px banner less its top padding */
+  }
+
+  .hero:is(.purple, .full-image) .hero-content {
+    padding-top: 0;
+    padding-bottom: 30px;
+  }
+
+  .hero:is(.purple, .full-image) h1 {
+    line-height: var(--heading-line-height);
+  }
+
+  .hero:is(.purple, .full-image) .hero-content h1 {
+    margin-top: 0;
+    font-size: var(--heading-font-size-xxl);
+  }
+
+  .hero:is(.purple, .full-image) p {
+    line-height: var(--body-line-height);
+  }
+
   /* purple: the banner fills the whole block behind white, left-aligned text */
   .hero-container:has(.hero.purple) {
-    box-sizing: border-box;
-    min-height: var(--hero-banner-min-height);
-    padding: var(--space-18) 0 var(--space-16);
     background-color: var(--dark-color);
     color: var(--color-white);
   }
@@ -257,10 +325,6 @@
     object-position: right center;
   }
 
-  .hero-container:has(.hero.purple .button-wrapper + p) {
-    padding: 50px 0 30px;
-  }
-
   .hero.purple {
     text-align: start;
   }
@@ -273,18 +337,8 @@
     max-width: 400px;
   }
 
-  .hero.purple h1 {
-    line-height: var(--heading-line-height);
-  }
-
   .hero.purple .hero-content h1 {
-    margin-top: 0;
     color: var(--color-white);
-    font-size: var(--heading-font-size-xxl);
-  }
-
-  .hero.purple p {
-    line-height: var(--body-line-height);
   }
 
   .hero.purple a:any-link:not(.button) {
@@ -308,24 +362,37 @@
 }
 
 @media (width >= 1024px) {
-  .hero.purple .hero-content {
+  .hero:is(.purple, .full-image) .hero-content {
     padding-inline: 0;
   }
 }
 
-/* full-image from 768px: the whole banner behind the text (no light band, no diagonal clip) */
+/*
+ * full-image from 768px: the whole banner behind the text (no light band, no diagonal
+ * clip), anchored at the top like most fedex.com light heroes
+ */
 @media (width >= 768px) {
-  .hero-container:has(.hero.landing.full-image) {
-    box-sizing: border-box;
-    min-height: 350px; /* the banner's 1200x350 crop */
-  }
-
   .hero-container:has(.hero.landing.full-image) .hero-bg {
     inset: 0;
     clip-path: none;
   }
 
-  .hero.landing.full-image .hero-content {
+  .hero-container:has(.hero.landing.full-image) .hero-bg img {
+    object-position: right top;
+  }
+
+  .hero.full-image .hero-content {
     max-width: 470px;
+  }
+}
+
+/*
+ * landing: fedex.com leaves 48-98px between the banner and the first heading (a 48px heading margin
+ * plus spacer components; en-to shipping-tools 68px, customs-tools 73px, about 98px); 68px from
+ * 768px. On mobile the spacers are hidden: the section spacing stays.
+ */
+@media (width >= 768px) {
+  main > .section.hero-container:has(.hero.landing) {
+    margin-bottom: 68px;
   }
 }

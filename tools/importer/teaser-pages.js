@@ -64,6 +64,10 @@ export default {
     "listings": [
       "/en-to/about/sustainability/get-inspired",
       "/en-to/about/sustainability/our-approach"
+    ],
+    "description": "Climate change is impacting everyone worldwide. Together with our customers, we want to act now for a greener tomorrow.",
+    "featured": [
+      "/en-to/about/sustainability/get-inspired"
     ]
   },
   "/en-to/about/sustainability/get-inspired/optimizing-your-packing": {
@@ -166,9 +170,13 @@ export default {
     ]
   },
   "/en-to/shipping-tools/online-shipping": {
-    "image": "",
+    "image": "https://cdn.bfldr.com/I22OPSFM/at/sgmzgw3rv3zxnfzqwfrgckn/FedEx-1584-1.jpg?auto=webp&fit=bounds&format=png&width=727&height=485&max_age=604800",
     "alt": "",
     "listings": [
+      "/en-to/shipping-tools"
+    ],
+    "description": "FedEx Ship Manager is your go-to tool when it comes to inbound, outbound and return shipments. Whether you send documents, parcels or freight, our free online tool supports you every step of your journey — including through customs.",
+    "featured": [
       "/en-to/shipping-tools"
     ]
   },

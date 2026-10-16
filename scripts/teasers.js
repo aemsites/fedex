@@ -1,9 +1,9 @@
 /*
  * Teasers built from the pages they link to. In a block with the `teasers` variant, a row holding
  * nothing but a link to a page of this site is filled at runtime from that page's metadata:
- * image (og:image), title (og:title without the " | FedEx" site suffix) and description. Listings
- * (how-to-hub/articles, sweepstakes) link to their detail pages instead of repeating title, text
- * and image, so a teaser always shows what the detail page currently says.
+ * image (og:image), title (og:title without the " | FedEx" or " | FedEx <Country>" site suffix)
+ * and description. Listings (how-to-hub/articles, sweepstakes) link to their detail pages instead
+ * of repeating title, text and image, so a teaser always shows what the detail page currently says.
  *
  * The authored link text is the CTA; when it is just the page's URL or path, or repeats the title
  * (case-insensitive), the title itself becomes the link. Rows whose page cannot be loaded are
@@ -31,7 +31,7 @@ export function fetchTeaserData(path) {
           const key = (m.getAttribute('property') || m.getAttribute('name') || '').toLowerCase();
           if (key && !(key in metas)) metas[key] = m.getAttribute('content').trim();
         });
-        const title = (metas['og:title'] || doc.title || '').replace(/\s+\|\s+FedEx\s*$/i, '');
+        const title = (metas['og:title'] || doc.title || '').replace(/\s+\|\s+FedEx(\s+[^|]+)?\s*$/i, '');
         if (!title) return null;
         return {
           title,

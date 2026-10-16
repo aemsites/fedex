@@ -136,7 +136,10 @@ export default function parse(element, { document, url, params }) {
     }
     const labelCell = document.createElement('p');
     // Icon in the label itself (:rate-ship:, :track:, :locations: -> /icons/*.svg)
-    if (TAB_ICONS[key]) labelCell.append(`:${TAB_ICONS[key]}: `);
+    // a locations tab labelled "Ship" (en-to home: SHIP opens the drop-off locator) shows the source's
+    // package icon (:ship:), not the location pin
+    const icon = key === 'locations' && /\bship\b/i.test(label) && !/location/i.test(label) ? 'ship' : TAB_ICONS[key];
+    if (icon) labelCell.append(`:${icon}: `);
     if (isActive) {
       const strong = document.createElement('strong');
       strong.textContent = niceLabel;

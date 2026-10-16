@@ -423,6 +423,43 @@ main > .section > div {
   padding: 0 var(--content-gutter);
 }
 
+/*
+ * text after a block in the same section keeps at least 32px from it, as fedex.com's spacer
+ * components (32-70px: one-rate footnotes under the table 32px, shipping-tools intro under the
+ * featured offer 70px). A margin, so larger ones already there (a heading's 48px) win.
+ */
+main > .section > :where(div:not(.default-content-wrapper)) + .default-content-wrapper {
+  margin-top: var(--space-8);
+}
+
+/*
+ * text after a featured offer (Cards (…, featured)): fedex.com's component margin plus the spacers
+ * it puts before the text (en-to shipping-tools "Take control of your shipments…": 46px on mobile,
+ * 70px from 768px)
+ */
+main > .section > :where(.cards-wrapper:has(> .cards.featured)) + .default-content-wrapper {
+  margin-top: 46px;
+}
+
+/*
+ * a featured offer under the section's title or text: fedex.com adds its component margin and a
+ * spacer to the heading's own margin (shipping-tools "Easy, speedy online shipping tools": 45px on
+ * mobile, 66px from 768px). Padding, so it adds to the heading margin instead of collapsing into it.
+ */
+main > .section > .default-content-wrapper + :where(.cards-wrapper:has(> .cards.featured)) {
+  padding-top: 21px;
+}
+
+@media (width >= 768px) {
+  main > .section > :where(.cards-wrapper:has(> .cards.featured)) + .default-content-wrapper {
+    margin-top: 70px;
+  }
+
+  main > .section > .default-content-wrapper + :where(.cards-wrapper:has(> .cards.featured)) {
+    padding-top: 26px;
+  }
+}
+
 /* section metadata */
 
 /* light: one content-width panel shared by everything in the section */
@@ -683,6 +720,29 @@ main > .section.center-buttons .default-content-wrapper .button-wrapper {
 /* center-headings: centers only the section's H2 topic headings, answers stay left (e.g. returns) */
 main > .section.center-headings .default-content-wrapper h2 {
   text-align: center;
+}
+
+/*
+ * title-rule: a 1px light rule under the heading that opens the section, across the content width
+ * (fedex.com's divider under a section title: en-to shipping "Shipping Services", customer-support
+ * "Contact Us")
+ */
+main > .section.title-rule > .default-content-wrapper:first-child > :is(h1, h2, h3):first-child {
+  padding-bottom: var(--space-5);
+  border-bottom: 1px solid var(--rule-color, #eee);
+}
+
+/*
+ * divider: a 1px light rule at the top of the section, across the content width (fedex.com's
+ * divider between two content groups: en-to packaging, online-shipping, terms-of-use)
+ */
+main > .section.divider::before {
+  content: "";
+  display: block;
+  box-sizing: border-box;
+  width: min(100% - 2 * var(--content-gutter), var(--content-max-width));
+  margin: 0 auto var(--space-6);
+  border-top: 1px solid var(--rule-color, #eee);
 }
 
 /* a heading directly above a logo grid sits close to it (e.g. returns "Drop off FedEx returns at:") */

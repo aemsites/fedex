@@ -57,6 +57,9 @@ async function expandTeasers(block) {
  * columns: each row is a row of columns; an image-only cell becomes an image column.
  * A row with a single cell spans the full width.
  * A poster image + Kaltura link cell becomes a click-to-play video column.
+ * Link-only paragraphs become text CTAs (columns-cta), or plain links (columns-link) when the
+ * cell holds nothing but headings and links; a paragraph of only linked images is a row of
+ * badges (columns-badges).
  * Variants: feature (h3 + text pairs become a feature grid), promo, light (panel background),
  * steps (ordered list with circled numbers beside an image, or centered on its own when
  * authored as one cell; CSS only), overlay (with promo: text on a translucent panel over
@@ -86,11 +89,22 @@ export default async function decorate(block) {
         return;
       }
       if (feature) buildFeatures(col);
-      // a paragraph holding only a plain link is a text CTA
-      col.querySelectorAll('p').forEach((p) => {
+      // a paragraph holding only a plain text link is a text CTA; in a cell of only headings
+      // and such links (a link list) it is a plain text link instead
+      const linkPs = [...col.querySelectorAll('p')].filter((p) => {
         const a = p.querySelector('a');
-        if (a && !a.classList.contains('button') && p.textContent.trim() === a.textContent.trim()) {
-          p.classList.add('columns-cta');
+        return a && !a.classList.contains('button') && !p.querySelector('picture')
+          && p.textContent.trim() === a.textContent.trim();
+      });
+      const linkList = linkPs.length > 0
+        && [...col.children].every((el) => /^H[1-6]$/.test(el.tagName) || linkPs.includes(el));
+      linkPs.forEach((p) => p.classList.add(linkList ? 'columns-link' : 'columns-cta'));
+      // a paragraph of only linked images (app store badges) is a row of badges
+      col.querySelectorAll(':scope > p').forEach((p) => {
+        const kids = [...p.children];
+        if (kids.length && !p.textContent.trim()
+          && kids.every((el) => el.tagName === 'A' && el.querySelector('picture'))) {
+          p.classList.add('columns-badges');
         }
       });
     });

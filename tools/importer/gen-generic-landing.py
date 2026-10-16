@@ -73,6 +73,8 @@ EXTRA = {
         + ':has(> .row > .fxg-col:first-child > div > .aem-Grid > .experiencefragment .title_v1)'
         + ':has(> .row > .fxg-col:nth-child(3) > div > .aem-Grid > .experiencefragment .title_v1)',
     ],
+    # the tracking pages' tracking app (en-to / en-us tracking): parsers/widget.js, /widgets/tracking.html
+    'widget': ['.root div.trackingLandingContainer_v1'],
     # conditional forms (en-to ancillary-clearance-service country dropdown), marked in preprocess by
     # transformers/fedex-landing.js markConditionalForms; the comparison-landing choice panels
     # (open-account "How often do you ship?") are cards-promo's, inside a column_control_v1

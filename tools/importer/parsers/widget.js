@@ -13,6 +13,14 @@
  * An app container that isn't the rate app is removed (nothing authorable in it).
  */
 const WIDGETS = [
+  // the tracking pages' tracking box (div.trackingLandingContainer_v1: the Angular app
+  // <app-landing-page-entry> with the Tracking number / reference / TCN / proof-of-delivery tabs;
+  // en-to and en-us tracking): /widgets/tracking.html
+  {
+    path: '/widgets/tracking.html',
+    test: (el) => el.matches('.trackingLandingContainer_v1')
+      || !!el.querySelector('#trk-LandingModule-div, app-landing-page-entry'),
+  },
   {
     path: '/widgets/rate-calculator.html',
     test: (el) => !!el.querySelector('#fedex-mags-app, magr-root, magr-welcome, #magr-heading, link[href*="/magr/"]')

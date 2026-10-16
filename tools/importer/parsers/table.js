@@ -45,7 +45,9 @@ function normalizeSpace(el) {
 // A run on its own background colour inside a cell is a badge ("8.00 - 11.30 uur" on purple next
 // to a service name, nl-nl ship-to-europe / send-parcel-to-*): kept as <code> (the block shows
 // it as a badge); the text inside loses its bold.
-const BADGE_BG = /background(-color)?\s*:\s*(?!transparent|rgba\(0,\s*0,\s*0,\s*0\)|#fff|white)[^;]+/i;
+// (the value must start right after the spaces: "background-color: transparent" is no badge — en-to
+// shipping "Delivery by 10:30 or noon…")
+const BADGE_BG = /background(-color)?\s*:\s*(?!\s|transparent|rgba\(0,\s*0,\s*0,\s*0\)|#fff|white|inherit|initial|none)[^;]+/i;
 function markBadges(cell, document) {
   cell.querySelectorAll('span[style]').forEach((span) => {
     if (!BADGE_BG.test(span.getAttribute('style') || '') || !clean(span.textContent)) return;
@@ -119,7 +121,9 @@ function rowsFromTable(table) {
   const rows = [];
   const head = [...table.querySelectorAll(':scope > thead > tr')];
   const body = [...table.querySelectorAll(':scope > tbody > tr, :scope > tr')];
-  const noHeader = isServiceFees(table);
+  // a one-row table (en-to shipping: each service is its own [label | description] table) has no
+  // header row
+  const noHeader = isServiceFees(table) || (!head.length && body.length === 1);
   head.forEach((tr) => rows.push({ tr, header: true }));
   body.forEach((tr, i) => rows.push({ tr, header: !noHeader && !head.length && i === 0 }));
   return rows.map(({ tr, header }) => ({ header, cells: [...tr.querySelectorAll(':scope > th, :scope > td')] }));
@@ -152,7 +156,12 @@ function buildTable(source, document) {
   // row); only the variant name differs
   // `striped`: fedex.com striped-row tables without borders (nl-nl ship-to-europe tab tables)
   const variants = [];
-  if (isServiceFees(table)) variants.push('no-header');
+  if (isServiceFees(table) || (table && !table.querySelector(':scope > thead') && rows.length === 1)) {
+    variants.push('no-header');
+    // `bordered`: the one-row table's grid lines are authored inline (en-to shipping:
+    // style="border: 1px solid #8e8e8e"), unlike the service fee tables' row lines
+    if (!isServiceFees(table) && /border(-width)?\s*:\s*[1-9]/i.test(table.getAttribute('style') || '')) variants.push('bordered');
+  }
   if (brandHeader(table)) variants.push('brand');
   if (table && table.classList.contains('fxg-table--striped-row')) variants.push('striped');
   // header labels authored in the lighter FedEx purple (#671CAA, send-parcel-to-*)

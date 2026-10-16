@@ -9,7 +9,8 @@
  * beforeTransform (first):
  *  1. A detail page gets its listing teaser image as og:image, so createMetadata writes it as
  *     metadata Image (fedex.com's og:image is the FedEx logo on every page). The teaser blocks
- *     read title, description and that image from the detail page.
+ *     read title, description and that image from the detail page. A featured offer's own copy
+ *     (teaser-pages.js `description`) becomes the detail page's description too.
  * preprocess (resolveTeaserAnchors, called from the import script's preprocess hook: helix-importer's
  * own preprocessing and fedex-cleanup drop empty anchors before any transformer runs):
  *  2. Jump links to an empty anchor (<a id="bikes"></a> in or before a teaser, how-to-hub/articles
@@ -70,6 +71,23 @@ function setTeaserImage(doc, path) {
     doc.head.append(meta);
   }
   meta.setAttribute('content', page.image);
+}
+
+// a featured offer's own copy for the page (en-to shipping-tools "FedEx Ship Manager is your go-to
+// tool…") replaces its description: the listing's teaser reads it (scripts/teasers.js)
+function setTeaserDescription(doc, path) {
+  const page = TEASER_PAGES[path];
+  if (!page || !page.description || !doc.head) return;
+  [['name', 'description'], ['property', 'og:description'], ['property', 'twitter:description']].forEach(([attr, key]) => {
+    let meta = doc.head.querySelector(`meta[${attr}="${key}"]`);
+    if (!meta && key !== 'description') return;
+    if (!meta) {
+      meta = doc.createElement('meta');
+      meta.setAttribute(attr, key);
+      doc.head.append(meta);
+    }
+    meta.setAttribute('content', page.description);
+  });
 }
 
 // content fedex.com does not show: Adobe Target rows hidden inline, mobile-only renditions
@@ -231,6 +249,11 @@ function convertTeaserBlocks(element, doc) {
     } else {
       name = 'Cards (promo, teasers)';
     }
+    // `featured`: the teaser is fedex.com's featured offer on this listing (its own copy and the
+    // component's spacing: en-to shipping-tools "FedEx Ship Manager")
+    if (teasers.every((item) => ((TEASER_PAGES[item.path] || {}).featured || []).includes(currentPage))) {
+      name = name.replace(/\)$/, ', featured)');
+    }
     const block = WebImporter.Blocks.createBlock(doc, {
       name,
       cells: teasers.map((item) => [teaserRow(doc, item)]),
@@ -245,6 +268,7 @@ export default function transform(hookName, element, payload) {
   currentPage = pagePath(original);
   if (hookName === 'beforeTransform') {
     setTeaserImage(doc, currentPage);
+    setTeaserDescription(doc, currentPage);
     return;
   }
   if (hookName === 'afterTransform') convertTeaserBlocks(element, doc);

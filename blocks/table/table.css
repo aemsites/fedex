@@ -69,6 +69,48 @@
 }
 
 /*
+ * bordered: a grid of 1px grey lines around the table and every cell (fedex.com's inline-styled
+ * tables, en-to shipping "Package <= 68kg | services"). 14px black text, inset 15px, 10px cell
+ * padding; on mobile the cells are top-left aligned, from 768px centred both ways. The table
+ * fits the column on mobile instead of scrolling.
+ */
+.table.bordered {
+  --table-rule: 1px solid #8e8e8e; /* source grid colour */
+  --table-cell-padding: 10px;
+  --table-min-width: 0;
+}
+
+.table.bordered .table-scroll {
+  margin-bottom: var(--space-4);
+  padding: var(--content-gutter);
+}
+
+.table.bordered table {
+  border: var(--table-rule);
+  color: #000; /* source cell text colour */
+  font-size: var(--body-font-size-s);
+}
+
+.table.bordered th,
+.table.bordered td {
+  border: var(--table-rule);
+  vertical-align: text-top;
+}
+
+.table.bordered td {
+  font-weight: var(--font-weight-regular);
+}
+
+/* a mark (®) doesn't make its line taller (source: 21px lines) */
+.table.bordered sup {
+  line-height: 0;
+}
+
+.table.bordered td p:not(:last-child) {
+  margin: 0 0 var(--space-2);
+}
+
+/*
  * brand: a brand-purple header row with white centered labels, 14px body text,
  * no row lines, cells centered vertically. An icon before a cell's text (e.g. the
  * first column's "clock SNELHEID") sits inline at 30px, centered on the text.
@@ -179,66 +221,67 @@
 
 /*
  * no-header: every row is a data row (fedex.com's clearance fee tables: fee | amount |
- * description). Inset 12px and at most 827px wide, centered, 30px above; 12px black text
+ * description; with `bordered`, see below, only the header row is dropped). Inset 12px and
+ * at most 827px wide, centered, 30px above; 12px black text
  * with 1px black row lines, every other row (from the first) on light grey, 30px / 8px cell
  * padding. The first column (the fee name) is 20px regular, the second (the amount) centered.
  */
-.table.no-header {
+.table.no-header:not(.bordered) {
   --table-rule: 1px solid #000; /* source row line */
   --table-cell-padding: 30px 8px;
   --link-color: #0d6efd; /* source link colour */
 }
 
-.table.no-header .table-scroll {
+.table.no-header:not(.bordered) .table-scroll {
   box-sizing: border-box;
   max-width: 827px; /* source fee table container */
   margin: 30px auto 16px;
   padding-inline: 12px;
 }
 
-.table.no-header table {
+.table.no-header:not(.bordered) table {
   color: #000; /* source cell text colour */
   font-size: var(--body-font-size-xs);
 }
 
-.table.no-header td {
+.table.no-header:not(.bordered) td {
   width: 25%;
   font-weight: var(--font-weight-regular);
   line-height: 1.3;
 }
 
-.table.no-header td:last-child {
+.table.no-header:not(.bordered) td:last-child {
   width: 50%;
 }
 
-.table.no-header tbody tr:nth-child(odd) {
+.table.no-header:not(.bordered) tbody tr:nth-child(odd) {
   background-color: var(--color-gray-light);
 }
 
 /* the fee name: 20px, not bold although authored in bold (as on the source) */
-.table.no-header td:first-child {
+.table.no-header:not(.bordered) td:first-child {
   font-size: 20px; /* source size */
 }
 
-.table.no-header td:first-child strong {
+.table.no-header:not(.bordered) td:first-child strong {
   font-weight: var(--font-weight-regular);
 }
 
-.table.no-header td:nth-child(2) {
+.table.no-header:not(.bordered) td:nth-child(2) {
   text-align: center;
 }
 
 /* paragraphs 8px apart; the amount and description end 8px higher (the source's last paragraph
    margin), also when authored without a paragraph */
-.table.no-header td p {
+.table.no-header:not(.bordered) td p {
   margin: 0 0 var(--space-2);
 }
 
-.table.no-header td > p:last-child {
+.table.no-header:not(.bordered) td > p:last-child {
   margin-bottom: 0;
 }
 
-.table.no-header td:not(:first-child) {
+.table.no-header:not(.bordered) td:not(:first-child) {
   padding-bottom: calc(30px + var(--space-2));
 }
 
@@ -267,5 +310,11 @@
 
   .table.striped table {
     font-size: var(--body-font-size-s);
+  }
+
+  .table.bordered th,
+  .table.bordered td {
+    text-align: center;
+    vertical-align: middle;
   }
 }

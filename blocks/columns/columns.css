@@ -56,6 +56,38 @@
   color: var(--color-blue-hover);
 }
 
+/*
+ * link list (a cell of only headings and links): fedex.com's plain text links,
+ * 16px medium blue, 8px apart (no gap under a title, e.g. the sitemap)
+ */
+.columns .columns-link {
+  margin: 0 0 var(--space-2);
+}
+
+.columns .columns-link a:any-link {
+  color: var(--color-blue);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: -0.18px;
+  text-decoration: none;
+}
+
+.columns .columns-link a:hover,
+.columns .columns-link a:focus-visible {
+  color: var(--color-blue-hover);
+  text-decoration: underline;
+}
+
+.columns :is(h1, h2, h3, h4, h5, h6) ~ .columns-link {
+  margin-bottom: 0;
+}
+
+/* a link list's h3 title: the source's 20px regular list title */
+.columns h3:has(+ .columns-link) {
+  margin-bottom: var(--space-4);
+  font-size: 20px; /* source size, between the 19px and 24px steps of the scale */
+  font-weight: var(--font-weight-regular);
+}
+
 /* light: panel background */
 .columns.light {
   padding: var(--space-6) var(--content-gutter);
@@ -117,6 +149,11 @@
 
 .columns.promo.light .button-wrapper {
   text-align: center;
+}
+
+/* light promo title: the source's 24px above the body copy */
+.columns.promo.light h3 {
+  margin-bottom: var(--space-6);
 }
 
 /*
@@ -207,9 +244,10 @@
 }
 
 @media (width >= 768px) {
+  /* columns are top-aligned, as the source grid */
   .columns > div {
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
   }
 
   .columns > div > div {
@@ -524,7 +562,8 @@
 
 /*
  * The centered, one-third and divided rules below are keyed to their own variant
- * class, so they never compete with the promo / steps / feature rules above.
+ * class, and the default-layout rules at the end exclude every layout variant, so they
+ * never compete with the promo / steps / feature rules above.
  */
 /* stylelint-disable no-descending-specificity */
 
@@ -672,6 +711,55 @@
   margin-bottom: 0;
 }
 
+/*
+ * divided with link items (icon, title, text CTAs: en-to new-customer "Manage Your Shipment |
+ * After You Ship"): the source's icon-and-links lists. 40px regular centered titles over a
+ * #eee rule, 42px icons, 20px regular item titles, no vertical rule; on mobile the icon is
+ * centered above the item.
+ */
+.columns.divided:has(li > .columns-cta) {
+  --columns-item-icon-size: 42px;
+}
+
+.columns.divided:has(li > .columns-cta) > div > div {
+  padding: 0 var(--space-3);
+}
+
+.columns.divided:has(li > .columns-cta) h3 {
+  margin: var(--space-7) 0 50px;
+  border-bottom: 1px solid #eee; /* source rule colour */
+  padding-bottom: 34px;
+  font-size: var(--heading-font-size-xl);
+  font-weight: var(--font-weight-regular);
+}
+
+.columns.divided:has(li > .columns-cta) ul > li:has(> picture:first-child, > p:first-child > picture) {
+  padding: 0 var(--space-3);
+}
+
+.columns.divided:has(li > .columns-cta) ul > li + li {
+  margin-top: var(--space-16);
+}
+
+.columns.divided:has(li > .columns-cta) ul > li > :is(picture, p:has(> picture)):first-child {
+  position: static;
+  margin: 0 auto var(--space-5);
+}
+
+.columns.divided:has(li > .columns-cta) ul > li > p:not(.columns-cta, :has(> picture)) {
+  margin-bottom: var(--space-5);
+  font-size: 20px; /* source size, between the 19px and 24px steps of the scale */
+  line-height: var(--heading-line-height);
+}
+
+.columns.divided:has(li > .columns-cta) ul > li > p > strong {
+  font-weight: var(--font-weight-regular);
+}
+
+.columns.divided:has(li > .columns-cta) ul > li > .columns-cta:not(:last-child) {
+  margin-bottom: 14px;
+}
+
 @media (width >= 768px) {
   .columns.centered {
     max-width: 912px;
@@ -720,6 +808,89 @@
 
   .columns.divided > div > div + div {
     border-left: 1px solid var(--border-color);
+  }
+
+  /* divided with link items: no vertical rule, 12px column insets; each item is a 155px
+   * step (the source's icon column), the 42px icon 17px in, the text 89px in */
+  .columns.divided:has(li > .columns-cta) > div > div {
+    padding: 0 var(--space-3);
+  }
+
+  .columns.divided:has(li > .columns-cta) > div > div + div {
+    border-left: 0;
+  }
+
+  .columns.divided:has(li > .columns-cta) h3 {
+    margin-top: var(--space-12);
+    padding-bottom: 50px;
+  }
+
+  .columns.divided:has(li > .columns-cta) ul > li:has(> picture:first-child, > p:first-child > picture) {
+    min-height: 155px;
+    padding: 0 var(--space-3) 0 89px;
+  }
+
+  .columns.divided:has(li > .columns-cta) ul > li + li {
+    margin-top: 0;
+  }
+
+  .columns.divided:has(li > .columns-cta) ul > li > :is(picture, p:has(> picture)):first-child {
+    position: absolute;
+    left: 17px;
+    margin: 0;
+  }
+}
+
+/*
+ * default layout (no layout variant): the source grid's 12px column inset, copy with
+ * 4px / 8px paragraph margins; an image inside a text column keeps its own size, centered
+ * (icons), and a paragraph of linked images (app store badges) sets them side by side
+ */
+.columns:not(.promo, .steps, .feature, .centered, .one-third, .divided, .icon-lists) > div > div {
+  padding-inline: var(--space-3);
+}
+
+.columns:not(.promo, .steps, .feature, .centered, .one-third, .divided, .icon-lists) > div > div > p:where(:not(.columns-cta, .columns-link, .button-wrapper)) {
+  margin: var(--space-1) 0 var(--space-2);
+}
+
+.columns:not(.promo, .steps, .feature, .centered, .one-third, .divided, .icon-lists) > div > div:not(.columns-img-col) img[width] {
+  width: auto;
+  max-width: 100%;
+  margin-inline: auto;
+}
+
+.columns:not(.promo, .steps, .feature, .centered, .one-third, .divided, .icon-lists) .columns-badges {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-10);
+}
+
+@media (width >= 768px) {
+  /* default layout: the 12px column insets make the 24px gutter */
+  .columns:not(.promo, .steps, .feature, .centered, .one-third, .divided, .icon-lists) > div {
+    gap: 0;
+  }
+
+  .columns:not(.promo, .steps, .feature, .centered, .one-third, .divided, .icon-lists) .columns-badges {
+    flex-direction: row;
+    gap: 0;
+  }
+
+  .columns:not(.promo, .steps, .feature, .centered, .one-third, .divided, .icon-lists) .columns-badges > a {
+    display: flex;
+    flex: 1 1 0;
+    justify-content: center;
+  }
+
+  /* link lists: titles 36px below the previous row's links, 24px above their own */
+  .columns > div + div:has(> div > h3 + .columns-link) {
+    margin-top: var(--space-9);
+  }
+
+  .columns h3:has(+ .columns-link) {
+    margin-bottom: var(--space-6);
   }
 }
 

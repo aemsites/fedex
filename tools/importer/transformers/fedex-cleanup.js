@@ -372,8 +372,18 @@ function markJumpLinkTargets(element) {
   const headings = [...element.querySelectorAll(HEADINGS)];
   ids.forEach((id) => {
     // Exact (case-sensitive) id first (#BatchClaim -> h2#BatchClaim); case-insensitive only as a fallback
-    const h = headings.find((el) => el.id === id)
+    let h = headings.find((el) => el.id === id)
       || headings.find((el) => el.id && el.id.toLowerCase() === id.toLowerCase());
+    // a named anchor inside or just before the heading (en-to terms-of-use: <h3><a id="1a"
+    // name="1a"></a>Section 1. Definitions</h3>, the table of contents links to #1a)
+    if (!h) {
+      const target = [...element.querySelectorAll('[id], a[name]')]
+        .find((el) => el.id === id || el.getAttribute('name') === id);
+      if (target) {
+        h = target.closest(HEADINGS)
+          || headings.find((el) => target.compareDocumentPosition(el) & 4); // eslint-disable-line no-bitwise
+      }
+    }
     if (!h) return;
     if (!h.hasAttribute(ANCHOR_MARKER)) h.setAttribute(ANCHOR_MARKER, id);
     // Remember the target text on the links: if the target heading is a hidden duplicate that gets
@@ -395,7 +405,9 @@ function rewriteJumpLinks(element) {
   element.querySelectorAll(HEADINGS).forEach((h) => {
     const text = cleanText(h);
     if (!text) return;
-    const slug = slugger(text);
+    // the slugger drops Unicode spaces other than the no-break space (en-to terms-of-use
+    // "FedEx® Import Tool" -> #section-27-fedeximport-tool), cleanText made them spaces
+    const slug = slugger(h.textContent.replace(/[\u2000-\u200b\u202f\u205f\u3000]/g, '').replace(/\s+/g, ' ').trim());
     const id = h.getAttribute(ANCHOR_MARKER) || h.id;
     if (id && !byId[id]) byId[id] = slug;
     if (!byText[text]) byText[text] = slug;
@@ -428,6 +440,14 @@ function rewriteInternalLinks(element, payload) {
     const page = /\.html$/i.test(url.pathname)
       || (/^\/[a-z]{2}-[a-z]{2}\//i.test(url.pathname) && !/\.[a-z0-9]+$/i.test(url.pathname));
     if (!page) return;
+    // pages outside the locale trees (en-to shipping "/to/tools/lithium.html") and the online apps
+    // (/{locale}/online/…: shipping, rating) are not migrated: they stay on fedex.com
+    // (the importer's own site paths, /widgets/… and /fragments/…, stay relative)
+    if (/^\/(widgets|fragments|icons)\//.test(href)) return;
+    if (!/^\/[a-z]{2}-[a-z]{2}\//i.test(url.pathname) || /^\/[a-z]{2}-[a-z]{2}\/online\//i.test(url.pathname)) {
+      a.setAttribute('href', url.href);
+      return;
+    }
     // EDS page paths are lower case (fedex.com "how-do-I-pack-furniture", "automotive/OEM" would 404)
     a.setAttribute('href', `${url.pathname.replace(/\.html$/i, '').toLowerCase()}${url.search}${url.hash}`);
   });
@@ -616,6 +636,27 @@ export default function transform(hookName, element, payload) {
       element.querySelectorAll('div.hr_v1').forEach((el) => {
         if (el.isConnected && !el.closest('table') && !el.textContent.trim()
           && !el.querySelector('img, picture, video, iframe, table, a')) el.remove();
+      });
+      // Bullet characters typed as text (en-to tracking "Key Benefits<br> • Track in near real time…<br>
+      // • …"): the paragraph's lead line stays a paragraph, the "•" lines become a list
+      element.querySelectorAll('p').forEach((p) => {
+        const parts = p.innerHTML.split(/<br\s*\/?>/i);
+        const isBullet = (h) => /^\s*(&nbsp;|\s)*[•·▪]\s*/.test(h);
+        const bullets = parts.filter(isBullet);
+        if (bullets.length < 2 || !parts.slice(parts.findIndex(isBullet)).every((h) => isBullet(h) || !h.trim())) return;
+        const lead = parts.slice(0, parts.findIndex(isBullet)).join('<br>').trim();
+        const ul = p.ownerDocument.createElement('ul');
+        bullets.forEach((h) => {
+          const li = p.ownerDocument.createElement('li');
+          li.innerHTML = h.replace(/^\s*(&nbsp;|\s)*[•·▪]\s*/, '').trim();
+          ul.append(li);
+        });
+        if (lead) {
+          const np = p.ownerDocument.createElement('p');
+          np.innerHTML = lead;
+          p.before(np);
+        }
+        p.replaceWith(ul);
       });
       // Adjacent one-item lists in default content (returns "How do I schedule a pickup ...": the editor
       // saved <ul><li/></ul><ul><li/></ul>) -> one list; html2md would otherwise emit two lists.

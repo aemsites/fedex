@@ -60,7 +60,9 @@ export default function parse(element, { document }) {
 
   const body = [];
   const heading = [...textCol.querySelectorAll('h1, h2, h3, h4, h5, h6')].find((h) => visible(h, element) && clean(h.textContent));
-  if (heading) body.push(inline(heading, document, 'h3'));
+  // the source level for a topic heading (en-to shipping / customer-support "Open a FedEx account and
+  // enjoy more benefits." is an h2), else h3
+  if (heading) body.push(inline(heading, document, heading.tagName === 'H2' ? 'h2' : 'h3'));
   [...textCol.querySelectorAll('.richtext p, .richtext ul, .richtext ol')]
     .filter((p) => visible(p, element) && clean(p.textContent) && !p.parentElement.closest('p, ul, ol'))
     .forEach((p, i) => {

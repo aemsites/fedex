@@ -544,6 +544,11 @@ https://www.fedex.com/en-to/shipping/packaging/envelope.html
 https://www.fedex.com/en-to/tracking.html
 https://www.fedex.com/en-to/customs-tools.html
 https://www.fedex.com/en-to/customer-support.html
+https://www.fedex.com/en-to/customer-support.html?fragment=0
+https://www.fedex.com/en-to/customer-support.html?fragment=1
+https://www.fedex.com/en-to/customer-support.html?fragment=2
+https://www.fedex.com/en-to/customer-support.html?fragment=3
+https://www.fedex.com/en-to/customer-support.html?fragment=4
 https://www.fedex.com/en-to/customer-support/write-to-fedex.html
 https://www.fedex.com/en-to/terms-of-use.html
 https://www.fedex.com/en-to/terms-of-use/line-app-notification.html

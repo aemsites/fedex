@@ -20,5 +20,11 @@ An answer cell holding **only a link to a fragment** (a path with a `fragments` 
 | icon, Label | Answer |
 | Label | /en-us/fragments/… (link only) |
 
+**Two-level FAQ** (en-to customer-support): when a fragment answer holds another Accordion, the outer row is a category. Open, its label and panel turn light grey (`--panel-color`) with a regular-weight label, and the questions start a quarter of the way in (fedex.com's 2-of-8 column offset: `(width - 64px) / 4`) and run to the right edge. Questions are white rows with a `#8e8e8e` top rule (no bottom rule): 20/26px light labels (regular when open), 16px/48px insets, 64px rows, a 24px "+" icon that turns into "-" when open, 48px from the right. Answers: 0 48px 16px, paragraphs 4px/8px, lists 0 0 16px with a 32px indent. CSS-only, scoped to `.accordion .accordion` and the item whose body holds an accordion; single-level accordions are unchanged. The category label keeps the single-level insets (on mobile fedex.com uses 32px, but that isn't known until the fragment has loaded).
+
+| Accordion | |
+|---|---|
+| Category | /{locale}/fragments/…/category (link only; the fragment holds an Accordion of questions) |
+
 ## Variants
 - *(none)*

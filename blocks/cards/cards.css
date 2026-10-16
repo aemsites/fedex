@@ -347,6 +347,11 @@
   width: var(--cards-icon-size);
 }
 
+/* the text spans the card (as the source column), it does not shrink to its longest line */
+.cards.icon.centered .cards-card-body {
+  align-self: stretch;
+}
+
 /* centered (with promo): centered text and CTA/button (e.g. open-account choice panels) */
 .cards.promo.centered .cards-card-body {
   text-align: center;
@@ -446,26 +451,39 @@
 
 /*
  * promo + centered without light (nl-nl shipping "Internationaal verzenden", home "Tijdbesparende
- * tips"): large light titles 36px below the image and 24px above the text, the CTA/button follows
- * the text (not pinned to the bottom) and buttons are 300px wide (long labels wrap, as in the source).
+ * tips", en-to shipping "Additional Resources"): images at their natural ratio (not cropped), large
+ * light titles 24px below the image and 20px above the text on mobile (the title's 16px plus the
+ * text's own 4px), 36px and 28px from 768px; the CTA/button follows the text (not pinned to the bottom). Primary (orange) buttons are
+ * 300px wide (long labels wrap, as in the source); outlined buttons fit their label (min. 160px).
  * Promo, light, centered (open-account choice panels) is unaffected.
  */
 .cards.promo.centered:not(.light) {
-  --cards-title-spacing: var(--space-9);
+  --cards-title-spacing: var(--space-6);
+  --cards-centered-title-end: var(--space-4);
 
   /* nl-nl home: space above the "Laatste nieuws" promo that follows in the same section */
   margin-bottom: var(--space-6);
 }
 
+/* at most the card width, smaller artwork at its own size, centred (en-us supplies' 112px icons) */
+.cards.promo.centered:not(.light) .cards-card-image img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  margin-inline: auto;
+  aspect-ratio: auto;
+}
+
 .cards.promo.centered:not(.light) .cards-card-body h3 {
-  margin-bottom: var(--space-6);
+  margin-bottom: var(--cards-centered-title-end);
   font-size: var(--heading-font-size-l);
   font-weight: var(--font-weight-light);
   line-height: var(--heading-line-height);
 }
 
 .cards.promo.centered:not(.light) .cards-card-body h3 + p {
-  margin-top: 0;
+  margin-top: var(--space-1);
 }
 
 .cards.promo.centered:not(.light) .cards-card-body .cards-card-cta,
@@ -474,7 +492,7 @@
   padding-top: var(--space-3);
 }
 
-.cards.promo.centered:not(.light) .button-wrapper .button {
+.cards.promo.centered:not(.light) .button-wrapper .button.primary {
   width: 300px;
   max-width: 100%;
 }
@@ -1008,4 +1026,269 @@ main .default-content-wrapper:has(> .button-wrapper:last-child) + .cards-wrapper
   color: var(--color-orange);
   vertical-align: baseline;
   transform: none;
+}
+
+/*
+ * photos captioned by a single link (en-to packaging "Envelope", "Small Box"): the source's caption,
+ * a 16px light underlined link in the text colour and authored case, 13px below the photo (35px
+ * from 768px) and lined up across the row (at the foot of the card), 8px below it on mobile (cards
+ * follow each other closely); the photo is 90% of the card, centred. Photo cards
+ * with a title or text are unaffected.
+ */
+.cards.icon.centered.photos > ul > li:has(> .cards-card-body > .cards-card-cta:only-child) {
+  --cards-photos-end: var(--space-2);
+  --cards-caption-gap: 13px;
+
+  justify-content: space-between;
+  gap: var(--cards-caption-gap);
+}
+
+.cards.icon.centered.photos > ul > li:has(> .cards-card-body > .cards-card-cta:only-child) .cards-card-image {
+  width: 90%;
+}
+
+.cards.icon.centered.photos .cards-card-body > .cards-card-cta:only-child {
+  font-size: var(--body-font-size-m);
+  line-height: var(--body-line-height);
+}
+
+.cards.icon.centered.photos .cards-card-body > .cards-card-cta:only-child a:any-link {
+  color: var(--text-color);
+  font-weight: var(--font-weight-light);
+  letter-spacing: var(--body-letter-spacing);
+  text-decoration: underline;
+  text-transform: none;
+}
+
+@media (width >= 768px) {
+  /*
+   * centered with 1 or 2 cards: centred in the row as on the source (en-to new-customer "Contact
+   * Customer Support": the middle third; customer-support "Write to Us / Customer Service": halves)
+   */
+  .cards.icon.centered.cards-1-items > ul > li {
+    grid-column: 2;
+  }
+
+  .cards.icon.centered.cards-2-items > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cards.promo.centered:not(.light) {
+    --cards-title-spacing: var(--space-9);
+    --cards-centered-title-end: var(--space-6);
+  }
+
+  .cards.icon.centered.photos > ul > li:has(> .cards-card-body > .cards-card-cta:only-child) {
+    --cards-photos-end: 21px;
+    --cards-caption-gap: 35px;
+  }
+}
+
+/*
+ * The notes, outlined-button teaser and text-links rules below are keyed to their own content
+ * shape or variant class, so they never compete with the promo / photos / logos rules above.
+ */
+/* stylelint-disable no-descending-specificity */
+
+/*
+ * horizontal + light notes: an icon card whose body is a single paragraph and has no heading (en-to
+ * online-shipping "Start shipping in three easy steps", en-us claims "Make getting paid"):
+ * fedex.com's grey column-control row. 72px icon centred above the text on mobile (38px down to
+ * the text), in a 1/6 column from 768px with the text vertically centred on it; 20px above each
+ * icon, 20px below the last, 20px space after the panel (50px from 768px). Consecutive note blocks
+ * join into one continuous panel (no gaps), with the source's 30px extra above the first and below
+ * the last icon from 768px.
+ */
+.cards.horizontal.light:not(.compact):has(> ul > li > .cards-card-icon + .cards-card-body > p:only-child) {
+  --cards-row-gap: 0;
+
+  margin-block: 0 var(--cards-notes-after, var(--space-5));
+  padding: 0 0 var(--space-5);
+}
+
+.cards.horizontal.light > ul > li:has(> .cards-card-icon + .cards-card-body > p:only-child) {
+  padding: var(--space-5) var(--content-gutter) 0;
+}
+
+.cards.horizontal.light > ul > li:has(> .cards-card-icon + .cards-card-body > p:only-child) .cards-card-image img {
+  display: block;
+  width: 72px;
+  height: auto;
+  margin-inline: auto;
+  aspect-ratio: auto;
+  object-fit: contain;
+}
+
+.cards.horizontal.light > ul > li:has(> .cards-card-icon + .cards-card-body > p:only-child) .cards-card-body {
+  padding: 38px 0 0;
+}
+
+/* a run of note blocks: the first keeps no padding below, the last none above */
+.cards-wrapper:has(> .cards.horizontal.light > ul > li > .cards-card-icon + .cards-card-body > p:only-child):has(+ .cards-wrapper > .cards.horizontal.light > ul > li > .cards-card-icon + .cards-card-body > p:only-child) > .cards {
+  margin-bottom: 0;
+  padding-block: var(--cards-notes-run-end, 0) 0;
+}
+
+.cards-wrapper:has(> .cards.horizontal.light > ul > li > .cards-card-icon + .cards-card-body > p:only-child) + .cards-wrapper:has(> .cards.horizontal.light > ul > li > .cards-card-icon + .cards-card-body > p:only-child) > .cards {
+  padding-block: 0 calc(var(--space-5) + var(--cards-notes-run-end, 0px));
+}
+
+.cards-wrapper:has(> .cards.horizontal.light > ul > li > .cards-card-icon + .cards-card-body > p:only-child) + .cards-wrapper:has(> .cards.horizontal.light > ul > li > .cards-card-icon + .cards-card-body > p:only-child):has(+ .cards-wrapper > .cards.horizontal.light > ul > li > .cards-card-icon + .cards-card-body > p:only-child) > .cards {
+  padding-block: 0;
+}
+
+/*
+ * teasers with an outlined button (en-to shipping-tools "FedEx Ship Manager", en-us
+ * fedex-authorized-ship-center, perishables "Ship with dry ice"): fedex.com's featured offer, a
+ * grey panel with the 727:463 image bleeding to its edges, stacked above the text on mobile (text
+ * inset 25px 15px, button centred); from 768px the image takes 44% on the left, top-aligned, and
+ * the text 35px 60px 34px. Title 20px above the text, text 24px above the button. Teasers with a text
+ * CTA (fedex.com column-control rows) are unaffected.
+ */
+.cards.horizontal.teasers > ul > li:has(.button-wrapper > a.button.secondary) {
+  padding-inline: 0;
+  background-color: var(--panel-color);
+}
+
+.cards.horizontal.teasers > ul > li:has(.button-wrapper > a.button.secondary) .cards-card-body {
+  padding: 25px var(--content-gutter);
+}
+
+.cards.horizontal.teasers > ul > li:has(.button-wrapper > a.button.secondary) .cards-card-body h3 {
+  margin-bottom: var(--space-5);
+}
+
+.cards.horizontal.teasers > ul > li:has(.button-wrapper > a.button.secondary) .cards-card-body p {
+  margin: var(--space-1) 0 var(--space-6);
+}
+
+.cards.horizontal.teasers > ul > li:has(.button-wrapper > a.button.secondary) .cards-card-body .button-wrapper {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+/*
+ * icon-links + text-links (en-to new-customer "Before You Ship"): fedex.com's column-control icon
+ * links. The icon spans the item on mobile (the source scales it to the column), 60px from 768px,
+ * directly above a medium blue 16px text link in the authored case (not the uppercase CTA); 3
+ * columns from 768px with the source's 12px column inset, no space between items.
+ */
+.cards.icon-links.text-links {
+  --cards-icon-size: 100%;
+  --cards-icon-gap: 0;
+  --cards-icon-item-padding: 0 var(--content-gutter);
+  --cards-icon-list-gap: 0;
+  --cards-icon-list-inset: 0;
+}
+
+.cards.icon-links.text-links .cards-card-cta {
+  font-size: var(--body-font-size-m);
+  line-height: var(--body-line-height);
+}
+
+.cards.icon-links.text-links .cards-card-cta a:any-link {
+  font-weight: var(--font-weight-medium);
+  letter-spacing: -0.18px;
+  text-transform: none;
+}
+
+@media (width >= 768px) {
+  .cards.horizontal.light:not(.compact):has(> ul > li > .cards-card-icon + .cards-card-body > p:only-child) {
+    --cards-notes-run-end: 30px;
+    --cards-notes-after: 50px;
+  }
+
+  .cards.horizontal.light > ul > li:has(> .cards-card-icon + .cards-card-body > p:only-child) {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 5fr);
+    align-items: center;
+    padding: var(--space-5) 0 0;
+  }
+
+  .cards.horizontal.light > ul > li:has(> .cards-card-icon + .cards-card-body > p:only-child) .cards-card-image {
+    padding-inline: var(--space-3);
+  }
+
+  .cards.horizontal.light > ul > li:has(> .cards-card-icon + .cards-card-body > p:only-child) .cards-card-body {
+    padding: 0 var(--space-3);
+  }
+
+  .cards.horizontal.teasers > ul > li:has(.button-wrapper > a.button.secondary) {
+    grid-template-columns: minmax(0, 427fr) minmax(0, 543fr);
+  }
+
+  .cards.horizontal.teasers > ul > li:has(.button-wrapper > a.button.secondary) .cards-card-image {
+    padding: 0;
+  }
+
+  .cards.horizontal.teasers > ul > li:has(.button-wrapper > a.button.secondary) .cards-card-body {
+    padding: 35px 60px 34px;
+  }
+
+  .cards.horizontal.teasers > ul > li:has(.button-wrapper > a.button.secondary) .cards-card-body .button-wrapper {
+    text-align: start;
+  }
+
+  .cards.icon-links.text-links {
+    --cards-icon-size: 60px;
+    --cards-icon-item-padding: 0 var(--space-3);
+  }
+}
+
+/*
+ * icon + centered + spaced (en-to shipping-tools "Transit Times"): the importer sets it when every
+ * title is fedex.com's 20px regular heading. As the source: 96px icons, the title with the heading
+ * spacing (28px above, 24px below; 48px and 40px from 768px), paragraphs 4px above and 8px below,
+ * the link 21px under the text, each card in a 12px-inset column.
+ */
+.cards.icon.centered.spaced {
+  --cards-icon-size: 96px;
+  --cards-spaced-title-spacing: 28px 0 var(--space-6);
+}
+
+.cards.icon.centered.spaced > ul > li {
+  gap: 0;
+  padding-inline: var(--space-3);
+}
+
+.cards.icon.centered.spaced .cards-card-body h3 {
+  margin: var(--cards-spaced-title-spacing);
+  font-size: 20px;
+  font-weight: var(--font-weight-regular);
+  line-height: 26px;
+  letter-spacing: var(--heading-letter-spacing);
+}
+
+.cards.icon.centered.spaced .cards-card-body p {
+  margin: var(--space-1) 0 var(--space-2);
+}
+
+/* 21px from the text to the button, which has 8px of its own spacing above */
+.cards.icon.centered.spaced .cards-card-body p:has(> a:only-child) {
+  margin-top: 13px;
+}
+
+.cards.icon.centered.spaced .cards-card-body > :last-child {
+  margin-bottom: 0;
+}
+
+@media (width >= 768px) {
+  /* spaced: the source's equal thirds (the 12px inset is the gutter), heading spacing 48px / 40px */
+  .cards.icon.centered.spaced {
+    --cards-spaced-title-spacing: var(--space-12) 0 var(--space-10);
+  }
+
+  .cards.icon.centered.spaced > ul {
+    column-gap: 0;
+  }
+}
+
+/*
+ * featured: a teaser that is fedex.com's featured offer on its listing (the importer sets it from
+ * teaser-pages.js; en-to shipping-tools "FedEx Ship Manager", get-inspired "FedEx Supporting
+ * International Forests"): the component's own 16px margin below it (get-inspired: 16px to the next
+ * teaser). Text after it gets more room (styles.css).
+ */
+.cards.featured {
+  margin-bottom: var(--space-4);
 }

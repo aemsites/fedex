@@ -42,7 +42,7 @@ async (listingUrls) => {
       // and is the component's only link target, as transformers/fedex-teasers.js converts them.
       // Only teasers give the detail page its image (build-teaser-pages.py): a photo beside "please
       // call customer support" in a how-to-ship guide is not the support page's picture.
-      const block = link.closest('p, h1, h2, h3, h4, h5, h6, li') || link.parentElement;
+      const block = link.closest('p, h1, h2, h3, h4, h5, h6, li') || link; // a link in no paragraph is a CTA (featured offer)
       const targets = new Set([...cell.querySelectorAll('a[href]')]
         .map((a) => { try { return new URL(a.getAttribute('href'), listing).pathname.replace(/\.html$/, ''); } catch (e) { return ''; } })
         .filter((p) => p && p !== self));
@@ -55,6 +55,13 @@ async (listingUrls) => {
         linkText: clean(link.textContent),
         teaser,
       };
+      // a featured offer has its own copy for the page (en-to shipping-tools "FedEx Ship Manager is
+      // your go-to tool…", not online-shipping's description): the detail page's Description
+      if (teaser && cell.matches('.featured_offer_v2')) {
+        const text = [...cell.querySelectorAll('p')].filter((p) => !p.closest('.fxg-desktop--hide'))
+          .map((p) => clean(p.textContent)).filter(Boolean).join(' ');
+        if (text) entry.description = text;
+      }
       const list = (out[path] = out[path] || []);
       if (seen.has(path)) list[list.indexOf(seen.get(path))] = entry;
       else list.push(entry);
