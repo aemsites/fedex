@@ -602,6 +602,75 @@ function markRules(element, doc) {
   });
 }
 
+// Spacing under a landing hero: fedex.com authors it with spacer components between the hero and
+// the first content (shipping, new-customer: none, 48px to the heading; shipping-tools 20px; about,
+// customer-support 50px). Their heights are inline; the width classes are inverted:
+// fxg-spacer-hide--desktop is the one shown on desktop, --mobile the one shown on mobile, a spacer
+// without one shows everywhere. Only spacers above the component holding the first content count
+// (supplies: not the one inside the form's text column). fedex.com's gap is those spacers plus the
+// first content's own top margin (a heading 48px, 28px on mobile; a paragraph 4px; media 0); ours is the section spacing (48px, 32px on mobile) plus the hero
+// section's style `space-below-N` (from 768px) / `space-below-mobile-M` (styles.css), so N and M are
+// that difference, rounded to the supported steps (none when fedex.com's gap is smaller).
+const SPACE_STEPS = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 70, 80, 90, 100];
+const spaceStep = (px) => (px < 3 ? 0 : SPACE_STEPS.reduce((a, b) => (Math.abs(b - px) < Math.abs(a - px) ? b : a)));
+const SECTION_SPACING = { desktop: 48, mobile: 32 };
+const HERO_SPACE_ATTR = 'data-fedex-hero-space';
+
+export function measureHeroSpacing(document) {
+  const hero = document.querySelector('.root .hero_landingpage_v1');
+  if (!hero) return;
+  const all = [...document.querySelectorAll('.root *')];
+  const start = all.indexOf(hero);
+  const isContent = (el) => !hero.contains(el) && !el.closest('.fxg-desktop--hide')
+    && (el.matches('img, picture, table, iframe, video')
+      || (el.matches('h1, h2, h3, h4, h5, h6, p, li, a') && !!clean(el.textContent)));
+  const first = all.find((el, i) => i > start && isContent(el));
+  if (!first) return;
+  // the component holding it: a row-like structure (columns, form, featured offer, accordion,
+  // tabs, the tracking module: they start at their own top), else the content's own component
+  const row = first.closest('.column_control_v1, form, .featured_offer_v2, .accordion_selector, .tabs_v1, .trackingLandingContainer_v1');
+  const comp = (row && !row.contains(hero) && row)
+    || first.closest('.title_v1, .richtext, .image_v2, .video_v1, .button_v1') || first;
+  // its own top margin on fedex.com: a heading 48px (28px on mobile), a paragraph 4px, media 0; a
+  // row starts at the margin of its columns' first content (a heading only when every column starts
+  // with one: packaging "Discover | Order"; a column starting with a photo: supplies, online-shipping)
+  // (on mobile the columns stack: the first content shown there counts, supplies hides its photos)
+  const HEADING = 'h1, h2, h3, h4, h5, h6';
+  const cols = comp === row
+    ? [...comp.querySelectorAll('.fxg-col')].filter((col) => col.closest('.column_control_v1') === comp.closest('.column_control_v1'))
+    : null;
+  const lead = (col, hidden) => [...col.querySelectorAll('*')].find((el) => isContent(el) && !el.closest(hidden));
+  const leads = cols ? cols.map((col) => lead(col, '.fxg-desktop--hide')).filter(Boolean) : [first];
+  const mobileLead = cols ? cols.map((col) => lead(col, '.fxg-mobile--hide')).find(Boolean) : first;
+  const own = (els, heading) => {
+    if (els.length && els.every((el) => el.matches(HEADING))) return heading;
+    return els.length && els.every((el) => el.matches('p, li')) ? 4 : 0;
+  };
+  const margin = { desktop: own(leads, 48), mobile: own([mobileLead].filter(Boolean), 28) };
+  const end = all.indexOf(comp);
+  const sum = { desktop: 0, mobile: 0 };
+  // spacers above the component (those inside it, in one of its columns, come after its start)
+  all.slice(start + 1, end).filter((el) => el.matches('.fxg-spacer') && !hero.contains(el) && !el.closest('.fxg-desktop--hide')).forEach((sp) => {
+    const height = parseFloat((/height\s*:\s*([\d.]+)px/i.exec(sp.getAttribute('style') || '') || [])[1]) || 0;
+    const only = ['mobile', 'tablet', 'desktop'].filter((w) => sp.classList.contains(`fxg-spacer-hide--${w}`));
+    if (!only.length || only.includes('desktop')) sum.desktop += height;
+    if (!only.length || only.includes('mobile')) sum.mobile += height;
+  });
+  const d = spaceStep(Math.max(0, sum.desktop + margin.desktop - SECTION_SPACING.desktop));
+  const m = spaceStep(Math.max(0, sum.mobile + margin.mobile - SECTION_SPACING.mobile));
+  const styles = [];
+  if (d) styles.push(`space-below-${d}`);
+  if (m !== d) styles.push(`space-below-mobile-${m}`);
+  if (styles.length) hero.setAttribute(HERO_SPACE_ATTR, styles.join(', '));
+}
+
+function markHeroSpacing(element, doc) {
+  element.querySelectorAll(`.root .hero_landingpage_v1[${HERO_SPACE_ATTR}]`).forEach((hero) => {
+    hero.after(styleMarker(doc, hero.getAttribute(HERO_SPACE_ATTR)));
+    hero.removeAttribute(HERO_SPACE_ATTR);
+  });
+}
+
 function markCenteredIntros(element, doc) {
   // a title-only hero (no image: how-to-hub/articles "Take the wheel with FedEx how-to guides",
   // centred h1 and centred intro below it) -> its section is center-intro too
@@ -1038,6 +1107,7 @@ export default function transform(hookName, element, payload) {
   }
   if (hookName !== 'beforeTransform') return;
   removeHiddenContent(element);
+  markHeroSpacing(element, doc);
   unwrapUntitledAccordions(element);
   convertFaqLayout(element, doc);
   stripForms(element);
