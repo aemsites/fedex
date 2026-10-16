@@ -1,6 +1,8 @@
 # Columns
 
-Each row is a row of columns (max 4). A cell holding only an image becomes an image column. A row with a single cell spans the full width (e.g. footnotes + a button). A paragraph holding only a plain link becomes a blue uppercase text CTA.
+Each row is a row of columns (max 4). A cell holding only an image becomes an image column. A row with a single cell spans the full width (e.g. footnotes + a button). A paragraph holding only a plain link becomes a blue uppercase text CTA; in a cell of only headings and such links (a link list, e.g. en-to `/sitemap`) the links are plain 16px blue text links instead, and an `### h3` directly above them is the 20px list title.
+
+Columns are top-aligned. Without a layout variant (`promo`, `steps`, `feature`, `centered`, `one-third`, `divided`, `icon-lists`) the block follows the fedex.com grid: each column has a 12px inset (the 24px gutter), paragraphs have 4px / 8px margins, an image inside a text column keeps its own size (max. the column width) and is centered (icons), and a paragraph of only linked images (App Store / Google Play badges, en-to `/tracking`) shows them side by side, each centered in its half (stacked on mobile). Heading sizes follow the global scale; fedex.com sets them per instance.
 
 | Columns (variants) | |
 |---|---|
@@ -10,7 +12,7 @@ Each row is a row of columns (max 4). A cell holding only an image becomes an im
 ## Variants (combinable)
 - `feature`: each `h3` + the text after it becomes a feature item; image on top on mobile, text left + image right with a 2-up feature grid from 768px
 - `promo`: text + image promo; the image bleeds to the panel edge (44% wide from 768px), the text column carries the inset
-- `light`: light panel background (`--panel-color`, #fafafa) on this block only
+- `light`: light panel background (`--panel-color`, #fafafa) on this block only; with `promo` the title sits 24px above the body copy (fedex.com featured offer)
 - `steps`: image column beside an intro paragraph, an ordered list shown as circled numbered steps, and an optional small-print footnote paragraph after the list; 30% image from 768px
 
 | Columns (steps) | |
@@ -42,6 +44,7 @@ Each row is a row of columns (max 4). A cell holding only an image becomes an im
 | image | ## heading, text, bullets |
 
 - `divided`: two titled columns with a 1px vertical rule between them from 768px (stacked, no rule, on mobile). Each column starts with a centered `### title`. An ordered list shows purple circled numbers (the same CSS as `steps`, 48px circles, no number images); a bulleted list whose items each start with an icon image shows the icon (53px) left of the item's bold title paragraph and text paragraph, without bullets. Example: nl-nl `/shipping/freight-services` "Hoe verzendt u uw vracht | Wat kan ik verzenden?".
+  When the list items end in link paragraphs (icon, **title**, links: en-to `/new-customer` "Manage Your Shipment | After You Ship") the block follows fedex.com's icon-and-links lists instead: no vertical rule, 40px regular titles over a light grey rule, 42px icons, 20px regular item titles, uppercase text CTAs, one 155px step per item from 768px; on mobile the icon is centered above its item.
 - `icon-lists`: columns of photo, `### title`, text and a bulleted list whose items each start with an icon image: the icon (30px) sits left of its one-line text, without bullets (the icon list of `divided`, without the rule). Example: en-us `/sweepstakes` "Check out some of our past sweepstakes" (the prizes per sweepstakes).
 - `teasers`: a row holding only a link to a page of this site becomes [text | image] from that page: its title, description and the link as CTA (`*link*` = outlined button), then its image (metadata Image). Combine with the layout variants, e.g. `Columns (promo, light, teasers)` (en-us `/sweepstakes`: the current sweepstakes, read from its page). A row whose page does not exist is dropped. See `Cards (teasers)` for the link label rules.
 
