@@ -33,7 +33,7 @@ SOURCES = [f'{R}/migration-work/en-to/final5/content', f'{R}/migration-work/en-t
 SOURCES = [s for s in SOURCES if os.path.isdir(s)]
 # not authored as blocks in pages: the header/footer are fragments, language-switch lives in the
 # footer, fragment is inserted by link
-EXCLUDE = {'header', 'footer', 'language-switch'}
+EXCLUDE = {'header', 'footer', 'language-switch', 'library-metadata'}
 WIDE = {'hero', 'banner'}
 MAX_ROWS = {'accordion': 3, 'table': 4, 'content-select': 5, 'cards': 3, 'tabs': 3, 'breadcrumb': 1}
 

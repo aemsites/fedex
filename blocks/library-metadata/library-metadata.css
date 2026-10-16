@@ -1,0 +1,4 @@
+/* library sample metadata: read by the DA Library panel, never shown on the page */
+.library-metadata {
+  display: none;
+}
