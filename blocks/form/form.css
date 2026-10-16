@@ -717,6 +717,13 @@ main div.form-wrapper {
     box-shadow: none;
 }
 
+/* a form placed in a section keeps the section's own side gutter (the reset above would drop it),
+   so it stays 15px from the screen edge on small screens like every other block; a form inside a
+   tab panel or fragment already sits inside its container's inset */
+main > .section > div.form-wrapper {
+    padding: 0 var(--content-gutter);
+}
+
 main .form :is(input, select, textarea) {
     border-radius: 0;
     color: var(--text-color);
@@ -742,11 +749,6 @@ main .form button[type="submit"] {
  * a square blue checkbox and a centred submit button.
  */
 /* stylelint-disable no-descending-specificity -- the vendored selectors above style other fields */
-
-/* keeps the section's side gutter, which `main div.form-wrapper` above drops on small screens */
-main div.form-wrapper:has(.field-supplies) {
-    padding: 0 var(--content-gutter);
-}
 
 main .form form:has(> .field-supplies) {
     --supplies-col-padding: var(--space-3);
