@@ -385,14 +385,3 @@
     max-width: 470px;
   }
 }
-
-/*
- * landing: fedex.com leaves 48-98px between the banner and the first heading (a 48px heading margin
- * plus spacer components; en-to shipping-tools 68px, customs-tools 73px, about 98px); 68px from
- * 768px. On mobile the spacers are hidden: the section spacing stays.
- */
-@media (width >= 768px) {
-  main > .section.hero-container:has(.hero.landing) {
-    margin-bottom: 68px;
-  }
-}

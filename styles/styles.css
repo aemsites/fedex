@@ -409,11 +409,59 @@ main .default-content-wrapper > p:has(> picture:only-child) + h2 {
 
 /* sections */
 main > .section {
-  margin: var(--section-spacing) 0;
+  --space-below: 0px;
+  --space-below-mobile: var(--space-below);
+
+  margin: var(--section-spacing) 0 calc(var(--section-spacing) + var(--space-below-mobile));
 }
+
+/*
+ * space-below-N: N px more under the section, from 768px; space-below-mobile-M: M px under it below
+ * 768px (default: N). The importer sets them from fedex.com's spacer components (the space under a
+ * landing hero: en-to shipping-tools 20px, about 50px; mobile 5px / 50px).
+ */
+main > .section.space-below-5 { --space-below: 5px; }
+main > .section.space-below-10 { --space-below: 10px; }
+main > .section.space-below-15 { --space-below: 15px; }
+main > .section.space-below-20 { --space-below: 20px; }
+main > .section.space-below-25 { --space-below: 25px; }
+main > .section.space-below-30 { --space-below: 30px; }
+main > .section.space-below-35 { --space-below: 35px; }
+main > .section.space-below-40 { --space-below: 40px; }
+main > .section.space-below-45 { --space-below: 45px; }
+main > .section.space-below-50 { --space-below: 50px; }
+main > .section.space-below-55 { --space-below: 55px; }
+main > .section.space-below-60 { --space-below: 60px; }
+main > .section.space-below-70 { --space-below: 70px; }
+main > .section.space-below-80 { --space-below: 80px; }
+main > .section.space-below-90 { --space-below: 90px; }
+main > .section.space-below-100 { --space-below: 100px; }
+main > .section.space-below-mobile-0 { --space-below-mobile: 0px; }
+main > .section.space-below-mobile-5 { --space-below-mobile: 5px; }
+main > .section.space-below-mobile-10 { --space-below-mobile: 10px; }
+main > .section.space-below-mobile-15 { --space-below-mobile: 15px; }
+main > .section.space-below-mobile-20 { --space-below-mobile: 20px; }
+main > .section.space-below-mobile-25 { --space-below-mobile: 25px; }
+main > .section.space-below-mobile-30 { --space-below-mobile: 30px; }
+main > .section.space-below-mobile-35 { --space-below-mobile: 35px; }
+main > .section.space-below-mobile-40 { --space-below-mobile: 40px; }
+main > .section.space-below-mobile-45 { --space-below-mobile: 45px; }
+main > .section.space-below-mobile-50 { --space-below-mobile: 50px; }
+main > .section.space-below-mobile-55 { --space-below-mobile: 55px; }
+main > .section.space-below-mobile-60 { --space-below-mobile: 60px; }
+main > .section.space-below-mobile-70 { --space-below-mobile: 70px; }
+main > .section.space-below-mobile-80 { --space-below-mobile: 80px; }
+main > .section.space-below-mobile-90 { --space-below-mobile: 90px; }
+main > .section.space-below-mobile-100 { --space-below-mobile: 100px; }
 
 main > .section:first-of-type {
   margin-top: 0;
+}
+
+@media (width >= 768px) {
+  main > .section {
+    margin-bottom: calc(var(--section-spacing) + var(--space-below));
+  }
 }
 
 main > .section > div {
