@@ -723,6 +723,19 @@ main > .section.center-headings .default-content-wrapper h2 {
 }
 
 /*
+ * mobile-left: modifier for center, center-intro and center-headings: below 768px the section's
+ * text stays left (fedex.com titles left-aligned at the smallest breakpoint: en-to customer-support
+ * "Contact Us", "Frequently Asked Questions"); most fedex.com titles are centred on mobile too
+ */
+@media (width < 768px) {
+  main > .section.mobile-left > .default-content-wrapper:is(:first-child, *),
+  main .tabs-panel > .section.mobile-left > .default-content-wrapper:is(:first-child, *),
+  main > .section.mobile-left .default-content-wrapper h2 {
+    text-align: start;
+  }
+}
+
+/*
  * title-rule: a 1px light rule under the heading that opens the section, across the content width
  * (fedex.com's divider under a section title: en-to shipping "Shipping Services", customer-support
  * "Contact Us")

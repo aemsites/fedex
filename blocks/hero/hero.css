@@ -147,9 +147,17 @@
   font-size: 40px;
 }
 
-/* a heading without subtext: fedex.com keeps the empty subtext line (24px) under it */
+/*
+ * a heading without subtext: fedex.com keeps its 20px margin and the empty subtext line (24px)
+ * under it, which also keeps the heading's place in the vertically centred banner
+ */
 .hero:is(.purple, .full-image) .hero-content > h1:last-child {
-  margin-bottom: calc(var(--space-5) + var(--space-6));
+  margin-bottom: var(--space-5);
+}
+
+.hero:is(.purple, .full-image) .hero-content:has(> h1:last-child)::after {
+  content: '';
+  block-size: var(--space-6);
 }
 
 .hero:is(.purple, .full-image) p {
@@ -236,6 +244,46 @@
  */
 .hero.full-image .button-wrapper {
   margin: 22px 0 0;
+}
+
+/*
+ * mobile-image (modifier for purple, pages where fedex.com authors a mobile image): below 768px
+ * the banner is shown whole, full width above the text, which sits 15px under it
+ */
+@media (width < 768px) {
+  .hero-container:has(.hero.purple.mobile-image) {
+    padding-top: 0;
+  }
+
+  .hero-container:has(.hero.purple.mobile-image) .hero-bg {
+    display: block;
+    aspect-ratio: auto;
+  }
+
+  .hero-container:has(.hero.purple.mobile-image) .hero-bg img {
+    height: auto;
+  }
+
+  .hero.purple.mobile-image .hero-content {
+    padding-top: 15px;
+  }
+
+  /*
+   * phone alignment where fedex.com's differs from the variant's default (the heading's
+   * mobile alignment, per page): mobile-left for purple, mobile-center for landing / full-image.
+   * The purple CTA stays centred.
+   */
+  .hero.purple.mobile-left {
+    text-align: start;
+  }
+
+  .hero.purple.mobile-left .button-wrapper {
+    text-align: center;
+  }
+
+  .hero.landing.mobile-center {
+    text-align: center;
+  }
 }
 
 @media (width >= 768px) {

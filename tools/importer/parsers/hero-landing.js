@@ -172,9 +172,21 @@ export default function parse(element, { document, template }) {
     }
   }
 
+  // Phone image: fedex.com shows an authored mobile image (.fxg-landing-hero__mobile-image, per
+  // page: en-to about yes, en-to customer-support no) above the text below 768px, at the banner's
+  // aspect ratio. Purple heroes hide the banner on phones, so they get `mobile-image`: the banner
+  // itself is shown there (blocks/hero/README.md). No second picture: older hero code would leave
+  // it in the copy.
+  const phoneImage = !!picture && [...hero.querySelectorAll('.fxg-landing-hero__mobile-image img')]
+    .some((i) => /^https?:|^\//.test(i.getAttribute('src') || ''));
+
   // Heading
   const srcH1 = [...hero.querySelectorAll('h1')].find((h) => !isHidden(h, element))
     || hero.querySelector('h1, h2');
+  // Phone alignment of the copy: the heading's data-mobile-align (text-align: center | left | empty,
+  // which renders left). The CTA stays centred either way.
+  const mobileAlign = srcH1 && /text-align:\s*center/i.test(srcH1.getAttribute('data-mobile-align') || '')
+    ? 'center' : 'left';
   let h1 = null;
   if (srcH1) {
     const clone = srcH1.cloneNode(true);
@@ -266,6 +278,11 @@ export default function parse(element, { document, template }) {
   // diagonal and photo in one 1200x350 / 2400x700 image) -> `full-image`, shown whole
   let name = isPurple(element, hero) ? 'Hero (landing, purple)' : 'Hero (landing)';
   if (template === 'generic-landing' && name === 'Hero (landing)' && picture) name = 'Hero (landing, full-image)';
+  // phone alignment where it differs from the variant's default (purple: centred; others: left)
+  const purple = name.includes('purple');
+  if (purple && mobileAlign === 'left') name = name.replace(/\)$/, ', mobile-left)');
+  if (purple && phoneImage) name = name.replace(/\)$/, ', mobile-image)');
+  if (!purple && mobileAlign === 'center') name = name.replace(/\)$/, ', mobile-center)');
   const block = WebImporter.Blocks.createBlock(document, { name, cells });
   element.replaceWith(block);
   if (after.length) block.after(...after);

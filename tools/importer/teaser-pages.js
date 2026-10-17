@@ -7,56 +7,72 @@ export default {
     "alt": "FedEx Facts",
     "listings": [
       "/en-to/about"
-    ]
+    ],
+    "title": "FedEx Facts",
+    "pageDescription": "FedEx Express is one of the world's largest express transportation companies, providing fast and reliable delivery to more than 220 countries and territories. Learn more about FedEx in Tonga."
   },
   "/en-to/about/history": {
     "image": "https://cdn.bfldr.com/I22OPSFM/at/f8rh4c9x555v2f9fvmxjnzhv/fy21_apac_326.jpg?auto=webp&fit=bounds&format=png&width=727&height=463&max_age=604800",
     "alt": "FedEx History in APAC",
     "listings": [
       "/en-to/about"
-    ]
+    ],
+    "title": "FedEx History",
+    "pageDescription": "Explore the history of FedEx Express in Tonga and Asia Pacific, a global transportation and logistics company which began operations in 1973 and has grown to 450,000 team members worldwide"
   },
   "/en-to/about/sustainability": {
     "image": "https://cdn.bfldr.com/I22OPSFM/at/g7xtfnpf9vswvhchpz8w4w6z/fy22_japan_9.jpg?auto=webp&fit=bounds&format=png&width=727&height=463&max_age=604800",
     "alt": "Sustainability",
     "listings": [
       "/en-to/about"
-    ]
+    ],
+    "title": "Sustainability and Carbon Neutrality",
+    "pageDescription": "Learn about our 2040 plan for carbon neutrality and read about other ways FedEx is taking bold action to create a healthier planet."
   },
   "/en-to/about/sustainability/carbon-footprint-insights": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sustainability/2023/fy22_sustainability_-53.jpg",
     "alt": "助人类一臂之力",
     "listings": [
       "/en-to/about/sustainability"
-    ]
+    ],
+    "title": "Calculate Your Shipping Emissions",
+    "pageDescription": "Track and help reduce your carbon emissions footprint with FedEx® Sustainability Insights. It’s easy to make smarter, more sustainable shipping choices."
   },
   "/en-to/about/sustainability/get-inspired": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sustainability/2021/Graphic_Three.jpg",
     "alt": "Recycle icon",
     "listings": [
       "/en-to/about/sustainability"
-    ]
+    ],
+    "title": "Sustainability Inspiration",
+    "pageDescription": "Read articles, case studies, and how-to tips for incorporating sustainable practices into your life and work."
   },
   "/en-to/about/sustainability/get-inspired/10-eco-friendly-tips": {
     "image": "",
     "alt": "",
     "listings": [
       "/en-to/about/sustainability/get-inspired"
-    ]
+    ],
+    "title": "10 tips for being eco-friendly",
+    "pageDescription": "Kat Crabill, founder of Nurdle in the Rough, talks sustainability and getting your employees and customers to invest in your green values."
   },
   "/en-to/about/sustainability/get-inspired/eco-friendly-marketing-ideas": {
     "image": "",
     "alt": "",
     "listings": [
       "/en-to/about/sustainability/get-inspired"
-    ]
+    ],
+    "title": "Green Marketing Examples to Inspire Your Business",
+    "pageDescription": "Sustainability is essential for your company’s success. These green marketing examples can help your business reduce waste and increase brand awareness."
   },
   "/en-to/about/sustainability/get-inspired/efficient-packaging-in-action": {
     "image": "",
     "alt": "",
     "listings": [
       "/en-to/about/sustainability/get-inspired"
-    ]
+    ],
+    "title": "Efficient packaging in action",
+    "pageDescription": "See how Phigenics, a water management company, customized their packaging, cushioning, and shipping boxes to save on shipping."
   },
   "/en-to/about/sustainability/get-inspired/fedex-plant-trees": {
     "image": "https://cdn.bfldr.com/I22OPSFM/at/k9xt6p7tvtvrqcq3shgf7hk/22577163295_eded28f5a5_o.jpg?auto=webp&fit=bounds&format=png&width=695&height=463&max_age=604800",
@@ -68,21 +84,27 @@ export default {
     "description": "Climate change is impacting everyone worldwide. Together with our customers, we want to act now for a greener tomorrow.",
     "featured": [
       "/en-to/about/sustainability/get-inspired"
-    ]
+    ],
+    "title": "FedEx Supporting International Forests",
+    "pageDescription": "Climate change is impacting everyone worldwide. Together with our customers, we want to act now for a greener tomorrow."
   },
   "/en-to/about/sustainability/get-inspired/optimizing-your-packing": {
     "image": "",
     "alt": "",
     "listings": [
       "/en-to/about/sustainability/get-inspired"
-    ]
+    ],
+    "title": "Optimizing your packaging",
+    "pageDescription": "Get tips for choosing the most effective, efficient, and cost-conscious packaging for your shipment."
   },
   "/en-to/about/sustainability/liviri-reusable-containers-promote-sustainability": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sustainability/2021/POD_Materials_Story_2_NEW.jpg",
     "alt": "Couple in kitchen opening Liviri packaging box",
     "listings": [
       "/en-to/about/sustainability/our-approach"
-    ]
+    ],
+    "title": "Liviri Packs Lighter, Protects Better with Reusable Boxes",
+    "pageDescription": "Otter products offshoot, Liviri, taps FedEx to get fresh food, wine to your door."
   },
   "/en-to/about/sustainability/our-approach": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sustainability/2021/Graphic_One.jpg",
@@ -90,84 +112,108 @@ export default {
     "listings": [
       "/en-to/about/sustainability",
       "/en-to/about/sustainability/carbon-footprint-insights"
-    ]
+    ],
+    "title": "Our Approach to Sustainability",
+    "pageDescription": "Find out how we’re taking action to operate more sustainably, from modernizing our aircraft and vehicles to redesigning our facilities and packaging."
   },
   "/en-to/about/sustainability/our-approach/energy-management-systems-sustains-energy": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sustainability/2021/POD_FXO3-EMS-cropped-copy-v2.jpg",
     "alt": "Image of thermostats",
     "listings": [
       "/en-to/about/sustainability/our-approach"
-    ]
+    ],
+    "title": "Energy Management System Saves 22M kWh in First Year",
+    "pageDescription": "Centralized energy management system is being used at more than 1,500 FedEx Office locations."
   },
   "/en-to/about/sustainability/our-approach/fedex-ground-solar-power-systems-in-maui-models-future-energy": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sustainability/2021/POD_Solar_Facility_Solar_Story_0.jpg",
     "alt": "Image of solar panels at FedEx Ground sit in Maui",
     "listings": [
       "/en-to/about/sustainability/our-approach"
-    ]
+    ],
+    "title": "Maui Facility Goes Solar, Lowers Energy Use and Emissions",
+    "pageDescription": "Maui facility combines solar energy and battery storage to reduce energy costs and avoid emissions."
   },
   "/en-to/about/sustainability/our-approach/fedex-pilots-program-in-europe-to-improve-sustainable-deliveries": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sustainability/2021/pod-vehicles-story.jpg",
     "alt": "Courier pushing specialized hand cart",
     "listings": [
       "/en-to/about/sustainability/our-approach"
-    ]
+    ],
+    "title": "E-Bikes Gear Up to Deliver Packages in European Cities",
+    "pageDescription": "A New Era in Green Delivery Begins in Europe. FedEx Express pilots city logistics program in Europe to explore new first- and last-mile pick up and delivery solutions."
   },
   "/en-to/about/sustainability/our-approach/fedex-solar-thermal-air-conditioning-system-saves-energy": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sustainability/2021/POD_4019.jpg",
     "alt": "Image of solar panel at Florida FedEx Ground facility",
     "listings": [
       "/en-to/about/sustainability/our-approach"
-    ]
+    ],
+    "title": "Solar Thermal Tech Keeps Trucks and Team Members Cool",
+    "pageDescription": "FedEx Ground uses solar thermal technology to cool its sorting facility in Davenport, Florida."
   },
   "/en-to/about/sustainability/our-approach/fedex-uniform-recycling-program-reduces-environmental-impacts": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sustainability/2021/POD_Debrand-FXG-1.jpg",
     "alt": "Pile of old uniforms being repurposed",
     "listings": [
       "/en-to/about/sustainability/our-approach"
-    ]
+    ],
+    "title": "Old Uniforms Upcycled Into Blankets for Those in Need",
+    "pageDescription": "Giving new life to old uniforms, FedEx Express Brazil and FedEx Ground are securely recycling old uniforms."
   },
   "/en-to/about/sustainability/reports": {
     "image": "https://www.fedex.com/content/dam/fedex/apac-asia-pacific/images/about/apac_en_2025_06_master_web_cr_report_mkt.jpg",
     "alt": "",
     "listings": [
       "/en-to/about/sustainability"
-    ]
+    ],
+    "title": "Environmental Reports",
+    "pageDescription": "Read our latest Global Citizenship Report, Materiality Assessment, and CDP Response, and access our report archive."
   },
   "/en-to/about/sustainability/taking-action": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sustainability/2021/Graphic_Two.jpg",
     "alt": "Book resource icon",
     "listings": [
       "/en-to/about/sustainability"
-    ]
+    ],
+    "title": "Taking Action Toward Carbon Neutrality",
+    "pageDescription": "Keep track of our progress toward our 2040 plan for carbon neutrality, and learn how we’re teaming up with industry leaders to meet our goal."
   },
   "/en-to/ancillary-clearance-service": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/FedEx-Office/images/2021/q2/Coworkers_discuss_signageSMALL.jpg",
     "alt": "Custom Critical",
     "listings": [
       "/en-to/customs-tools"
-    ]
+    ],
+    "title": "Clearance Fees",
+    "pageDescription": "FedEx assesses international clearance service fees for special clearance services or when your shipment requires additional processing."
   },
   "/en-to/customs-tools": {
     "image": "",
     "alt": "",
     "listings": [
       "/en-to/shipping"
-    ]
+    ],
+    "title": "Customs Tools",
+    "pageDescription": "Ship effortlessly worldwide with FedEx Global Trade Manager. It organizes your paperwork and provides assistance customs assistance."
   },
   "/en-to/dropoff": {
     "image": "https://www.fedex.com/content/dam/fedex/apac-asia-pacific/MVP-APAC/images/2019/Q3/APAC_EN_2019_1_Master_image_NA_drop_off_location_homepage_2_marketing_2069717347.jpg",
     "alt": "Customer Success Stories",
     "listings": [
       "/en-to/home"
-    ]
+    ],
+    "title": "Express Shipping Locations & Centers",
+    "pageDescription": "FedEx Tonga World Service Centers are always nearby. You may drop off your international shipments at your desired location, saving time and money."
   },
   "/en-to/new-customer": {
     "image": "https://cdn.bfldr.com/I22OPSFM/at/fv7nfgrtp8m3brf8sq2ng7/2019_FedEx_India_31.jpg?auto=webp&fit=bounds&format=jpg&crop=727%3A463%2Csmart&width=727&height=463&max_age=604800",
     "alt": "FedEx New Customer",
     "listings": [
       "/en-to/home"
-    ]
+    ],
+    "title": "Everything You Need to Know to Ship with FedEx",
+    "pageDescription": "Our FedEx New Customer Center in Tonga serves as a one-stop shop for all your shipping needs — from how to send & track a package to manage an invoice."
   },
   "/en-to/shipping-tools/online-shipping": {
     "image": "https://cdn.bfldr.com/I22OPSFM/at/sgmzgw3rv3zxnfzqwfrgckn/FedEx-1584-1.jpg?auto=webp&fit=bounds&format=png&width=727&height=485&max_age=604800",
@@ -178,7 +224,9 @@ export default {
     "description": "FedEx Ship Manager is your go-to tool when it comes to inbound, outbound and return shipments. Whether you send documents, parcels or freight, our free online tool supports you every step of your journey — including through customs.",
     "featured": [
       "/en-to/shipping-tools"
-    ]
+    ],
+    "title": "FedEx Ship Manager™ at fedex.com",
+    "pageDescription": "FedEx Ship Manager is your go-to tool when it comes to inbound, outbound and return shipments. Whether you send documents, parcels or freight, our free online tool supports you every step of your journey — including through customs."
   },
   "/en-to/shipping/packaging": {
     "image": "https://cdn.bfldr.com/I22OPSFM/at/mvgzn7bwq9g7kf5t63gx5wr4/20160908_dm_16_005_01_02_02_21_315_160135.jpg?auto=webp&fit=bounds&format=png&crop=727%3A463%2Csmart&width=727&height=463&max_age=604800",
@@ -186,14 +234,18 @@ export default {
     "listings": [
       "/en-to/about/sustainability/get-inspired/efficient-packaging-in-action",
       "/en-to/shipping"
-    ]
+    ],
+    "title": "Packaging Tips & Supplies",
+    "pageDescription": "Discover range of packing and shipping supplies offered by FedEx Tonga, and learn how to pack your international shipments with our packaging tips."
   },
   "/en-to/shipping/packaging/envelope": {
     "image": "https://www.fedex.com/content/dam/fedex/apac-asia-pacific/MVP-APAC/images/2020/Q1/KR_EN_2019_8_web_jpg_NA_sm_envelope_marketing_72602050.jpg",
     "alt": "FedEx Envelope",
     "listings": [
       "/en-to/shipping/packaging"
-    ]
+    ],
+    "title": "Envelope Packaging - Delivery",
+    "pageDescription": "Learn about the specifications of FedEx Envelope packaging, available at FedEx Tonga World Service Center locations."
   },
   "/en-to/shipping/packaging/large-box": {
     "image": "https://www.fedex.com/content/dam/fedex/apac-asia-pacific/MVP-APAC/images/2020/Q1/KR_EN_2019_8_web_jpg_NA_lg_box_marketing_2062388082.jpg",
@@ -201,7 +253,9 @@ export default {
     "listings": [
       "/en-to/shipping/packaging",
       "/en-to/shipping/packaging/supplies"
-    ]
+    ],
+    "title": "FedEx Large Box - Delivery",
+    "pageDescription": "Learn about the specifications of FedEx Large Box packaging, available at FedEx Tonga World Service Center locations."
   },
   "/en-to/shipping/packaging/large-pak": {
     "image": "https://www.fedex.com/content/dam/fedex/apac-asia-pacific/MVP-APAC/images/2020/Q1/KR_EN_2019_5_web_jpg_NA_large_package_marketing_106845989.jpg",
@@ -209,7 +263,9 @@ export default {
     "listings": [
       "/en-to/shipping/packaging",
       "/en-to/shipping/packaging/envelope"
-    ]
+    ],
+    "title": "Large Pak Packaging - Delivery",
+    "pageDescription": "Learn about the specifications of FedEx Pak packaging, available at FedEx Tonga World Service Center locations."
   },
   "/en-to/shipping/packaging/medium-box": {
     "image": "https://www.fedex.com/content/dam/fedex/apac-asia-pacific/MVP-APAC/images/2020/Q1/KR_EN_2019_8_web_jpg_NA_md_box_marketing_801049786.jpg",
@@ -217,14 +273,18 @@ export default {
     "listings": [
       "/en-to/shipping/packaging",
       "/en-to/shipping/packaging/supplies"
-    ]
+    ],
+    "title": "FedEx Medium Packaging - Delivery",
+    "pageDescription": "Learn about the specifications of FedEx Medium Box packaging, available at FedEx Tonga World Service Center locations."
   },
   "/en-to/shipping/packaging/small-box": {
     "image": "https://www.fedex.com/content/dam/fedex/apac-asia-pacific/MVP-APAC/images/2020/Q1/KR_EN_2019_8_web_jpg_NA_sm_box_marketing_38518354.jpg",
     "alt": "FedEx small box",
     "listings": [
       "/en-to/shipping/packaging"
-    ]
+    ],
+    "title": "FedEx Small Box - Delivery",
+    "pageDescription": "Learn more about the specifications of FedEx Small Box packaging, available at FedEx Tonga World Service Center locations."
   },
   "/en-to/shipping/packaging/supplies": {
     "image": "https://www.fedex.com/content/dam/fedex/apac-asia-pacific/MVP-APAC/images/2020/Q1/KR_EN_2019_8_web_jpg_NA_lg_box_marketing_2062388082.jpg",
@@ -234,14 +294,18 @@ export default {
       "/en-to/shipping/packaging/large-pak",
       "/en-to/shipping/packaging/small-box",
       "/en-to/shipping/packaging/tube"
-    ]
+    ],
+    "title": "Order Shipping Supplies",
+    "pageDescription": "Order from our full range of shipping supplies when you are preparing your international shipments with FedEx to and from Tonga."
   },
   "/en-to/shipping/packaging/tube": {
     "image": "https://www.fedex.com/content/dam/fedex/apac-asia-pacific/MVP-APAC/images/2020/Q1/KR_EN_2019_8_web_jpg_NA_fedex_tube_marketing_461912630.jpg",
     "alt": "FedEx Tube package",
     "listings": [
       "/en-to/shipping/packaging"
-    ]
+    ],
+    "title": "FedEx Tube - Delivery",
+    "pageDescription": "Learn about the specifications of FedEx Extra Large Pak packaging, available at FedEx Tonga World Service Center locations."
   },
   "/en-us/create-account/how-to-reset-forgot-password": {
     "image": "",
@@ -253,7 +317,9 @@ export default {
       "/en-us/shipping/how-to-ship-clinical-samples",
       "/en-us/shipping/how-to-ship-firearms",
       "/en-us/shipping/how-to-ship-guitars"
-    ]
+    ],
+    "title": "Reset Forgotten Password or User ID",
+    "pageDescription": "FedEx provides useful help guides for customer's looking to reset their password or find their user ID."
   },
   "/en-us/customer-support": {
     "image": "https://www.fedex.com/content/dam/fedex/di/demo-assets/track2.jpg",
@@ -264,7 +330,9 @@ export default {
       "/en-us/shipping/freight/air-freight/international",
       "/en-us/shipping/how-to-ship",
       "/en-us/shipping/international/how-to-ship"
-    ]
+    ],
+    "title": "FedEx Customer Service & Support",
+    "pageDescription": "Find answers fast with FedEx self-service tools, FAQs, tracking resources, claims support, shipping help, and account assistance—all in one place."
   },
   "/en-us/customer-support/call-us": {
     "image": "",
@@ -277,28 +345,36 @@ export default {
       "/en-us/shipping/how-to-ship-firearms",
       "/en-us/shipping/how-to-ship-perishables",
       "/en-us/shipping/international-ground-consolidation"
-    ]
+    ],
+    "title": "Contact Us",
+    "pageDescription": "Contact FedEx Customer Support at 1.800.GoFedEx 1.800.463.3339 for help with shipping questions. Get support or find self-help tools for service-specific issues."
   },
   "/en-us/customer-support/faqs/receiving/tracking-questions/how-to-track-with-map-view": {
     "image": "",
     "alt": "",
     "listings": [
       "/en-us/shipping/mobile"
-    ]
+    ],
+    "title": "How Can I Track My Package With Map View?",
+    "pageDescription": "Map view lets you see your package move along the delivery route. Learn more about the benefits and how to use it."
   },
   "/en-us/faq/delivery-manager": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/FedEx-Office/images/2020/Q1/FED3782_HALLP_Pod4_SFW_727x463_1862092213.jpg",
     "alt": "Frequently asked questions on a mobile device",
     "listings": [
       "/en-us/shipping/hold-at-location"
-    ]
+    ],
+    "title": "FedEx Delivery Manager® and Request to Hold for Pickup FAQs",
+    "pageDescription": "View answers to common FedEx Delivery Manager Questions asked by customers like you.Check the FedEx Delivery Manager® frequently asked questions to help you manage delivery options, times and locations, and to track all of your FedEx packages."
   },
   "/en-us/faq/onsite": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/Location3-FED3782_HALLP_Pod5_SFW_727x463_2122497951.jpg",
     "alt": "Customer picking up a package from a retailer",
     "listings": [
       "/en-us/shipping/hold-at-location"
-    ]
+    ],
+    "title": "New FedEx Locations – Frequently Asked Questions (FAQs)",
+    "pageDescription": "Want to learn more about local shipping options? Find answers to common questions about easy package pickup and dropoff at the new FedEx locations."
   },
   "/en-us/healthcare": {
     "image": "https://cdn.bfldr.com/I22OPSFM/at/ctjtj5x9xqjhvqkfkfsjpq/20171113_mk_08517_187916514.jpg?format=jpg&crop=5180%2C3299%2Cx86%2Cy133&width=727&height=463&auto=webp&max_age=604800",
@@ -310,7 +386,9 @@ export default {
       "/en-us/healthcare/vaccine-shipping",
       "/en-us/shipping/express",
       "/en-us/shipping/same-day"
-    ]
+    ],
+    "title": "Healthcare Shipping Solutions",
+    "pageDescription": "Smooth the road for your healthcare business. Use our innovative solutions to deliver your most important shipments with speed, visibility, and security."
   },
   "/en-us/industry-solutions": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/industry_solutions_image_edit.jpg",
@@ -318,21 +396,27 @@ export default {
     "listings": [
       "/en-us/healthcare",
       "/en-us/shipping/saturday-and-sunday-delivery"
-    ]
+    ],
+    "title": "Industry Specific Shipping Solutions",
+    "pageDescription": "Get tips and advice on how to meet shipping needs for your specific industry. Find the right services specific for healthcare, e-commerce, aerospace, wine industries and more."
   },
   "/en-us/industry-solutions/automotive": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_HowTo_EveryPart_727x463.jpg",
     "alt": "",
     "listings": [
       "/en-us/shipping/how-to-ship-automotive"
-    ]
+    ],
+    "title": "Automotive Shipping and Logistics",
+    "pageDescription": "Find specialized solutions for shipping tires, plus OEM, aftermarket, and dealership parts. Simplify your auto logistics and get end-to-end visibility."
   },
   "/en-us/industry-solutions/perishables": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_PerishableShipping_727x463.jpg",
     "alt": "",
     "listings": [
       "/en-us/shipping/how-to-ship-dry-ice"
-    ]
+    ],
+    "title": "Perishable Shipping | Food, Beverage, Flowers, & More",
+    "pageDescription": "Maintain peak freshness with fast perishable shipping. Rely on our industry expertise, packaging solutions, and visibility tools to ship with confidence."
   },
   "/en-us/service-guide/dangerous-goods": {
     "image": "",
@@ -341,7 +425,9 @@ export default {
       "/en-us/shipping/create-shipping-label",
       "/en-us/shipping/freight/air-freight/freight-1-3-business-day",
       "/en-us/shipping/how-to-ship"
-    ]
+    ],
+    "title": "Shipping Dangerous Goods",
+    "pageDescription": "Download guides, access training opportunities, and review regulations for shipping dangerous goods with FedEx.."
   },
   "/en-us/service-guide/dangerous-goods-hazardous-materials": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/2022/FedEx_freight-hazzardous.jpg",
@@ -349,7 +435,9 @@ export default {
     "listings": [
       "/en-us/industry-solutions/industrial",
       "/en-us/shipping/express"
-    ]
+    ],
+    "title": "Dangerous Goods & Hazardous Materials",
+    "pageDescription": "FedEx offers comprehensive solutions when you need to ship dangerous goods via FedEx Express or hazardous materials via FedEx Ground."
   },
   "/en-us/service-guide/dangerous-goods/how-to-ship": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_DangerousGoods_727x463.jpg",
@@ -359,14 +447,18 @@ export default {
       "/en-us/service-guide/dangerous-goods",
       "/en-us/shipping/freight/air-freight/international-premium",
       "/en-us/shipping/how-to-ship-liquids"
-    ]
+    ],
+    "title": "How to Ship Dangerous Goods",
+    "pageDescription": "If you need to ship dangerous goods via FedEx, get started by learning how to ship, finding the right services and forms, and more."
   },
   "/en-us/service-guide/dangerous-goods/regulatory-updates": {
     "image": "",
     "alt": "",
     "listings": [
       "/en-us/service-guide/dangerous-goods"
-    ]
+    ],
+    "title": "Regulatory Updates for Dangerous Goods",
+    "pageDescription": "Review changes to International Air Transport Association regulations, FedEx IATA variations and other regulatory information to ship dangerous goods."
   },
   "/en-us/service-guide/dangerous-goods/resources": {
     "image": "",
@@ -375,7 +467,9 @@ export default {
       "/en-us/service-guide/dangerous-goods",
       "/en-us/shipping/how-to-ship-batteries",
       "/en-us/shipping/how-to-ship-clinical-samples"
-    ]
+    ],
+    "title": "Resources for Shipping Dangerous Goods",
+    "pageDescription": "Review key documents, checklists and job aids to help prepare your dangerous goods shipment."
   },
   "/en-us/service-guide/hazardous-materials": {
     "image": "https://cdn.bfldr.com/I22OPSFM/at/v3wt7j5kv7w3j2jgtwx8z7p/20170627_MK_B48I1571_11921173.jpg?format=jpg&crop=4378%2C2788%2Cx547%2Cy429&width=727&height=463&auto=webp&max_age=604800",
@@ -383,7 +477,9 @@ export default {
     "listings": [
       "/en-us/shipping/freight/air-freight/freight-1-3-business-day",
       "/en-us/shipping/freight/air-freight/international-premium"
-    ]
+    ],
+    "title": "Shipping Hazardous Materials",
+    "pageDescription": "Learn about shipping hazardous materials via FedEx. Download guides, access training opportunities, and review regulations to ship with confidence."
   },
   "/en-us/service-guide/hazardous-materials/how-to-ship": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_HazMats_727x463.jpg",
@@ -391,21 +487,27 @@ export default {
     "listings": [
       "/en-us/how-to-hub",
       "/en-us/service-guide/hazardous-materials"
-    ]
+    ],
+    "title": "How to ship Hazardous Materials",
+    "pageDescription": "Whether shipping from across town, Hawaii or Alaska, discover restrictions and guidelines to get approved to ship your hazardous materials safely."
   },
   "/en-us/service-guide/hazardous-materials/regulatory-updates": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/NNC/images/2020/Q4/small_20160620_dm_16_004_02_03_13_019_160134.jpg",
     "alt": "FedEx Ground truck driving over a bridge in Chicago.",
     "listings": [
       "/en-us/service-guide/hazardous-materials"
-    ]
+    ],
+    "title": "Regulatory Updates for Hazardous Materials",
+    "pageDescription": "Review recent news and changes to the U.S. Department of Transportation regulations for shipping hazardous materials."
   },
   "/en-us/service-guide/hazardous-materials/resources": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/services/POD_HzdMaterials-Resources_727x463.jpg",
     "alt": "FedEx delivery person walking boxes out of a hospital on a dolley.",
     "listings": [
       "/en-us/service-guide/hazardous-materials"
-    ]
+    ],
+    "title": "Resources for shipping Hazardous Materials",
+    "pageDescription": "Review key documents, tools and job aids for shipping your hazardous materials."
   },
   "/en-us/shipping/2-day-shipping": {
     "image": "",
@@ -414,7 +516,9 @@ export default {
       "/en-us/shipping-guide/fathers-day",
       "/en-us/shipping-guide/mothers-day",
       "/en-us/shipping/saturday-and-sunday-delivery"
-    ]
+    ],
+    "title": "2 Day Shipping (FedEx 2Day)",
+    "pageDescription": "Learn about 2 day shipping offered by FedEx. Get details on shipping cost, delivery times, tracking services, packaging, ways to save, and more."
   },
   "/en-us/shipping/3-day-express-saver-shipping": {
     "image": "",
@@ -422,14 +526,18 @@ export default {
     "listings": [
       "/en-us/shipping-guide/fathers-day",
       "/en-us/shipping-guide/mothers-day"
-    ]
+    ],
+    "title": "3 Day Shipping with FedEx Express Saver",
+    "pageDescription": "Now offering cost-effective shipping with guaranteed 3 day delivery FedEx Express Saver provides fast package delivery, tracking, and returns solutions."
   },
   "/en-us/shipping/air-waybill": {
     "image": "",
     "alt": "",
     "listings": [
       "/en-us/shipping/create-shipping-label"
-    ]
+    ],
+    "title": "Create Your Air Waybill Online",
+    "pageDescription": "Help Improve efficiency for your business as well as your customer experience with shipping online. You can create your air waybills online for all your package shipments. You can also create billable stamps online for your return shipments."
   },
   "/en-us/shipping/alcohol": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_Alcohol_727x463.jpg",
@@ -441,7 +549,9 @@ export default {
       "/en-us/shipping/fedex-authorized-ship-center/shipsource/what-not-to-ship",
       "/en-us/shipping/how-to-ship-liquids",
       "/en-us/shipping/packing/supplies/boxes/custom"
-    ]
+    ],
+    "title": "How to ship alcohol: Regulations, Licenses & Services",
+    "pageDescription": "Learn FedEx guidelines for returning alcohol shipments (licensee-to-consumer), including U.S. and international requirements, packaging rules, and helpful resources."
   },
   "/en-us/shipping/bulk-label-solutions": {
     "image": "https://cdn.bfldr.com/I22OPSFM/at/n5xf23chvzjp68prxtnbtmv5/FedEx-439-1.jpg?format=jpg&crop=727%2C463%2Cx1407%2Cy1122&auto=webp&width=727&height=463&max_age=604800",
@@ -450,35 +560,45 @@ export default {
       "/en-us/shipping/air-waybill",
       "/en-us/shipping/create-shipping-label",
       "/en-us/shipping/returns/business"
-    ]
+    ],
+    "title": "Get Shipping Labels Delivered in Bulk",
+    "pageDescription": "With FedEx Bulk Label Solutions, get 100 or more shipping labels printed and delivered to your door."
   },
   "/en-us/shipping/cell-phones": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/shutterstock_1236630952%201.jpg",
     "alt": "",
     "listings": [
       "/en-us/industry-solutions/technology-and-electronics"
-    ]
+    ],
+    "title": "Shipping Phones",
+    "pageDescription": "Ship your phones safely, both domestically and internationally."
   },
   "/en-us/shipping/critical-inventory-logistics/faq": {
     "image": "https://cdn.bfldr.com/I22OPSFM/at/2x537q5w374n5zxx2q49mx/20170322_SW_080703_188936580.jpg?auto=webp&fit=bounds&format=jpg&width=727&height=463&max_age=604800",
     "alt": "A FedEx courier places a package on a warehouse shelf.",
     "listings": [
       "/en-us/shipping/critical-inventory-logistics"
-    ]
+    ],
+    "title": "FAQs",
+    "pageDescription": "Find answers to your most common questions about the FedEx Critical Inventory Logistics solution."
   },
   "/en-us/shipping/critical-inventory-logistics/resources": {
     "image": "",
     "alt": "",
     "listings": [
       "/en-us/shipping/critical-inventory-logistics"
-    ]
+    ],
+    "title": "Resources",
+    "pageDescription": "Read case studies, explore overviews and watch videos on FedEx Critical Inventory Logistics to learn how we can help increase your competitive advantage."
   },
   "/en-us/shipping/dropbox": {
     "image": "",
     "alt": "",
     "listings": [
       "/en-us/shipping/express"
-    ]
+    ],
+    "title": "FedEx Drop Box Find a Location Near You",
+    "pageDescription": "Looking for a FedEx Express® Drop Box? Search from more than 40,000 drop box locations nationwide to find one near you today!"
   },
   "/en-us/shipping/express": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_MoveSpoilage_727x463.jpg",
@@ -489,21 +609,27 @@ export default {
       "/en-us/shipping/2-day-shipping",
       "/en-us/shipping/3-day-express-saver-shipping",
       "/en-us/shipping/same-day"
-    ]
+    ],
+    "title": "FedEx expedited shipping: fast, reliable delivery worldwide",
+    "pageDescription": "See FedEx expedited options for sending urgent shipments, plus learn about scheduling pickups and finding drop off locations, and read FAQs."
   },
   "/en-us/shipping/fedex-authorized-ship-center": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_DropoffLocation_727x463.jpg",
     "alt": "",
     "listings": [
       "/en-us/shipping/how-to-ship-live-animals"
-    ]
+    ],
+    "title": "Ship at a FedEx Authorized ShipCenter®",
+    "pageDescription": "Pack-and-ship stores identified as FedEx Authorized ShipCenter locations have an alliance with FedEx so you can enjoy the convenience of shipping via FedEx."
   },
   "/en-us/shipping/freight/air-freight/freight-1-3-business-day": {
     "image": "",
     "alt": "",
     "listings": [
       "/en-us/healthcare"
-    ]
+    ],
+    "title": "1, 2 or 3 Day Freight Delivery",
+    "pageDescription": "With FedEx Express Freight, getting your shipments delivered under a tight timeline is easy. Choose between 1-, 2-, or 3-day freight delivery."
   },
   "/en-us/shipping/freight/air-freight/international": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_GAF_727x463.jpg",
@@ -511,7 +637,9 @@ export default {
     "listings": [
       "/en-us/healthcare",
       "/en-us/industry-solutions"
-    ]
+    ],
+    "title": "International Air Freight Shipping Services",
+    "pageDescription": "Compare FedEx® global air freight services, get rate quotes, and find packing and shipping resources."
   },
   "/en-us/shipping/freight/ltl": {
     "image": "",
@@ -519,35 +647,45 @@ export default {
     "listings": [
       "/en-us/shipping/how-to-ship-liquids",
       "/en-us/shipping/international-1-5-day"
-    ]
+    ],
+    "title": "LTL Freight Shipping Services and Rate Quotes",
+    "pageDescription": "Find LTL (less-than-truckload) shipping options within the U.S. and to Canada and Mexico. Get rate quotes, packing strategies, and more."
   },
   "/en-us/shipping/freight/resources/packing-guide": {
     "image": "",
     "alt": "",
     "listings": [
       "/en-us/shipping/freight/air-freight/international"
-    ]
+    ],
+    "title": "Freight Packing and Packaging Guidelines",
+    "pageDescription": "Get your freight ready for a safe journey. Find out how to prep, pack, secure, and label air freight and LTL shipments."
   },
   "/en-us/shipping/freight/resources/packing-guide/boxes": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD-Gaylord_NonBrand_Box_Angled_Pallet-463x463_retouched%201.jpg",
     "alt": "",
     "listings": [
       "/en-us/shipping/freight/resources/packing-guide"
-    ]
+    ],
+    "title": "Shipping With Freight Boxes",
+    "pageDescription": "Learn how to ship with freight boxes, including common materials, sizes, and uses. Plus, find out about the FedEx Freight® box."
   },
   "/en-us/shipping/freight/resources/packing-guide/crates": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/master-k10450%201.jpg",
     "alt": "",
     "listings": [
       "/en-us/shipping/freight/resources/packing-guide"
-    ]
+    ],
+    "title": "How to ship using crates",
+    "pageDescription": "FedEx Freight"
   },
   "/en-us/shipping/freight/resources/packing-guide/pallets": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/pallet_types.jpg",
     "alt": "",
     "listings": [
       "/en-us/shipping/freight/resources/packing-guide"
-    ]
+    ],
+    "title": "How to ship using pallets",
+    "pageDescription": "FedEx Freight"
   },
   "/en-us/shipping/ground": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_QuickDelivery_727x463.jpg",
@@ -566,7 +704,9 @@ export default {
       "/en-us/shipping/how-to-ship-computers",
       "/en-us/shipping/how-to-ship-furniture",
       "/en-us/shipping/how-to-ship-liquids"
-    ]
+    ],
+    "title": "FedEx Ground",
+    "pageDescription": "Get industry-leading ground shipping services, faster transit times and cost-effective service with FedEx Ground."
   },
   "/en-us/shipping/guidelines-for-shipping-tobacco": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx-Tobacco.jpg",
@@ -581,7 +721,9 @@ export default {
       "/en-us/shipping/how-to-ship-clinical-samples",
       "/en-us/shipping/how-to-ship-firearms",
       "/en-us/shipping/how-to-ship-guitars"
-    ]
+    ],
+    "title": "Guidelines for Tobacco Shipping",
+    "pageDescription": "FedEx prohibits the shipping of tobacco and tobacco products. Even if you have proper licenses and are authorized to ship tobacco products FedEx will be unable to accept your shipment."
   },
   "/en-us/shipping/high-value-jewelry-declared-value-form": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/2023/POD_Jewelry_727x463.jpg",
@@ -589,7 +731,9 @@ export default {
     "listings": [
       "/en-us/shipping/declared-value",
       "/en-us/shipping/shipping-gifts-packing-and-delivery-guide"
-    ]
+    ],
+    "title": "High-Value Jewelry Declared Value Advantage Program",
+    "pageDescription": "Complete and submit this form to apply for FedEx® Declared Value Advantage service to ship your high-value jewelry items."
   },
   "/en-us/shipping/hold-at-location": {
     "image": "",
@@ -597,7 +741,9 @@ export default {
     "listings": [
       "/en-us/holiday/consumer-shipping-delivery-guide",
       "/en-us/shipping/fedex-authorized-ship-center/shipsource/avoid-three-common-scams"
-    ]
+    ],
+    "title": "Hold at Location",
+    "pageDescription": "With Hold at FedEx Location, retailers can give customers the ability to direct orders to any FedEx location during the online checkout process."
   },
   "/en-us/shipping/home-delivery": {
     "image": "",
@@ -615,7 +761,9 @@ export default {
       "/en-us/shipping/how-to-ship-furniture",
       "/en-us/shipping/how-to-ship-liquids",
       "/en-us/shipping/saturday-and-sunday-delivery"
-    ]
+    ],
+    "title": "FedEx Home Delivery",
+    "pageDescription": "Get fast, reliable, on-time residential shipping services. With FedEx Home Delivery, you can get day-definite home delivery - even on evenings and Saturdays."
   },
   "/en-us/shipping/how-to-address-a-package": {
     "image": "",
@@ -627,14 +775,18 @@ export default {
       "/en-us/shipping/how-to-ship-clinical-samples",
       "/en-us/shipping/how-to-ship-firearms",
       "/en-us/shipping/how-to-ship-guitars"
-    ]
+    ],
+    "title": "How to address a package for quick and efficient delivery",
+    "pageDescription": "Incorrectly addressed packages can result in delayed or failed deliveries. Address your packages correctly with our in-depth guide."
   },
   "/en-us/shipping/how-to-become-fedex-authorized-ship-center": {
     "image": "",
     "alt": "",
     "listings": [
       "/en-us/shipping/fedex-authorized-ship-center"
-    ]
+    ],
+    "title": "FedEx Authorized ShipCenter Program (FASC) Overview",
+    "pageDescription": "The FASC program is a business-building alliance between pack-and-ship retailers and FedEx. Get resources and application instructions for opening a FedEx Ship Center or adding shipping services to an existing store."
   },
   "/en-us/shipping/how-to-ship": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/USShipping-727x463.jpg",
@@ -642,7 +794,9 @@ export default {
     "listings": [
       "/en-us/shipping/create-shipping-label",
       "/en-us/shipping/packing/supplies"
-    ]
+    ],
+    "title": "How to Ship a Package and a Letter",
+    "pageDescription": "See our step-by-step guide on how to ship a package and a letter with FedEx. Learn how to successfully pack your items, create a label, and drop off your package."
   },
   "/en-us/shipping/how-to-ship-a-bike": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx-Bike.jpg",
@@ -659,7 +813,9 @@ export default {
       "/en-us/shipping/how-to-ship-guitars",
       "/en-us/shipping/shipping-gifts-packing-and-delivery-guide",
       "/en-us/shipping/shipping-to-college"
-    ]
+    ],
+    "title": "How to ship a bike",
+    "pageDescription": "Get step-by-step instructions and tips for shipping bicycles. Plus, learn which service options you can use and get answers to FAQs."
   },
   "/en-us/shipping/how-to-ship-a-tv-monitor": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FexEx-Monitor.jpg",
@@ -676,7 +832,9 @@ export default {
       "/en-us/shipping/how-to-ship-guitars",
       "/en-us/shipping/shipping-gifts-packing-and-delivery-guide",
       "/en-us/shipping/shipping-to-college"
-    ]
+    ],
+    "title": "How to Ship a TV/Monitor",
+    "pageDescription": "Discover how to ship a television/monitor and what shipping boxes you need to protect your TV/monitor shipment. Bring your shipment to a FedEx Office and let us help you ship your TV/monitor."
   },
   "/en-us/shipping/how-to-ship-artwork": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx-Artwork.jpg",
@@ -691,7 +849,9 @@ export default {
       "/en-us/shipping/how-to-ship-firearms",
       "/en-us/shipping/how-to-ship-guitars",
       "/en-us/shipping/shipping-gifts-packing-and-delivery-guide"
-    ]
+    ],
+    "title": "How to Ship Artwork",
+    "pageDescription": "Discover how to ship artwork - from prints to paintings - with this guide. We offer shipping boxes that will protect your valuable pieces of artwork."
   },
   "/en-us/shipping/how-to-ship-automotive": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx-Muffler.jpg",
@@ -712,7 +872,9 @@ export default {
       "/en-us/shipping/how-to-ship-firearms",
       "/en-us/shipping/how-to-ship-guitars",
       "/en-us/shipping/same-day"
-    ]
+    ],
+    "title": "How to Ship Automotive Parts",
+    "pageDescription": "Learn how to ship automotive parts safely to help prevent damage and protect those handling the package."
   },
   "/en-us/shipping/how-to-ship-batteries": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx-Batteries01.jpg",
@@ -728,7 +890,9 @@ export default {
       "/en-us/shipping/how-to-ship-computers",
       "/en-us/shipping/how-to-ship-firearms",
       "/en-us/shipping/how-to-ship-guitars"
-    ]
+    ],
+    "title": "How to Ship Wet, Dry, and Lithium Batteries",
+    "pageDescription": "Learn how to ship your batteries with our guide. Discover how to identify your wet or dry battery and how to secure them for shipping. Our guidelines for shipping lithium batteries will help make sure you meet all standards for safely shipping batteries."
   },
   "/en-us/shipping/how-to-ship-clinical-samples": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx-Clinical-Trials.jpg",
@@ -743,7 +907,9 @@ export default {
       "/en-us/shipping/how-to-ship-batteries",
       "/en-us/shipping/how-to-ship-firearms",
       "/en-us/shipping/how-to-ship-guitars"
-    ]
+    ],
+    "title": "How to Ship Clinical Samples",
+    "pageDescription": "Read our guide to discover how to ship clinical samples such as blood, urine, fluids, and other specimens. Find out how to package your biological specimens securely so that they are shipped safely during transportation. We also offer unique boxes to ship your clinical samples."
   },
   "/en-us/shipping/how-to-ship-clothes": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx_Wedding_Gown_N.jpg",
@@ -761,7 +927,9 @@ export default {
       "/en-us/shipping/how-to-ship-guitars",
       "/en-us/shipping/shipping-gifts-packing-and-delivery-guide",
       "/en-us/shipping/shipping-to-college"
-    ]
+    ],
+    "title": "How To Ship Clothes",
+    "pageDescription": "Learn the best way to ship clothes, including shirts, hoodies, jeans, and wedding dresses, and get tips to help you save on shipping costs."
   },
   "/en-us/shipping/how-to-ship-computers": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx-Laptop.jpg",
@@ -781,14 +949,18 @@ export default {
       "/en-us/shipping/how-to-ship-guitars",
       "/en-us/shipping/shipping-gifts-packing-and-delivery-guide",
       "/en-us/shipping/shipping-to-college"
-    ]
+    ],
+    "title": "How to Ship a Computer",
+    "pageDescription": "Get step-by-step instructions and tips for shipping computers, laptops, tablets, and other electronics. Plus, learn which service options you can use and get answers to FAQs"
   },
   "/en-us/shipping/how-to-ship-cookies": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_BakedGoods_727x463.jpg",
     "alt": "",
     "listings": [
       "/en-us/how-to-hub"
-    ]
+    ],
+    "title": "How to Ship Cookies and Other Baked Goods",
+    "pageDescription": "Help your cookies and baked goods arrive intact and delicious. Get step‑by‑step packing tips, freshness guidelines, and recommended shipping speeds."
   },
   "/en-us/shipping/how-to-ship-dry-ice": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_DryIce_727x463.jpg",
@@ -801,7 +973,9 @@ export default {
       "/en-us/service-guide/hazardous-materials/how-to-ship",
       "/en-us/shipping/how-to-ship-perishables",
       "/en-us/tracking/priority-alert/industry-benefits"
-    ]
+    ],
+    "title": "How to Ship With Dry Ice",
+    "pageDescription": "Learn how to ship with dry ice to protect frozen perishables. See how to prep your package and meet dry ice shipping requirements."
   },
   "/en-us/shipping/how-to-ship-firearms": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx-Firearms.jpg",
@@ -815,7 +989,9 @@ export default {
       "/en-us/shipping/how-to-ship-batteries",
       "/en-us/shipping/how-to-ship-clinical-samples",
       "/en-us/shipping/how-to-ship-guitars"
-    ]
+    ],
+    "title": "How to Ship Firearms",
+    "pageDescription": "Find out what is required to ship firearms and what licenses you need. Read our guidelines on shipping your gun, including what is prohibited and how to secure your firearm."
   },
   "/en-us/shipping/how-to-ship-flowers-and-plants": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx-Flowers.jpg",
@@ -835,7 +1011,9 @@ export default {
       "/en-us/shipping/how-to-ship-perishables",
       "/en-us/shipping/same-day",
       "/en-us/shipping/shipping-gifts-packing-and-delivery-guide"
-    ]
+    ],
+    "title": "How to ship flowers and plants",
+    "pageDescription": "Get step-by-step instructions and tips for shipping flowers and plants. Plus, learn which service options you should use and get answers to FAQs."
   },
   "/en-us/shipping/how-to-ship-furniture": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx-Furniture.jpg",
@@ -844,7 +1022,9 @@ export default {
       "/en-us/how-to-hub",
       "/en-us/how-to-hub/articles",
       "/en-us/shipping/express"
-    ]
+    ],
+    "title": "How to Pack and Ship Furniture",
+    "pageDescription": "Learn how to pack and ship furniture, including how to pack it to help prevent damage and loss during shipment."
   },
   "/en-us/shipping/how-to-ship-golf-clubs": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_Golf_727x463.jpg",
@@ -859,7 +1039,9 @@ export default {
       "/en-us/shipping/how-to-ship-firearms",
       "/en-us/shipping/how-to-ship-guitars",
       "/en-us/shipping/shipping-gifts-packing-and-delivery-guide"
-    ]
+    ],
+    "title": "How to ship golf clubs",
+    "pageDescription": "Learn how to ship your golf clubs to help ensure they arrive intact and ready to spend time on the golf course. Or consult with a shipping pro for additional help."
   },
   "/en-us/shipping/how-to-ship-guitars": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx-Guitar.jpg",
@@ -874,7 +1056,9 @@ export default {
       "/en-us/shipping/how-to-ship-clinical-samples",
       "/en-us/shipping/how-to-ship-firearms",
       "/en-us/shipping/shipping-gifts-packing-and-delivery-guide"
-    ]
+    ],
+    "title": "How to Ship a Guitar",
+    "pageDescription": "Find out how to securely pack and ship a guitar. Find the right guitar shipping box at a FedEx Office and ship your guitar securely."
   },
   "/en-us/shipping/how-to-ship-jewelry": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx-Jewelry%201.jpg",
@@ -882,14 +1066,18 @@ export default {
     "listings": [
       "/en-us/how-to-hub",
       "/en-us/how-to-hub/articles"
-    ]
+    ],
+    "title": "How To Ship Jewelry",
+    "pageDescription": "Learn how to package and ship your jewelry safely so you can protect what matters most."
   },
   "/en-us/shipping/how-to-ship-liquids": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_Liquids_727x463.jpg",
     "alt": "",
     "listings": [
       "/en-us/how-to-hub"
-    ]
+    ],
+    "title": "How To Ship Liquids",
+    "pageDescription": "Find out how to safely pack liquids for shipping to help prevent spills. Plus, learn which liquids you can ship."
   },
   "/en-us/shipping/how-to-ship-luggage": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx_Luggage.jpg",
@@ -905,7 +1093,9 @@ export default {
       "/en-us/shipping/how-to-ship-firearms",
       "/en-us/shipping/how-to-ship-guitars",
       "/en-us/shipping/shipping-gifts-packing-and-delivery-guide"
-    ]
+    ],
+    "title": "How to Ship and Package Luggage",
+    "pageDescription": "Learn what you need to ship and package luggage, including what can and cannot be shipped. Safely ship your luggage and determine what information is needed to securely ship your suitcase."
   },
   "/en-us/shipping/how-to-ship-oversized-items": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_Oversized_727x463.jpg",
@@ -921,7 +1111,9 @@ export default {
       "/en-us/shipping/how-to-ship-firearms",
       "/en-us/shipping/how-to-ship-guitars",
       "/en-us/shipping/shipping-gifts-packing-and-delivery-guide"
-    ]
+    ],
+    "title": "Shipping Large Items: How To Ship Big Packages",
+    "pageDescription": "You may have mastered the art of sending a standard package, but what do you do when shipping bulky items? Use these tips for the best ways to ship oversized items."
   },
   "/en-us/shipping/how-to-ship-perishables": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx-Perishables.jpg",
@@ -942,7 +1134,9 @@ export default {
       "/en-us/shipping/how-to-ship-guitars",
       "/en-us/shipping/same-day",
       "/en-us/shipping/shipping-gifts-packing-and-delivery-guide"
-    ]
+    ],
+    "title": "How to Ship Perishables",
+    "pageDescription": "Learn how to ship cold and frozen foods and other perishable items. Find out which service options you can use. And learn about dry ice shipping."
   },
   "/en-us/shipping/international-1-5-day": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_ChooseFast_727x463.jpg",
@@ -952,14 +1146,18 @@ export default {
       "/en-us/industry-solutions/perishables",
       "/en-us/industry-solutions/technology-and-electronics",
       "/en-us/sweepstakes/slope-to-shore/slopetoshoresweepstakesover"
-    ]
+    ],
+    "title": "Compare Your International Shipping Options",
+    "pageDescription": "Find urgent and more cost-effective 1- to 5-day FedEx international shipping services. Explore resources on global shipping to help you prep for success."
   },
   "/en-us/shipping/international-ground-canada": {
     "image": "https://cdn.bfldr.com/I22OPSFM/at/7hn79kwnv7nthgcfp3k4n5j/master-16492.jpg?format=jpg&crop=4081%2C2594%2Cx0%2Cy0&pad=1%2C0%2C0%2C0&width=727&height=462&auto=webp&max_age=604800",
     "alt": "",
     "listings": [
       "/en-us/shipping/international-1-5-day"
-    ]
+    ],
+    "title": "Shipping to Canada",
+    "pageDescription": "Make sure your shipment gets to your destination in Canada hassle-free. Find out about time-saving tools and resources all designed to meet your needs."
   },
   "/en-us/shipping/international-prohibited-items": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/2019_Memphis_Hub_10942-POD.jpg",
@@ -968,14 +1166,18 @@ export default {
       "/en-us/shipping/how-to-ship-automotive",
       "/en-us/shipping/how-to-ship-liquids",
       "/en-us/shipping/international/understanding-international-shipping-cost"
-    ]
+    ],
+    "title": "Global Shipping Restrictions & Prohibited Items",
+    "pageDescription": "Shipping internationally? Learn what you can and can't ship. View the lists of prohibited and restricted shipping items for each country or territory."
   },
   "/en-us/shipping/international/brokerage": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/International/images/2019/Q4/b_615938_20160330_az_8683_160132_803306271.jpg",
     "alt": "fedex delivery driver ",
     "listings": [
       "/en-us/shipping/international/customs-clearance"
-    ]
+    ],
+    "title": "International Shipping and Customs Broker Options",
+    "pageDescription": "FedEx can help get your shipment through customs by being your broker or you can choose to use your own broker."
   },
   "/en-us/shipping/international/create-documents": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/727x578-which-customs-docs.jpg",
@@ -983,7 +1185,9 @@ export default {
     "listings": [
       "/en-us/shipping/create-shipping-label",
       "/en-us/shipping/international/how-to-ship-to-uk"
-    ]
+    ],
+    "title": "Customs documents",
+    "pageDescription": "Prepare accurate, detailed customs documents to help keep your international shipments on track."
   },
   "/en-us/shipping/international/customs-clearance": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/fy21_apac_402-POD.jpg",
@@ -992,7 +1196,9 @@ export default {
       "/en-us/shipping/international/duties-and-taxes/fedex-import-tool",
       "/en-us/shipping/international/understanding-international-shipping-cost",
       "/en-us/shipping/international/us-tariffs-impact"
-    ]
+    ],
+    "title": "Customs Clearance",
+    "pageDescription": "FedEx can help you with customs clearance to help you ship globally with ease."
   },
   "/en-us/shipping/international/duties-and-taxes": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/International/images/2019/Q4/b_670538895_20160908_dm_16_005_01_02_02_08_026_160135_1928827241.jpg",
@@ -1000,21 +1206,27 @@ export default {
     "listings": [
       "/en-us/shipping/international/customs-clearance",
       "/en-us/shipping/international/duties-and-taxes/fedex-import-tool"
-    ]
+    ],
+    "title": "Duties-and-taxes",
+    "pageDescription": "Learn about duties taxes and use FedEx tools to calculate the correct duties and taxes for your shipment."
   },
   "/en-us/shipping/international/duties-and-taxes/fedex-import-tool": {
     "image": "",
     "alt": "",
     "listings": [
       "/en-us/shipping/international/customs-clearance"
-    ]
+    ],
+    "title": "FedEx Import Tool (FiT)",
+    "pageDescription": "Track and manage all your import shipments through one dashboard - Share clearance documents, Pay duties and taxes and update preclearance instructions"
   },
   "/en-us/shipping/international/ecommerce-connect-plus": {
     "image": "https://cdn.bfldr.com/I22OPSFM/at/ksq6hqqhs8gsfqnnxm7qhjx/master-cl9912.jpg?format=jpg&crop=4942%2C3148%2Cx287%2Cy792&width=727&height=463&auto=webp&max_age=604800",
     "alt": "",
     "listings": [
       "/en-us/shipping/international-1-5-day"
-    ]
+    ],
+    "title": "FedEx International Connect Plus Ecommerce Shipping",
+    "pageDescription": "FedEx International Connect Plus offers a cross-border shipping solution for your ecommerce business, with day-definite delivery that balances speed and cost."
   },
   "/en-us/shipping/international/how-to-ship": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/20171204_MK_7370_188896084-POD.jpg",
@@ -1030,7 +1242,9 @@ export default {
       "/en-us/shipping/how-to-ship-guitars",
       "/en-us/shipping/international-1-5-day",
       "/en-us/shipping/international/understanding-international-shipping-cost"
-    ]
+    ],
+    "title": "How to Ship Internationally",
+    "pageDescription": "Learn step-by-step how to ship internationally with FedEx. You will learn how to clear customs and which customs documents you need as well as the other steps involved."
   },
   "/en-us/shipping/international/urgent-delivery": {
     "image": "https://cdn.bfldr.com/I22OPSFM/at/wj8pf5wf43x3qz28gsr3trsc/20181010_S6A0014_2598532.jpg?format=jpg&crop=8269%2C5267%2Cx106%2Cy192&width=727&height=463&auto=webp&max_age=604800",
@@ -1038,14 +1252,18 @@ export default {
     "listings": [
       "/en-us/shipping/international-1-5-day",
       "/en-us/shipping/same-day"
-    ]
+    ],
+    "title": "Urgent international shipping and delivery",
+    "pageDescription": "Ship urgent packages or freight across the globe with our fastest international shipping option. Get door-to-door delivery 24 hours a day, 7 days a week, 365 days a year."
   },
   "/en-us/shipping/international/us-tariffs-impact": {
     "image": "https://www.fedex.com/content/dam/fedex/lac-latin-america/images/PR_EN_2021_12_master_jpg_NA_Intra-Island-Column4_mkt.jpg",
     "alt": "",
     "listings": [
       "/en-us/shipping/international/duties-and-taxes/fedex-import-tool"
-    ]
+    ],
+    "title": "Navigating U.S. Tariffs and Customs Regulations",
+    "pageDescription": "Get help with common questions around U.S. tariffs and regulations. Explore terms like HS codes and MID codes as well as tools to help you import and export."
   },
   "/en-us/shipping/international/worldtariff": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx_Kuwait_270517_0698-POD.jpg",
@@ -1054,7 +1272,9 @@ export default {
       "/en-us/industry-solutions/industrial",
       "/en-us/industry-solutions/perishables",
       "/en-us/shipping/international/understanding-international-shipping-cost"
-    ]
+    ],
+    "title": "WorldTariff International Trade Resources",
+    "pageDescription": "FedEx WorldTariff offers resources and guidance for navigating the international trade process. Get access to data, calculate duties and taxes, and more."
   },
   "/en-us/shipping/mobile": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/P04029_FX_WAG_PeakHoliday_LP_QR_Pod_727x463.jpg",
@@ -1073,7 +1293,9 @@ export default {
       "/en-us/shipping/ship-hold-receive-package-locations",
       "/en-us/tracking",
       "/en-us/tracking/guide-for-tracking-managing-deliveries"
-    ]
+    ],
+    "title": "Tracking and Shipping With the FedEx Mobile App",
+    "pageDescription": "Track all your packages in one place. Create shipping labels and get QR codes. See picture proof of delivery. And more."
   },
   "/en-us/shipping/multiweight": {
     "image": "",
@@ -1084,14 +1306,18 @@ export default {
       "/en-us/shipping/how-to-ship-liquids",
       "/en-us/shipping/international-ground-canada",
       "/en-us/shipping/overnight"
-    ]
+    ],
+    "title": "Multiweight pricing options for shipping packages",
+    "pageDescription": "Shipping multiple packages from one origin to one destination? You might save money by treating them as a single shipment. Multiweight tells you automatically."
   },
   "/en-us/shipping/office-depot-officemax": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/FedEx-Office/images/2021/q1/logo_OfficeDepotOfficeMax.jpg",
     "alt": "Office Depot Office Max Logo",
     "listings": [
       "/en-us/holiday/consumer-shipping-delivery-guide"
-    ]
+    ],
+    "title": "Pack and Ship Services at Office Depot OfficeMax",
+    "pageDescription": "Get convenient pack and ship services at 1,500+ Office Depot OfficeMax locations. Ship express or ground, domestic or international, and returns at all locations."
   },
   "/en-us/shipping/one-rate": {
     "image": "",
@@ -1101,7 +1327,9 @@ export default {
       "/en-us/shipping/how-to-estimate-shipping-cost",
       "/en-us/shipping/how-to-ship-clothes",
       "/en-us/shipping/packing/supplies/boxes"
-    ]
+    ],
+    "title": "Easy 1-, 2-, 3-Day Flat-Rate Shipping",
+    "pageDescription": "FedEx One Rate shipping is affordable, with no-surprise pricing. Ship packages anywhere in the U.S. for a fixed price."
   },
   "/en-us/shipping/overnight": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/2022/FedEx-sip_auto-parts-B.jpg",
@@ -1120,28 +1348,36 @@ export default {
       "/en-us/shipping/how-to-ship-live-animals",
       "/en-us/shipping/same-day",
       "/en-us/shipping/saturday-and-sunday-delivery"
-    ]
+    ],
+    "title": "Overnight Shipping for Next Day Delivery",
+    "pageDescription": "FedEx overnight services provide overnight shipping for fast delivery to ZIP codes in the U.S. and around the globe to ensure your package arrives the next day."
   },
   "/en-us/shipping/packaging": {
     "image": "",
     "alt": "",
     "listings": [
       "/en-us/shipping/international/how-to-ship-to-canada"
-    ]
+    ],
+    "title": "Packaging Tips and Solutions for Your Business",
+    "pageDescription": "Secure and customize your shipments with FedEx. Get packaging supplies, design branded boxes, put your package to the test, find packing tips, and more."
   },
   "/en-us/shipping/packaging/common-terms": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/2020/Q3/POD_20171204_MK_5960_188896084_291915691.jpg",
     "alt": "A woman working on a laptop with a brown box, bubble wrap and packaging tape stacked next to her.",
     "listings": [
       "/en-us/shipping/packaging"
-    ]
+    ],
+    "title": "Common Packaging Terms Defined",
+    "pageDescription": "Get definitions for common packaging and shipping terms."
   },
   "/en-us/shipping/packaging/search-test-types": {
     "image": "",
     "alt": "",
     "listings": [
       "/en-us/shipping/packaging/testing/distribution"
-    ]
+    ],
+    "title": "Available Packaging Tests",
+    "pageDescription": "Find the packaging tests you need. Search tests by their function, or category and test name."
   },
   "/en-us/shipping/packaging/testing": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_PackageTest_727x4631.jpg",
@@ -1162,21 +1398,27 @@ export default {
       "/en-us/shipping/packing/supplies/boxes/custom",
       "/en-us/shipping/packing/supplies/sustainable-packaging",
       "/en-us/small-business/articles-insights/tips-from-a-packing-engineer"
-    ]
+    ],
+    "title": "FedEx Packaging Lab",
+    "pageDescription": "Test your packaging and get expert engineering help at our state-of-the-art lab."
   },
   "/en-us/shipping/packaging/testing/advanced": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/2020/Q3/FedEx_1145_ResizePod_1154180025.jpg",
     "alt": "Two male FedEx employees using a tool to test packaging in the FedEx Packaging Lab.",
     "listings": [
       "/en-us/shipping/packaging/testing"
-    ]
+    ],
+    "title": "Advanced Testing for Packaging",
+    "pageDescription": "Explore the environmental, material, and specialized packaging tests available at the FedEx Packaging Lab."
   },
   "/en-us/shipping/packaging/testing/distribution": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/Small-Business-Center/images/2020/Q3/V2_201504_15_002_03_02_01_276_dm_160125_1130331803.jpg",
     "alt": "Packages on a conveyor belt",
     "listings": [
       "/en-us/shipping/packaging/testing"
-    ]
+    ],
+    "title": "Distribution Testing",
+    "pageDescription": "Find out if your packaging holds up under typical shipping conditions. Tests are available for parcel and freight shipments."
   },
   "/en-us/shipping/packaging/what-is-dimensional-weight": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx_dim.jpg",
@@ -1184,7 +1426,9 @@ export default {
     "listings": [
       "/en-us/shipping/how-to-ship-furniture",
       "/en-us/shipping/packaging"
-    ]
+    ],
+    "title": "What is Dimensional Weight?",
+    "pageDescription": "Learn what dimensional / dim weight is, how it's calculated, and why it’s important in shipping."
   },
   "/en-us/shipping/packing/how-to-pack/breakables": {
     "image": "",
@@ -1193,7 +1437,9 @@ export default {
       "/en-us/shipping-guide/fathers-day",
       "/en-us/shipping-guide/mothers-day",
       "/en-us/shipping/packing/supplies/boxes/custom"
-    ]
+    ],
+    "title": "Packing breakables 101",
+    "pageDescription": "Get quick, easy tips for packing breakable shipments."
   },
   "/en-us/shipping/packing/pack-and-ship": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/Specialty_Boxes_727X463_406831033-POD.jpg",
@@ -1203,7 +1449,9 @@ export default {
       "/en-us/shipping/3-day-express-saver-shipping",
       "/en-us/shipping/how-to-estimate-shipping-cost",
       "/en-us/shipping/overnight"
-    ]
+    ],
+    "title": "Find packing and shipping near you",
+    "pageDescription": "Get options and pricing for expert packing services at FedEx Office."
   },
   "/en-us/shipping/packing/pledge": {
     "image": "",
@@ -1215,7 +1463,9 @@ export default {
       "/en-us/shipping/packing/supplies",
       "/en-us/shipping/packing/supplies/boxes",
       "/en-us/shipping/packing/supplies/boxes/custom"
-    ]
+    ],
+    "title": "The FedEx Office Packing Pledge",
+    "pageDescription": "Get the details of the FedEx Office Packing Pledge that backs all our expert packing."
   },
   "/en-us/shipping/packing/supplies": {
     "image": "https://cdn.bfldr.com/I22OPSFM/at/q7cw2mbjbhn385498fqz2nj6/FY22_Memphis_220429_MK-FedEx_Memphis-1865_46.jpg?auto=webp&fit=bounds&format=jpg&max_age=604800&crop=727%3A463%2Csmart&width=727&height=463&",
@@ -1231,7 +1481,9 @@ export default {
       "/en-us/shipping/how-to-ship-liquids",
       "/en-us/shipping/overnight",
       "/en-us/shipping/packaging"
-    ]
+    ],
+    "title": "Shipping, Packing, and Mailing Supplies",
+    "pageDescription": "From boxes to cushioning to tubes, get the right shipping supplies for any item. Also, find specialty and custom packaging options."
   },
   "/en-us/shipping/packing/supplies/boxes": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/FedEx-Office-small-box-web.jpg",
@@ -1245,21 +1497,27 @@ export default {
       "/en-us/shipping/packing/pack-and-ship",
       "/en-us/shipping/packing/supplies/boxes/custom",
       "/en-us/shipping/shipping-gifts-packing-and-delivery-guide"
-    ]
+    ],
+    "title": "Boxes for Packing, Shipping & Moving",
+    "pageDescription": "Search boxes by type, dimensions, cost, and customization options. Get boxes at a nearby FedEx Office location or shop for FedEx Express boxes online."
   },
   "/en-us/shipping/packing/supplies/boxes/custom": {
     "image": "",
     "alt": "",
     "listings": [
       "/en-us/shipping/packaging"
-    ]
+    ],
+    "title": "Custom Boxes and Packaging",
+    "pageDescription": "Find custom boxes and packaging solutions to fit your shipping needs. Includes custom graphics on boxes, unique shapes and sizes, package testing, and more."
   },
   "/en-us/shipping/packing/supplies/near-me": {
     "image": "",
     "alt": "",
     "listings": [
       "/en-us/shipping/packing/pack-and-ship"
-    ]
+    ],
+    "title": "In-Store Shipping Supplies (Mailers, peanuts, tape & more)",
+    "pageDescription": "Purchase shipping supplies at a nearby FedEx Office and other select locations."
   },
   "/en-us/shipping/packing/supplies/sustainable-packaging": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD-727x463_fy22_sustainability_.jpg",
@@ -1269,21 +1527,27 @@ export default {
       "/en-us/shipping/fedex-authorized-ship-center/shipsource/view-shipping-emissions",
       "/en-us/shipping/returns/business",
       "/en-us/shipping/returns/global"
-    ]
+    ],
+    "title": "Sustainable Packaging",
+    "pageDescription": "Part of our wide range of reusable packaging solutions, FedEx recyclable products support our commitment to sustainable shipping and return innovation."
   },
   "/en-us/shipping/returns/business": {
     "image": "",
     "alt": "",
     "listings": [
       "/en-us/shipping/fedex-authorized-ship-center/shipsource/avoid-three-common-scams"
-    ]
+    ],
+    "title": "Create a Positive FedEx Returns Experience for Customers",
+    "pageDescription": "Get small business tools and tips to help make returns easy. Build a returns strategy that keeps customers coming back."
   },
   "/en-us/shipping/returns/business/using-returns-to-boost-online-sales": {
     "image": "",
     "alt": "",
     "listings": [
       "/en-us/shipping/returns/business"
-    ]
+    ],
+    "title": "How to Use Returns to Boost Online Sales",
+    "pageDescription": "Returns are part of selling online. Use these business insights and tips on returns to help boost your online sales and improve customer loyalty."
   },
   "/en-us/shipping/returns/global": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD-727x463_International-returns_.jpg",
@@ -1291,7 +1555,9 @@ export default {
     "listings": [
       "/en-us/shipping/international/ecommerce-connect-plus",
       "/en-us/shipping/returns/business"
-    ]
+    ],
+    "title": "Global Returns | International Returns",
+    "pageDescription": "Get tips and tools to make international returns easy. Create return labels, find international shipping documents, and more."
   },
   "/en-us/shipping/same-day": {
     "image": "",
@@ -1300,7 +1566,9 @@ export default {
       "/en-us/healthcare",
       "/en-us/shipping/how-to-ship-clothes",
       "/en-us/shipping/saturday-and-sunday-delivery"
-    ]
+    ],
+    "title": "Same Day Delivery Across the U.S.",
+    "pageDescription": "Ship an envelope, package, or freight across the U.S. within hours. Get door-to-door 24-hour delivery, 7 days a week, 365 days a year."
   },
   "/en-us/shipping/saturday-and-sunday-delivery": {
     "image": "",
@@ -1308,7 +1576,9 @@ export default {
     "listings": [
       "/en-us/shipping/cell-phones",
       "/en-us/shipping/ground"
-    ]
+    ],
+    "title": "Weekend Delivery | Saturday and Sunday",
+    "pageDescription": "See how FedEx can help you stay competitive, with weekend deliveries at no additional cost—including overnight delivery on Saturday."
   },
   "/en-us/shipping/services": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/International/images/2020/Q1/IG%20US-Package-shipping%20(1).jpg",
@@ -1324,14 +1594,18 @@ export default {
       "/en-us/shipping/international-ground-canada",
       "/en-us/shipping/international/airport-to-airport",
       "/en-us/shipping/international/how-to-ship"
-    ]
+    ],
+    "title": "Shipping Services",
+    "pageDescription": "With a variety of U.S. and international shipping services and tools, FedEx has all of the options you need to get your packages, envelopes, or freight delivered on time."
   },
   "/en-us/shipping/ship-manager": {
     "image": "",
     "alt": "",
     "listings": [
       "/en-us/industry-solutions/automotive/dealerships"
-    ]
+    ],
+    "title": "FedEx Ship Manager",
+    "pageDescription": "Learn how to use FedEx Ship Manager to handle your entire shipping process, improving your efficiency, reducing errors, and freeing up your time."
   },
   "/en-us/shipping/ship-manager/online": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_AutomateWithFSM_727x463.jpg",
@@ -1339,21 +1613,27 @@ export default {
     "listings": [
       "/en-us/healthcare",
       "/en-us/shipping/create-shipping-label"
-    ]
+    ],
+    "title": "FedEx Ship Manager® at fedex.com",
+    "pageDescription": "FedEx Ship Manager is an easy, automated way to ship freight and packages and it's designed to suit every type of shipper. From the businesses sending out regular orders to those shipping a one-off package – this tool is designed to be fast, seamless and help make shipping as simple as possible."
   },
   "/en-us/shipping/ship-manager/software": {
     "image": "",
     "alt": "",
     "listings": [
       "/en-us/shipping/create-shipping-label"
-    ]
+    ],
+    "title": "Ship Manager Software",
+    "pageDescription": "Enjoy easier, more efficient shipping, tracking and billing with FedEx Ship Manager Software - a tool designed to keep business shipping on track."
   },
   "/en-us/shipping/shipping-gifts-packing-and-delivery-guide": {
     "image": "",
     "alt": "",
     "listings": [
       "/en-us/holiday/consumer-shipping-delivery-guide"
-    ]
+    ],
+    "title": "How to Ship Holiday Gifts",
+    "pageDescription": "Discover tips for packaging holiday gifts, including challenging items like electronics, large objects, and perishables. Compare shipping options and learn how to track deliveries."
   },
   "/en-us/shipping/temperature-control": {
     "image": "https://cdn.bfldr.com/I22OPSFM/at/fw4xj92gvxcqf4ns55ch3k53/20171113_MK_07956_187916514.jpg?format=jpg&crop=5297%2C3373%2Cx52%2Cy44&width=727&height=463&auto=webp&max_age=604800",
@@ -1361,7 +1641,9 @@ export default {
     "listings": [
       "/en-us/healthcare/clinical-trials",
       "/en-us/shipping/alcohol/resources"
-    ]
+    ],
+    "title": "Temperature Control",
+    "pageDescription": "FedEx offers many shipping options to keep your products at the right temperature."
   },
   "/en-us/shipping/temperature-control/ambient-room-temperature": {
     "image": "https://cdn.bfldr.com/I22OPSFM/at/vv9gjcxk94f9r9tzjkfsr5fs/20171113_MK_07004_187916514.jpg?format=jpg&crop=4378%2C2788%2Cx1012%2Cy452&width=727&height=463&auto=webp&max_age=604800",
@@ -1369,7 +1651,9 @@ export default {
     "listings": [
       "/en-us/healthcare",
       "/en-us/industry-solutions/technology-and-electronics"
-    ]
+    ],
+    "title": "Ambient/Room Temperature Shipping",
+    "pageDescription": "FedEx offers different solutions to keep your products at a comfortable ambient or room temperature."
   },
   "/en-us/shipping/temperature-control/deep-frozen": {
     "image": "https://cdn.bfldr.com/I22OPSFM/at/nnj7ths4fmsj4kh4gg7m7q5z/20171113_MK_03702_187916514.jpg?format=jpg&crop=4937%2C3144%2Cx73%2Cy185&width=727&height=463&auto=webp&max_age=604800",
@@ -1377,28 +1661,36 @@ export default {
     "listings": [
       "/en-us/healthcare",
       "/en-us/shipping/how-to-ship-perishables"
-    ]
+    ],
+    "title": "Deep Frozen Shipment",
+    "pageDescription": "If you need to keep your products deep-frozen, FedEx has a variety of options for you."
   },
   "/en-us/shipping/temperature-control/refrigerated-cold-shipping": {
     "image": "https://cdn.bfldr.com/I22OPSFM/at/rq3hks4rrskwjnkf5zpmsggg/FY22_Memphis_220429_MK-FedEx_Memphis-21493_13.jpg?format=jpg&crop=5192%2C3306%2Cx51%2Cy112&width=727&height=463&auto=webp&max_age=604800",
     "alt": "",
     "listings": [
       "/en-us/healthcare"
-    ]
+    ],
+    "title": "Refrigerated and Cold Shipping",
+    "pageDescription": "FedEx offers a variety of temperature-control solutions to keep your products refrigerated and cold."
   },
   "/en-us/shipping/temperature-control/shipping-frozen-items": {
     "image": "https://cdn.bfldr.com/I22OPSFM/at/sbxpn69f2k4n7959rscxtbp9/20171113_MK_04175_187916514.jpg?format=jpg&crop=5279%2C3362%2Cx82%2Cy152&width=727&height=463&auto=webp&max_age=604800",
     "alt": "",
     "listings": [
       "/en-us/healthcare"
-    ]
+    ],
+    "title": "Shipping Frozen Items",
+    "pageDescription": "If you're shipping frozen items, FedEx offers a variety of temperature-controlled options to keep your products frozen during transit."
   },
   "/en-us/surround": {
     "image": "",
     "alt": "",
     "listings": [
       "/en-us/healthcare"
-    ]
+    ],
+    "title": "FedEx Surround",
+    "pageDescription": "Get more visibility and control over your shipments with FedEx Surround. Choose the level of monitoring and intervention that works for your business."
   },
   "/en-us/sweepstakes": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sweepstakes/POD_ExploreMore_727x463.jpg",
@@ -1409,14 +1701,18 @@ export default {
       "/en-us/sweepstakes/nfl-gameface",
       "/en-us/sweepstakes/vacay-your-way",
       "/en-us/sweepstakes/vacay-your-way/vacay-your-way-sweepstakes-over"
-    ]
+    ],
+    "title": "FedEx Sweepstakes",
+    "pageDescription": "Learn about our current sweepstakes and enter for a change to win big! Find out about all our current contests and prizes right here."
   },
   "/en-us/sweepstakes/nfl-superbowl": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/sweepstakes/AEM_Mobile_320_210_2guys.jpg",
     "alt": "",
     "listings": [
       "/en-us/sweepstakes"
-    ]
+    ],
+    "title": "FedEx Super Bowl Sweepstakes",
+    "pageDescription": "Register for the FedEx Super Bowl LXI Sweepstakes for a chance to win a trip to Los Angeles, CA. Additional prizes from $2,500 to $10,00 will also be awarded."
   },
   "/en-us/tracking": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/174-874_CustomerBenefit.jpg",
@@ -1437,7 +1733,9 @@ export default {
       "/en-us/shipping/overnight",
       "/en-us/shipping/shipping-gifts-packing-and-delivery-guide",
       "/en-us/tracking/picture-proof-delivery"
-    ]
+    ],
+    "title": "FedEx Tracking Services - Track Your Package",
+    "pageDescription": "Where is my package? Enter your FedEx tracking number, track by reference, obtain proof of delivery, or TCN. See FedEx Express, Ground, Freight, and Custom Critical tracking services."
   },
   "/en-us/tracking/advanced": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/174-874_BusinessrBenefit.jpg",
@@ -1448,7 +1746,9 @@ export default {
       "/en-us/shipping/overnight",
       "/en-us/shipping/returns/global",
       "/en-us/tracking/picture-proof-delivery"
-    ]
+    ],
+    "title": "Advanced Shipment Tracking",
+    "pageDescription": "With FedEx Tracking, you can easily manage all of your shipments with 24/7 access to essential online tracking information, documents, images and more."
   },
   "/en-us/tracking/guide-for-tracking-managing-deliveries": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD_Resources_727x463.jpg",
@@ -1456,7 +1756,9 @@ export default {
     "listings": [
       "/en-us/holiday/consumer-shipping-delivery-guide",
       "/en-us/tracking"
-    ]
+    ],
+    "title": "Tracking and Managing Deliveries",
+    "pageDescription": "Find out FedEx delivery hours, discover ways to get more control of your shipments, and learn about your package status and tracking."
   },
   "/en-us/tracking/picture-proof-delivery": {
     "image": "https://www.fedex.com/content/dam/fedex/us-united-states/shipping/images/POD-727x463_Tool_Zoom_4.jpg",
@@ -1468,6 +1770,8 @@ export default {
       "/en-us/shipping/shipping-gifts-packing-and-delivery-guide",
       "/en-us/tracking/advanced",
       "/en-us/tracking/guide-for-tracking-managing-deliveries"
-    ]
+    ],
+    "title": "Picture Proof of Delivery",
+    "pageDescription": "Get picture proof of delivery for FedEx Express and FedEx Ground residential shipments."
   }
 };

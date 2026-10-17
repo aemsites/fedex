@@ -127,15 +127,25 @@
   padding: 50px var(--space-3) 60px; /* source mobile spacers, 12px column inset */
 }
 
+/* a column of its own: as on the source, the title's 20px and the text's 4px margins add up */
+.banner.dark .banner-text:has(> h2) {
+  display: flex;
+  flex-direction: column;
+}
+
 .banner.dark .banner-text > h2 {
-  /* source: 20px, plus the text's 4px top margin (no margin collapsing there) */
-  margin: var(--space-10) 0 var(--space-6);
+  margin: var(--space-10) 0 var(--space-5);
   font-size: 25px; /* source size */
   font-weight: var(--font-weight-regular);
 }
 
 .banner.dark .banner-text > h2 ~ p {
   margin: var(--space-1) 0 var(--space-2);
+}
+
+/* between paragraphs the source's margins collapse to 8px */
+.banner.dark .banner-text > h2 ~ p + p {
+  margin-top: 0;
 }
 
 .banner.dark:has(> .banner-text > h2) .banner-cta {

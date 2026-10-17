@@ -326,12 +326,24 @@ export default function parse(element, { document }) {
     const spaced = titles.length > 0 && titles.every((t) => t && t.tagName === 'H2' && t.classList.contains('fxg-title--custom')
       && /font-size\s*:\s*20px/i.test(t.getAttribute('style') || '')
       && /font-weight\s*:\s*(normal|400)/i.test(t.getAttribute('style') || ''));
-    name = spaced ? 'Cards (icon, centered, spaced)' : 'Cards (icon, centered)';
+    // `large-titles`: every title is fedex.com's default h3 (customer-support "Write to Us /
+    // Customer Service": fxg-title--default, 32px light, 24px on mobile, with the h3 heading margins;
+    // the icons a quarter of the card wide)
+    const largeTitles = !spaced && titles.length > 0
+      && titles.every((t) => t && t.tagName === 'H3' && t.classList.contains('fxg-title--default'));
+    if (spaced) name = 'Cards (icon, centered, spaced)';
+    else name = largeTitles ? 'Cards (icon, centered, large-titles)' : 'Cards (icon, centered)';
     cells.forEach((row) => {
       const ni = row[0] && row[0].querySelector ? (row[0].matches('img') ? row[0] : row[0].querySelector('img')) : null;
       // html2md turns a bare *.svg into an :icon: token
       if (ni && /\.svg$/i.test(ni.src || '') && !(ni.src || '').includes('?')) ni.src = `${ni.src}?width=160`;
     });
+  }
+  // `mobile-left`: centred cards whose titles are left-aligned at fedex.com's smallest breakpoint
+  // (cc-aem-u-align--left@x-small-only: en-to about, customer-support, shipping, open-account);
+  // centred ones there (nl-nl shipping "Internationaal verzenden": center@x-small-only) stay centred
+  if (centered && titles.every((t) => t.classList.contains('cc-aem-u-align--left@x-small-only'))) {
+    name = name.replace(/\)$/, ', mobile-left)');
   }
   const block = WebImporter.Blocks.createBlock(document, { name, cells });
   element.replaceWith(block);

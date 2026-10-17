@@ -20,11 +20,11 @@ An answer cell holding **only a link to a fragment** (a path with a `fragments` 
 | icon, Label | Answer |
 | Label | /en-us/fragments/… (link only) |
 
-**Two-level FAQ** (en-to customer-support): when a fragment answer holds another Accordion, the outer row is a category. Open, its label and panel turn light grey (`--panel-color`) with a regular-weight label, and the questions start a quarter of the way in (fedex.com's 2-of-8 column offset: `(width - 64px) / 4`) and run to the right edge. Questions are white rows with a `#8e8e8e` top rule (no bottom rule): 20/26px light labels (regular when open), 16px/48px insets, 64px rows, a 24px "+" icon that turns into "-" when open, 48px from the right. Answers: 0 48px 16px, paragraphs 4px/8px, lists 0 0 16px with a 32px indent. CSS-only, scoped to `.accordion .accordion` and the item whose body holds an accordion; single-level accordions are unchanged. The category label keeps the single-level insets (on mobile fedex.com uses 32px, but that isn't known until the fragment has loaded).
+**Two-level FAQ** (`groups`, en-to customer-support): each row is a category whose answer is a fragment holding another Accordion of questions. The importer sets `groups` on the outer block; on pages imported before that, accordion.js adds it as soon as a category's fragment turns out to hold an Accordion. As on fedex.com: `#8e8e8e` rules above the first category and below each one, 64px category rows with a 16px 32px padding at every width (24px light from 768px, 20px below; the chevron 32px from the right), the open category a light grey panel (`--panel-color`) with a regular-weight label, and its questions starting a quarter of the way in (fedex.com's 2-of-8 column offset: `(width - 64px) / 4`) and running to the right edge. Questions are white rows with a `#8e8e8e` top rule: 20px light labels (regular when open), 16px 48px padding, 64px rows, a 24px "+" icon that turns into "-" when open, 8px after the text. Labels are flex rows whose text box (`.accordion-item-label-text`, which every label gets) has fedex.com's 1.3 line-height (26px for questions, 31.2px for categories) and is centred vertically. Answers: 0 48px 16px, paragraphs 4px/8px, lists 0 0 16px with a 32px indent. Single-level accordions are unchanged.
 
-| Accordion | |
+| Accordion (groups) | |
 |---|---|
 | Category | /{locale}/fragments/…/category (link only; the fragment holds an Accordion of questions) |
 
 ## Variants
-- *(none)*
+- `groups`: a two-level FAQ, each row a category whose fragment answer holds an Accordion of questions (see above).

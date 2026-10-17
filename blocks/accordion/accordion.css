@@ -94,82 +94,131 @@
 }
 
 /*
- * two-level FAQ (en-to customer-support): a category item whose fragment answer holds
- * another accordion. The open category is a light grey panel; its questions start a
- * quarter of the way in (fedex.com's 2-of-8 column offset) and run to the right edge,
- * as white rows with "+" / "-" icons. Single-level accordions are unchanged.
+ * groups: a two-level FAQ (en-to customer-support). Each row is a category whose fragment answer
+ * holds another accordion; set by the importer, and by accordion.js once such a fragment loads.
+ * As fedex.com: #8e8e8e rules (above the first category, below each), 64px category rows with
+ * 16px 32px padding at every width; the open category is a light grey panel; its questions start
+ * a quarter of the way in (fedex.com's 2-of-8 column offset) and run to the right edge, as white
+ * rows with "+" / "-" icons. Labels are flex rows: the text box (line-height 1.3, as fedex.com's
+ * button text) is centred, the icon sits at the end. Other accordions are unchanged.
  */
-.accordion .accordion {
-  --accordion-inset: var(--space-12);
-  --accordion-chevron-inset: var(--space-12);
+.accordion.groups {
   --accordion-rule: 1px solid #8e8e8e; /* source row rule */
+
+  border-top: var(--accordion-rule);
+  border-bottom: 0;
+}
+
+.accordion.groups > .accordion-item {
+  border-top: 0;
+  border-bottom: var(--accordion-rule);
+}
+
+/* the questions */
+.accordion.groups .accordion {
+  --accordion-inset: var(--space-12);
 
   border-bottom: 0;
 }
 
-.accordion .accordion .accordion-item {
+.accordion.groups .accordion .accordion-item {
   border-top: var(--accordion-rule);
   background-color: var(--background-color);
 }
 
-/* 16 + 26 + 16 + the 1px rule; text stops 8px before the 24px icon */
-.accordion .accordion .accordion-item-label {
-  min-height: calc(var(--space-16) - 1px);
-  padding: var(--space-4) calc(var(--accordion-chevron-inset) + var(--space-6) + var(--space-2)) var(--space-4) var(--accordion-inset);
-  font-size: 20px;
-  line-height: 26px;
+.accordion.groups .accordion-item-label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
 }
 
-.accordion .accordion .accordion-item[open] > .accordion-item-label {
+.accordion.groups .accordion-item-label-text {
+  line-height: 1.3;
+}
+
+/* categories: 64px rows */
+.accordion.groups > .accordion-item > .accordion-item-label {
+  min-height: var(--space-16);
+  padding: var(--space-4) var(--space-8);
+}
+
+/* questions: 16 + 26 + 16 + the 1px rule, 64px rows */
+.accordion.groups .accordion .accordion-item-label {
+  min-height: calc(var(--space-16) - 1px);
+  padding: var(--space-4) var(--accordion-inset);
+  font-size: 20px;
+}
+
+/* the block's top rule is part of the first 64px row on the source */
+.accordion.groups > .accordion-item:first-child > .accordion-item-label {
+  min-height: calc(var(--space-16) - 1px);
+}
+
+/* the open category: grey label and panel, the questions indented */
+.accordion.groups > .accordion-item[open] > .accordion-item-label {
+  background-color: var(--panel-color);
   font-weight: var(--font-weight-regular);
 }
 
-/* "+" when closed, "-" when open: 24px, 1.5px strokes */
-.accordion .accordion .accordion-item > .accordion-item-label::after {
+.accordion.groups .accordion .accordion-item[open] > .accordion-item-label {
+  font-weight: var(--font-weight-regular);
+}
+
+/* the chevron as the row's end item: its 24px box 32px from the right, the V centred */
+.accordion.groups > .accordion-item > .accordion-item-label::after {
+  position: static;
+  flex: none;
+  margin-inline: auto calc((var(--space-6) - var(--accordion-chevron-size) - 4px) / 2); /* box + 2 x 2px border */
+  transform: translateY(-35%) rotate(45deg);
+}
+
+.accordion.groups > .accordion-item[open] > .accordion-item-label::after {
+  transform: translateY(35%) rotate(-135deg);
+}
+
+/* "+" when closed, "-" when open: 24px, 1.5px strokes, at the row's end */
+.accordion.groups .accordion .accordion-item > .accordion-item-label::after {
+  position: static;
+  flex: none;
   width: var(--space-6);
   height: var(--space-6);
+  margin-inline-start: auto;
   border: 0;
   background:
     linear-gradient(currentcolor, currentcolor) center / 100% 1.5px no-repeat,
     linear-gradient(currentcolor, currentcolor) center / 1.5px 100% no-repeat;
-  transform: translateY(-50%);
+  transform: none;
 }
 
-.accordion .accordion .accordion-item[open] > .accordion-item-label::after {
+.accordion.groups .accordion .accordion-item[open] > .accordion-item-label::after {
   background-size: 100% 1.5px, 0 0;
-  transform: translateY(-50%);
+  transform: none;
 }
 
-.accordion .accordion .accordion-item-body {
-  padding: 0 var(--accordion-inset) var(--space-4);
-}
-
-.accordion .accordion .accordion-item-body > p {
-  margin: var(--space-1) 0 var(--space-2);
-}
-
-.accordion .accordion .accordion-item-body > :is(ul, ol) {
-  margin: 0 0 var(--space-4);
-  padding-left: var(--space-8);
-}
-
-.accordion .accordion .accordion-item-body a {
-  letter-spacing: normal;
-}
-
-/* the open category: grey label and panel, the questions indented */
-.accordion .accordion-item:has(> .accordion-item-body .accordion)[open] > .accordion-item-label {
-  background-color: var(--panel-color);
-  font-weight: var(--font-weight-regular);
-}
-
-.accordion .accordion-item-body:has(.accordion) {
+.accordion.groups > .accordion-item > .accordion-item-body {
   padding: 0 0 var(--space-4);
   background-color: var(--panel-color);
 }
 
-.accordion .accordion-item-body .accordion-wrapper {
+.accordion.groups > .accordion-item > .accordion-item-body .accordion-wrapper {
   margin-left: calc((100% - 2 * var(--space-8)) / 4);
+}
+
+.accordion.groups .accordion .accordion-item-body {
+  padding: 0 var(--accordion-inset) var(--space-4);
+}
+
+.accordion.groups .accordion .accordion-item-body > p {
+  margin: var(--space-1) 0 var(--space-2);
+}
+
+.accordion.groups .accordion .accordion-item-body > :is(ul, ol) {
+  margin: 0 0 var(--space-4);
+  padding-left: var(--space-8);
+}
+
+.accordion.groups .accordion .accordion-item-body a {
+  letter-spacing: normal;
 }
 
 @media (prefers-reduced-motion: no-preference) {

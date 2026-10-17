@@ -342,7 +342,8 @@ export default function parse(element, { document, url, params }) {
       (prev.querySelector('tbody') || prev).append(tr);
       group.remove();
     } else {
-      const outer = WebImporter.Blocks.createBlock(document, { name: 'Accordion', cells: [[label, p]] });
+      // variant "groups": the category rows are styled as fedex.com's before any fragment loads
+      const outer = WebImporter.Blocks.createBlock(document, { name: 'Accordion (groups)', cells: [[label, p]] });
       document.fedexFaqGroups.push(outer);
       group.replaceWith(outer);
     }
