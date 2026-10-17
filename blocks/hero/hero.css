@@ -247,29 +247,24 @@
 }
 
 /*
- * phone picture (a second picture: fedex.com's authored mobile image, per page): below 768px it
- * replaces the banner, full width at its own aspect ratio above the text (also in purple, whose
- * banner is hidden on phones); purple's text then sits 15px under it
+ * mobile-image (modifier for purple, pages where fedex.com authors a mobile image): below 768px
+ * the banner is shown whole, full width above the text, which sits 15px under it
  */
 @media (width < 768px) {
-  .hero-container .hero-bg:has(> .hero-phone-picture) > picture:first-child {
-    display: none;
+  .hero-container:has(.hero.purple.mobile-image) {
+    padding-top: 0;
   }
 
-  .hero-container:has(.hero.landing) .hero-bg:has(> .hero-phone-picture) {
+  .hero-container:has(.hero.purple.mobile-image) .hero-bg {
     display: block;
     aspect-ratio: auto;
   }
 
-  .hero-container:has(.hero.landing) .hero-bg > .hero-phone-picture img {
+  .hero-container:has(.hero.purple.mobile-image) .hero-bg img {
     height: auto;
   }
 
-  .hero-container:has(.hero.purple .hero-phone-picture) {
-    padding-top: 0;
-  }
-
-  .hero.purple:has(.hero-phone-picture) .hero-content {
+  .hero.purple.mobile-image .hero-content {
     padding-top: 15px;
   }
 
@@ -296,10 +291,6 @@
     --hero-heading-line-height: var(--body-line-height);
 
     padding: var(--space-18) 0 var(--space-16);
-  }
-
-  .hero-container .hero-bg > .hero-phone-picture {
-    display: none;
   }
 
   .hero-container .hero-wrapper + div {

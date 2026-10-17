@@ -172,17 +172,13 @@ export default function parse(element, { document, template }) {
     }
   }
 
-  // Phone picture: fedex.com shows its authored mobile image (.fxg-landing-hero__mobile-image,
-  // per page: en-to about yes, en-to customer-support no) above the text below 768px instead of
-  // the banner, at its own aspect ratio. A second picture in the cell (blocks/hero/README.md); kept
-  // when it is the banner file itself (en-us faq/onsite, nl-nl rates: the whole banner on phones).
-  let phonePicture = null;
-  const phoneImg = [...hero.querySelectorAll('.fxg-landing-hero__mobile-image img')]
-    .find((i) => /^https?:|^\//.test(i.getAttribute('src') || ''));
-  if (picture && phoneImg) {
-    phonePicture = newImage(phoneImg, document);
-    phonePicture.src = new URL(phoneImg.getAttribute('src'), 'https://www.fedex.com').href;
-  }
+  // Phone image: fedex.com shows an authored mobile image (.fxg-landing-hero__mobile-image, per
+  // page: en-to about yes, en-to customer-support no) above the text below 768px, at the banner's
+  // aspect ratio. Purple heroes hide the banner on phones, so they get `mobile-image`: the banner
+  // itself is shown there (blocks/hero/README.md). No second picture: older hero code would leave
+  // it in the copy.
+  const phoneImage = !!picture && [...hero.querySelectorAll('.fxg-landing-hero__mobile-image img')]
+    .some((i) => /^https?:|^\//.test(i.getAttribute('src') || ''));
 
   // Heading
   const srcH1 = [...hero.querySelectorAll('h1')].find((h) => !isHidden(h, element))
@@ -263,7 +259,6 @@ export default function parse(element, { document, template }) {
   // One row, one cell (project decision)
   const content = [];
   if (picture) content.push(picture);
-  if (phonePicture) content.push(phonePicture);
   if (h1) content.push(h1);
   content.push(...paras, ...ctas);
   const cells = [[content]];
@@ -286,6 +281,7 @@ export default function parse(element, { document, template }) {
   // phone alignment where it differs from the variant's default (purple: centred; others: left)
   const purple = name.includes('purple');
   if (purple && mobileAlign === 'left') name = name.replace(/\)$/, ', mobile-left)');
+  if (purple && phoneImage) name = name.replace(/\)$/, ', mobile-image)');
   if (!purple && mobileAlign === 'center') name = name.replace(/\)$/, ', mobile-center)');
   const block = WebImporter.Blocks.createBlock(document, { name, cells });
   element.replaceWith(block);
