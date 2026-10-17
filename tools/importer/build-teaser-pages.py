@@ -10,9 +10,15 @@
 #  - A teaser whose detail page is not migrated stays an authored teaser.
 # Input: tools/importer/teasers-collected.json, the output of collect-teasers.js run in a fedex.com
 # page on every migrated en-us page (any page can tease another). Re-run both after adding URLs.
+#  - Each page also gets its current title and description (from its preview on
+#    main--fedex--aemsites.aem.page, as scripts/teasers.js reads them): a listing card with its own
+#    copy (en-to about "FedEx History in APAC") stays authored (fedex-teasers.js).
 # Run from the repo root: python3 tools/importer/build-teaser-pages.py
+import concurrent.futures
+import html
 import json
 import re
+import urllib.request
 
 collected = json.load(open('tools/importer/teasers-collected.json'))
 migrated = set()
@@ -75,6 +81,29 @@ for path, teasers in sorted(collected.items()):
     featured = sorted({t['listing'] for t in teasers if t.get('teaser', True) and t.get('description')})
     if featured:
         pages[path]['featured'] = featured
+
+
+
+# the page's title and description as the teaser shows them (scripts/teasers.js: og:title without
+# the site suffix, description); a page that is not previewed yet keeps the ones it had
+def page_copy(path):
+    try:
+        with urllib.request.urlopen(f'https://main--fedex--aemsites.aem.page{path}', timeout=30) as r:
+            head = r.read().decode('utf-8', 'ignore').split('</head>', 1)[0]
+    except Exception:  # noqa: BLE001
+        return None
+    meta = {}
+    for m in re.finditer(r'<meta (?:name|property)="([^"]+)" content="([^"]*)"', head):
+        meta.setdefault(m.group(1).lower(), html.unescape(m.group(2)).strip())
+    title = re.sub(r'\s+\|\s+FedEx(\s+[^|]+)?\s*$', '', meta.get('og:title', ''), flags=re.I)
+    return {'title': title, 'pageDescription': meta.get('description', meta.get('og:description', ''))} if title else None
+
+
+with concurrent.futures.ThreadPoolExecutor(12) as ex:
+    for path, copy in zip(list(pages), ex.map(page_copy, list(pages))):
+        if not copy:
+            copy = {k: previous.get(path, {}).get(k) for k in ('title', 'pageDescription') if previous.get(path, {}).get(k) is not None}
+        pages[path].update(copy)
 
 body = json.dumps(pages, indent=2, ensure_ascii=False)
 open('tools/importer/teaser-pages.js', 'w').write(

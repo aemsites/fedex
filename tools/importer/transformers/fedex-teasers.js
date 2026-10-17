@@ -25,6 +25,9 @@
  *     and the row holds the bare path. Layouts: cards keep their variants (a single promo card
  *     becomes horizontal); a columns grid becomes Cards (promo, teasers); a [text | image] row
  *     stays Columns (…, teasers); an [image | text] row becomes Cards (horizontal, teasers).
+ *     Only where the item shows the detail page's own copy (its heading = the page's title, its
+ *     text = the page's description, teaser-pages.js): fedex.com teasers with their own copy (en-to
+ *     about "FedEx History in APAC") stay authored.
  */
 
 import TEASER_PAGES from '../teaser-pages.js';
@@ -153,6 +156,24 @@ function blockName(table) {
 }
 
 const hasImage = (cell) => !!cell.querySelector('img, picture');
+
+// copy compared loosely: case, whitespace, quotes, dashes and closing punctuation
+const loose = (text) => clean(text).toLowerCase().replace(/[‘’`]/g, "'").replace(/[“”]/g, '"')
+  .replace(/[‐-―]/g, '-')
+  .replace(/[.!:;\s]+$/, '');
+
+// the item's heading and text are the detail page's title and description (what the teaser would
+// show); a page without a known title is not checked
+function ownCopy(cells, path, link) {
+  const page = TEASER_PAGES[path] || {};
+  if (!page.title) return false;
+  const heading = cells.map((c) => c.querySelector('h1, h2, h3, h4, h5, h6')).find(Boolean);
+  if (heading && loose(heading.textContent) !== loose(page.title)) return true;
+  const text = cells.flatMap((c) => [...c.querySelectorAll('p')])
+    .filter((p) => !p.contains(link) && !p.querySelector('img, picture'))
+    .map((p) => clean(p.textContent)).filter(Boolean).join(' ');
+  return !!text && loose(text) !== loose(page.description || page.pageDescription || '');
+}
 const imageOnly = (cells) => cells.every((c) => !clean(c.textContent)) && cells.some(hasImage);
 
 // one item: its cells -> { path, cta } | 'image' | null (anything else)
@@ -178,6 +199,7 @@ function analyse(cells) {
   const texts = cells.flatMap((c) => [...c.querySelectorAll('p')])
     .filter((p) => clean(p.textContent) && !p.querySelector('a[href]'));
   if (texts.length > 2) return null;
+  if (ownCopy(cells, paths[0], link)) return { path: paths[0], own: true };
   const heading = cells.some((c) => c.querySelector('h1, h2, h3, h4, h5, h6'));
   return { path: paths[0], link, heading };
 }
@@ -236,6 +258,19 @@ function convertTeaserBlocks(element, doc) {
     }
     const teasers = items.filter((i) => i && i !== 'image');
     if (!teasers.length || items.some((i) => i === null)) return;
+    const featured = teasers.every((item) => ((TEASER_PAGES[item.path] || {}).featured || []).includes(currentPage));
+    // an item with its own copy keeps the block authored; a featured offer keeps its spacing
+    // (en-to get-inspired "Planting against climate change")
+    if (teasers.some((item) => item.own)) {
+      // ([image | text] rows: Cards (horizontal), the featured-offer panel, as for the teaser)
+      const cell = table.rows[0].cells[0];
+      if (featured && teasers.every((item) => item.own) && !def.variants.includes('featured')) {
+        if (def.name === 'cards') cell.textContent = `Cards (${def.variants.concat('featured').join(', ')})`;
+        else if (layout === 'horizontal') cell.textContent = 'Cards (horizontal, featured)';
+        else cell.textContent = `Columns (${def.variants.concat('featured').join(', ')})`;
+      }
+      return;
+    }
 
     let name;
     if (layout === 'cards') {
@@ -251,7 +286,7 @@ function convertTeaserBlocks(element, doc) {
     }
     // `featured`: the teaser is fedex.com's featured offer on this listing (its own copy and the
     // component's spacing: en-to shipping-tools "FedEx Ship Manager")
-    if (teasers.every((item) => ((TEASER_PAGES[item.path] || {}).featured || []).includes(currentPage))) {
+    if (featured) {
       name = name.replace(/\)$/, ', featured)');
     }
     const block = WebImporter.Blocks.createBlock(doc, {

@@ -1138,31 +1138,32 @@ main .default-content-wrapper:has(> .button-wrapper:last-child) + .cards-wrapper
 }
 
 /*
- * teasers with an outlined button (en-to shipping-tools "FedEx Ship Manager", en-us
+ * teasers (or a featured offer with its own copy) with an outlined button (en-to shipping-tools
+ * "FedEx Ship Manager", get-inspired "Planting against climate change", en-us
  * fedex-authorized-ship-center, perishables "Ship with dry ice"): fedex.com's featured offer, a
  * grey panel with the 727:463 image bleeding to its edges, stacked above the text on mobile (text
  * inset 25px 15px, button centred); from 768px the image takes 44% on the left, top-aligned, and
  * the text 35px 60px 34px. Title 20px above the text, text 24px above the button. Teasers with a text
  * CTA (fedex.com column-control rows) are unaffected.
  */
-.cards.horizontal.teasers > ul > li:has(.button-wrapper > a.button.secondary) {
+.cards.horizontal:is(.teasers, .featured) > ul > li:has(.button-wrapper > a.button.secondary) {
   padding-inline: 0;
   background-color: var(--panel-color);
 }
 
-.cards.horizontal.teasers > ul > li:has(.button-wrapper > a.button.secondary) .cards-card-body {
+.cards.horizontal:is(.teasers, .featured) > ul > li:has(.button-wrapper > a.button.secondary) .cards-card-body {
   padding: 25px var(--content-gutter);
 }
 
-.cards.horizontal.teasers > ul > li:has(.button-wrapper > a.button.secondary) .cards-card-body h3 {
+.cards.horizontal:is(.teasers, .featured) > ul > li:has(.button-wrapper > a.button.secondary) .cards-card-body h3 {
   margin-bottom: var(--space-5);
 }
 
-.cards.horizontal.teasers > ul > li:has(.button-wrapper > a.button.secondary) .cards-card-body p {
+.cards.horizontal:is(.teasers, .featured) > ul > li:has(.button-wrapper > a.button.secondary) .cards-card-body p {
   margin: var(--space-1) 0 var(--space-6);
 }
 
-.cards.horizontal.teasers > ul > li:has(.button-wrapper > a.button.secondary) .cards-card-body .button-wrapper {
+.cards.horizontal:is(.teasers, .featured) > ul > li:has(.button-wrapper > a.button.secondary) .cards-card-body .button-wrapper {
   margin: 0;
   padding: 0;
   text-align: center;
@@ -1213,19 +1214,19 @@ main .default-content-wrapper:has(> .button-wrapper:last-child) + .cards-wrapper
     padding: 0 var(--space-3);
   }
 
-  .cards.horizontal.teasers > ul > li:has(.button-wrapper > a.button.secondary) {
+  .cards.horizontal:is(.teasers, .featured) > ul > li:has(.button-wrapper > a.button.secondary) {
     grid-template-columns: minmax(0, 427fr) minmax(0, 543fr);
   }
 
-  .cards.horizontal.teasers > ul > li:has(.button-wrapper > a.button.secondary) .cards-card-image {
+  .cards.horizontal:is(.teasers, .featured) > ul > li:has(.button-wrapper > a.button.secondary) .cards-card-image {
     padding: 0;
   }
 
-  .cards.horizontal.teasers > ul > li:has(.button-wrapper > a.button.secondary) .cards-card-body {
+  .cards.horizontal:is(.teasers, .featured) > ul > li:has(.button-wrapper > a.button.secondary) .cards-card-body {
     padding: 35px 60px 34px;
   }
 
-  .cards.horizontal.teasers > ul > li:has(.button-wrapper > a.button.secondary) .cards-card-body .button-wrapper {
+  .cards.horizontal:is(.teasers, .featured) > ul > li:has(.button-wrapper > a.button.secondary) .cards-card-body .button-wrapper {
     text-align: start;
   }
 
@@ -1284,10 +1285,10 @@ main .default-content-wrapper:has(> .button-wrapper:last-child) + .cards-wrapper
 }
 
 /*
- * featured: a teaser that is fedex.com's featured offer on its listing (the importer sets it from
- * teaser-pages.js; en-to shipping-tools "FedEx Ship Manager", get-inspired "FedEx Supporting
- * International Forests"): the component's own 16px margin below it (get-inspired: 16px to the next
- * teaser). Text after it gets more room (styles.css).
+ * featured: fedex.com's featured offer on its listing, a teaser or authored with its own copy (the
+ * importer sets it from teaser-pages.js; en-to shipping-tools "FedEx Ship Manager", get-inspired
+ * "Planting against climate change"): the component's own 16px margin below it (get-inspired: 16px
+ * to the next teaser). Text after it gets more room (styles.css).
  */
 .cards.featured {
   margin-bottom: var(--space-4);
